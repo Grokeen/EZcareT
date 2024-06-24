@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Backend_.NET.props" />
+</Project>

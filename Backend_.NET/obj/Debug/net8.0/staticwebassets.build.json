@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "KWykmu9NmpaSHAG0pTAx8LAG38KzXnOQdzHPPawby0I=",
+  "Source": "Backend_.NET",
+  "BasePath": "_content/Backend_.NET",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Backend_.NET/wwwroot",
+      "Source": "Backend_.NET",
+      "ContentRoot": "/Users/kim-yongrok/Github_Blog/EZcareT/Backend_.NET/wwwroot/",
+      "BasePath": "_content/Backend_.NET",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
