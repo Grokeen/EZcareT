@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="HIS.EDU.ED.PR.UI.Component.ViewToDo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:HIS.EDU.ED.PR.UI.Component"
+             mc:Ignorable="d">
+    <Border BorderThickness="1" Height="45" CornerRadius="3" BorderBrush="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="430"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 1. 체크 박스 -->
+            <CheckBox Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Status}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommand, RelativeSource={RelativeSource Mode=FindAncestor,      
+                                AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UnCheckedCommand, RelativeSource={RelativeSource Mode=FindAncestor,      
+                                AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+
+            <!-- 2. ToDo -->
+            <Border BorderThickness="1" CornerRadius="3" Grid.Column="1" BorderBrush="White" Margin="4">
+                <TextBlock Text="{Binding ToDoContent}" Margin="5" FontSize="20"  Foreground="White" HorizontalAlignment="Left" TextDecorations="{Binding TextStauts}"/>
+            </Border>
+
+            <!-- 3. 삭제 -->
+            <Button Content="삭제" Height="35" Command="{Binding Path=DataContext.DelCommand, RelativeSource={RelativeSource Mode=FindAncestor,      
+                                AncestorType={x:Type ItemsControl}} }" CommandParameter="{Binding}" Grid.Column="2" FontSize="20"/>
+        </Grid>
+    </Border>
+</UserControl>
