@@ -25,6 +25,8 @@ namespace HIS.EDU.ED.PR.UI
             InitializeComponent();
         }
 
+
+        // 📌 닫힘 버튼 클릭 시, window close.
         private void HButton_Close_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();

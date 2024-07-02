@@ -4,14 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HIS.EDU.ED.PR.UI"
+
+        
         xmlns:component="clr-namespace:HIS.EDU.ED.PR.UI.Component"
         xmlns:viewmodel="clr-namespace:HIS.EDU.ED.PR.UI.ViewModel"
+
+
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="700" Width="800" Background="DarkCyan">
+        <!-- 
+        📌 xmlns:component="clr-namespace:HIS.EDU.ED.PR.UI.Component"
+        📌 xmlns:viewmodel="clr-namespace:HIS.EDU.ED.PR.UI.ViewModel"
+        'Component'와 'ViewModel' 디렉토리를 'component'와 'viewmodel'에 import 
+         -->
+
     <Window.DataContext>
+    <!-- 📌 <Window.DataContext> : 데이터 바인딩을 설정하는 데 사용되는 속성 -->
+
         <viewmodel:ToDoListViewModel />
     </Window.DataContext>
+    <!-- 📌 위에서 'xmlns'로 선언한 'viewmodel'에 'ToDoListViewModel.cs' 넣았디? -> 바인딩 설정 -->
+    <!-- ❗️ 멀티 바인딩도 존재 하니 주의 -> 배열 처럼 생겼음 (ex:[0][1]) -->
+
+
+    <!-- ================================================================== -->
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -33,62 +51,117 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
+        <!-- ================================================================== -->
+
             <!-- 1. 타이틀 -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center">
-                <TextBlock Text="To do List" HorizontalAlignment="Center" FontStyle="Italic" FontSize="50" FontWeight="Bold" Margin="0,10,0,0" Foreground="#FF00AFFF" />
+                
+                <TextBlock Text="To do List" HorizontalAlignment="Center" FontStyle="Italic" FontSize="50" FontWeight="Bold" Margin="0,10,0,0" Foreground="#FF00AFFF"/>
+
             </StackPanel>
+
+        <!-- ================================================================== -->
 
             <!-- 2. 할 일 입력-->
             <TextBox Grid.Row="1" Grid.Column="1" Height="45" FontSize="25"
                       Text="{Binding InputContent}" BorderBrush="#FF00AFFF" BorderThickness="3" Padding="5"/>
+                      <!-- 📌 Text="{Binding InputContent}" : 위에 <Window.DataContext>에서 바딘딩 설정된 객체에 버튼 클릭 시, 값이 입력됨 ('ViewModel/ToDoListViewModel.cs/TodoListViewModel') -->
+
+
+                      <!-- ❗️ 텍스트에 입력을 하고, form 태그 없이 어떻게 보낸 거지? 아래 적어놈 'RelayCommand' -->
+
             <Button Content="추가" Grid.Row="1" Grid.Column="2" Height="45" FontSize="30" Margin="0 0 10 0"
                      Command="{Binding AddCommand}"/>
+                     <!-- 📌 'AddCommand' : 버튼 클릭 시(이벤트 발생 시), 동작하게 되어있음 (ViewModel/ToDoListViewModel.cs/TodoListViewModel) -->
+
+                     <!-- 📌 'RelayCommand' : 일반적으로 WPF(MVVM) 패턴에서 사용되는 커맨드로 뷰 모델(ViewModel)에서 버튼 클릭 등의 이벤트를 처리하기 위해 사용 -->
+
+        <!-- ================================================================== -->
+        <!-- ❗️ 이 부분 잘 모르겠음. viewmodel에서 command 패턴으로 추상적인 여러개의 객체를 만들어서 어떻게?? 띄운다? -->
+        <!--  -->
 
             <!-- 2. 목록 추가 부분-->
             <ItemsControl Grid.Row="2" Grid.Column="1" 
                           Grid.ColumnSpan="2" ItemsSource="{Binding ToDoList}">
+            <!-- 📌 'ItemsControl' : 컬렉션 데이터를 바인딩하고 그 데이터를 표시하는 컨트롤 -->
+
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
+                    <!-- 📌 'ItemsPanelTemplate' : ItemsControl의 항목들이 배치될 패널을 정의 -->
+
                         <StackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
+
+
+            <!-- ❗️실행시켜봐야 알 수 있는 부분 -->
+
+
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
+                    <!-- 📌 'DataTemplate' : ItemsControl의 각 항목을 렌더링하는 템플릿을 정의 -->
                         <component:ViewToDo/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
+
+
                 <ItemsControl.Template>
                     <ControlTemplate>
+                    <!-- 📌 'ControlTemplate' : ItemsControl의 시각적 구조를 정의 -->
                         <ScrollViewer VerticalScrollBarVisibility="Hidden">
                             <ItemsPresenter />
                         </ScrollViewer>
                     </ControlTemplate>
+
                 </ItemsControl.Template>
+
+
             </ItemsControl>
-            
+
+        <!-- ================================================================== -->
+
             <!-- 3. 현황 및 전체 선택, 전체 해제 구성-->
             <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <!-- 📌 ColumnDefinition Width="*" : '*'는 그리드의 남은 공간을 할당하는 방식 -> CSS Auto랑 느낌이 다름 -->
                 </Grid.ColumnDefinitions>
+                
                 <StackPanel Orientation="Horizontal">
+                <!-- 📌 Orientation="Horizontal" : 네 개의 'TextBlock'가 수평으로 정렬 -->
                     <TextBlock Text="Completed Todos : " Foreground="White" FontSize="15" VerticalAlignment="Center"/>
+
+
                     <TextBlock Text="{Binding CheckCount, Mode=TwoWay}" Foreground="White" FontSize="15" VerticalAlignment="Center"/>
+                    <!-- 📌 'Mode=TwoWay' : 양방향, 책에 있음(초록표시) -->
+
                     <TextBlock Text=" / " Foreground="White" FontSize="15" VerticalAlignment="Center"/>
+
+
                     <TextBlock Text="{Binding TotalCount}" Foreground="White" FontSize="15" VerticalAlignment="Center"/>
                 </StackPanel>
+
+
                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                     <Button Content="Clear All" Command="{Binding ClearCommand }" Height="30" Width="80" Margin="0 0 10 0"/>
+
                     <Button Content="Checked All" Command="{Binding CheckedAllCommand }" Height="30" Width="80" />
                 </StackPanel>
+
+
+
             </Grid>
         </Grid>
+
+    <!-- ================================================================== -->
 
         <!-- 4. 닫기 버튼 구현-->
         <Border Grid.Row="1">
             <DockPanel Margin="0,0,20,0" LastChildFill="False">
                 <Button Content="닫기" Click="HButton_Close_Click" DockPanel.Dock="Right" Height="30" Width="50"/>
+                <!-- 📌 'HButton_Close_Click' : 'MainWindow.xaml.cs'에서 전역변수 처럼 사용. 'HButton_Close_Click' 실행 -->
             </DockPanel>
         </Border>
         
