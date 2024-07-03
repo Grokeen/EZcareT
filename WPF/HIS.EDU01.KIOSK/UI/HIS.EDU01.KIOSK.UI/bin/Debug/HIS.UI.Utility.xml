@@ -1,0 +1,2597 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.UI.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.UI.Utility.Behaviors.DataGridColumnBehavior">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.ExportMemberPathProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.AcceptsReturnProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.ExportToExcelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.ExportToCategoryProperty">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.GetExportMemberPath(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.SetExportMemberPath(System.Windows.DependencyObject,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.GetAcceptsReturn(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.SetAcceptsReturn(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.GetExportToExcel(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.SetExportToExcel(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.GetExportToCategory(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Behaviors.DataGridColumnBehavior.SetExportToCategory(System.Windows.DependencyObject,HIS.UI.Utility.Office.Category)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.CodeBindManager">
+            <summary>
+            공통코드를 조회와 관련된 일반적인 작업을 수행하는 유틸리티 메서드를 제공합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.BaseCodeBind(System.Windows.Controls.Primitives.Selector,HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.Core.Global.DTO.CCCCCSTE_INOUT})">
+            <summary>
+            공통코드 컨트롤 바인딩
+            </summary>
+            <param name="control">컨트롤유형( ComboBox, CheckBoxList, RadioButtonList )</param>
+            <param name="ItemSource">바인딩데이터소스</param>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.BaseCodeBind(System.Windows.Controls.ComboBox,System.Object,System.String,System.String,System.String,System.String)">
+            <summary>
+            공통코드 컨트롤 바인딩 
+            </summary>
+            <param name="control">컨트롤유형</param>
+            <param name="items">바인딩데이터소스</param>
+            <param name="textField">공통코드텍스트필드명</param>
+            <param name="valueField">공통코드값필드명</param>
+            <param name="nullText">초기선택아이템텍스트</param>
+            <param name="nullValue">초기선택아이템값</param>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.BaseCodeBind(Infragistics.Windows.Editors.ComboBoxItemsProvider,System.Object,System.String,System.String,System.String,System.String)">
+            <summary>
+            공통코드 컨트롤 바인딩 
+            </summary>
+            <param name="controlItem">컴보박스 아이템 유형(ComboBoxItemsProvider) </param>
+            <param name="Items">바인딩데이터소스(HSFDTOCollectionBaseObject)</param>
+            <param name="textField">공통코드텍스트필드명</param>
+            <param name="valueField">공통코드값필드명</param>
+            <param name="nullText">초기선택아이템텍스트</param>
+            <param name="nullValue">초기선택아이템값</param>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.BaseCodeBind(System.Windows.Controls.ComboBox,HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.Core.Global.DTO.CCCCCSTE_INOUT},System.String,System.String)">
+            <summary>
+            공통코드 컨트롤 바인딩 
+            </summary>
+            <param name="control">컨트롤유형</param>
+            <param name="Items">바인딩데이터소스(HSFDTOCollectionBaseObject)</param>
+            <param name="nullText">초기선택아이템텍스트</param>
+            <param name="nullValue">초기선택아이템값</param>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.CodeListBind(System.Windows.Controls.Primitives.Selector,System.Object,System.String,System.String)">
+            <summary>
+            공통코드 컨트롤 바인딩 
+            </summary>
+            <param name="control">컨트롤유형(CheckBoxList, RadioButtonList 또는 ComboBox</param>
+            <param name="Items">바인딩데이터소스(HSFDTOCollectionBaseObject)</param>
+            <param name="textField">공통코드텍스트필드명</param>
+            <param name="valueField">공통코드값필드명</param>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.GetCodeListByGroup(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.Core.Global.DTO.CCCCCSTE_INOUT},System.String)">
+            <summary>
+            그룹코드기준 공통코드 필터링
+            </summary>
+            <param name="codes">공통코드목록(HSFDTOCollectionBaseObject)</param>
+            <param name="groupCode">그룹코드</param>
+            <returns>필터링된 공통코드목록</returns>
+        </member>
+        <member name="M:HIS.UI.Utility.CodeBindManager.GetCodeListByGroup(System.Collections.ObjectModel.ObservableCollection{HIS.Core.Global.DTO.CCCCCSTE_INOUT},System.String)">
+            <summary>
+             그룹코드기준 공통코드 필터링
+            </summary>
+            <param name="codes">공통코드목록(ObservableCollection)</param>
+            <param name="groupCode">그룹코드</param>
+            <returns>필터링된 공통코드목록</returns>
+        </member>
+        <member name="T:HIS.UI.Utility.ConverterData.PersonInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.ConverterData.PersonInfo.SEX">
+            <summary>
+            성별
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.ConverterData.PersonInfo.BIRTHDAY">
+            <summary>
+            생일
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.ConverterData.PersonInfo.AGE">
+            <summary>
+            나이
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.ConverterData.PersonInfo.MONTH">
+            <summary>
+            개월수
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.ConverterData.PersonalNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.GetPersonInfomation(System.String)">
+            <summary>
+            주민번호로 생년월일, 성별, 나이, 개월수 정보를 가져옵니다.
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <returns>
+            개인의 정보를 가져옵니다.
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.IsPersonalNumberCheck(System.String)">
+            <summary>
+            내국인과 외국인의 주민번호 유효성 체크를 합니다. 
+            단 제외환자 -> 111111111111, 2222222222222.... 또는 주민번호 뒷자리 1000000,2000000면
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <returns>
+            true = 주민번호가 유효함
+            false = 주민번호가 유효하지 않음
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.GetSex(System.String)">
+            <summary>
+            주민번호로 성별을 구분합니다.
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <returns> 
+            M  - 남자
+            F  - 여자
+            F  - 예외 일경우
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.GetBirthDay(System.String)">
+            <summary>
+            주민번호로 생년월일을 구합니다.
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <returns>
+            생년월일
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.GetAge(System.String)">
+            <summary>
+            주민번호로 나이를 구합니다.
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <returns>
+            나이
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.GetMonth(System.String)">
+            <summary>
+            주민번호로 개월수를 구합니다.
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <returns>
+            개월 수
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.IsRRNcheck(System.String)">
+            <summary>
+            주민번호 유효성 검사
+            Resident Registration Number(RRN) Check
+            </summary>
+            <param name="rrnumber">주민번호</param>
+            <returns>
+            true  - 주민번호를 제대로 입력했다면
+            false - 주민번호를 잘못입력했다면
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.IsARNcheck(System.String)">
+            <summary>
+            외국인등록번호유효성검사.
+            Alien Registration Number
+            </summary>
+            <param name="arnumber">외국인등록번호</param>
+            <returns>
+            true  - 주민번호를 제대로 입력했다면
+            false - 주민번호를 잘못입력했다면
+            </returns>
+        </member>
+        <member name="M:HIS.UI.Utility.ConverterData.PersonalNumber.GetPersonDateTime(System.String,System.DateTime@)">
+            <summary>
+            주민번호를 분석해서 생년월일 정보를 가져옵니다.
+            </summary>
+            <param name="sPersonalNumber">주민번호</param>
+            <param name="dtAge">생년월일 DateTime정보</param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.BooleanToVisibilityConverter">
+            <summary>
+             boolean을 받아 visibility 로 변환 parameter로 reverse를 넘기면 반대로 동작(예:false => visible)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.BooleanToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.BooleanToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.BoolToOppositeBoolConverter">
+            <summary>
+            들어온 Boolean 값의 반대값을 리턴합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.BoolToOppositeBoolConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.BoolToOppositeBoolConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.BoolToVisibilityConverter">
+            <summary>
+             bool을 받아 Visibility 로 변환 parameter로 reverse를 넘기면 반대로 동작(예:false => visible)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.BoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.BoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.CodeToNameConverter">
+            <summary>
+            code값과 code가 포함된 collection을 multi value로 넘기면 해당collection에서 code와 매칭되는 code name을 찾아서 변환함
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.CodeToNameConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.CodeToNameConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.ComparisonConverter">
+            <summary>
+             두개의 값을 비교하여 true, false 를 반환
+             converter parameter 를 EQ, LT, LTE, GT, GTE 중 선택하여 넘기면 됨
+             EQ(Equal), LT(Less Then), LTE(Less Then or Equal), GT(Greater Then), GTE(Greater Then Equal)
+             </summary>
+             <example>
+                &lt;TextBox&gt;
+                &lt;TextBox.IsReadOnly&gt;
+                    &lt;MultiBinding Converter="{StaticResource ComparisonConverter}" ConverterParameter="LT"&gt;
+                            &lt;Binding Path="Propery1" /&gt;
+                            &lt;Binding&gt;
+                                &lt;Binding.Source&gt;
+                                    &lt;sys:Int32&gt;100&lt;/sys:Int32&gt;
+                                &lt;/Binding.Source&gt;
+                            &lt;/Binding&gt;
+                        &lt;/MultiBinding&gt;
+                    &lt;/TextBox.IsReadOnly&gt;
+                &lt;/TextBox&gt;         
+                </example>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ComparisonConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ComparisonConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ComparisonConverter.CheckEquals(System.Object,System.Object)">
+            <summary>
+            Check for equality of two values
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ComparisonConverter.Trace(System.Object,System.Object,System.String)">
+            <summary>
+            Trace output to the debugger
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.YesNoToHiddenConverter">
+            <summary>
+            Y or N 값을 받아 WPF Visibility 열거형 선택값으로 변환합니다. parameter로 reverse 넘기면 반대로 동작(예: N => Visible)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.YesNoToHiddenConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.YesNoToHiddenConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.DateTimeToStringConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.DateTimeToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.DateTimeToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.MathConverter">
+            <summary>
+            Value converter that performs arithmetic calculations over its argument(s)
+            </summary>
+            <remarks>
+            MathConverter can act as a value converter, or as a multivalue converter (WPF only).
+            It is also a markup extension (WPF only) which allows to avoid declaring resources,
+            ConverterParameter must contain an arithmetic expression over converter arguments. Operations supported are +, -, * and /
+            Single argument of a value converter may referred as x, a, or {0}
+            Arguments of multi value converter may be referred as x,y,z,t (first-fourth argument), or a,b,c,d, or {0}, {1}, {2}, {3}, {4}, ...
+            The converter supports arithmetic expressions of arbitrary complexity, including nested subexpressions    
+            </remarks>
+            <example>
+            &lt;MultiBinding Converter="{StaticResource MathConverter}" ConverterParameter="x*30 + y/2"&gt;
+               &lt;Binding Path="Text" ElementName="Hours" /&gt;
+               &lt;Binding Path="Text" ElementName="Minutes" /&gt;
+            &lt;/MultiBinding&gt;     
+            </example>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MathConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MathConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MathConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MathConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MathConverter.ProvideValue(System.IServiceProvider)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MathConverter.ProcessException(System.Exception)">
+            <remarks />
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.MultiCommandParameterConverter">
+            <summary>
+             커맨드파라미터로 multivalue 를 넘기기위한 컨버터
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MultiCommandParameterConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            커맨드파라미터로 multivalue 를 넘기기위한 컨버터
+            </summary>
+            
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MultiCommandParameterConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            호출하면안됨.
+            </summary>
+            
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.MultiDataToStringConverter">
+            <summary>
+            parameter 로 결합된 문자를 리턴합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MultiDataToStringConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.MultiDataToStringConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetTypes"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.PhoneNumberToExchangeNumberConverter">
+            <summary>
+            전화번호의 국번(지역번호)를 가져 옵니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.PhoneNumberToExchangeNumberConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.PhoneNumberToExchangeNumberConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.ReadOnlyStringFormatConverter">
+            <summary>
+            String.Foramt(commanmdParameter, values) 로 결합된 문자를 리턴합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ReadOnlyStringFormatConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ReadOnlyStringFormatConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetTypes"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.ResidentNumberToFrontNumberConverter">
+            <summary>
+            0 또는 1에 대한 Converter (1이 아니면 false)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ResidentNumberToFrontNumberConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ResidentNumberToFrontNumberConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.SexTextConverter">
+            <summary>
+            성별 M/F => 남/여로 변환하는 Converter 
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.SexTextConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.SexTextConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.StringToBoolOrVisibilityConverter">
+            <summary>
+            바인딩된 string 길이에 따라 bool 또는 visibility(parameter를 visibility 설정한경우)로 변환
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.StringToBoolOrVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.StringToBoolOrVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.ValueConverterBooleanToString">
+            <summary>
+            'Y' or 'N' 바인딩에 대해 Boolean 값을 적용하는 방법을 제공합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ValueConverterBooleanToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ValueConverterBooleanToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <remarks />
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.VisibilityConverter">
+             <summary>
+            Boolean 값을 받아 WPF Visibility 열거형 선택값으로 변환합니다.
+             </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.VisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Boolean값을 받아 WPF Visibility 열거형 선택값으로 변환합니다.
+            </summary>
+            <param name="value">변환대상값 bool형값</param>
+            <param name="targetType">형변환</param>
+            <param name="parameter">매개변수</param>
+            <param name="culture">문화권정보</param>
+            <returns>Visibility열거형 선택값</returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.VisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            WPF Visibility 열거형 선택값을 받아 Boolean값으로 변환합니다.
+            </summary>
+            <param name="value">변환대상값입니다.Visibility선택값</param>
+            <param name="targetType">형변환</param>
+            <param name="parameter">매개변수</param>
+            <param name="culture">문화권정보</param>
+            <returns>Boolean값</returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.VisibilityToBooleanConverter">
+            <summary>
+            visibility 를 받아 boolean 으로 변환 parameter로 reverse를 넘기면 반대로 동작(예:visible => false)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.VisibilityToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.VisibilityToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.YesNoToBooleanConverter">
+            <summary>
+            Y or N 에 대한 Converter Parameter로 reverse 넘기면 반대로 동작(예:Y => false)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.YesNoToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.YesNoToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.YesNoToVisibilityConverter">
+            <summary>
+            Y or N 값을 받아 WPF Visibility 열거형 선택값으로 변환합니다. parameter로 reverse 넘기면 반대로 동작(예: N => Visible)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.YesNoToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.YesNoToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.ZeroOneToBooleanConverter">
+            <summary>
+            0 또는 1에 대한 Converter (1이 아니면 false)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ZeroOneToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ZeroOneToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.ResidentNumberToBackNumberConverter">
+            <summary>
+            0 또는 1에 대한 Converter (1이 아니면 false)
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ResidentNumberToBackNumberConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.ResidentNumberToBackNumberConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.PhoneNumberToAreaNumberConverter">
+            <summary>
+            전화번호의 국번(지역번호)를 가져 옵니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.PhoneNumberToAreaNumberConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.PhoneNumberToAreaNumberConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Converters.PhoneNumberToSubscriberNumberConverter">
+            <summary>
+            전화번호의 국번(지역번호)를 가져 옵니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.PhoneNumberToSubscriberNumberConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Converters.PhoneNumberToSubscriberNumberConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Extension.HDataGridExExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.Boolean)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.Boolean,System.Boolean)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.Boolean,System.Boolean,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.String,System.Boolean,System.Boolean,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">A1:A1 셀에 출력할 출력 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">A1:A1 셀에 출력할 출력 명</param>
+            <param name="FilePath">저장할 파일 경로 입니다.</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="IsSelectedCells"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.String,System.Boolean,System.String,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">A1:A1 셀에 출력할 출력 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="FilePath">저장할 파일 경로 입니다.</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="startRowIndex">시작 행</param>
+            <param name="startColIndex">시작 열</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExExtension.ToExcel(HSF.Controls.WPF.HDataGridEx,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="FilePath"></param>
+            <param name="IsSelectedCells"></param>
+            <param name="rowData"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Extension.HDataGridExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.Boolean)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.Boolean,System.Boolean)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.Boolean,System.Boolean,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.String,System.Boolean,System.Boolean,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">A1:A1 셀에 출력할 출력 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">A1:A1 셀에 출력할 출력 명</param>
+            <param name="FilePath">저장할 파일 경로 입니다.</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.String,System.Boolean,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="IsSelectedCells"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.String,System.Boolean,System.String,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            엑셀 내보내기
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">A1:A1 셀에 출력할 출력 명</param>
+            <param name="IsDisplay">엑셀 APP 화면 표시 여부</param>
+            <param name="FilePath">저장할 파일 경로 입니다.</param>
+            <param name="IsSelectedCells">선택된 셀에 대한 내보내기 선택 여부</param>
+            <param name="startRowIndex">시작 행</param>
+            <param name="startColIndex">시작 열</param>
+            <param name="parameters">매개 변수</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HDataGridExtension.ToExcel(HSF.Controls.WPF.HDataGrid,System.String,System.String,System.Boolean,System.String,System.Boolean,System.String,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="FilePath"></param>
+            <param name="IsSelectedCells"></param>
+            <param name="rowData"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToExcel``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="IsDisplay"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToExcel``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.Boolean,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="IsDisplay"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToExcel``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToExcel``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.String,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="filePath"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToExcel``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.String,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToExcel``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.String,System.Boolean,System.String,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="filePath"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.HSFDTOObjectCollectionExtension.ToCSV``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="IsDisplay"></param>
+            <param name="filePath"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Extension.WorkSheetManager">
+            <summary>
+            Microsoft.Office.Excel.WorkSheet 관련된 일반적인 작업을 수행하는 유틸리티 메서드를 제공합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.#ctor">
+            <summary>
+            WorkSheetManager 의 새 인스턴스를 초기화 합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.#ctor(System.Boolean,System.String)">
+            <summary>
+            WorkSheetManager 의 새 인스턴스를 초기화 합니다.
+            </summary>
+            <param name="IsDisplay">화면표시 여부</param>
+            <param name="FilePath">저장할 파일 경로</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.AddSheets(HSF.Controls.WPF.HDataGrid,System.String,System.String,System.Boolean,System.String,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            새 위크 시트를 추가 합니다.
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">문서 제목</param>
+            <param name="IsDisplay">화면 표시 여부</param>
+            <param name="FilePath">저장할 파일 경로</param>
+            <param name="IsSelectedCells">선택된 셀 만 내보내기 여부</param>
+            <param name="startRowIndex">시작 행 인덱스</param>
+            <param name="startColIndex">시작 열 인덱스</param>
+            <param name="parameters">파라메타</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.AddSheets(HSF.Controls.WPF.HDataGridEx,System.String,System.String,System.Boolean,System.String,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            새 위크 시트를 추가 합니다.
+            </summary>
+            <param name="grid">데이타그리드</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">문서 제목</param>
+            <param name="IsDisplay">화면 표시 여부</param>
+            <param name="FilePath">저장할 파일 경로</param>
+            <param name="IsSelectedCells">선택된 셀 만 내보내기 여부</param>
+            <param name="startRowIndex">시작 행 인덱스</param>
+            <param name="startColIndex">시작 열 인덱스</param>
+            <param name="parameters">파라메타</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.AddSheets``1(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0},System.String,System.String,System.Boolean,System.String,System.Int32,System.Int32,System.String[])">
+            <summary>
+            새 위크 시트를 추가 합니다.
+            </summary>
+            <param name="collections">DTO 컬렉션</param>
+            <param name="sheetName">시트 명</param>
+            <param name="subject">문서 제목</param>
+            <param name="IsDisplay">화면 표시 여부</param>
+            <param name="FilePath">저장할 파일 경로</param>
+            <param name="startRowIndex">시작 행 인덱스</param>
+            <param name="startColIndex">시작 열 인덱스</param>
+            <param name="parameters">파라메타</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.Finalize">
+            <summary>
+            WorkSheetManager 을 구현하는 모듈에서 사용하는 리소스(메모리 제외)를 삭제합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.Dispose">
+            <summary>
+            WorkSheetManager 을 구현하는 모듈에서 사용하는 리소스(메모리 제외)를 삭제합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.WorkSheetManager.Dispose(System.Boolean)">
+            <summary>
+            관리되지 않는 리소스의 확보, 해제 또는 다시 설정과 관련된 응용 프로그램 정의 작업을 수행합니다. 
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Extension.BindingListExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToExcel``1(System.ComponentModel.BindingList{``0},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="IsDisplay"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToExcel``1(System.ComponentModel.BindingList{``0},System.String,System.Boolean,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="IsDisplay"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToExcel``1(System.ComponentModel.BindingList{``0},System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToExcel``1(System.ComponentModel.BindingList{``0},System.String,System.String,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="filePath"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToExcel``1(System.ComponentModel.BindingList{``0},System.String,System.String,System.Boolean,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToExcel``1(System.ComponentModel.BindingList{``0},System.String,System.String,System.Boolean,System.String,System.Int32,System.Int32,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="subject"></param>
+            <param name="IsDisplay"></param>
+            <param name="filePath"></param>
+            <param name="startRowIndex"></param>
+            <param name="startColIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Extension.BindingListExtension.ToCSV``1(System.ComponentModel.BindingList{``0},System.String,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collections"></param>
+            <param name="sheetName"></param>
+            <param name="IsDisplay"></param>
+            <param name="filePath"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.Category">
+            <summary>
+            formatting Cells in Excel
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Category.General">
+            <summary>
+            General format cells have no specific number format
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Category.Number">
+            <summary>
+            Number is used for general display of numbers. Currency and Accounting offer specialized formatting for monetary value.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Category.Currency">
+            <summary>
+            Accounting formats line up the currency symbols and decimal points iun a cokumn.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Category.Date">
+            <summary>
+            Date format display date and time serial numbers as date values. Date formats that begin with an
+            asterisk(*) respond to changes in regional date and time settings that are specified for the 
+            operating system. Formats without an asterisk are not affected by operating system settings.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Category.Text">
+            <summary>
+            Text format cells are treated as text even when a number is in the cell. The cell is displayed exactly as entered.
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.LineStyle">
+            <summary>
+            Specifies the line style for the border.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.None">
+            <summary>
+            No line
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.Continuous">
+            <summary>
+            Continuous line
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.Dash">
+             <summary>
+            Dashed line
+             </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.DashDot">
+             <summary>
+            Alternating dashes and dots
+             </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.DashDotDot">
+             <summary>
+            Dash followed by two dots
+             </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.Dot">
+             <summary>
+            Dotted line
+             </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.Double">
+             <summary>
+            Double line
+             </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.LineStyle.SlantDashDot">
+            <summary>
+            Slanted dashes
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.BorderWeight">
+            <summary>
+            Specifies the weight of the border around a range.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.BorderWeight.Thin">
+            <summary>
+            Thin.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.BorderWeight.Thick">
+            <summary>
+            Thick (widest border).
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.BorderWeight.Medium">
+            <summary>
+            Medium.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.BorderWeight.Hairline">
+            <summary>
+            Hairline (thinnest border).
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.CellFormat">
+            <summary>
+            서식코드
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.CellFormat.bracketNumber">
+            <summary>
+            (0,000)
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.CellFormat.minusNumber">
+            <summary>
+            -1,234
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.CellFormat.redNumber">
+            <summary>
+            1,234 
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.CellFormat.redbracketNumber">
+            <summary>
+            (1,234)
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.CellFormat.redminusNumber">
+            <summary>
+            -1,234
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.VAlign">
+            <summary>
+            텍스트의 세로 맞춤을 지정합니다.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.VAlign.Bottom">
+            <summary>
+            텍스트를 아래쪽에 맞춥니다.  
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.VAlign.Center">
+            <summary>
+            텍스트를 가운데 맞춥니다.  
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.VAlign.Top">
+            <summary>
+            텍스트를 위쪽에 맞춥니다.  
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.HAlign">
+            <summary>
+            텍스트의 가로 맞춤을 지정합니다.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.HAlign.Left">
+            <summary>
+            텍스트를 왼쪽 맞춥니다. 
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.HAlign.Center">
+            <summary>
+            텍스트를 가운데 맞춥니다. 
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.HAlign.Right">
+            <summary>
+            텍스트를 오른쪽 맞춥니다. 
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.SplitDirection">
+            <summary>
+            틀 고정 방향을 지정 합니다.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.SplitDirection.Horizontal">
+            <summary>
+            위크시트의 나머지 부분을 스크롤 할 때 첫 열이 표시되도록 합니다.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.SplitDirection.Vertical">
+            <summary>
+            위크시트의 나머지 부분을 스크롤 할 때 첫 행이 표시되도록 합니다.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.SplitDirection.Selection">
+            <summary>
+            현재 선택 영역을 기준으로 위크시트의 나머지 부분을 스크롤하는 동안 행과 열이 표시되도록 합니다.
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.Keys">
+            <summary>
+            SendKey 를 지정 합니다.
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.BACKSPACE">
+            <summary>
+            {BACKSPACE} or {BS}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.BREAK">
+            <summary>
+            {BREAK}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.CAPSLOCK">
+            <summary>
+            {CAPSLOCK}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.CLEAR">
+            <summary>
+            {CLEAR}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.DELETE">
+            <summary>
+            {DELETE} or {DEL}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.DOWNARROW">
+            <summary>
+            {DOWN}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.END">
+            <summary>
+            {END}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.ENTER">
+            <summary>
+            (numeric keypad) {ENTER}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.ENTER2">
+            <summary>
+            ~ (tilde)
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.ESC">
+            <summary>
+            {ESCAPE} or {ESC}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.HELP">
+            <summary>
+            {HELP}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.HOME">
+            <summary>
+            {HOME}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.INS">
+            <summary>
+            {INSERT}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.LEFTARROW">
+            <summary>
+            {LEFT}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.NUMLOCK">
+            <summary>
+            {NUMLOCK}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.PAGEDOWN">
+            <summary>
+            {PGDN}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.PAGEUP">
+            <summary>
+            {PGUP}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.RETURN">
+            <summary>
+            {RETURN}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.RIGHTARROW">
+            <summary>
+            {RIGHT}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.SCROLLLOCK">
+            <summary>
+            {SCROLLLOCK}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.TAB">
+            <summary>
+            {TAB}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.UPARROW">
+            <summary>
+            {UP}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F1">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F2">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F3">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F4">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F5">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F6">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F7">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F8">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F9">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F10">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F11">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F12">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F13">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F14">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.F15">
+            <summary>
+            {F1}
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.SHIFT">
+            <summary>
+            + (plus sign)
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.CTRL">
+            <summary>
+            ^ (caret)
+            </summary>
+        </member>
+        <member name="F:HIS.UI.Utility.Office.Keys.ALT">
+            <summary>
+            % (percent sign)
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.Application">
+            <summary>
+            HIS.UI.Utility.Office.Application 네임스페이스에는 Microsoft Office Word 개체 모델을 확장 및 지원하는 클래스 집합이 포함되어 있습니다. 
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.LangId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderEdgeLeftStyle">
+            <summary>
+            Border at the left-hand edge of the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderEdgeRightStyle">
+            <summary>
+            Border at the right-hand edge of the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderEdgeTopStyle">
+            <summary>
+            Border at the top of the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderEdgeBottomStyle">
+            <summary>
+            Border at the bottom of the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderDiagonalDownStyle">
+            <summary>
+            Border running from the upper left-hand corner to the lower right of each cell in the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderDiagonalUpStyle">
+            <summary>
+            Border running from the lower left-hand corner to the upper right of each cell in the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderInsideHorizontalStyle">
+            <summary>
+            Horizontal borders for all cells in the range except borders on the outside of the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.BorderInsideVerticalStyle">
+            <summary>
+            Vertical borders for all the cells in the range except borders on the outside of the range.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.GetRangeRow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.GetRangeColumn">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.WorkSheets">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.SetWorkSheet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.Visible">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.WorksheetCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddPicture(System.Object,System.Object,System.Drawing.Image)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="img"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddPicture(System.String,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="left"></param>
+            <param name="top"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddSheet(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sheetName"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddValidateTextLength(System.Object,System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="startCell"></param>
+            <param name="endCell"></param>
+            <param name="Length"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddValidateWholeNumber(System.Int32,System.Object,System.Object,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="startRowIndex"></param>
+            <param name="startCell"></param>
+            <param name="endCell"></param>
+            <param name="minValue"></param>
+            <param name="MaxValue"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddValidateDecimal(System.Object,System.Object,System.Decimal,System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="startCell"></param>
+            <param name="endCell"></param>
+            <param name="minValue"></param>
+            <param name="MaxValue"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddValidateDate(System.Object,System.Object,System.DateTime,System.DateTime,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="startCell"></param>
+            <param name="endCell"></param>
+            <param name="minDate"></param>
+            <param name="maxDate"></param>
+            <param name="dateformat">MM/dd/yyyy</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AddValidateYesOrNo(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="startCell"></param>
+            <param name="endCell"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AutoFit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.AutoFit(System.Boolean)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.CellMerge(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.CellMerge(System.Object,System.Object,HIS.UI.Utility.Office.HAlign)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="horizontalAlignment"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.DeleteWorksheets(System.String)">
+            <summary>
+            위크시트를 모두 삭제 합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.DeleteMemo(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.DeleteValidation(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.GetValue(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.GetRowsCountLarge">
+            <summary>
+            마지막 행을 가지고 옵니다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Open(System.String,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="workSheetName"></param>
+            <param name="isDisplay"></param>
+            <param name="FileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Open(System.String,System.Boolean,System.Drawing.Font,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="workSheetName"></param>
+            <param name="isDisplay"></param>
+            <param name="font"></param>
+            <param name="FileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.OpenFile(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="visible"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.OpenFile(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="password"></param>
+            <param name="visible"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.ActiveWorkSheetName">
+            <summary>
+            현재 활성화된 워크 시트의 이름을 가지고 옵니다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Paste(System.Object,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="rowIndex"></param>
+            <param name="colIndex"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.DeleteColumns(System.String)">
+            <summary>
+            지정된 열을 제거 합니다.
+            </summary>
+            <param name="column"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.PrintPreView">
+            <summary>
+            워크시트가 인쇄될 모양을 미리 보기로 표시합니다. 
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.PrintOut">
+            <summary>
+            워크시트를 인쇄합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.PrintOut(System.Int32,System.Int32,System.Int32,System.Boolean,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            워크시트를 인쇄합니다.
+            </summary>
+            <param name="From">워크시트를 인쇄합니다.</param>
+            <param name="To">인쇄할 마지막 페이지 번호입니다.이 인수를 생략하면 마지막 페이지까지 인쇄됩니다.</param>
+            <param name="Copies">인쇄할 매수입니다.이 인수를 생략하면 한 부만 인쇄됩니다.</param>
+            <param name="Preview">Microsoft Office Excel에서 개체를 인쇄하기 전에 인쇄 미리 보기를 호출하도록 하려면 true이고,개체를 즉시 인쇄하려면 false입니다.</param>
+            <param name="ActivePrinter">활성 프린터의 이름을 설정합니다.</param>
+            <param name="PrintToFile">파일로 인쇄하는 경우 true입니다.PrToFileName이 지정되지 않으면 Excel에서 출력 파일의 이름을 입력하라는 메시지를 표시합니다.</param>
+            <param name="Collate">여러 장을 한 부씩 인쇄하는 경우 true입니다.</param>
+            <param name="PrToFileName">PrintToFile이 true로 설정되면 이 인수는 인쇄할 파일의 이름을 지정합니다.</param>
+            <param name="IgnorePrintAreas">인쇄 영역을 무시하고 통합 문서 전체를 인쇄하려면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.NumberFormat(System.String,System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.NumberFormat(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.NumberFormarLocal(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+            <param name="format"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.RangeNext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.RangeNextRow(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.ReadData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.RowMerge(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Cell1"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Save">
+            <summary>
+            통합 문서를 저장합니다
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Save(System.String,System.Boolean)">
+            <summary>
+            통합 문서를 저장합니다
+            </summary>
+            <param name="password">파일에 지정할 보호 암호를 나타내는 대/소문자 구분 문자열(최대 15자)입니다</param>
+            <param name="ReadOnlyRecommended">파일을 열 때 해당 파일을 읽기 전용으로 열 것을 권하는 메시지를 표시하려면 true입니다</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SaveAsRun">
+            <summary>
+            통합 문서를 저장후 실행 합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SendKey(HIS.UI.Utility.Office.Keys)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SendKey(HIS.UI.Utility.Office.Keys,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="character"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetAlignment(HIS.UI.Utility.Office.HAlign,HIS.UI.Utility.Office.VAlign)">
+            <summary>
+            
+            </summary>
+            <param name="horizontalAlignment"></param>
+            <param name="verticalAlignment"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetAlignment(System.Object,System.Object,HIS.UI.Utility.Office.HAlign,HIS.UI.Utility.Office.VAlign)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="horizontalAlignment"></param>
+            <param name="verticalAlignment"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetTextWrapped(System.Object,System.Object,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="IsTextWrapped"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetBackColor(System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Replace(System.Object,System.Object,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="oldText"></param>
+            <param name="newText"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetBackColor(System.Object,System.Object,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetBorderAround(HIS.UI.Utility.Office.LineStyle,HIS.UI.Utility.Office.BorderWeight,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="lineStyle"></param>
+            <param name="borderWeight"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetBorderAround(System.Object,System.Object,HIS.UI.Utility.Office.LineStyle,HIS.UI.Utility.Office.BorderWeight,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="lineStyle"></param>
+            <param name="borderWeight"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetColumnWidth(System.Object,System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="width"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetColumnWidth(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="width"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFormula(System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+            <param name="formula"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetForeColor(System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFormat(System.Object,System.String)">
+            <summary>
+            사용자 언어로 된 NamedRange 컨트롤의 서식 코드를 설정합니다.
+            </summary>
+            <param name="cell1">셀 또는 셀 범위</param>
+            <param name="format">서식 코드</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFormat(System.Object,System.Object,HIS.UI.Utility.Office.CellFormat)">
+            <summary>
+            사용자 언어로 된 NamedRange 컨트롤의 서식 코드를 설정합니다.
+            </summary>
+            <param name="cell1">시작 셀</param>
+            <param name="cell2">종료 셀</param>
+            <param name="format">서식 코드</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFormat(System.Object,System.Object,System.String)">
+            <summary>
+            사용자 언어로 된 NamedRange 컨트롤의 서식 코드를 설정합니다.
+            </summary>
+            <param name="cell1">시작 셀</param>
+            <param name="cell2">종료 셀</param>
+            <param name="format">서식 코드</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetColumnHidden(System.Object,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+            <param name="isHidden"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetColumnHidden(System.Object,System.Object,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="isHidden"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetRowHidden(System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="rowIndex"></param>
+            <param name="isHidden"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetRowHidden(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="startRow"></param>
+            <param name="endRow"></param>
+            <param name="isHidden"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFont(System.Drawing.Font)">
+            <summary>
+            
+            </summary>
+            <param name="font"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFont(System.Drawing.Font,System.Nullable{System.Drawing.Color})">
+            <summary>
+            
+            </summary>
+            <param name="font"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetFont(System.Object,System.Object,System.Drawing.Font)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+            <param name="font"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetHyperLink(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetHyperLink(System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+            <param name="url"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetMemo(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="memo"></param>
+            <param name="display"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetPageSetup(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="topMargin"></param>
+            <param name="rightMargin"></param>
+            <param name="bottomMargin"></param>
+            <param name="leftMargin"></param>
+            <param name="headerMargin"></param>
+            <param name="footerMargin"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetRowHeight(System.Object,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetRowHeight(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="height"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetSplit(HIS.UI.Utility.Office.SplitDirection)">
+            <summary>
+            
+            </summary>
+            <param name="direction"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetRange(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetRange(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="cell1"></param>
+            <param name="cell2"></param>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Application.DataRowIndex">
+            <summary>
+            데이타 로우 인덱스 를 가져 옵니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetValue(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetValue(System.Object,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="isMoveNext"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetValue(System.Object,System.Boolean,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="isMoveNext"></param>
+            <param name="BackColor"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetValue(System.Object,System.Boolean,System.Drawing.Color,HIS.UI.Utility.Office.HAlign)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="isMoveNext"></param>
+            <param name="BackColor"></param>
+            <param name="hAlignment"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetValue(System.Object,System.Boolean,System.Drawing.Color,HIS.UI.Utility.Office.VAlign)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="isMoveNext"></param>
+            <param name="backColor"></param>
+            <param name="vAlignment"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetValue(System.Object,System.Boolean,System.Nullable{System.Drawing.Color},HIS.UI.Utility.Office.HAlign,HIS.UI.Utility.Office.VAlign,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="isMoveNext"></param>
+            <param name="backColor"></param>
+            <param name="horizontalAlignment"></param>
+            <param name="verticalAlignment"></param>
+            <param name="url"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetWorkSheetProtect(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="password"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetWorkSheetVisibility(System.Boolean)">
+            <summary>
+            통합 문서의 워크시트를 표시하거나 숨길 수 있습니다.
+            </summary>
+            <param name="visible"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.SetWorkSheetVisibility(System.String,System.Boolean)">
+            <summary>
+            통합 문서의 워크시트를 표시하거나 숨길 수 있습니다.
+            </summary>
+            <param name="sheetName">worksheet name</param>
+            <param name="visible">hide or displays the sheet</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Dispose">
+            <summary>
+            Application 을 구현하는 모듈에서 사용하는 리소스(메모리 제외)를 삭제합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.#ctor">
+            <summary>
+            HIS.UI.Utility.Office.Application 의 새 인스턴스를 초기화 합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Application.Dispose(System.Boolean)">
+            <summary>
+            관리되지 않는 리소스의 확보, 해제 또는 다시 설정과 관련된 응용 프로그램 정의 작업을 수행합니다. 
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.Import">
+            <summary>
+            지정된 워크시트 파일로 부터 데이터를 가져오려고 합니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Import.DiagelogResult">
+            <summary>
+            OpenFileDialog 대화상자를 통해 선택한 파일이 있는지 여부를 가져옵니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Import.Sheets">
+            <summary>
+            선택한 엑셀파일에서 Sheet 목록을 가져옵니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.GetReadXml">
+            <summary>
+            GetSchemaTable()를 이용하여 엑셀시트의 스키마와 데이터를 XML 로 읽어 옵니다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.GetReadXml(System.Object,System.Int32,System.Collections.Generic.IDictionary{System.Int32,System.String})">
+            <summary>
+            GetSchemaTable()를 이용하여 엑셀시트의 스키마와 데이터를 XML 로 읽어 옵니다.
+            </summary>
+            <param name="sheetName">시트 명</param>
+            <param name="StartRowIndex">첫번째 로우 Index</param>
+            <param name="indexofKey">열 정보</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.TryGetTable(System.Object,System.Int32,System.Data.DataTable)">
+            <summary>
+            GetSchemaTable()를 이용하여 엑셀시트의 스키마와 데이터를 DataTable 로 읽어 옵니다.
+            </summary>
+            <param name="sheetName"></param>
+            <param name="StartRowIndex"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.TryGetDataObject``1(System.String,System.Int32,System.Int32,HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sheetName"></param>
+            <param name="StartRowIndex"></param>
+            <param name="StartCollndex"></param>
+            <param name="collectionObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.TryGetTable(System.String,System.Data.DataTable@)">
+            <summary>
+            GetSchemaTable()를 이용하여 엑셀시트의 스키마와 데이터를 DataTable 로 읽어 옵니다.
+            </summary>
+            <param name="sheetName"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="isHDR">엑셀 데이터의 첫번째 row 를 columnname 으로 지정</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.#ctor(System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="isHDR">엑셀 데이터의 첫번째 row 를 columnname 으로 지정</param>
+            <param name="path">엑셀 파일 경로</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.Dispose">
+            <summary>
+            Import 을 구현하는 모듈에서 사용하는 리소스(메모리 제외)를 삭제합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.Dispose(System.Boolean)">
+            <summary>
+            관리되지 않는 리소스의 확보, 해제 또는 다시 설정과 관련된 응용 프로그램 정의 작업을 수행합니다. 
+            </summary>
+            <param name="isDisposing"></param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Import.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.Interlop">
+            <summary>
+            Office Interlop 과 관련된 일반적인 작업을 수행하는 유틸리티 메서드를 제공합니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Interlop.Excel">
+            <summary>
+            HIS.UI.Utility.Office.Interlop 객체의 Static 속성 입니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Interlop.Version">
+            <summary>
+            엑셀 버전을 가져옵니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Office.Interlop.Filter">
+            <summary>
+            엑셀 파일 형식 및 설명을 지정하는 필터 문자열을 가져옵니다. 
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Interlop.GetColumn(System.Int32)">
+            <summary>
+            지정된 인덱스의 엑셀 컬럼 명을 범위로 가져 옵니다.
+            </summary>
+            <param name="columnNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Interlop.ConvertToColumnName(System.Int32)">
+            <summary>
+            지정된 인덱스의 엑셀 컬럼 명을 가져 옵니다.
+            </summary>
+            <param name="columnNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.Interlop.ConvertToColumnIndex(System.String)">
+            <summary>
+            엑셀 컬럼 명을 인덱스로 반환 합니다.
+            </summary>
+            <param name="colAdress"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.UI.Utility.Office.WinWord">
+            <summary>
+            HIS.UI.Utility.Office.WinWord 네임스페이스에는 Microsoft Office Word 개체 모델을 확장 및 지원하는 클래스 집합이 포함되어 있습니다. 
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.#ctor">
+            <summary>
+            HIS.UI.Utility.Office.WinWord 클래스의 새 기본 인스턴스를 초기화합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.Open">
+            <summary>
+            새 문서를 엽니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.ClipboardCopy(System.Object)">
+            <summary>
+            지정된 문서를 열고 현재 문서에 복사합니다.
+            </summary>
+            <param name="FileName">Required Object. The name of the document (paths are accepted).</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.Open(System.Object)">
+            <summary>
+            지정된 문서를 열고 현재 문서의 내용을 문자열로 반환합니다.
+            </summary>
+            <param name="FileName">Required Object. The name of the document (paths are accepted).</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.Save(System.String,System.Object)">
+            <summary>
+            문서를 저장합니다.
+            </summary>
+            <param name="text">문서의 내용 입니다.</param>
+            <param name="FileName">문서의 저장 경로 입니다.</param>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.Finalize">
+            <summary>
+            WinWord 을 구현하는 모듈에서 사용하는 리소스(메모리 제외)를 삭제합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.Dispose">
+            <summary>
+            WinWord 을 구현하는 모듈에서 사용하는 리소스(메모리 제외)를 삭제합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.Office.WinWord.Dispose(System.Boolean)">
+            <summary>
+            관리되지 않는 리소스의 확보, 해제 또는 다시 설정과 관련된 응용 프로그램 정의 작업을 수행합니다. 
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:HIS.UI.Utility.Properties.Resources">
+            <summary>
+              지역화된 문자열 등을 찾기 위한 강력한 형식의 리소스 클래스입니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Properties.Resources.ResourceManager">
+            <summary>
+              이 클래스에서 사용하는 캐시된 ResourceManager 인스턴스를 반환합니다.
+            </summary>
+        </member>
+        <member name="P:HIS.UI.Utility.Properties.Resources.Culture">
+            <summary>
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
+            </summary>
+        </member>
+        <member name="T:HIS.UI.Utility.VisualHelper">
+            <summary>
+            시각적 트리의 노드와 관련된 일반적인 작업을 수행하는 유틸리티 메서드를 제공합니다.
+            </summary>
+        </member>
+        <member name="M:HIS.UI.Utility.VisualHelper.FindVisualTreeChild``1(System.Windows.DependencyObject)">
+            <summary>
+            VisualTreeHelper를 이용한 Child객체 조회
+            </summary>
+            <typeparam name="T">조회할 Child Type(DependencyObject)</typeparam>
+            <param name="depObject">부모조회결과</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:HIS.UI.Utility.VisualHelper.FindVisualTreeParent``1(System.Windows.DependencyObject)">
+            <summary>
+            VisualTreeHelper를 이용한 Parent객체 조회
+            </summary>
+            <typeparam name="T">조회할 Parent Type(DependencyObject)</typeparam>
+            <param name="sender">조회결과</param>
+            <returns>T</returns>
+        </member>
+    </members>
+</doc>

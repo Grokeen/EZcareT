@@ -1,0 +1,30 @@
+﻿<UserControlBase x:Class="HIS.EDU01.KIOSK.UI.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HIS.EDU01.KIOSK.UI"
+             mc:Ignorable="d" >
+    <HButton Command="{Binding Path=DataContext.AddCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+             CommandParameter="{Binding }" Width="120" Height="130" Background="{Binding COLOR}" Margin="5" >
+        <HGrid >
+            <HGrid.RowDefinitions>
+                <RowDefinition Height="20"/> <!-- 이름 -->
+                <RowDefinition Height="80"/> <!-- 사진 -->
+                <RowDefinition Height="20"/> <!-- 가격 -->
+            </HGrid.RowDefinitions>
+            
+            <!-- 이름 -->
+            <HTextBlock Text="{Binding NAME}" FontSize="11" Foreground="Black"/>
+
+            <!-- 사진 -->
+            <HBorder Grid.Row="1">
+                <Image Source="D:\HISSolutions\EDU\EDU01\HIS.EDU01.KIOSK\UI\HIS.EDU01.KIOSK.UI\img\캡쳐.PNG"  Height="70"/>
+            </HBorder>
+            
+            <!-- 가격 -->
+            <HTextBlock Text="{Binding PRICE}" Grid.Row="2" HorizontalAlignment="Right" Foreground="black" />
+        </HGrid>
+    </HButton> 
+
+</UserControlBase>
