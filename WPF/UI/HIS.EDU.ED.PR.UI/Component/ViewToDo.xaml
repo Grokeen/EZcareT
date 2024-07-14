@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
              xmlns:local="clr-namespace:HIS.EDU.ED.PR.UI.Component"
              mc:Ignorable="d">
 <!-- ❗️ 위에 참조된 4가지(API?)의 기능이 뭐지? -->
