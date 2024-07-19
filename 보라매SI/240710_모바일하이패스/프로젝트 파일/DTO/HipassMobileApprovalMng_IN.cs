@@ -1,4 +1,4 @@
-using HIS.Core.Common;
+﻿using HIS.Core.Common;
 using System;
 using System.Runtime.Serialization;
 

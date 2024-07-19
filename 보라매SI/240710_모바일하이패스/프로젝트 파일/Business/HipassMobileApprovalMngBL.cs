@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ namespace HIS.PA.AC.PE.PS.BIZ
 {
     /// <summary>
     /// name         : 수진이력 조회 BIZ 클래스
-    /// desc         : 수진이력 조회 BIZ 클래스	
+    /// desc         : 수진이력 조회 BIZ 클래스
     /// author       : 장용규
     /// create date  : 2012-12-06 오후 4:02:42
     /// update date  : 최종 수정일자, 수정자, 수정개요

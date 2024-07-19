@@ -10,40 +10,40 @@ using System.Data;
 namespace HIS.PA.AC.PE.PS.DAC
 {
     /// <summary>
-    /// name         : #ë…¼ë¦¬DAC í´ë˜ìŠ¤ëª…
-    /// desc         : #DACí´ë˜ìŠ¤ ê°œìš”
+    /// name         : #³í¸®DAC Å¬·¡½º¸í
+    /// desc         : #DACÅ¬·¡½º °³¿ä
     /// author       : leegidong 
-    /// create date  : 2016-06-21 ì˜¤í›„ 1:14:17
-    /// update date  : #ìµœì¢… ìˆ˜ì • ì¼ì, ìˆ˜ì •ì, ìˆ˜ì •ê°œìš” 
+    /// create date  : 2016-06-21 ¿ÀÈÄ 1:14:17
+    /// update date  : #ÃÖÁ¾ ¼öÁ¤ ÀÏÀÚ, ¼öÁ¤ÀÚ, ¼öÁ¤°³¿ä 
     /// </summary>
     [HSFTransaction(HSFTransactionOption.Supported)]
     public class HipassMobileApprovalMngDL : DacBase
     {
         /// <summary>
-        /// name         : #DB Connection ì„¤ì •
-        /// desc         : #ì‹¤í–‰í•  DB Connectionì„ ì§€ì •í•©ë‹ˆë‹¤.
+        /// name         : #DB Connection ¼³Á¤
+        /// desc         : #½ÇÇàÇÒ DB ConnectionÀ» ÁöÁ¤ÇÕ´Ï´Ù.
         /// author       : leegidong 
-        /// create date  : 2016-06-21 ì˜¤í›„ 1:14:17
-        /// update date  : #ìµœì¢… ìˆ˜ì • ì¼ì, ìˆ˜ì •ì, ìˆ˜ì •ê°œìš” 
+        /// create date  : 2016-06-21 ¿ÀÈÄ 1:14:17
+        /// update date  : #ÃÖÁ¾ ¼öÁ¤ ÀÏÀÚ, ¼öÁ¤ÀÚ, ¼öÁ¤°³¿ä 
         /// </summary>
         protected override void SetDataSource()
         {
-            base.DataSource = DBEnum.BILOracle; // #íŒ€ë³„ ì ì ˆí•œ DBEnumìœ¼ë¡œ ë³€ê²½
+            base.DataSource = DBEnum.BILOracle; // #ÆÀº° ÀûÀıÇÑ DBEnumÀ¸·Î º¯°æ
         }
 
         /// <summary>
-        /// name         : #ë©”ì†Œë“œ ë…¼ë¦¬ëª…
-        /// desc         : #ë©”ì†Œë“œ ê°œìš”
+        /// name         : #¸Ş¼Òµå ³í¸®¸í
+        /// desc         : #¸Ş¼Òµå °³¿ä
         /// author       : leegidong 
-        /// create date  : 2016-06-21 ì˜¤ì „ 11:09:06
-        /// update date  : #ìµœì¢… ìˆ˜ì • ì¼ì, ìˆ˜ì •ì, ìˆ˜ì •ê°œìš” 
+        /// create date  : 2016-06-21 ¿ÀÀü 11:09:06
+        /// update date  : #ÃÖÁ¾ ¼öÁ¤ ÀÏÀÚ, ¼öÁ¤ÀÚ, ¼öÁ¤°³¿ä 
         /// </summary>      
         public HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> SelectHipassMobileApprovalMng_OUT(HipassMobileApprovalMng_IN temp)
         {
 
 
             return this.DacAgent.Fill("HIS.PA.AC.PE.PS.HIPASSMOBILEAPPROVALMNG", temp, typeof(HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>)) as HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>;
-            // asì—°ì‚°ì : íƒ€ì…ì„ ë°˜í™˜ í•  ë•Œ, as ë’¤ì— í˜•ì‹ìœ¼ë¡œ ë°›ê² ë‹¤.
+            // as¿¬»êÀÚ : Å¸ÀÔÀ» ¹İÈ¯ ÇÒ ¶§, as µÚ¿¡ Çü½ÄÀ¸·Î ¹Ş°Ú´Ù.
         }
 
 
