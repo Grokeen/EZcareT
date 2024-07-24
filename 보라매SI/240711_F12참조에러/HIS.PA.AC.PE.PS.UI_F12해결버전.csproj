@@ -26,7 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>MSIL</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,10 +81,24 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.CF.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    
+    <Reference Include="HIS.PA.AC.PE.CF.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.CF.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.PS.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.CA.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.CA.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.SC.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.SC.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HIS.PA.AC.PE.SC.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
@@ -116,7 +130,7 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PI.PI.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=x86">
+    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.BASE.dll</HintPath>
       <Private>False</Private>
@@ -181,11 +195,11 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.GN.HA.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UC">
+    <Reference Include="HIS.UC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UC.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=x86">
+    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -211,7 +225,7 @@
       <HintPath>..\..\..\..\his\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UI.Devices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=x86">
+    <Reference Include="HIS.UI.Devices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Devices.dll</HintPath>
       <Private>False</Private>
@@ -1112,12 +1126,12 @@
   <ItemGroup>
     <None Include="HSF.snk" />
   </ItemGroup>
-  <ItemGroup>
+  <!-- <ItemGroup>
     <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.CA.DTO\HIS.PA.AC.PE.CA.DTO.csproj">
       <Project>{6C2FE45A-A890-46F6-BBFB-B97E49E52C7A}</Project>
       <Name>HIS.PA.AC.PE.CA.DTO</Name>
     </ProjectReference>
-  </ItemGroup>
+  </ItemGroup> -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
