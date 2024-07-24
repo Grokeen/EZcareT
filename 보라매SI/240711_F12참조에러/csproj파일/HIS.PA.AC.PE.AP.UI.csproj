@@ -40,9 +40,6 @@
     <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
@@ -54,15 +51,16 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.Core.Sign">
+    <Reference Include="HIS.Core.Sign, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Sign.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.CORE.UC.DTO">
+    <Reference Include="HIS.CORE.UC.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.CORE.UC.DTO.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.MC.DM.OR.MN.DTO">
+    <Reference Include="HIS.MC.DM.OR.MN.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\MC\HIS.MC.DM.OR.MN.DTO.dll</HintPath>
     </Reference>
     <Reference Include="HIS.MC.NM.ES.NC.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
@@ -137,7 +135,7 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.AC.PM.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=x86">
+    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.BASE.dll</HintPath>
       <Private>False</Private>
@@ -210,12 +208,11 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.GN.HI.DTO.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UC, Version=1.0.5506.19686, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="HIS.UC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UC.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UI.Base">
+    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -242,12 +239,12 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UI.Devices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=x86">
+    <Reference Include="HIS.UI.Devices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Devices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UI.Utility, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=x86">
+    <Reference Include="HIS.UI.Utility, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
       <Private>False</Private>
@@ -832,18 +829,6 @@
   <ItemGroup>
     <None Include="HSF.snk" />
   </ItemGroup>
-  <!-- <ItemGroup>
-    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.CF.DTO\HIS.PA.AC.PE.CF.DTO.csproj">
-      <Project>{e5b91826-4fbf-4c23-bdbb-5a71b1e780ae}</Project>
-      <Name>HIS.PA.AC.PE.CF.DTO</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.PS.DTO\HIS.PA.AC.PE.PS.DTO.csproj">
-      <Project>{1cde3bcc-cbec-477a-a3c0-45ae3f035b9d}</Project>
-      <Name>HIS.PA.AC.PE.PS.DTO</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup> -->
   <ItemGroup>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>

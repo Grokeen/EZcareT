@@ -26,7 +26,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>MSIL</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +42,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <!-- HIS.Core -->
     <Reference Include="HIS.Core">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
       <Private>False</Private>
@@ -55,12 +55,22 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Sign.dll</HintPath>
       <Private>False</Private>
     </Reference>
+
+    <!-- HIS.MC.NM -->
     <Reference Include="HIS.MC.NM.ES.NC.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\MC\HIS.MC.NM.ES.NC.DTO.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HIS.MC.NM.ES.NC.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\MC\HIS.MC.NM.ES.NC.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+
+    <!-- HIS.PA.AC.PE -->
+    <Reference Include="HIS.PA.AC.PE.AP.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.AP.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HIS.PA.AC.PE.AP.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
@@ -78,14 +88,18 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.CF.DTO.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.PA.AC.PE.AP.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.AP.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+
+    <!-- HIS.PA.AC.PI -->
     <Reference Include="HIS.PA.AC.PI.PI.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PI.PI.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- HIS.PA.CORE -->
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HIS.PA.CORE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
@@ -98,11 +112,7 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.SERVICE.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    
     <Reference Include="HIS.PA.CORE.UI.CARDANDCASHWIZARD, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.CARDANDCASHWIZARD.dll</HintPath>
@@ -128,22 +138,18 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
       <Private>False</Private>
     </Reference>
+
+
+    <!-- HIS.UI -->
+    <Reference Include="HIS.UI.CORE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HIS.UI.Controls">
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HIS.UI.Controls.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HIS.UI.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    
     <Reference Include="HIS.UI.CoreWork, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.CoreWork.dll</HintPath>
@@ -162,6 +168,16 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
       <Private>False</Private>
     </Reference>
+
+    <!-- HSF.Controls -->
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HSF.Controls.WPF">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
       <Private>False</Private>
@@ -170,7 +186,9 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.Extension.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" >
+
+    <!-- HSF.TechSvc2010 -->
+    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -179,6 +197,8 @@
     <Reference Include="HSF.TechSvc2010.Products.HostingServerLib.Events, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
     <Reference Include="HSF.TechSvc2010.Server.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
     <Reference Include="HSF.TechSvc2010.Server.RemotingV35, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    
+    <!-- InfragisticsWPF4 -->
     <Reference Include="InfragisticsWPF4.DataPresenter.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.DataPresenter.v11.2.dll</HintPath>
@@ -193,23 +213,34 @@
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
       <Private>False</Private>
     </Reference>
+
+    <!-- Microsoft -->
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationFramework" />
+    <Reference Include="Microsoft.CSharp" />
+
+    <!-- System -->
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="PresentationCore" />
+    
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"/>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
+    
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+
+
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
