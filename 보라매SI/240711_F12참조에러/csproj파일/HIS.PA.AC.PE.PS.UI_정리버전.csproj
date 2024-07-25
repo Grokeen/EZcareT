@@ -226,7 +226,7 @@
     </Reference>
 
     <!-- HIS.UI -->
-    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+    <Reference Include="HIS.UI.Base">
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
       <Private>False</Private>
     </Reference>

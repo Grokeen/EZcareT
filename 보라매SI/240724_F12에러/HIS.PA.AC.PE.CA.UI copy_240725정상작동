@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FBCAC032-477A-4B69-8D98-9F48A22C1AFC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PE.CA.UI</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PE.CA.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.PS.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.CONVERTER, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.CONVERTER.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UTIL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Base">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.CoreWork, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.CoreWork.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Design.Themes">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Utility, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Editors.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Page Include="ByDayRsvCallCenterRsvPatientAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="SelectElectronicDisplay_ARM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectElectronicDisplay_CHL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectElectronicDisplay_MAIN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectElectronicDisplay_OTS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectElectronicDisplay_TNN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectPrmCrccmAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ByDayRsvCallCenterRsvPatientAsk.xaml.Behavior.cs">
+      <DependentUpon>ByDayRsvCallCenterRsvPatientAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByDayRsvCallCenterRsvPatientAsk.xaml.cs">
+      <DependentUpon>ByDayRsvCallCenterRsvPatientAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByDayRsvCallCenterRsvPatientAsk.xaml.Data.cs">
+      <DependentUpon>ByDayRsvCallCenterRsvPatientAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectElectronicDisplay_ARM.xaml.Behavior.cs">
+      <DependentUpon>SelectElectronicDisplay_ARM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_ARM.xaml.cs">
+      <DependentUpon>SelectElectronicDisplay_ARM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_ARM.xaml.Data.cs">
+      <DependentUpon>SelectElectronicDisplay_ARM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_CHL.xaml.Behavior.cs">
+      <DependentUpon>SelectElectronicDisplay_CHL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_CHL.xaml.cs">
+      <DependentUpon>SelectElectronicDisplay_CHL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_CHL.xaml.Data.cs">
+      <DependentUpon>SelectElectronicDisplay_CHL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_MAIN.xaml.Behavior.cs">
+      <DependentUpon>SelectElectronicDisplay_MAIN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_MAIN.xaml.cs">
+      <DependentUpon>SelectElectronicDisplay_MAIN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_MAIN.xaml.Data.cs">
+      <DependentUpon>SelectElectronicDisplay_MAIN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_OTS.xaml.Behavior.cs">
+      <DependentUpon>SelectElectronicDisplay_OTS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_OTS.xaml.cs">
+      <DependentUpon>SelectElectronicDisplay_OTS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_OTS.xaml.Data.cs">
+      <DependentUpon>SelectElectronicDisplay_OTS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_TNN.xaml.Behavior.cs">
+      <DependentUpon>SelectElectronicDisplay_TNN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_TNN.xaml.cs">
+      <DependentUpon>SelectElectronicDisplay_TNN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectElectronicDisplay_TNN.xaml.Data.cs">
+      <DependentUpon>SelectElectronicDisplay_TNN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPrmCrccmAsk.xaml.Behavior.cs">
+      <DependentUpon>SelectPrmCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPrmCrccmAsk.xaml.cs">
+      <DependentUpon>SelectPrmCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPrmCrccmAsk.xaml.Data.cs">
+      <DependentUpon>SelectPrmCrccmAsk.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.CA.DTO\HIS.PA.AC.PE.CA.DTO.csproj">
+      <Project>{6c2fe45a-a890-46f6-bbfb-b97e49e52c7a}</Project>
+      <Name>HIS.PA.AC.PE.CA.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
