@@ -1,62 +1,50 @@
+PROCEDURE pc_sw_sel_swsupamt_deptlist (
+    in_from_dte IN VARCHAR2,    -- ÏãúÏûë ÎÇ†Ïßú
+    in_to_dte IN VARCHAR2,      -- Ï¢ÖÎ£å ÎÇ†Ïßú
+    in_dept_cd IN VARCHAR2,     -- Î∂ÄÏÑú ÏΩîÎìú
+    in_pt_no IN VARCHAR2,       -- ÌôòÏûê Î≤àÌò∏
+    out_cursor OUT SYS_REFCURSOR -- Î∞òÌôòÌï† Îç∞Ïù¥ÌÑ∞ÏÖã
+) IS
+    -- ÏÑ†Ïñ∏
+    wk_cursor SYS_REFCURSOR;
+BEGIN
+    BEGIN
+        -- Î≥∏Î¨∏
+        OPEN wk_cursor FOR
+            SELECT 
+                -- ft_get_dept_nm(b.clinic_cd) AS clinic_cd
+                b.clinic_cd,
+                -- ft_get_dept_nm(b.dept_cd) AS dept_cd
+                FTB_CCDEPART_NM(b.dept_cd, 'Y'),
+                ft_d_name(b.juc_dr) || '/' || ft_d_name(b.char_dr) AS dr,
+                a.pt_no AS pt_no,
+                c.pt_nm AS pt_nm,
+                -- d.orgn_nm AS orgn_nm
+                t.csubcd_nm AS orgn_nm,
+                a.sup_no AS sup_no,
+                TO_CHAR(a.from_dte, 'yyyy-mm-dd') AS from_dte,
+                TO_CHAR(a.to_dte, 'yyyy-mm-dd') AS to_dte,
+                a.sup_amt AS sup_amt,
+                a.use_amt AS use_amt,
+                ft_d_name(b.consult_id) AS consult_id,
+                TO_CHAR(a.pay_dte, 'yyyy-mm-dd') AS pay_dte
+            FROM swsupamt a
+            JOIN swintakt b ON a.pt_no = b.pt_no
+                AND a.talk_dte = b.talk_dte
+                AND a.talk_seq = b.talk_seq
+            JOIN appatbat c ON a.pt_no = c.pt_no
+            LEFT JOIN cccodest t ON a.sup_grp = t.c_cd
+                AND t.ccd_typ = 'SW24'
+            WHERE a.pay_dte BETWEEN TO_DATE(in_from_dte, 'yyyy-mm-dd')
+                AND TO_DATE(in_to_dte, 'yyyy-mm-dd')
+                AND b.clinic_cd LIKE in_dept_cd || '%'
+                AND a.pt_no = in_pt_no;
 
+        out_cursor := wk_cursor;
 
-
-
-procedure pc_sw_sel_swsupamt_deptlist ( in_from_dte                in  varchar2       -- »ƒø¯¿œ¿⁄
-                                      , in_to_dte                  in  varchar2       -- »ƒø¯¿œ¿⁄
-                                      , in_dept_cd                 in  varchar2       -- ¡¯∑·∞˙   
-                                      , in_pt_no                   in  varchar2       -- »Ø¿⁄π¯»£ 
-                                      , out_cursor                 out returncursor)  -- π›»Ø«“ DataSet
-    is
-        --∫Øºˆº±æ
-        wk_cursor                 returncursor ;
-    begin
-        begin
-            --body
-            open wk_cursor for
-                 select 
---                      ft_get_dept_nm(b.clinic_cd)                                                  clinic_cd
-                        b.clinic_cd
---                    , ft_get_dept_nm(b.dept_cd)                                                    dept_cd
-                      , FTB_CCDEPART_NM(b.dept_cd, 'Y') 
-                      , ft_d_name(b.juc_dr)  || '/' || ft_d_name(b.char_dr)                          dr
-                      , a.pt_no                                                                      pt_no
-                      , c.pt_nm                                                                      pt_nm
---                    , d.orgn_nm                                                                    orgn_nm
-                      , t.csubcd_nm                                                                  orgn_nm
-                      , a.sup_no                                                                     sup_no
-                      , to_char(a.from_dte,'yyyy-mm-dd')                                             from_dte
-                      , to_char(a.to_dte,'yyyy-mm-dd')                                               to_dte
-                      , a.sup_amt                                                                    sup_amt
-                      , a.use_amt                                                                    use_amt
-                      , ft_d_name(b.consult_id)                                                      consult_id
-				      , to_char(a.pay_dte,'yyyy-mm-dd')                                              pay_dte
-                   from swsupamt a
-                      , swintakt b
-                      , appatbat c   
-                      , cccodest t
---                    , swsuport d
-                    where a.pay_dte between to_date(in_from_dte,'yyyy-mm-dd')
-                                        and to_date(in_to_dte  ,'yyyy-mm-dd') 			--'100202 by π⁄√¢ø≠ ºˆ¡§.  »ƒø¯±› ¡ˆø¯∞·¡§¿œ¿ª ±‚¡ÿ¿∏∑Œ ¡∂»∏
-                      and b.clinic_cd like in_dept_cd || '%'
-                      and a.pt_no = b.pt_no
-                      and a.talk_dte = b.talk_dte
-                      and a.talk_seq = b.talk_seq
-                      and a.pt_no = c.pt_no 
-                      and a.sup_grp(+) = t.c_cd
-                      and t.ccd_typ(+)  = 'SW24'
-                      and a.pt_no = in_pt_no ;
---                      and a.sup_no = d.orgn_no;
-
-                  out_cursor := wk_cursor ;
-
-            --øπø‹√≥∏Æ
-          exception
-                when others then
-                     raise_application_error(-20553, 'pc_sw_sel_swsupamt_deptlist' || ' err_cd = ' || sqlcode || sqlerrm) ;
-        end ;
-
-    end pc_sw_sel_swsupamt_deptlist ;
-  
-       
-END pkg_bil_ocals_New;
+        -- ÏòàÏô∏ Ï≤òÎ¶¨
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE_APPLICATION_ERROR(-20553, 'pc_sw_sel_swsupamt_deptlist' || ' err_cd = ' || SQLCODE || SQLERRM);
+    END;
+END pc_sw_sel_swsupamt_deptlist;

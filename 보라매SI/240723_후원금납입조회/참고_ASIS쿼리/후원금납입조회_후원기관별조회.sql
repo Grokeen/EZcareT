@@ -1,56 +1,69 @@
-procedure pc_sw_sel_swsupamt_grplist ( in_from_dte                in  varchar2       --ÈÄ¿øÀÏÀÚ
-                                         , in_to_dte                  in  varchar2       --ÈÄ¿øÀÏÀÚ
-                                         , in_sup_grp                 in  varchar2       --±â°üºĞ·ù
-                                         , in_sup_no                  in  varchar2       --ÈÄ¿ø±â°ü
-                                         , in_pt_no                   in  varchar2       --È¯ÀÚ¹øÈ£ 
-                                         , out_cursor                 out returncursor)  -- ¹İÈ¯ÇÒ DataSet
-    is
-        --º¯¼ö¼±¾ğ
-        wk_cursor                 returncursor ;
-    begin
-        begin
-            --body
-            open wk_cursor for
+PROCEDURE pc_sw_sel_swsupamt_grplist (
+    in_from_dte IN VARCHAR2,    -- ì‹œì‘ ë‚ ì§œ
+    in_to_dte IN VARCHAR2,      -- ì¢…ë£Œ ë‚ ì§œ
+    in_sup_grp IN VARCHAR2,     -- ì§€ì› ê·¸ë£¹
+    in_sup_no IN VARCHAR2,      -- ì§€ì› ë²ˆí˜¸
+    in_pt_no IN VARCHAR2,       -- í™˜ì ë²ˆí˜¸
+    out_cursor OUT SYS_REFCURSOR -- ë°˜í™˜í•  ë°ì´í„°ì…‹
+) IS
+    -- ì„ ì–¸
+    wk_cursor SYS_REFCURSOR;
+BEGIN
+    BEGIN
+        -- ë³¸ë¬¸
+        OPEN wk_cursor FOR
 
-                 select 
---                        d.orgn_nm                                                                    orgn_nm
-                        t.csubcd_nm                                                                  orgn_nm
-                      , a.sup_no                                                                     sup_no
-                      , a.pt_no                                                                      pt_no
-                      , c.pt_nm                                                                      pt_nm
-                      , to_char(a.from_dte,'yyyy-mm-dd')                                             from_dte
-                      , to_char(a.to_dte,'yyyy-mm-dd')                                               to_dte
-                      , a.sup_amt                                                                    sup_amt
-                      , a.use_amt                                                                    use_amt
---                      , ft_get_dept_nm(b.dept_cd)                                                    dept_cd
-                      , FTB_CCDEPART_NM(b.dept_cd, 'Y')
-                      , ft_d_name(b.juc_dr)  || '/' || ft_d_name(b.char_dr)                          dr
-                      , ft_d_name(b.consult_id)                                                      consult_id 
-                      , to_char(a.pay_dte,'yyyy-mm-dd')                                              pay_dte
-                   from swsupamt a
-                      , swintakt b
-                      , appatbat c
---                      , swsuport d
-                      , cccodest t
-                    where a.pay_dte between to_date(in_from_dte,'yyyy-mm-dd')
-                                        and to_date(in_to_dte  ,'yyyy-mm-dd')    			--'100202 by ¹ÚÃ¢¿­ ¼öÁ¤.  ÈÄ¿ø±İ Áö¿ø°áÁ¤ÀÏÀ» ±âÁØÀ¸·Î Á¶È¸
-                      and a.sup_grp = nvl(in_sup_grp, a.sup_grp)
-                      and a.sup_no like in_sup_no || '%'
-                      and a.pt_no = b.pt_no
-                      and a.talk_dte = b.talk_dte
-                      and a.talk_seq = b.talk_seq
-                      and a.pt_no = c.pt_no     
-                      and a.sup_grp(+) = t.c_cd
-                      and t.ccd_typ(+)  = 'SW24' 
-                      and a.pt_no = in_pt_no ;
---                      and a.sup_no = d.orgn_no;
+            SELECT 
+                -- d.orgn_nm AS orgn_nm
+                t.csubcd_nm AS orgn_nm,
+                a.sup_no AS sup_no,
+                a.pt_no AS pt_no,
+                c.pt_nm AS pt_nm,
+                TO_CHAR(a.from_dte, 'yyyy-mm-dd') AS from_dte,
+                TO_CHAR(a.to_dte, 'yyyy-mm-dd') AS to_dte,
+                a.sup_amt AS sup_amt,
+                a.use_amt AS use_amt,
+                -- ft_get_dept_nm(b.dept_cd) AS dept_cd
+                FTB_CCDEPART_NM(b.dept_cd, 'Y') AS dept_nm,
+                ft_d_name(b.juc_dr) || '/' || ft_d_name(b.char_dr) AS dr,
+                ft_d_name(b.consult_id) AS consult_id,
+                TO_CHAR(a.pay_dte, 'yyyy-mm-dd') AS pay_dte
+            FROM 
+                swsupamt a
+                JOIN swintakt b ON a.pt_no = b.pt_no
+                   AND a.talk_dte = b.talk_dte
+                   AND a.talk_seq = b.talk_seq
+                JOIN appatbat c ON a.pt_no = c.pt_no
+                LEFT JOIN cccodest t ON a.sup_grp = t.c_cd
+                   AND t.ccd_typ = 'SW24'
+            WHERE 
+                a.pay_dte BETWEEN TO_DATE(in_from_dte, 'yyyy-mm-dd') AND TO_DATE(in_to_dte, 'yyyy-mm-dd')
+                AND a.sup_grp = NVL(in_sup_grp, a.sup_grp)
+                AND a.sup_no LIKE in_sup_no || '%'
+                AND a.pt_no = b.pt_no
+                AND a.talk_dte = b.talk_dte
+                AND a.talk_seq = b.talk_seq
+                AND a.pt_no = c.pt_no
+                AND a.sup_grp(+) = t.c_cd
+                AND t.ccd_typ(+) = 'SW24'
+                AND a.pt_no = in_pt_no;
 
-                  out_cursor := wk_cursor ;
+        out_cursor := wk_cursor;
 
-            --¿¹¿ÜÃ³¸®
-          exception
-                when others then
-                     raise_application_error(-20553, 'pc_sw_sel_swsupamt_grplist' || ' err_cd = ' || sqlcode || sqlerrm) ;
-        end ;
+        -- ì˜ˆì™¸ ì²˜ë¦¬
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE_APPLICATION_ERROR(-20553, 'pc_sw_sel_swsupamt_grplist' || ' err_cd = ' || SQLCODE || SQLERRM);
+    END;
+END pc_sw_sel_swsupamt_grplist;
 
-    end pc_sw_sel_swsupamt_grplist ;
+
+
+/*
+swsupamt í…Œì´ë¸”ì˜ ë©´ë‹´ ìˆœë²ˆ(a.talk_seq)
+swintakt í…Œì´ë¸”ì˜ ë©´ë‹´ ìˆœë²ˆ(b.talk_seq)
+
+cccodest í…Œì´ë¸”ì˜ ê³µí†µ ì½”ë“œ ìœ í˜•(t.ccd_typ)ì´ 'SW24'ì™€ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸ë˜ë©°, ì´ ì¡°ê±´ë„ LEFT JOINì— í•´ë‹¹.
+
+
+*/

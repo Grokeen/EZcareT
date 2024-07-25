@@ -1,62 +1,71 @@
-procedure pc_sw_sel_swsupamt_ptlist ( in_from_dte                in  varchar2       --»ƒø¯¿œ¿⁄
-                                        , in_to_dte                  in  varchar2       --»ƒø¯¿œ¿⁄  
-                                        , in_pt_no                   in  varchar2       --»Ø¿⁄π¯»£ 
-                                        , out_cursor                 out returncursor)  -- π›»Ø«“ DataSet
-    is
-        --∫Øºˆº±æ
-        wk_cursor                 returncursor ;
-    begin
-        begin
-            --body
-            open wk_cursor for
+PROCEDURE pc_sw_sel_swsupamt_ptlist (
+    in_from_dte IN VARCHAR2,    -- ÏãúÏûë ÎÇ†Ïßú
+    in_to_dte IN VARCHAR2,      -- Ï¢ÖÎ£å ÎÇ†Ïßú
+    in_pt_no IN VARCHAR2,       -- ÌôòÏûê Î≤àÌò∏
+    out_cursor OUT SYS_REFCURSOR -- Î∞òÌôòÌï† Îç∞Ïù¥ÌÑ∞ÏÖã
+) IS
+    -- ÏÑ†Ïñ∏
+    wk_cursor SYS_REFCURSOR;
+BEGIN
+    BEGIN
+        -- Î≥∏Î¨∏
+        OPEN wk_cursor FOR
+            SELECT 
+                c.pt_nm AS pt_nm,
+                a.pt_no AS pt_no,
+                -- ft_sd_diss6(a.pt_no, to_char(b.acpt_dte,'yyyy-mm-dd'),b.pt_sect,b.dept_cd) AS diss
+                (SELECT a.dz_cls_cd || '  ' || a.clnc_diag_nm
+                 FROM mojsangt a, medvocabulary b
+                 WHERE a.pt_no = in_pt_no
+                   AND a.a_acpt_dte BETWEEN TO_DATE(in_from_dte, 'yyyy-mm-dd')
+                                        AND TO_DATE(in_to_dte, 'yyyy-mm-dd') + 0.99999
+                   AND NVL(mn_dz_yn, 'N') = 'Y'
+                   AND NVL(del_yn, 'N') = 'N'
+                   AND a.clnc_diag_cd = b.vocabulary_id
+                   AND ROWNUM = 1) AS diss,
+                -- FT_SR_DISS(a.pt_no)
+                -- ft_get_dept_nm(b.dept_cd) AS dept_cd
+                FTB_CCDEPART_NM(b.dept_cd, 'Y'),
+                ft_d_name(b.juc_dr) || '/' || ft_d_name(b.char_dr) AS dr,
+                ft_d_name(b.consult_id) AS consult_id,
+                TO_CHAR(a.from_dte, 'yyyy-mm-dd') AS from_dte,
+                TO_CHAR(a.to_dte, 'yyyy-mm-dd') AS to_dte,
+                -- d.orgn_nm AS orgn_nm  
+                a.sup_no AS orgn_nm,
+                a.sup_amt AS sup_amt,
+                a.use_amt AS use_amt,
+                TO_CHAR(a.pay_dte, 'yyyy-mm-dd') AS pay_dte,
+                a.bigo AS bigo
+            FROM swsupamt a
+            JOIN swintakt b ON a.pt_no = b.pt_no
+                AND a.talk_dte = b.talk_dte
+                AND a.talk_seq = b.talk_seq
+            JOIN appatbat c ON a.pt_no = c.pt_no
+            WHERE a.pay_dte BETWEEN TO_DATE(in_from_dte, 'yyyy-mm-dd')
+                                AND TO_DATE(in_to_dte, 'yyyy-mm-dd')
+                AND a.pt_no = in_pt_no;
 
-                 select c.pt_nm                                                                      pt_nm
-                      , a.pt_no                                                                      pt_no
---                      , ft_sd_diss6(a.pt_no, to_char(b.acpt_dte,'yyyy-mm-dd'),b.pt_sect,b.dept_cd)  diss
-                        ,  (select a.dz_cls_cd||'  '|| a.clnc_diag_nm
-						      from mojsangt a
-						         , medvocabulary b           
-						     where a.pt_no          = in_pt_no
-						       and a.a_acpt_dte     between to_date(in_from_dte ,'yyyy-mm-dd')
-						                                and to_date(in_to_dte ,'yyyy-mm-dd')+0.99999
-						       and nvl(mn_dz_yn,'N')    = 'Y'
-						       and nvl(del_yn,'N')      = 'N'
-						       and a.clnc_diag_cd       = b.vocabulary_id
-						       and rownum = 1
- 							) as diss
-                 --     , FT_SR_DISS(a.pt_no)
---                      , ft_get_dept_nm(b.dept_cd)                                                    dept_cd
-                      , FTB_CCDEPART_NM(b.dept_cd, 'Y')
-                      , ft_d_name(b.juc_dr)  || '/' || ft_d_name(b.char_dr)                          dr
-                      , ft_d_name(b.consult_id)                                                      consult_id
-                      , to_char(a.from_dte,'yyyy-mm-dd')                                             from_dte
-                      , to_char(a.to_dte,'yyyy-mm-dd')                                               to_dte
---                      , d.orgn_nm                                                                    orgn_nm  
-                      , a.sup_no                                                                     orgn_nm
-                      , a.sup_amt                                                                    sup_amt
-                      , a.use_amt                                                                    use_amt
-                      , to_char(a.pay_dte,'yyyy-mm-dd')												 pay_dte		
-                      , a.bigo                                                                       bigo
-                   from swsupamt a
-                      , swintakt b
-                      , appatbat c
---                      , swsuport d
-                    where a.pay_dte between to_date(in_from_dte ,'yyyy-mm-dd')
-                                        and to_date(in_to_dte   ,'yyyy-mm-dd')      		--'100202 by π⁄√¢ø≠ ºˆ¡§.  »ƒø¯±› ¡ˆø¯∞·¡§¿œ¿ª ±‚¡ÿ¿∏∑Œ ¡∂»∏
-                      and a.pt_no = b.pt_no
-                      and a.talk_dte = b.talk_dte
-                      and a.talk_seq = b.talk_seq
-                      and a.pt_no = c.pt_no  
-                      and a.pt_no = in_pt_no ;
---                      and a.sup_no = d.orgn_no;
+        out_cursor := wk_cursor;
+
+        -- ÏòàÏô∏ Ï≤òÎ¶¨
+    EXCEPTION
+        WHEN OTHERS THEN
+            out_cursor := NULL;
+    END;
+END pc_sw_sel_swsupamt_ptlist;
 
 
-                  out_cursor := wk_cursor ;
 
-            --øπø‹√≥∏Æ
-          exception
-	 			WHEN OTHERS THEN
-					out_cursor := NULL;
-        end ;
+/*
 
-    end pc_sw_sel_swsupamt_ptlist ;
+- Í∏∞ÌÉÄ
+pt_no : ÌôòÏûê Î≤àÌò∏
+a_acpt_dte : Ï†ëÏàò ÎÇ†Ïßú
+dz_cls_cd : ÏßàÎ≥ë Î∂ÑÎ•ò ÏΩîÎìú
+clnc_diag_nm : ÏûÑÏÉÅ ÏßÑÎã®Î™Ö
+mn_dz_yn : Ï£ºÏöî ÏßàÎ≥ë Ïó¨Î∂Ä (Y/N)
+del_yn : ÏÇ≠Ï†ú Ïó¨Î∂Ä (Y/N)
+clnc_diag_cd : ÏûÑÏÉÅ ÏßÑÎã® ÏΩîÎìú
+
+
+*/
