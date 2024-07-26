@@ -1,9 +1,9 @@
 PROCEDURE pc_sw_sel_swsupamt_grplist (
-    in_from_dte IN VARCHAR2,    -- 시작 날짜
-    in_to_dte IN VARCHAR2,      -- 종료 날짜
-    in_sup_grp IN VARCHAR2,     -- 지원 그룹
-    in_sup_no IN VARCHAR2,      -- 지원 번호
-    in_pt_no IN VARCHAR2,       -- 환자 번호
+    in_from_dte IN VARCHAR2,     -- 시작 날짜
+    in_to_dte IN VARCHAR2,       -- 종료 날짜
+    in_sup_grp IN VARCHAR2,      -- 지원 그룹
+    in_sup_no IN VARCHAR2,       -- 지원 번호
+    in_pt_no IN VARCHAR2,        -- 환자 번호
     out_cursor OUT SYS_REFCURSOR -- 반환할 데이터셋
 ) IS
     -- 선언
@@ -58,12 +58,34 @@ BEGIN
 END pc_sw_sel_swsupamt_grplist;
 
 
+/*
+- join문
+FROM swsupamt a
+    JOIN swintakt b ON a.pt_no = b.pt_no
+       AND a.talk_dte = b.talk_dte
+       AND a.talk_seq = b.talk_seq
+
+- where문 안 join문
+AND a.pt_no = b.pt_no
+AND a.talk_dte = b.talk_dte
+AND a.talk_seq = b.talk_seq
+
+이 새기는 join을 두번 선언했다.
+
+- 왜 LEFT JOIN을 선언했을까
+AND a.sup_grp(+) = t.c_cd
+AND t.ccd_typ(+) = 'SW24'
+*/
 
 /*
-swsupamt 테이블의 면담 순번(a.talk_seq)
-swintakt 테이블의 면담 순번(b.talk_seq)
+- Join
+swsupamt 테이블의 면담순번(a.talk_seq)
+swintakt 테이블의 면담순번(b.talk_seq)
 
-cccodest 테이블의 공통 코드 유형(t.ccd_typ)이 'SW24'와 일치하는지 확인되며, 이 조건도 LEFT JOIN에 해당.
+cccodest 테이블의 공통 코드 유형(t.ccd_typ)이 'SW24'와 일치하냐, 이 조건도 LEFT JOIN
+*/
 
-
+/*
+AND a.sup_grp = NVL(in_sup_grp, a.sup_grp)
+null -> 후원기관분류 출력?
 */

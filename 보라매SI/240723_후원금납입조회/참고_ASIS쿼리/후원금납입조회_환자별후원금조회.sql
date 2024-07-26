@@ -14,6 +14,8 @@ BEGIN
                 c.pt_nm AS pt_nm,
                 a.pt_no AS pt_no,
                 -- ft_sd_diss6(a.pt_no, to_char(b.acpt_dte,'yyyy-mm-dd'),b.pt_sect,b.dept_cd) AS diss
+
+
                 (SELECT a.dz_cls_cd || '  ' || a.clnc_diag_nm
                  FROM mojsangt a, medvocabulary b
                  WHERE a.pt_no = in_pt_no
@@ -23,6 +25,8 @@ BEGIN
                    AND NVL(del_yn, 'N') = 'N'
                    AND a.clnc_diag_cd = b.vocabulary_id
                    AND ROWNUM = 1) AS diss,
+
+
                 -- FT_SR_DISS(a.pt_no)
                 -- ft_get_dept_nm(b.dept_cd) AS dept_cd
                 FTB_CCDEPART_NM(b.dept_cd, 'Y'),
@@ -36,6 +40,10 @@ BEGIN
                 a.use_amt AS use_amt,
                 TO_CHAR(a.pay_dte, 'yyyy-mm-dd') AS pay_dte,
                 a.bigo AS bigo
+
+
+
+                
             FROM swsupamt a
             JOIN swintakt b ON a.pt_no = b.pt_no
                 AND a.talk_dte = b.talk_dte
@@ -57,15 +65,29 @@ END pc_sw_sel_swsupamt_ptlist;
 
 
 /*
+SELECT a.dz_cls_cd || '  ' || a.clnc_diag_nm
+FROM mojsangt a, medvocabulary b
+WHERE a.pt_no = in_pt_no
+  AND a.a_acpt_dte BETWEEN TO_DATE(in_from_dte, 'yyyy-mm-dd')
+                       AND TO_DATE(in_to_dte, 'yyyy-mm-dd') + 0.99999
+  AND NVL(mn_dz_yn, 'N') = 'Y'
+  AND NVL(del_yn, 'N') = 'N'
+  AND a.clnc_diag_cd = b.vocabulary_id
+  AND ROWNUM = 1) AS diss,
 
-- 기타
-pt_no : 환자 번호
-a_acpt_dte : 접수 날짜
-dz_cls_cd : 질병 분류 코드
-clnc_diag_nm : 임상 진단명
-mn_dz_yn : 주요 질병 여부 (Y/N)
-del_yn : 삭제 여부 (Y/N)
-clnc_diag_cd : 임상 진단 코드
+- medvocabulary b : 얘는 Join은 했는데 아에 안 쓰는데?
+
+- 정리
+    - pt_no : 환자 번호
+    - a_acpt_dte : 접수 날짜
+    - dz_cls_cd : 질병 분류 코드
+    - clnc_diag_nm : 임상 진단명
+
+    - mn_dz_yn : 주요 질병 여부 (Y/N)
+    - del_yn : 삭제 여부 (Y/N)
+
+    - clnc_diag_cd : 임상 진단 코드(안 쓰는 테이블 조인문)
+
 
 
 */
