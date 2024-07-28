@@ -20,15 +20,14 @@ EXEC :IN_DEPT_NM := '';--C.진료과
                        /*10.입금일*/             /*10.입금일*/
 /*------------------------------------------------------------------*/
 SELECT /*+ */
-    c.PT_NM                                  AS PT_NM                 /*1.성명*/
+   c.PT_NM                                  AS PT_NM                 /*1.성명*/
    ,a.PT_NO                                  AS PT_NO                 /*2.등록번호*/
 
-   ,(SELECT
+   ,(SELECT 
         d.ICD10_CD ||'  '|| d.CLDG_NM
      FROM MOODIPAM d    /*테이블명 : 환자진단기본*/
-     WHERE -- d.PT_NO = :IN_PT_NO
-       --AND
-       d.PT_NO = e.PT_NO
+     WHERE d.PT_NO = :IN_PT_NO
+       AND d.PT_NO = e.PT_NO
        AND d.DGNS_ID = e.DGNS_ID
        AND NVL(d.TDY_DGNS_DEL_YN,'N')='N'
        AND NVL(e.MAIN_SKNS_YN,'N')='Y'
@@ -67,16 +66,42 @@ FROM SCBSMCMD a         /*테이블명 : 후원현황정보*/
     LEFT JOIN CCCCCLTC f/*테이블명 : 그룹공통코드(소분류)*/
         ON  a.SPPT_CORG_CD = f.COMN_GRP_CD
 
-WHERE
---조건 1_환자별후원금조회
-
---조건 2_진료과별후원금조회
-f.NEXTG_FMR_COMN_GRP_CD = 'SW24'
-
---조건 3_후원기관별후원금조회
-
-AND ROWNUM < 10;
+WHERE ROWNUM < 10;
 
 
 
 
+
+
+-- 마지막에 감쌀 코드
+/* 
+    b와 c가 null이거나 (
+        a가 null이 아니고 (
+            a=in_a이거나
+            b=in_b이거나
+            c=in_c이거나 (
+                날짜가 x1과 x2의 사이
+                    )
+                )    
+            )  
+*/
+ AND (  (:IN_SASS_ORG_TP_CD IS NULL AND :IN_SASS_ORG_TP_CD IS NULL)
+       OR (:IN_PT_NO IS NOT NULL 
+          AND ( --조건 1_환자별후원금조회
+                PT_NO = :IN_PT_NO -- 환자번호
+                OR ( a.SASS_MBR_REG_DT BETWEEN :IN_FROM_DT AND :IN_TO_DT ) -- 조회날짜
+
+                --조건 2_진료과별후원금조회
+                OR (DEPT_NM = :IN_DEPT_NM -- 진료과(값이 없을 때 처리 필요)
+                    AND f.NEXTG_FMR_COMN_GRP_CD = 'SW24'
+                )
+                --조건 3_후원기관별후원금조회
+                OR SASS_ORG_TP_CD = :IN_SASS_ORG_TP_CD -- 기관(값이 없을 때 처리 필요)
+                
+                
+            )   
+        )
+    );
+
+
+WHERE ROWNUM
