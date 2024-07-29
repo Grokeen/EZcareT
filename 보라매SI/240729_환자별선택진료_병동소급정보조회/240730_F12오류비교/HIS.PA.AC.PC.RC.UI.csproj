@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D5C440FA-AF8B-47FB-803A-2BB86912CE37}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PC.RC.UI</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PC.RC.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Sign">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Sign.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.AC.PM.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.AC.PM.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.BASE.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.EXTENSION, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.EXTENSION.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.FAX, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.FAX.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.REPORTSERVICE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.REPORTSERVICE.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.CONVERTER, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.CONVERTER.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UTIL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Base">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\his\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.CoreWork, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\his\Deploy\Client\Core\HIS.UI.CoreWork.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Design.Themes">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Utility">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF.Extension">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamCalendar.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Controls.Editors.XamCalendar.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataPresenter.ExcelExporter.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.DataPresenter.ExcelExporter.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataPresenter.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.DataPresenter.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Documents.Core.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Documents.Core.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Documents.Excel.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Documents.Excel.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Editors.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Editors.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Reporting.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Reporting.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Tiles.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Tiles.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Page Include="CcrdCashRcpApbtPtclAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MngPaClac.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="ReceivePaymentAggregateCrccmAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaveYearEndTaxAdjustmentBatchFaxSend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaveYearEndTaxAdjustmentBatchProcess.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelClsnAprvLdat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectAdsMnlsRpyCrccm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectByDayLowsuitSeizure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDischargeUnclAmtOcurParticulars.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectDischargeUncollectedAmountIndividualMgmt2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDischargeUncollectedAmountOcurCllt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDischargeUncollectedAmountOrderByAddr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDsFullPaymentRollAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDsPtRpyCrccmAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDsRcpPblPtUnRpyAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDsUnclAmtEachYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDsUnclAmtIndvMgmtAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectEachMonthUncollectedAmount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectMdpnIntgMedFeePblPtcl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectMiddleCalculationBillPublication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectMtdClassfiedBySumAmount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectOtptMedCostParticularsDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectPatientAffairsClosingAccountsManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectReceivePaymentAggregateCrccm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectSrcpSbsrParticulars.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectUncollectedInAmountExpectation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectUncollectedAmountMgmtBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectUnReceivePaymentBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectVanDataReg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectYearEndTaxAdjustmentData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelGnlMedicalGradeMisu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VirtualAccountDispositCrccnAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CcrdCashRcpApbtPtclAsk.xaml.Behavior.cs">
+      <DependentUpon>CcrdCashRcpApbtPtclAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CcrdCashRcpApbtPtclAsk.xaml.cs">
+      <DependentUpon>CcrdCashRcpApbtPtclAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CcrdCashRcpApbtPtclAsk.xaml.Data.cs">
+      <DependentUpon>CcrdCashRcpApbtPtclAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MngPaClac.xaml.Behavior.cs">
+      <DependentUpon>MngPaClac.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MngPaClac.xaml.cs">
+      <DependentUpon>MngPaClac.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MngPaClac.xaml.Data.cs">
+      <DependentUpon>MngPaClac.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceivePaymentAggregateCrccmAsk.xaml.Behavior.cs">
+      <DependentUpon>ReceivePaymentAggregateCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceivePaymentAggregateCrccmAsk.xaml.cs">
+      <DependentUpon>ReceivePaymentAggregateCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReceivePaymentAggregateCrccmAsk.xaml.Data.cs">
+      <DependentUpon>ReceivePaymentAggregateCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveYearEndTaxAdjustmentBatchFaxSend.xaml.Behavior.cs">
+      <DependentUpon>SaveYearEndTaxAdjustmentBatchFaxSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveYearEndTaxAdjustmentBatchFaxSend.xaml.cs">
+      <DependentUpon>SaveYearEndTaxAdjustmentBatchFaxSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveYearEndTaxAdjustmentBatchFaxSend.xaml.Data.cs">
+      <DependentUpon>SaveYearEndTaxAdjustmentBatchFaxSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveYearEndTaxAdjustmentBatchProcess.xaml.Behavior.cs">
+      <DependentUpon>SaveYearEndTaxAdjustmentBatchProcess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveYearEndTaxAdjustmentBatchProcess.xaml.cs">
+      <DependentUpon>SaveYearEndTaxAdjustmentBatchProcess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveYearEndTaxAdjustmentBatchProcess.xaml.Data.cs">
+      <DependentUpon>SaveYearEndTaxAdjustmentBatchProcess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelClsnAprvLdat.xaml.Behavior.cs">
+      <DependentUpon>SelClsnAprvLdat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelClsnAprvLdat.xaml.cs">
+      <DependentUpon>SelClsnAprvLdat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelClsnAprvLdat.xaml.Data.cs">
+      <DependentUpon>SelClsnAprvLdat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectAdsMnlsRpyCrccm.xaml.Behavior.cs">
+      <DependentUpon>SelectAdsMnlsRpyCrccm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectAdsMnlsRpyCrccm.xaml.cs">
+      <DependentUpon>SelectAdsMnlsRpyCrccm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectAdsMnlsRpyCrccm.xaml.Data.cs">
+      <DependentUpon>SelectAdsMnlsRpyCrccm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectByDayLowsuitSeizure.xaml.Behavior.cs">
+      <DependentUpon>SelectByDayLowsuitSeizure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectByDayLowsuitSeizure.xaml.cs">
+      <DependentUpon>SelectByDayLowsuitSeizure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectByDayLowsuitSeizure.xaml.Data.cs">
+      <DependentUpon>SelectByDayLowsuitSeizure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUnclAmtOcurParticulars.xaml.Behavior.cs">
+      <DependentUpon>SelectDischargeUnclAmtOcurParticulars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUnclAmtOcurParticulars.xaml.cs">
+      <DependentUpon>SelectDischargeUnclAmtOcurParticulars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUnclAmtOcurParticulars.xaml.Data.cs">
+      <DependentUpon>SelectDischargeUnclAmtOcurParticulars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountIndividualMgmt2.xaml.Behavior.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountIndividualMgmt2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountIndividualMgmt2.xaml.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountIndividualMgmt2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountIndividualMgmt2.xaml.Data.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountIndividualMgmt2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountOcurCllt.xaml.Behavior.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountOcurCllt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountOcurCllt.xaml.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountOcurCllt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountOcurCllt.xaml.Data.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountOcurCllt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountOrderByAddr.xaml.Behavior.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountOrderByAddr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountOrderByAddr.xaml.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountOrderByAddr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDischargeUncollectedAmountOrderByAddr.xaml.Data.cs">
+      <DependentUpon>SelectDischargeUncollectedAmountOrderByAddr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsFullPaymentRollAsk.xaml.Behavior.cs">
+      <DependentUpon>SelectDsFullPaymentRollAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsFullPaymentRollAsk.xaml.cs">
+      <DependentUpon>SelectDsFullPaymentRollAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsFullPaymentRollAsk.xaml.Data.cs">
+      <DependentUpon>SelectDsFullPaymentRollAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsPtRpyCrccmAsk.xaml.Behavior.cs">
+      <DependentUpon>SelectDsPtRpyCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsPtRpyCrccmAsk.xaml.cs">
+      <DependentUpon>SelectDsPtRpyCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsPtRpyCrccmAsk.xaml.Data.cs">
+      <DependentUpon>SelectDsPtRpyCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsRcpPblPtUnRpyAsk.xaml.Behavior.cs">
+      <DependentUpon>SelectDsRcpPblPtUnRpyAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsRcpPblPtUnRpyAsk.xaml.cs">
+      <DependentUpon>SelectDsRcpPblPtUnRpyAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsRcpPblPtUnRpyAsk.xaml.Data.cs">
+      <DependentUpon>SelectDsRcpPblPtUnRpyAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsUnclAmtEachYear.xaml.Behavior.cs">
+      <DependentUpon>SelectDsUnclAmtEachYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsUnclAmtEachYear.xaml.cs">
+      <DependentUpon>SelectDsUnclAmtEachYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsUnclAmtEachYear.xaml.Data.cs">
+      <DependentUpon>SelectDsUnclAmtEachYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsUnclAmtIndvMgmtAsk.xaml.Behavior.cs">
+      <DependentUpon>SelectDsUnclAmtIndvMgmtAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsUnclAmtIndvMgmtAsk.xaml.cs">
+      <DependentUpon>SelectDsUnclAmtIndvMgmtAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDsUnclAmtIndvMgmtAsk.xaml.Data.cs">
+      <DependentUpon>SelectDsUnclAmtIndvMgmtAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEachMonthUncollectedAmount.xaml.Behavior.cs">
+      <DependentUpon>SelectEachMonthUncollectedAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEachMonthUncollectedAmount.xaml.cs">
+      <DependentUpon>SelectEachMonthUncollectedAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEachMonthUncollectedAmount.xaml.Data.cs">
+      <DependentUpon>SelectEachMonthUncollectedAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMdpnIntgMedFeePblPtcl.xaml.Behavior.cs">
+      <DependentUpon>SelectMdpnIntgMedFeePblPtcl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMdpnIntgMedFeePblPtcl.xaml.cs">
+      <DependentUpon>SelectMdpnIntgMedFeePblPtcl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMdpnIntgMedFeePblPtcl.xaml.Data.cs">
+      <DependentUpon>SelectMdpnIntgMedFeePblPtcl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMiddleCalculationBillPublication.xaml.Behavior.cs">
+      <DependentUpon>SelectMiddleCalculationBillPublication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMiddleCalculationBillPublication.xaml.cs">
+      <DependentUpon>SelectMiddleCalculationBillPublication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMiddleCalculationBillPublication.xaml.Data.cs">
+      <DependentUpon>SelectMiddleCalculationBillPublication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMtdClassfiedBySumAmount.xaml.Behavior.cs">
+      <DependentUpon>SelectMtdClassfiedBySumAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMtdClassfiedBySumAmount.xaml.cs">
+      <DependentUpon>SelectMtdClassfiedBySumAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMtdClassfiedBySumAmount.xaml.Data.cs">
+      <DependentUpon>SelectMtdClassfiedBySumAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectOtptMedCostParticularsDocument.xaml.Behavior.cs">
+      <DependentUpon>SelectOtptMedCostParticularsDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectOtptMedCostParticularsDocument.xaml.cs">
+      <DependentUpon>SelectOtptMedCostParticularsDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectOtptMedCostParticularsDocument.xaml.Data.cs">
+      <DependentUpon>SelectOtptMedCostParticularsDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPatientAffairsClosingAccountsManagement.xaml.Behavior.cs">
+      <DependentUpon>SelectPatientAffairsClosingAccountsManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPatientAffairsClosingAccountsManagement.xaml.cs">
+      <DependentUpon>SelectPatientAffairsClosingAccountsManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPatientAffairsClosingAccountsManagement.xaml.Data.cs">
+      <DependentUpon>SelectPatientAffairsClosingAccountsManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectReceivePaymentAggregateCrccm.xaml.Behavior.cs">
+      <DependentUpon>SelectReceivePaymentAggregateCrccm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectReceivePaymentAggregateCrccm.xaml.cs">
+      <DependentUpon>SelectReceivePaymentAggregateCrccm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectReceivePaymentAggregateCrccm.xaml.Data.cs">
+      <DependentUpon>SelectReceivePaymentAggregateCrccm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSrcpSbsrParticulars.xaml.Behavior.cs">
+      <DependentUpon>SelectSrcpSbsrParticulars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSrcpSbsrParticulars.xaml.cs">
+      <DependentUpon>SelectSrcpSbsrParticulars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSrcpSbsrParticulars.xaml.Data.cs">
+      <DependentUpon>SelectSrcpSbsrParticulars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUncollectedInAmountExpectation.xaml.Behavior.cs">
+      <DependentUpon>SelectUncollectedInAmountExpectation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUncollectedInAmountExpectation.xaml.cs">
+      <DependentUpon>SelectUncollectedInAmountExpectation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUncollectedInAmountExpectation.xaml.Data.cs">
+      <DependentUpon>SelectUncollectedInAmountExpectation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUncollectedAmountMgmtBook.xaml.Behavior.cs">
+      <DependentUpon>SelectUncollectedAmountMgmtBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUncollectedAmountMgmtBook.xaml.cs">
+      <DependentUpon>SelectUncollectedAmountMgmtBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUncollectedAmountMgmtBook.xaml.Data.cs">
+      <DependentUpon>SelectUncollectedAmountMgmtBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUnReceivePaymentBook.xaml.Behavior.cs">
+      <DependentUpon>SelectUnReceivePaymentBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUnReceivePaymentBook.xaml.cs">
+      <DependentUpon>SelectUnReceivePaymentBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUnReceivePaymentBook.xaml.Data.cs">
+      <DependentUpon>SelectUnReceivePaymentBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectVanDataReg.xaml.Behavior.cs">
+      <DependentUpon>SelectVanDataReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectVanDataReg.xaml.cs">
+      <DependentUpon>SelectVanDataReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectVanDataReg.xaml.Data.cs">
+      <DependentUpon>SelectVanDataReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectYearEndTaxAdjustmentData.xaml.Behavior.cs">
+      <DependentUpon>SelectYearEndTaxAdjustmentData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectYearEndTaxAdjustmentData.xaml.cs">
+      <DependentUpon>SelectYearEndTaxAdjustmentData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectYearEndTaxAdjustmentData.xaml.Data.cs">
+      <DependentUpon>SelectYearEndTaxAdjustmentData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelGnlMedicalGradeMisu.xaml.Behavior.cs">
+      <DependentUpon>SelGnlMedicalGradeMisu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelGnlMedicalGradeMisu.xaml.cs">
+      <DependentUpon>SelGnlMedicalGradeMisu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelGnlMedicalGradeMisu.xaml.Data.cs">
+      <DependentUpon>SelGnlMedicalGradeMisu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualAccountDispositCrccnAsk.xaml.Behavior.cs">
+      <DependentUpon>VirtualAccountDispositCrccnAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualAccountDispositCrccnAsk.xaml.cs">
+      <DependentUpon>VirtualAccountDispositCrccnAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualAccountDispositCrccnAsk.xaml.Data.cs">
+      <DependentUpon>VirtualAccountDispositCrccnAsk.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PC.OP.DTO\HIS.PA.AC.PC.OP.DTO.csproj">
+      <Project>{592fe5dc-2850-45cd-8624-0a03e2940d64}</Project>
+      <Name>HIS.PA.AC.PC.OP.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PC.RC.DTO\HIS.PA.AC.PC.RC.DTO.csproj">
+      <Project>{f2fc0262-5560-4aac-ab11-c1aa5ab2861a}</Project>
+      <Name>HIS.PA.AC.PC.RC.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
