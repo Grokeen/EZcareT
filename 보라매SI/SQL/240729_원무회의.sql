@@ -1,0 +1,7 @@
+﻿SELECT *
+  FROM EMBUMENT
+ WHERE MENU_NM LIKE '%소급%'
+;
+
+select *
+from PCTPCPAM;
