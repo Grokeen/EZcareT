@@ -185,7 +185,7 @@
     <Compile Include="SaveAdsMng\UpperPtRoomApplicationForm_OUT.cs" />
     <Compile Include="SaveAdsRsvMdf\SaveAdsRsvMdf_INOUT.cs" />
     <Compile Include="SaveAdsRsvMdf\SelectDonrDgnsTpCd_INOUT.cs" />
-     <Compile Include="SaveAdsRsvMdf\SelectAdsWragRegDT_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectAdsWragRegDT_INOUT.cs" />
     <Compile Include="SaveAdsRsvMdf\SelectDrNspMedSchd_INOUT.cs" />
     <Compile Include="SaveAdsRsvMdf\SelectDUR_INOUT.cs" />
     <Compile Include="SaveAdsRsvMdf\SelectIsolationYesOrNo_INOUT.cs" />
