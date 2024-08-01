@@ -18,7 +18,9 @@ begin
     if  in_gbn = 'EX' then
         select min(x.med_dte)
           into v_rsv_dte
+
           from apoprsvt x
+
          where x.pt_no      = in_pt_no
            and x.med_dte    > in_req_dte
            and regexp_replace(x.med_dept , '^(PC)|^(BC)|^(RC)', '')
@@ -54,6 +56,7 @@ begin
                                        )
 
         ;
+
         select rsv_info
           into v_rtn_val
           from (
@@ -105,10 +108,14 @@ begin
                )
          where rownum = 1      
         ;
+
+
     else
         select to_char(x.med_dtm, 'yyyy-mm-dd hh24:mi')
           into v_rtn_val
+
           from apoprsvt x
+
          where x.pt_no      = in_pt_no
            and x.med_dte    > in_req_dte
            and regexp_replace(x.med_dept , '^(PC)|^(BC)|^(RC)', '')
@@ -131,6 +138,7 @@ begin
                                        )
         ;
     end if;
+
     
     return(v_rtn_val);
 
