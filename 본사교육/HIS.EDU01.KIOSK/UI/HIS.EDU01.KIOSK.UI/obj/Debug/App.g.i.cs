@@ -10,22 +10,8 @@
 //------------------------------------------------------------------------------
 
 using HIS.EDU01.KIOSK.UI;
-using HIS.UI.Base;
-using HIS.UI.Controls;
-using HIS.UI.Controls.Behaviors;
-using HIS.UI.Controls.Converters;
-using HIS.UI.Controls.Views;
 using HIS.UI.Design.Themes;
 using HIS.UI.Design.Themes.Controls;
-using HIS.UI.Utility;
-using HIS.UI.Utility.Behaviors;
-using HSF.Controls.WPF;
-using HSF.Controls.WPF.Behaviors;
-using HSF.Controls.WPF.Calendars;
-using HSF.Controls.WPF.Converters;
-using HSF.Controls.WPF.DockManager;
-using HSF.Controls.WPF.DragDrop;
-using HSF.Controls.WPF.Enums;
 using HSF.Controls.WPF.Extension;
 using HSF.Controls.WPF.Extension.AppDock;
 using HSF.Controls.WPF.Extension.BookFlowDocumentReader;
@@ -38,11 +24,6 @@ using HSF.Controls.WPF.Extension.Scheduler;
 using HSF.Controls.WPF.Extension.Summary;
 using HSF.Controls.WPF.Extension.Tile;
 using HSF.Controls.WPF.Extension.Timeline;
-using HSF.Controls.WPF.Primitives;
-using HSF.Controls.WPF.Schedules;
-using HSF.Controls.WPF.Tab;
-using HSF.Controls.WPF.Tiles;
-using HSF.Controls.WPF.ValidationRules;
 using System;
 using System.Diagnostics;
 using System.Windows;

@@ -1,0 +1,16 @@
+﻿<ApplicationBase x:Class="HIS.PA.AC.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="DebugMain.xaml">
+    <ApplicationBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HIS.UI.Design.Themes;component/GeneralResources.xaml"/>
+                <ResourceDictionary Source="/HIS.UI.Design.Themes;component/MainResources.xaml"/>
+                <ResourceDictionary Source="/HIS.UI.Utility;component/ResourceSet/ConverterResources.xaml"/>
+
+                <!--<ResourceDictionary Source="/HIS.UI.Design.Themes;component/$partname$Resources.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ApplicationBase.Resources>
+</ApplicationBase>

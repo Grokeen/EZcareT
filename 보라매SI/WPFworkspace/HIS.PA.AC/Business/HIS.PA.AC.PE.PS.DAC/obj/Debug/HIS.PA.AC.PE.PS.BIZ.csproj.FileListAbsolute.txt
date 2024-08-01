@@ -1,0 +1,2 @@
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PE.PS.DAC\obj\Debug\HIS.PA.AC.PE.PS.BIZ.csprojAssemblyReference.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PE.PS.DAC\obj\Debug\HIS.PA.AC.PE.PS.BIZ.csproj.CoreCompileInputs.cache
