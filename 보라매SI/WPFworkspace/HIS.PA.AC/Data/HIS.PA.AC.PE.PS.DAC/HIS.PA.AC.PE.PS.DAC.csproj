@@ -56,6 +56,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
     </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.BIZ, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.BIZ.dll</HintPath>
+    </Reference>
     <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.DTO.dll</HintPath>

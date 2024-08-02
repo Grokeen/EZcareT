@@ -57,8 +57,11 @@ namespace HIS.PA.AC.PE.PS.UI
         private void ControlInit()
         {
 
-            this.calFromTo.FromDate = CommonServiceAgent.SelectSysDate();
-            this.calFromTo.ToDate = CommonServiceAgent.SelectSysDate();
+            //this.calFromTo.FromDate = CommonServiceAgent.SelectSysDate();
+            //this.calFromTo.ToDate = CommonServiceAgent.SelectSysDate();
+
+            this.calFromTo.FromDate = System.DateTime.Now.AddDays(-6);
+            this.calFromTo.ToDate = System.DateTime.Now;
         }
         #endregion //Consts
 
@@ -87,36 +90,48 @@ namespace HIS.PA.AC.PE.PS.UI
             model.HipassMobile_GrIN.IN_FROM_DATE = (this.calFromTo.FromDate.ToString().Substring(0, 10).Replace("-", ""));
             model.HipassMobile_GrIN.IN_TO_DATE = (this.calFromTo.ToDate.ToString().Substring(0, 10).Replace("-", ""));
 
+
+            try
+            {
+                model.HipassMobile_GrIN.IN_SMSS_PSB_YN = (rbtFrvs.SelectedItem as RadioButtonListItem).Tag.ToString();
+            }
+            catch(Exception e) {
+                // model.HipassMobile_GrIN.IN_SMSS_PSB_YN = null;
+            }
+
+
+            // REDO : 2408010932 BIZ가 기본 프로젝트 파일로 이동이된다. HIS.UI.Core가 일을 너무 잘하는 듯
+            // -> 아마 dll 파일 위치와 가장 가까운 dll 파일을 잡는 듯 하다.
+            // 
+
             // IN 리스트에 넣은 값을 담아 보내서 OUT 리스트에 담는다.
             model.HipassMobile_GrOUT = (HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>)UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "HipassMobileApprovalMng_GrDateAV", model.HipassMobile_GrIN);
-
+             
             //RegisterShowBusyIndicator("처리 중입니다.");
 
-            // 데이터 없을 시
+
             if (model.HipassMobile_GrOUT.Count == 0)
             {
                 MsgBox.Display("데이터가 존재하지 않습니다.", MessageType.MSG_TYPE_INFORMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
-                return;
+            }
+            else {
+                MsgBox.Display("데이터가 조회되었습니다.", MessageType.MSG_TYPE_INFORMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
             }
 
         }
 
+
+
+
         private void GRbtn_Click(object sender)
         {
-            /* --------------------------------------------------------------- */
-            // 조회 버튼
-            if (sender.Equals(btnSearch))
-            {
-                HipassSearch();
-            }
-
-
+            //model.HipassMobile_GrINSERT. = (rbtFrvs.SelectedItem as RadioButtonListItem).Tag.ToString();
 
             /* --------------------------------------------------------------- */
             //승인 상태 체크박스
-            //if (sender.Equals(CheckBoxConfirm_YN))
+            //if (sender.Equals())
             //{
-
+            //    // 현재 날짜를 넣어주면 되는데 -> 취소 날짜에
             //}
 
 

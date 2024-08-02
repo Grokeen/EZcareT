@@ -41,36 +41,47 @@
 
 
                         <HFromToCalendar x:Name="calFromTo" Margin="5,0,0,0"/>
+                        
+                        
+                        
+                        
                         <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="30,0,0,0"/>
                         <HTextBlock Foreground="{StaticResource TextHighlightForeground}" VerticalAlignment="Center" Margin="5,0,0,0" Text="승인상태"/>
                         <Border Style="{StaticResource GroupBorderLineStyle}" VerticalAlignment="Center" Margin="5,0,0,0">
-                            <StackPanel Orientation="Horizontal" Margin="5,0">
-                                <HCheckBox Content="승인"/>
-                                <HCheckBox Content="취소" Margin="10,0,0,0"/>
-                                <HCheckBox Content="미승인" Margin="10,0,0,0"/>
-                            </StackPanel>
+                            
+                            <RadioButtonList x:Name="rbtFrvs" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,0" >
+                                <RadioButtonListItem Content="승인" Tag="Y"/>
+                                <!-- IsSelected="True" -->
+                                <RadioButtonListItem Content="취소" Tag="N" Margin="10,0,0,0"/>
+                                <RadioButtonListItem Content="미승인" Tag="" Margin="10,0,0,0"/>
+                            </RadioButtonList>
                         </Border>
-                        <!-- 'x:Name'와 'Name' 차이는? xaml으로 비하인드 코딩할 때, 호환성 높은게 x:Name-->
                         <HButton x:Name="btnSearch"  Content="조회" ButtonStyleType="Search" VerticalAlignment="Center" Margin="30,0,0,0" Click="MobileHipassSearch"/>
                     </StackPanel>
                 </Border>
             </Border>
-            <!--<HDataGridEx Grid.Row="1" Margin="0,10,0,0"/>-->
 
+            
 
 
 
             <!-- 참고 :HIS.PA.AC.PE.PS.UI.SelectStfPsnyFamAdsCrccm -->
             <HDataGridEx x:Name="grdList"  Grid.Row="1" Margin="0,10,0,0"
-                         ItemsSource="{Binding HipassMobileApprovalMng_OUTObj}" 
+                         ItemsSource="{Binding HipassMobile_GrOUT}" 
                          SelectionMode="Extended"
                          ColumnHeaderHorizontalAlignment="Center"
                          IsReadOnly="True"
-                         SelectionUnit="FullRow">
-                <!--ShowRowIndex="False"
-                         IsShowCheckHeader="False"
-                         CanUserSelectRowHeader="False"-->
-
+                         SelectionUnit="FullRow"
+                         
+                         ShowRowIndex="False"
+                         IsShowCheckHeader="True"
+                         CanUserSelectRowHeader="False">
+                        <!--IsCheckListPopUp="True"
+                         IsCheckListVisibility="Visible"
+                
+                        체크박스
+                        ShowRowIndex="True" HeadersVisibility="Column"
+                         -->
                 <HDataGridEx.Columns>
                     <!--<Border Style="{StaticResource GroupBorderLineStyle}" VerticalAlignment="Center" Margin="5,0,0,0">
                         <StackPanel Orientation="Horizontal" Margin="5,0">

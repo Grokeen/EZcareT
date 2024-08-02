@@ -1,5 +1,6 @@
 select rsv_info
           into v_rtn_val
+          
           from (
                 select '(' || x.med_dept || ') ' || to_char(x.med_dtm, 'yyyy-mm-dd hh24:mi')   rsv_info
                   from apoprsvt x

@@ -36,6 +36,7 @@ namespace HIS.PA.AC.PE.PS.BIZ
         /// <returns>반환문자열</returns>
         public HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> HipassMobileApprovalMng_GrDateAV(HipassMobileApprovalMng_IN tempYR)
         {
+            // 2408021054 네임스페이스를 찾을 수 없다.
             // 여기서 참조를? 하면서 바로 return?
             using (HipassMobileApprovalMngDL GrDate_Average = new HipassMobileApprovalMngDL())
             {

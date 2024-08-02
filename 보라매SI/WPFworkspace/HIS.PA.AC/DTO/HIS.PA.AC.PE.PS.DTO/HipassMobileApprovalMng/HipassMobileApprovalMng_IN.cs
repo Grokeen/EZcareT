@@ -15,6 +15,7 @@ public class HipassMobileApprovalMng_IN : HISDTOBase
 {
     private String in_from_date;         //시작일자
     private String in_to_date;           //종료일자
+    private String in_smss_psb_yn;          //승인여부조회
 
     /// <summary>
     /// name : 시작일자
@@ -35,6 +36,18 @@ public class HipassMobileApprovalMng_IN : HISDTOBase
     {
         get { return in_to_date; }
         set { if (this.in_to_date != value) { this.in_to_date = value; this.OnPropertyChanged("IN_TO_DATE"); } }
+    }
+
+
+
+    /// <summary>
+    /// name : 종료일자
+    /// </summary>
+    [DataMember]
+    public string IN_SMSS_PSB_YN
+    {
+        get { return in_smss_psb_yn; }
+        set { if (this.in_smss_psb_yn != value) { this.in_smss_psb_yn = value; this.OnPropertyChanged("IN_SMSS_PSB_YN"); } }
     }
 
 }

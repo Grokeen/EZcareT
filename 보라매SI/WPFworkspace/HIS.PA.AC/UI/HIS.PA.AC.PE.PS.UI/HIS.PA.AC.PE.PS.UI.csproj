@@ -45,6 +45,14 @@
     <Reference Include="HIS.Core.Global.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
     </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.BIZ, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.BIZ.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.DAC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.DAC.dll</HintPath>
+    </Reference>
     <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.DTO.dll</HintPath>
@@ -68,10 +76,11 @@
     <Reference Include="HIS.UI.Controls.Extension">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
     </Reference>
-    <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
-    <Reference Include="HIS.UI.Core , Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\HIS.UI.Core.dll</HintPath>
+    <Reference Include="HIS.UI.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.UI.Core.dll</HintPath>
     </Reference>
+    <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
     <Reference Include="HIS.UI.Design.Themes">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
     </Reference>
@@ -81,7 +90,8 @@
     <Reference Include="HSF.COM.Core">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HSF.COM.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HSF.Controls.WPF">
+    <!-- 2408021029 토큰에러 -->
+    <Reference Include="HSF.Controls.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
     </Reference>
     <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">

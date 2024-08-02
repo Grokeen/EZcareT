@@ -55,15 +55,18 @@ namespace HIS.PA.AC
             user.SID = "8000004";
 
             GlobalUserInfo_OUT userInfo = new GlobalUserInfo_OUT();
-            userInfo = CommonServiceAgent.SelectGlobalUserInfo(user);
 
+            // 2408010927 실행할 때, 에러나서 잠깐 2줄 주석
+            //userInfo = CommonServiceAgent.SelectGlobalUserInfo(user);
+            //SessionManager.UserInfo = userInfo;
 
-            SessionManager.UserInfo = userInfo;
             SessionManager.SystemInfo.HSP_TP_CD = "7";
             SessionManager.SystemInfo.MAIN_GUBUN = "AC"; //공통 환경 설정에서 사용
 
+
+            // 2408010927 실행할 때, 에러나서 잠깐 2줄 주석
             //20240401 신동명 IndividualityWizard에서 PRIVATE_SETTING을 가져오지 못해 디버그시 계속 에러가 발생하여 추가.
-            IndividualityWizard.PRIVATE_SETTING.GenerateHospitalPrivateSetting(userInfo.STF_NO);
+            //IndividualityWizard.PRIVATE_SETTING.GenerateHospitalPrivateSetting(userInfo.STF_NO);
         }
 
         /// <summary>

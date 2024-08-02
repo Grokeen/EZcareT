@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_IN.cs" />
+    <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_DELETE.cs" />
+    <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_INSERT.cs" />
     <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_OUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\ByDayAcceptPatientAsk\ByDayAcceptPatientAsk_IN.cs" />

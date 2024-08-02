@@ -96,8 +96,8 @@ namespace HIS.PA.AC.PE.PS.UI
         /// <param name="e"></param>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //// 컨트롤 초기화
-            //ControlInit();
+            //// 날짜 세팅
+            ControlInit();
 
             //// 데이터 초기화
             //DataInit();

@@ -16,7 +16,7 @@ namespace HIS.PA.AC.PE.PS.DTO
     public class HipassMobileApprovalMng_OUT : HISDTOBase
     {
         //private String check_box;   // 신청일자
-        private String aplc_dt;     // 신청일자
+        //private String aplc_dt;     // 신청일자
         private String pt_no;       // 환자번호
         private String pt_nm;       // 환자명 
         private String apct_rrn;    // 주민번호 
@@ -44,12 +44,12 @@ namespace HIS.PA.AC.PE.PS.DTO
         /// <summary>
         /// name : 신청일자
         /// </summary>
-        [DataMember]
-        public string APLC_DT
-        {
-            get { return aplc_dt; }
-            set { if (this.aplc_dt != value) { this.aplc_dt = value; this.OnPropertyChanged("APLC_DT"); } }
-        }
+        //[DataMember]
+        //public string APLC_DT
+        //{
+        //    get { return aplc_dt; }
+        //    set { if (this.aplc_dt != value) { this.aplc_dt = value; this.OnPropertyChanged("APLC_DT"); } }
+        //}
 
 
         /// <summary>

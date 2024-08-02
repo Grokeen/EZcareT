@@ -146,5 +146,3 @@ exception
     when others then
         return ('');
 end ft_rsv_dte_info;
-
-end pkg_bil_srimd_new;

@@ -48,7 +48,13 @@ namespace HIS.PA.AC.PE.PS.UI
         }
 
         private HipassMobileApprovalMng_IN hipassMobile_GrIN = new HipassMobileApprovalMng_IN();
+
         private HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> hipassMobile_GrOUT = new HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>();
+
+        private HipassMobileApprovalMng_INSERT hipassMobile_GrINSERT = new HipassMobileApprovalMng_INSERT();
+
+        private HipassMobileApprovalMng_DELETE hipassMobile_GrDELETE = new HipassMobileApprovalMng_DELETE(); 
+        
 
         /// <summary>
         /// desc         : IN DTO Property
@@ -84,6 +90,47 @@ namespace HIS.PA.AC.PE.PS.UI
                 {
                     hipassMobile_GrOUT = value;
                     this.OnPropertyChanged("HipassMobile_GrOUT", value);
+                }
+            }
+        }
+        /// <summary>
+        /// desc         : IN DTO Property
+        /// author       : leegidong 
+        /// create Date  : 2016-07-05 오전 9:57:31
+        /// update date  : 최종 수정일자 , 수정자, 수정개요
+        public HipassMobileApprovalMng_INSERT HipassMobile_GrINSERT
+        {
+            get
+            {
+                return hipassMobile_GrINSERT;
+            }
+            set
+            {
+                if (hipassMobile_GrINSERT != value)
+                {
+                    hipassMobile_GrINSERT = value;
+                    this.OnPropertyChanged("HipassMobile_GrINSERT", value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// desc         : IN DTO Property
+        /// author       : leegidong 
+        /// create Date  : 2016-07-05 오전 9:57:31
+        /// update date  : 최종 수정일자 , 수정자, 수정개요
+        public HipassMobileApprovalMng_DELETE HipassMobile_GrDELETE
+        {
+            get
+            {
+                return hipassMobile_GrDELETE;
+            }
+            set
+            {
+                if (hipassMobile_GrDELETE != value)
+                {
+                    hipassMobile_GrDELETE = value;
+                    this.OnPropertyChanged("HipassMobile_GrDELETE", value);
                 }
             }
         }
