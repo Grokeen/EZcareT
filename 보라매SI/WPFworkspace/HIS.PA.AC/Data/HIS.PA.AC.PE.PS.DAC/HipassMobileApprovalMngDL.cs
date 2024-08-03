@@ -7,11 +7,11 @@ using HSF.TechSvc2010.Server.ComBase;
 namespace HIS.PA.AC.PE.PS.DAC
 {
     /// <summary>
-    /// name         : #논리DAC 클래스명
-    /// desc         : #DAC클래스 개요
-    /// author       : leegidong 
-    /// create date  : 2016-06-21 오후 1:14:17
-    /// update date  : #최종 수정 일자, 수정자, 수정개요 
+    /// name         : HipassMobileApprovalMngDL
+    /// desc         : 하이패스모바일 승인 조회
+    /// author       : 김용록 
+    /// create date  : 2024-07-21 오후 1:14:17
+    /// update date  : 
     /// </summary>
     [HSFTransaction(HSFTransactionOption.Supported)]
     public class HipassMobileApprovalMngDL : DacBase
@@ -19,9 +19,9 @@ namespace HIS.PA.AC.PE.PS.DAC
         /// <summary>
         /// name         : #DB Connection 설정
         /// desc         : #실행할 DB Connection을 지정합니다.
-        /// author       : leegidong 
-        /// create date  : 2016-06-21 오후 1:14:17
-        /// update date  : #최종 수정 일자, 수정자, 수정개요 
+        /// author       : 김용록 
+        /// create date  : 2024-07-21 오후 1:14:17
+        /// update date  : 
         /// </summary>
         protected override void SetDataSource()
         {
@@ -29,18 +29,21 @@ namespace HIS.PA.AC.PE.PS.DAC
         }
 
         /// <summary>
-        /// name         : #메소드 논리명
-        /// desc         : #메소드 개요
-        /// author       : leegidong 
-        /// create date  : 2016-06-21 오전 11:09:06
-        /// update date  : #최종 수정 일자, 수정자, 수정개요 
+        /// name         : SelectHipassMobileApprovalMng_OUT
+        /// desc         : SelectHipassMobileApprovalMng_OUT
+        /// author       : 김용록 
+        /// create date  : 2024-07-21 오전 11:09:06
+        /// update date  :  
         /// </summary>      
         public HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> SelectHipassMobileApprovalMng_OUT(HipassMobileApprovalMng_IN tempYR)
         {
             return this.DacAgent.Fill("HIS.PA.AC.PE.PS.HipassMobileApprovalMng", tempYR, typeof(HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>)) as HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>;
         }
 
-
+        public HipassMobileApprovalMng_UPDATE UpdateHipassMobileApprovalMng_UPDATE(HipassMobileApprovalMng_UPDATE tempGR) {
+            
+            return tempGR;
+        }
 
 
     }

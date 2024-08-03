@@ -3,9 +3,9 @@ using System.Runtime.Serialization;
 using HIS.Core.Common;
 
 /// <summary>
-/// name        : #논리DTO 클래스명
-/// desc        : #DTO클래스 개요 
-/// author      : EZCARE 
+/// name        : HipassMobileApprovalMng_IN
+/// desc        : HipassMobileApprovalMng_IN 
+/// author      : 김용록 
 /// create date : 2024-07-10 오후 5:21:35
 /// update date : #최종 수정 일자, 수정자, 수정개요 
 /// </summary>
@@ -15,7 +15,7 @@ public class HipassMobileApprovalMng_IN : HISDTOBase
 {
     private String in_from_date;         //시작일자
     private String in_to_date;           //종료일자
-    private String in_smss_psb_yn;          //승인여부조회
+    private String in_hpcd_cncl_rsn_cd;  //취소사유코드
 
     /// <summary>
     /// name : 시작일자
@@ -40,14 +40,15 @@ public class HipassMobileApprovalMng_IN : HISDTOBase
 
 
 
+
     /// <summary>
-    /// name : 종료일자
+    /// name : 취소사유코드
     /// </summary>
     [DataMember]
-    public string IN_SMSS_PSB_YN
+    public string IN_HPCD_CNCL_RSN_CD
     {
-        get { return in_smss_psb_yn; }
-        set { if (this.in_smss_psb_yn != value) { this.in_smss_psb_yn = value; this.OnPropertyChanged("IN_SMSS_PSB_YN"); } }
+        get { return in_hpcd_cncl_rsn_cd; }
+        set { if (this.in_hpcd_cncl_rsn_cd != value) { this.in_hpcd_cncl_rsn_cd = value; this.OnPropertyChanged("IN_HPCD_CNCL_RSN_CD"); } }
     }
 
 }

@@ -39,26 +39,15 @@ namespace HIS.PA.AC.PE.PS.UI
     public partial class HipassMobileApprovalMng : UserControlBase
     {
         #region [Consts]
-        /// <summary>
-        /// Biz HipassMobileApprovalMngBL
-        /// </summary>
-        //private const string BIZ_CLASS = "HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngBL";
         #endregion //Consts
 
         #region [Dependency Properties]
         #endregion //Dependency Properties
 
         #region [Member Variables]
-        /// <summary>
-        /// 프레젠테이션 모델(PM) 
-        /// </summary>
-
-        //private HipassMobileApprovalMngData model = new HipassMobileApprovalMngData();
-
         #endregion //Member Variables
 
         #region [Properties]
-
         #endregion //Properties
 
 
@@ -66,9 +55,9 @@ namespace HIS.PA.AC.PE.PS.UI
         /// <summary>
         /// name         : HipassMobileApprovalMng 생성자
         /// desc         : HipassMobileApprovalMng 생성자
-        /// author       : JaeGang 
-        /// create date  : 2023-12-26 오전 9:17:34
-        /// update date  : 최종 수정 일자, 수정자, 수정개요 
+        /// author       : 김용록 
+        /// create date  : 2024-07-10 오전 9:17:34
+        /// update date  :  
         /// </summary>
         public HipassMobileApprovalMng()
         {
@@ -105,11 +94,6 @@ namespace HIS.PA.AC.PE.PS.UI
         #endregion
 
 
-
-
-
-
-
         /* --------------------------------------------------------------- */
         /// <summary>
         /// name         : 하이패스 모바일 승인여부 조회 버튼
@@ -120,44 +104,8 @@ namespace HIS.PA.AC.PE.PS.UI
         /// <param name="e"></param>
         private void MobileHipassSearch(object sender, RoutedEventArgs e)
         {
-            //this.GRbtn_Click(btnSearch);
             HipassSearch();
         }
-
-
-
-        /* ------------------------HipassSearch------------------------------------ */
-        /// <summary>
-        /// name         : 승인상태 체크박스(승인, 취소, 미승인) 
-        /// author       : 김용록
-        /// create date  : 2024-07-17
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void MobileHipassCheckBox(object sender, NodeInfo e)
-        //{
-        //    // 변수 e의 선언은 무슨 용도일까 
-        //    // RoutedEventArgs
-        //    // NodeInfo
-        //    // KeyEventArgs
-        //    //// Todo : 기능 차이? -> xaml 화면을 봐야할 듯
-        //}
-
-
-
-        /* --------------------------------------------------------------- */
-        /// <summary>
-        /// name         : 종료 날짜 선택 시, 자동 계산 
-        /// author       : 김용록
-        /// create date  : 2024-07-17
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MobileHipassToDate(object sender, RoutedEventArgs e)
-        {
-            this.GRbtn_Click(sender);
-        }
-
 
 
         /* --------------------------------------------------------------- */

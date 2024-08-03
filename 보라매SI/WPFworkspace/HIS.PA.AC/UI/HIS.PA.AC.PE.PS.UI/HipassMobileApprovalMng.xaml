@@ -53,7 +53,7 @@
                                 <RadioButtonListItem Content="승인" Tag="Y"/>
                                 <!-- IsSelected="True" -->
                                 <RadioButtonListItem Content="취소" Tag="N" Margin="10,0,0,0"/>
-                                <RadioButtonListItem Content="미승인" Tag="" Margin="10,0,0,0"/>
+                                <RadioButtonListItem Content="미승인" Tag="U" Margin="10,0,0,0"/>
                             </RadioButtonList>
                         </Border>
                         <HButton x:Name="btnSearch"  Content="조회" ButtonStyleType="Search" VerticalAlignment="Center" Margin="30,0,0,0" Click="MobileHipassSearch"/>
@@ -73,22 +73,13 @@
                          IsReadOnly="True"
                          SelectionUnit="FullRow"
                          
-                         ShowRowIndex="False"
-                         IsShowCheckHeader="True"
-                         CanUserSelectRowHeader="False">
-                        <!--IsCheckListPopUp="True"
-                         IsCheckListVisibility="Visible"
-                
-                        체크박스
+                         ShowRowIndex="True" HeadersVisibility="Column"
+                         >
+                        <!--
+                        재강 책임님 체크박스
                         ShowRowIndex="True" HeadersVisibility="Column"
                          -->
                 <HDataGridEx.Columns>
-                    <!--<Border Style="{StaticResource GroupBorderLineStyle}" VerticalAlignment="Center" Margin="5,0,0,0">
-                        <StackPanel Orientation="Horizontal" Margin="5,0">
-                            <HCheckBox x:Name="{Binding CHECK_BOX}"/>
-                        </StackPanel>
-                    </Border>-->
-
                     <HDataGridTextColumn Header="신청일자" Binding="{Binding APLC_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
 
 

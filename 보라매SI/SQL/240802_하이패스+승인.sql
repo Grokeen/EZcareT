@@ -34,6 +34,9 @@ SELECT /*+ HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngB */
 /*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
+
+SELECT * FROM (;
+
 -- 테이블 조회
 SELECT C.COMMENTS COMMENTS_TAB
 --     , A.COLUMN_ID
@@ -51,14 +54,16 @@ SELECT C.COMMENTS COMMENTS_TAB
      , ALL_COL_COMMENTS B
      , ALL_TAB_COMMENTS C
 
- WHERE A.TABLE_NAME = 'APINSURT_TEMP'
+ WHERE A.TABLE_NAME = 'ACPETHCD'
 --   AND A.OWNER      = 'HBIL'
    AND A.OWNER      = B.OWNER
    AND A.TABLE_NAME = B.TABLE_NAME
    AND A.COLUMN_NAME= B.COLUMN_NAME
    AND A.TABLE_NAME = C.TABLE_NAME
    AND A.OWNER = C.OWNER
- ORDER BY COLUMN_ID;
+ ORDER BY COLUMN_ID
+    ;;
+ ) WHERE COMMENTS_COL LIKE '%취소%'
 
 
 
@@ -127,4 +132,4 @@ END PC_AP_HIPSSMOBILEAPRVLIST;
 
 ;;
 ;
-SELECT * FROM ACPETHCD WHERE ROWNUM < 10;
+

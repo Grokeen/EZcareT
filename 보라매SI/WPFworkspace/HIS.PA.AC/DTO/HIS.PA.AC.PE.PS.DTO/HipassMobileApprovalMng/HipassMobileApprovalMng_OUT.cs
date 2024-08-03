@@ -5,9 +5,9 @@ using System.Runtime.Serialization;
 namespace HIS.PA.AC.PE.PS.DTO
 {
     /// <summary>
-    /// name        : #논리DTO 클래스명
-    /// desc        : #DTO클래스 개요 
-    /// author      : EZCARE 
+    /// name        : HipassMobileApprovalMng_OUT
+    /// desc        : HipassMobileApprovalMng_OUT
+    /// author      : 김용록 
     /// create date : 2024-07-10 오후 5:21:59
     /// update date : #최종 수정 일자, 수정자, 수정개요 
     /// </summary>
@@ -15,41 +15,17 @@ namespace HIS.PA.AC.PE.PS.DTO
     [DataContract]
     public class HipassMobileApprovalMng_OUT : HISDTOBase
     {
-        //private String check_box;   // 신청일자
-        //private String aplc_dt;     // 신청일자
+
         private String pt_no;       // 환자번호
         private String pt_nm;       // 환자명 
         private String apct_rrn;    // 주민번호 
-        private String smss_psb_yn; // 승인여부???? 
+        private String smss_psb_yn; // 승인여부 
         private String pme_cls_cd;  // 환자급종 
         private String apy_str_dt;  // 시작일자 
         private String apy_end_dt;  // 종료일자 
         private String card_cmp_nm; // 카드 회사 
         private String apct_nm;     // 카드 명의자 
         private String card_no;     // 카드번호 
-
-        ///// <summary>
-        ///// name : 신청일자
-        ///// </summary>
-        //[DataMember]
-        //public string CHECK_BOX
-        //{
-        //    get { return check_box; }
-        //    set { if (this.check_box != value) { this.check_box = value; this.OnPropertyChanged("CHECK_BOX"); } }
-        //}
-
-
-
-
-        /// <summary>
-        /// name : 신청일자
-        /// </summary>
-        //[DataMember]
-        //public string APLC_DT
-        //{
-        //    get { return aplc_dt; }
-        //    set { if (this.aplc_dt != value) { this.aplc_dt = value; this.OnPropertyChanged("APLC_DT"); } }
-        //}
 
 
         /// <summary>
@@ -86,7 +62,7 @@ namespace HIS.PA.AC.PE.PS.DTO
 
 
         /// <summary>
-        /// name : 승인여부????
+        /// name : 승인여부
         /// </summary>
         [DataMember]
         public string SMSS_PSB_YN

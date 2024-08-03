@@ -12,11 +12,11 @@ using HIS.Core;
 namespace HIS.PA.AC.PE.PS.BIZ
 {
     /// <summary>
-    /// name         : 수진이력 조회 BIZ 클래스
-    /// desc         : 수진이력 조회 BIZ 클래스
-    /// author       : 장용규
-    /// create date  : 2012-12-06 오후 4:02:42
-    /// update date  : 최종 수정일자, 수정자, 수정개요
+    /// name         : HipassMobileApprovalMngBL
+    /// desc         : 모바일하이패스 승인 조회
+    /// author       : 김용록 
+    /// create date  : 2024-07-21
+    /// update date  : 
     /// </summary>
     public class HipassMobileApprovalMngBL : BizBase//, IHavingAMedicalExaminationHistoryBL
     {
@@ -24,26 +24,39 @@ namespace HIS.PA.AC.PE.PS.BIZ
 
 
         /// <summary>
-        /// name               : 진료과별 수진상병조회
-        /// i/f inheritance yn : Y
-        /// logic              : 진료과별 수진상병정보를 조회함.
-        /// desc               : 진료과별 수진상병정보를 조회함.
-        /// author             : 장용규 
-        /// create date        : 2011-12-21
-        /// update date        : 최종 수정일자, 수정자, 수정개요
+        /// name         : HipassMobileApprovalMngBL
+        /// desc         : 모바일하이패스 승인 조회
+        /// author       : 김용록 
+        /// create date  : 2024-07-21
+        /// update date  : 
         /// </summary>
-        /// <param name="">날짜 범위</param>
-        /// <returns>반환문자열</returns>
+        
+        [HSFTransaction(HSFTransactionOption.Required)]
         public HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> HipassMobileApprovalMng_GrDateAV(HipassMobileApprovalMng_IN tempYR)
         {
-            // 2408021054 네임스페이스를 찾을 수 없다.
-            // 여기서 참조를? 하면서 바로 return?
-            using (HipassMobileApprovalMngDL GrDate_Average = new HipassMobileApprovalMngDL())
+            using (HipassMobileApprovalMngDL YrDate_Average = new HipassMobileApprovalMngDL())
             {
-                return GrDate_Average.SelectHipassMobileApprovalMng_OUT(tempYR);
+                return YrDate_Average.SelectHipassMobileApprovalMng_OUT(tempYR);
             }
         }
 
 
+        /// <summary>
+        /// name         : HipassMobileApprovalMngBL
+        /// desc         : 모바일하이패스 승인/취소 
+        /// author       : 김용록 
+        /// create date  : 2024-08-02
+        /// update date  : 
+        /// </summary>
+        
+        [HSFTransaction(HSFTransactionOption.Required)]
+        public void UpdOtptPtReservationRegistration_update(HipassMobileApprovalMng_UPDATE tempGR)
+        {
+            using (HipassMobileApprovalMngDL GrDate_Average = new HipassMobileApprovalMngDL())
+            {
+                GrDate_Average.UpdateHipassMobileApprovalMng_UPDATE(tempGR);
+
+            }
+        }
     }
 }

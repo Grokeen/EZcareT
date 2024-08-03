@@ -6,25 +6,30 @@
     <members>
         <member name="T:HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngBL">
             <summary>
-            name         : 수진이력 조회 BIZ 클래스
-            desc         : 수진이력 조회 BIZ 클래스
-            author       : 장용규
-            create date  : 2012-12-06 오후 4:02:42
-            update date  : 최종 수정일자, 수정자, 수정개요
+            name         : HipassMobileApprovalMngBL
+            desc         : 모바일하이패스 승인 조회
+            author       : 김용록 
+            create date  : 2024-07-21
+            update date  : 
             </summary>
         </member>
         <member name="M:HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngBL.HipassMobileApprovalMng_GrDateAV(HipassMobileApprovalMng_IN)">
             <summary>
-            name               : 진료과별 수진상병조회
-            i/f inheritance yn : Y
-            logic              : 진료과별 수진상병정보를 조회함.
-            desc               : 진료과별 수진상병정보를 조회함.
-            author             : 장용규 
-            create date        : 2011-12-21
-            update date        : 최종 수정일자, 수정자, 수정개요
+            name         : HipassMobileApprovalMngBL
+            desc         : 모바일하이패스 승인 조회
+            author       : 김용록 
+            create date  : 2024-07-21
+            update date  : 
             </summary>
-            <param name="">날짜 범위</param>
-            <returns>반환문자열</returns>
+        </member>
+        <member name="M:HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngBL.UpdOtptPtReservationRegistration_update(HIS.PA.AC.PE.PS.DTO.HipassMobileApprovalMng_UPDATE)">
+            <summary>
+            name         : HipassMobileApprovalMngBL
+            desc         : 모바일하이패스 승인/취소 
+            author       : 김용록 
+            create date  : 2024-08-02
+            update date  : 
+            </summary>
         </member>
     </members>
 </doc>

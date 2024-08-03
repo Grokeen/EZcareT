@@ -17,8 +17,8 @@ namespace HIS.PA.AC.PE.PS.UI
     /// <summary>
     /// name         : #HipassMobileApprovalMng Data 클래스
     /// desc         : #HipassMobileApprovalMng Data 클래스
-    /// author       : JaeGang 
-    /// create date  : 2023-12-26 오전 9:17:34
+    /// author       : 김용록 
+    /// create date  : 2024-07-17 오전 9:17:34
     /// update date  : 최종 수정 일자, 수정자, 수정개요 
     /// </summary>
     public class HipassMobileApprovalMngData : ViewModelBase
@@ -39,9 +39,9 @@ namespace HIS.PA.AC.PE.PS.UI
         /// <summary>
         /// name         : ViewModel 초기화 함수
         /// desc         : ViewModel 을 초기화 함수 입니다.
-        /// author       : kimeunjung 
-        /// create date  : 2012-04-26 09:46:07
-        /// update date  : 2012-04-26 09:46:07, kimeunjung, 수정개요
+        /// author       : 김용록 
+        /// create date  : 2024-07-17 09:46:07
+        /// update date  : 
         /// </summary>
         private void Init()
         {
@@ -51,16 +51,15 @@ namespace HIS.PA.AC.PE.PS.UI
 
         private HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> hipassMobile_GrOUT = new HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>();
 
-        private HipassMobileApprovalMng_INSERT hipassMobile_GrINSERT = new HipassMobileApprovalMng_INSERT();
+        private HipassMobileApprovalMng_UPDATE hipassMobile_GrUPDATE = new HipassMobileApprovalMng_UPDATE();
 
-        private HipassMobileApprovalMng_DELETE hipassMobile_GrDELETE = new HipassMobileApprovalMng_DELETE(); 
-        
+
 
         /// <summary>
-        /// desc         : IN DTO Property
-        /// author       : leegidong 
-        /// create Date  : 2016-07-05 오전 9:57:31
-        /// update date  : 최종 수정일자 , 수정자, 수정개요
+        /// desc         : HipassMobileApprovalMng_IN DTO Property
+        /// author       : 김용록 
+        /// create Date  : 2024-07-17 오전 9:57:31
+        /// update date  : 
         public HipassMobileApprovalMng_IN HipassMobile_GrIN
         {
             get { return this.hipassMobile_GrIN; }
@@ -74,10 +73,10 @@ namespace HIS.PA.AC.PE.PS.UI
             }
         }
         /// <summary>
-        /// desc         : IN DTO Property
-        /// author       : leegidong 
-        /// create Date  : 2016-07-05 오전 9:57:31
-        /// update date  : 최종 수정일자 , 수정자, 수정개요
+        /// desc         : HipassMobileApprovalMng_OUT DTO Property
+        /// author       : 김용록 
+        /// create Date  : 2024-07-17 오전 9:57:31
+        /// update date  : 
         public HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> HipassMobile_GrOUT
         {
             get
@@ -94,46 +93,26 @@ namespace HIS.PA.AC.PE.PS.UI
             }
         }
         /// <summary>
-        /// desc         : IN DTO Property
-        /// author       : leegidong 
-        /// create Date  : 2016-07-05 오전 9:57:31
-        /// update date  : 최종 수정일자 , 수정자, 수정개요
-        public HipassMobileApprovalMng_INSERT HipassMobile_GrINSERT
+        /// desc         : HipassMobileApprovalMng_UPDATE DTO Property
+        /// author       : 김용록 
+        /// create Date  : 2024-07-17 오전 9:57:31
+        /// update date  : 
+        public HipassMobileApprovalMng_UPDATE HipassMobile_GrUPDATE
         {
             get
             {
-                return hipassMobile_GrINSERT;
+                return hipassMobile_GrUPDATE;
             }
             set
             {
-                if (hipassMobile_GrINSERT != value)
+                if (hipassMobile_GrUPDATE != value)
                 {
-                    hipassMobile_GrINSERT = value;
-                    this.OnPropertyChanged("HipassMobile_GrINSERT", value);
+                    hipassMobile_GrUPDATE = value;
+                    this.OnPropertyChanged("HipassMobile_GrUPDATE", value);
                 }
             }
         }
 
-        /// <summary>
-        /// desc         : IN DTO Property
-        /// author       : leegidong 
-        /// create Date  : 2016-07-05 오전 9:57:31
-        /// update date  : 최종 수정일자 , 수정자, 수정개요
-        public HipassMobileApprovalMng_DELETE HipassMobile_GrDELETE
-        {
-            get
-            {
-                return hipassMobile_GrDELETE;
-            }
-            set
-            {
-                if (hipassMobile_GrDELETE != value)
-                {
-                    hipassMobile_GrDELETE = value;
-                    this.OnPropertyChanged("HipassMobile_GrDELETE", value);
-                }
-            }
-        }
 
     }
 }

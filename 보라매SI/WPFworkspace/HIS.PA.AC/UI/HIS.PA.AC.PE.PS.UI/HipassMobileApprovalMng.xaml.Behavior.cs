@@ -43,8 +43,8 @@ namespace HIS.PA.AC.PE.PS.UI
     /// <summary>
     /// name         : HipassMobileApprovalMng Behavior 클래스
     /// desc         : HipassMobileApprovalMng Behavior 클래스
-    /// author       : JaeGang 
-    /// create date  : 2023-12-26 오전 9:17:34
+    /// author       : 김영럭 
+    /// create date  : 2024-07-10 오전 9:17:34
     /// update date  : 최종 수정 일자, 수정자, 수정개요 
     /// </summary>
     public partial class HipassMobileApprovalMng
@@ -56,10 +56,7 @@ namespace HIS.PA.AC.PE.PS.UI
 
         private void ControlInit()
         {
-
-            //this.calFromTo.FromDate = CommonServiceAgent.SelectSysDate();
-            //this.calFromTo.ToDate = CommonServiceAgent.SelectSysDate();
-
+            // 화면 실행 시, 조회기간 초기화
             this.calFromTo.FromDate = System.DateTime.Now.AddDays(-6);
             this.calFromTo.ToDate = System.DateTime.Now;
         }
@@ -67,11 +64,11 @@ namespace HIS.PA.AC.PE.PS.UI
 
 
         #region [Dependency Properties]
-        #endregion //Dependency Properties
         private HipassMobileApprovalMngData model;
+        #endregion //Dependency Properties
+
+
         #region [Member Variables]
-
-
         #endregion
 
 
@@ -93,21 +90,19 @@ namespace HIS.PA.AC.PE.PS.UI
 
             try
             {
-                model.HipassMobile_GrIN.IN_SMSS_PSB_YN = (rbtFrvs.SelectedItem as RadioButtonListItem).Tag.ToString();
+                // Radio 승인. 취소, 미승인 선택 없이 NULL 값을 보내면 = '전체조회'
+                model.HipassMobile_GrIN.IN_HPCD_CNCL_RSN_CD = (rbtFrvs.SelectedItem as RadioButtonListItem).Tag.ToString();
+
+                
             }
-            catch(Exception e) {
-                // model.HipassMobile_GrIN.IN_SMSS_PSB_YN = null;
+            catch (Exception e) {
+                // 전체 조회
+                model.HipassMobile_GrIN.IN_HPCD_CNCL_RSN_CD = "A";
             }
 
-
-            // REDO : 2408010932 BIZ가 기본 프로젝트 파일로 이동이된다. HIS.UI.Core가 일을 너무 잘하는 듯
-            // -> 아마 dll 파일 위치와 가장 가까운 dll 파일을 잡는 듯 하다.
-            // 
-
-            // IN 리스트에 넣은 값을 담아 보내서 OUT 리스트에 담는다.
             model.HipassMobile_GrOUT = (HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>)UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "HipassMobileApprovalMng_GrDateAV", model.HipassMobile_GrIN);
              
-            //RegisterShowBusyIndicator("처리 중입니다.");
+            // RegisterShowBusyIndicator("처리 중입니다.");
 
 
             if (model.HipassMobile_GrOUT.Count == 0)
@@ -125,31 +120,34 @@ namespace HIS.PA.AC.PE.PS.UI
 
         private void GRbtn_Click(object sender)
         {
-            //model.HipassMobile_GrINSERT. = (rbtFrvs.SelectedItem as RadioButtonListItem).Tag.ToString();
-
-            /* --------------------------------------------------------------- */
-            //승인 상태 체크박스
-            //if (sender.Equals())
-            //{
-            //    // 현재 날짜를 넣어주면 되는데 -> 취소 날짜에
-            //}
-
-
-
             /* --------------------------------------------------------------- */
             // 승인 버튼
             if (sender.Equals(btnConfirm))
             {
+                MsgBox.Display("모바일하이패스를 승인하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                // xaml에 체크박스 확인 못했습니다.
+
+
+                // 모바일하이패스 ASIS
+                //참고 : pkg_bil_ocals.pc_ap_HipssMobileAprvList
+                //참고 : PROCEDURE pc_ap_HipssMobileAprv_Upd 
+                //참고 : D:\AS-IS소스_20231226\WEB\BIL\ACC\CALS\OCALS
+
+
 
             }
-
-
-            /* --------------------------------------------------------------- */
             // 취소 버튼
             if (sender.Equals(btnCancle))
             {
+                MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+
+                //model.HipassMobile_GrUPDATE.PT_NO = 
+                //model.HipassMobile_GrUPDATE.SMSS_PSB_YN = "09"; /* 09 : 모바일원무과승인거절*/
+                //model.HipassMobile_GrUPDATE.APY_STR_DT =
+                //model.HipassMobile_GrUPDATE.LSH_STF_NO = /*최종변경하는직원번호*/
 
             }
+
 
 
             /* --------------------------------------------------------------- */
@@ -199,7 +197,6 @@ namespace HIS.PA.AC.PE.PS.UI
             if (sender.Equals(btnClose))
             {
                 this.Close();
-
             }
 
         }
