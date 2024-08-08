@@ -65,6 +65,7 @@ namespace HIS.PA.AC.PE.PS.UI
 
         #region [Dependency Properties]
         private HipassMobileApprovalMngData model;
+        DateTime nowDate = DateTime.Now;
         #endregion //Dependency Properties
 
 
@@ -125,7 +126,6 @@ namespace HIS.PA.AC.PE.PS.UI
             if (sender.Equals(btnConfirm))
             {
                 MsgBox.Display("모바일하이패스를 승인하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
-                // xaml에 체크박스 확인 못했습니다.
 
 
                 // 모바일하이패스 ASIS
@@ -133,26 +133,51 @@ namespace HIS.PA.AC.PE.PS.UI
                 //참고 : PROCEDURE pc_ap_HipssMobileAprv_Upd 
                 //참고 : D:\AS-IS소스_20231226\WEB\BIL\ACC\CALS\OCALS
 
+                // answp !!!! 여러 개를 체크해서 한 번에 처리하는게 가능한가?
 
 
+
+
+                // 변경되는 부분
+                model.HipassMobile_GrUPDATE.HPCD_CNCL_RSN_CD = SessionManager.UserInfo.STF_NO;/*최종변경하는직원번호*/
+
+
+
+
+                UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "UpdOtptPtReservationRegistration_update", model.HipassMobile_GrUPDATE);
+
+
+                
             }
             // 취소 버튼
             if (sender.Equals(btnCancle))
             {
                 MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
 
+                // 체크박스에 맞는 애들을 불러와야 하는데
                 //model.HipassMobile_GrUPDATE.PT_NO = 
-                //model.HipassMobile_GrUPDATE.SMSS_PSB_YN = "09"; /* 09 : 모바일원무과승인거절*/
                 //model.HipassMobile_GrUPDATE.APY_STR_DT =
-                //model.HipassMobile_GrUPDATE.LSH_STF_NO = /*최종변경하는직원번호*/
+                //model.HipassMobile_GrUPDATE.TKN_NO = 
+
+
+
+                // 변경되는 부분
+                model.HipassMobile_GrUPDATE.HPCD_CNCL_RSN_CD = "97516";/*최종변경하는직원번호*/
+                model.HipassMobile_GrUPDATE.HPCD_CNCL_RSN_CD = "09";/* 취소사유(09 : 모바일원무과승인거절)*/
+                model.HipassMobile_GrUPDATE.CNCL_DT = DateTime.Now.ToString("yyyy-MM-dd"); /* 취소날짜 */
+
+
+
+                UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "UpdOtptPtReservationRegistration_update", model.HipassMobile_GrUPDATE);
 
             }
 
 
 
             /* --------------------------------------------------------------- */
-            // 알림톡 버튼
-            if (sender.Equals(btnAlarm))
+                // 알림톡 버튼
+                if (sender.Equals(btnAlarm))
             {
 
             }

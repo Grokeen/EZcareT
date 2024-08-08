@@ -71,15 +71,27 @@
                          SelectionMode="Extended"
                          ColumnHeaderHorizontalAlignment="Center"
                          IsReadOnly="True"
-                         SelectionUnit="FullRow"
+                         SelectionUnit="FullRow" RowDoubleClick="dgrdGroupList_RowDoubleClick" SelectionChanged="grdList_SelectionChanged" >
+                
                          
-                         ShowRowIndex="True" HeadersVisibility="Column"
-                         >
                         <!--
                         재강 책임님 체크박스
-                        ShowRowIndex="True" HeadersVisibility="Column"
+                        ShowRowIndex="True" 
+                        HeadersVisibility="Column"
                          -->
-                <HDataGridEx.Columns>
+
+
+                        <!--
+                        AutoGenerateColumns="False"  
+                        CanUserDeleteRows="False" 
+                        HasRowHeaderStatus="True" 
+                        RowDetailsVisibilityMode="Collapsed" 
+
+                        ClipboardCopyMode="ExcludeHeader" 
+                         -->
+                            
+
+                    <HDataGridEx.Columns>
                     <HDataGridTextColumn Header="신청일자" Binding="{Binding APLC_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
 
 

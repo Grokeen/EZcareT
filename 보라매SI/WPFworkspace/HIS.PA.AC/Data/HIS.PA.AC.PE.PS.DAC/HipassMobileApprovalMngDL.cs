@@ -42,7 +42,7 @@ namespace HIS.PA.AC.PE.PS.DAC
 
         public HipassMobileApprovalMng_UPDATE UpdateHipassMobileApprovalMng_UPDATE(HipassMobileApprovalMng_UPDATE tempGR) {
             
-            return tempGR;
+            return this.DacAgent.Fill("HIS.PA.AC.PE.PS.HipassMobileApprovalMngUpdate", tempGR, typeof(HipassMobileApprovalMng_UPDATE)) as HipassMobileApprovalMng_UPDATE;
         }
 
 

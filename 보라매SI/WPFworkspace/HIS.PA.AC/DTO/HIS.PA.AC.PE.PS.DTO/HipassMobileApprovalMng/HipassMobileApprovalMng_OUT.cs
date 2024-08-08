@@ -15,17 +15,29 @@ namespace HIS.PA.AC.PE.PS.DTO
     [DataContract]
     public class HipassMobileApprovalMng_OUT : HISDTOBase
     {
-
+        private String aplc_dt;     // 신청일자
         private String pt_no;       // 환자번호
         private String pt_nm;       // 환자명 
         private String apct_rrn;    // 주민번호 
         private String smss_psb_yn; // 승인여부 
         private String pme_cls_cd;  // 환자급종 
-        private String apy_str_dt;  // 시작일자 
+        private String apy_str_dt;  // 시작일자(신청일자) 
         private String apy_end_dt;  // 종료일자 
         private String card_cmp_nm; // 카드 회사 
         private String apct_nm;     // 카드 명의자 
-        private String card_no;     // 카드번호 
+        private String card_no;      // 토큰번호 
+        private String tkn_no;      // 토큰번호 
+        
+
+        /// <summary>
+        /// name : 환자번호
+        /// </summary>
+        [DataMember]
+        public string APLC_DT
+        {
+            get { return aplc_dt; }
+            set { if (this.aplc_dt != value) { this.aplc_dt = value; this.OnPropertyChanged("APLC_DT"); } }
+        }
 
 
         /// <summary>
@@ -137,7 +149,17 @@ namespace HIS.PA.AC.PE.PS.DTO
             set { if (this.card_no != value) { this.card_no = value; this.OnPropertyChanged("CARD_NO"); } }
         }
 
+        
 
+        /// <summary>
+        /// name : 토큰번호
+        /// </summary>
+        [DataMember]
+        public string TKN_NO
+        {
+            get { return tkn_no; }
+            set { if (this.tkn_no != value) { this.tkn_no = value; this.OnPropertyChanged("TKN_NO"); } }
+        }
     }
 
 }
