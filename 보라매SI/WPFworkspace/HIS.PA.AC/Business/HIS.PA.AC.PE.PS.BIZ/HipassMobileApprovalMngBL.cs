@@ -18,7 +18,7 @@ namespace HIS.PA.AC.PE.PS.BIZ
     /// create date  : 2024-07-21
     /// update date  : 
     /// </summary>
-    public class HipassMobileApprovalMngBL : BizBase//, IHavingAMedicalExaminationHistoryBL
+    public class HipassMobileApprovalMngBL : BizBase
     {
 
 
@@ -31,7 +31,7 @@ namespace HIS.PA.AC.PE.PS.BIZ
         /// update date  : 
         /// </summary>
         
-        [HSFTransaction(HSFTransactionOption.Required)]
+        //[HSFTransaction(HSFTransactionOption.Required)]
         public HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT> HipassMobileApprovalMng_GrDateAV(HipassMobileApprovalMng_IN tempYR)
         {
             using (HipassMobileApprovalMngDL YrDate_Average = new HipassMobileApprovalMngDL())
@@ -49,8 +49,8 @@ namespace HIS.PA.AC.PE.PS.BIZ
         /// update date  : 
         /// </summary>
         
-        [HSFTransaction(HSFTransactionOption.Required)]
-        public void UpdOtptPtReservationRegistration_update(HipassMobileApprovalMng_UPDATE tempGR)
+        //[HSFTransaction(HSFTransactionOption.Required)]
+        public void HipassMobileApprovalMng_UpdateYR(HipassMobileApprovalMng_UPDATE tempGR)
         {
             using (HipassMobileApprovalMngDL GrDate_Average = new HipassMobileApprovalMngDL())
             {

@@ -50,7 +50,7 @@
   <ItemGroup>
     <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <HintPath>..\..\OutputPath\HIS.Core.dll</HintPath>
     </Reference>
     <Reference Include="HIS.Core.Global.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,27 +66,31 @@
     </Reference>
     <Reference Include="HSF.COM.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.COM.Core.dll</HintPath>
+      <HintPath>..\..\OutputPath\HSF.COM.Core.dll</HintPath>
     </Reference>
     <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <HintPath>..\..\OutputPath\HSF.TechSvc2010.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common.Log, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HSF.TechSvc2010.Common.Log.dll</HintPath>
     </Reference>
     <Reference Include="HSF.TechSvc2010.Server.ComBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.ComBase.dll</HintPath>
+      <HintPath>..\..\OutputPath\HSF.TechSvc2010.Server.ComBase.dll</HintPath>
     </Reference>
     <Reference Include="HSF.TechSvc2010.Server.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.Common.dll</HintPath>
+      <HintPath>..\..\OutputPath\HSF.TechSvc2010.Server.Common.dll</HintPath>
     </Reference>
     <Reference Include="HSF.TechSvc2010.Server.DAC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.DAC.dll</HintPath>
+      <HintPath>..\..\OutputPath\HSF.TechSvc2010.Server.DAC.dll</HintPath>
     </Reference>
     <Reference Include="HSF.TechSvc2010.Server.RemotingV35, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.RemotingV35.dll</HintPath>
+      <HintPath>..\..\OutputPath\HSF.TechSvc2010.Server.RemotingV35.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

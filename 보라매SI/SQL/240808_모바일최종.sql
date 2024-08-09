@@ -1,6 +1,6 @@
 ﻿EXEC :IN_FROM_DATE := '2023-07-21';
 EXEC :IN_TO_DATE := '2024-08-02' ;
-EXEC :IN_SMSS_PSB_YN := '';
+EXEC :IN_HPCD_CNCL_RSN_CD := 'Y';
 
 
 SELECT * FROM ( /*+ HIS.PA.AC.PE.PS.HipassMobileApprovalMng */
@@ -31,37 +31,51 @@ SELECT * FROM ( /*+ HIS.PA.AC.PE.PS.HipassMobileApprovalMng */
    AND (A.APLC_DT BETWEEN TO_DATE(:IN_FROM_DATE,'YYYY-MM-DD')
                       AND TO_DATE(:IN_TO_DATE,'YYYY-MM-DD'))
    AND C.COMN_GRP_CD (+)= '996'
-   AND NVL(A.HPCD_CNCL_RSN_CD,'XX') = decode(:IN_HPCD_CNCL_RSN_CD ,'A' ,nvl(A.HPCD_CNCL_RSN_CD,'XX')   --전체 조회
-                                                                  ,'N' ,'09'                           --원무과 취소  조회
-                                                                  ,'U' ,'07'                           --미승인 조회
-                                                                  ,'XX')                               --원무과 승인 조회
+   AND NVL(A.HPCD_CNCL_RSN_CD, 'XX') LIKE DECODE(:IN_HPCD_CNCL_RSN_CD,  'N', '09',                                                  -- 취소
+                                                                        'U', '07',                                                  -- 미승인
+                                                                        'Y', 'XX',                                                  -- 승인
+                                                                        NULL, '%')                                                  -- 전체
+
+
+
    ORDER BY APLC_DT DESC, PT_NM ASC
 
 ) WHERE SMSS_PSB_YN IS NOT NULL
+
+--AND SMSS_PSB_YN LIKE '%N%'
+
 
 ;
 ;;
 
 
+  SELECT * FROM HBIL.ACPETHCD WHERE ROWNUM < 100
+;;
+
+;;
+
 -- 변경
-EXEC :IN_LSH_STF_NO := '97516';
-EXEC :IN_CNCL_DT := '2024-08-02' ;
+EXEC :IN_LSH_STF_NO := 'C8ADM';
+EXEC :IN_CNCL_DT := '2024-08-09' ;
 EXEC :IN_HPCD_CNCL_RSN_CD := '09';
 
 
--- 조회
-EXEC :IN_PT_NO := '01231173';
-EXEC :IN_APY_STR_DT := '2015-07-27' ;
-EXEC :IN_TKN_NO := '3870728567289984';
+---- 조회
+EXEC :IN_PT_NO := '00116267';
+EXEC :IN_APY_STR_DT := '2023-01-17' ;
+EXEC :IN_TKN_NO := '5317648383391318=57220011326181554180';
 
 
-UPDATE ACPETHCD
-   SET   LSH_STF_NO = :IN_LSH_STF_NO                       /* 최종변경하는직원번호 */
-       , HPCD_CNCL_RSN_CD = :IN_HPCD_CNCL_RSN_CD           /* 취소코드 */
-       , CNCL_DT = TO_DATE(:IN_CNCL_DT,'YYYY-MM-DD')       /* 취소날짜 */
-   WHERE  PT_NO = :IN_PT_NO                                /* 환자번호 */
-        , APY_STR_DT = TO_DATE(:IN_APY_STR_DT,'YYYY-MM-DD')/* 시작일자 */
-        , TKN_NO = :IN_TKN_NO                              /* 하이패스토큰번호 */
+UPDATE ACPETHCD /*+ HIS.PA.AC.PE.PS.HipassMobileApprovalMngUpdate */
+   SET   LSH_STF_NO = :IN_LSH_STF_NO                                               /* 최종변경하는직원번호 */
+       , HPCD_CNCL_RSN_CD = NVL(:IN_HPCD_CNCL_RSN_CD,NULL)                         /* 취소코드 */
+       , CNCL_DT = DECODE(:IN_CNCL_DT,NULL,NULL,TO_DATE(:IN_CNCL_DT,'YYYY-MM-DD')) /* 취소날짜 */
+   WHERE  PT_NO = :IN_PT_NO                                                        /* 환자번호 */
+     AND APY_STR_DT = TO_DATE(:IN_APY_STR_DT,'YYYY-MM-DD')                         /* 시작일자 */
+     AND TKN_NO = :IN_TKN_NO                                                       /* 하이패스토큰번호 */
 
 ;;
-SELECT * FROM ACPETHCD where rownum <10;
+--commit;
+SELECT PT_NO,APY_STR_DT,TKN_NO,LSH_STF_NO,HPCD_CNCL_RSN_CD,CNCL_DT FROM ACPETHCD where rownum <10 AND PT_NO=:IN_PT_NO AND APY_STR_DT= :IN_APY_STR_DT AND TKN_NO = :IN_TKN_NO;
+SELECT * FROM ACPETHCD where rownum <10 order by APY_STR_DT desc ;
+SELECT :IN_APY_STR_DT FROM DUAL;

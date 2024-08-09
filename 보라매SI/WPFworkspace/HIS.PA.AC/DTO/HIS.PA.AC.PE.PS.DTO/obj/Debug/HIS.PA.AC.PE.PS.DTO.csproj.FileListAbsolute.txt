@@ -1,6 +1,5 @@
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PE.PS.DTO.dll
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PE.PS.DTO.pdb
-D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\DTO\HIS.PA.AC.PE.PS.DTO\obj\Debug\HIS.PA.AC.PE.PS.DTO.csprojAssemblyReference.cache
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\DTO\HIS.PA.AC.PE.PS.DTO\obj\Debug\HIS.PA.AC.PE.PS.DTO.csproj.CoreCompileInputs.cache
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\DTO\HIS.PA.AC.PE.PS.DTO\obj\Debug\HIS.PA.AC.PE.PS.DTO.csproj.CopyComplete
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\DTO\HIS.PA.AC.PE.PS.DTO\obj\Debug\HIS.PA.AC.PE.PS.DTO.dll

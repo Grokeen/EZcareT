@@ -21,45 +21,45 @@ namespace HIS.PA.AC.PE.PS.DTO
 
 
         // 변경되는 값
-        private String lsh_stf_no;       // 최종변경하는직원번호
-        private String hpcd_cncl_rsn_cd; // 취소코드
-        private String cncl_dt;          // 취소날짜 
+        private String in_lsh_stf_no;       // 최종변경하는직원번호
+        private String in_hpcd_cncl_rsn_cd; // 취소코드
+        private String in_cncl_dt;          // 취소날짜 
 
 
         // 조회하는 값
-        private String pt_no;           // 환자번호
-        private String apy_str_dt;      // 시작일자
-        private String tkn_no;          // 하이패스토큰번호
+        private String in_pt_no;           // 환자번호
+        private String in_apy_str_dt;      // 시작일자
+        private String in_tkn_no;          // 하이패스토큰번호
 
 
         /// <summary>
         /// name : 최종변경하는직원번호
         /// </summary>
         [DataMember]
-        public string LSH_STF_NO
+        public string IN_LSH_STF_NO
         {
-            get { return lsh_stf_no; }
-            set { if (this.lsh_stf_no != value) { this.lsh_stf_no = value; this.OnPropertyChanged("LSH_STF_NO"); } }
+            get { return in_lsh_stf_no; }
+            set { if (this.in_lsh_stf_no != value) { this.in_lsh_stf_no = value; this.OnPropertyChanged("IN_LSH_STF_NO"); } }
         }
 
         /// <summary>
         /// name : 취소코드 
         /// </summary>
         [DataMember]
-        public string HPCD_CNCL_RSN_CD
+        public string IN_HPCD_CNCL_RSN_CD
         {
-            get { return hpcd_cncl_rsn_cd; }
-            set { if (this.hpcd_cncl_rsn_cd != value) { this.hpcd_cncl_rsn_cd = value; this.OnPropertyChanged("HPCD_CNCL_RSN_CD"); } }
+            get { return in_hpcd_cncl_rsn_cd; }
+            set { if (this.in_hpcd_cncl_rsn_cd != value) { this.in_hpcd_cncl_rsn_cd = value; this.OnPropertyChanged("IN_HPCD_CNCL_RSN_CD"); } }
         }
 
         /// <summary>
         /// name : 취소날짜  
         /// </summary>
         [DataMember]
-        public string CNCL_DT
+        public string IN_CNCL_DT
         {
-            get { return cncl_dt; }
-            set { if (this.cncl_dt != value) { this.cncl_dt = value; this.OnPropertyChanged("CNCL_DT"); } }
+            get { return in_cncl_dt; }
+            set { if (this.in_cncl_dt != value) { this.in_cncl_dt = value; this.OnPropertyChanged("IN_CNCL_DT"); } }
         }
 
 
@@ -70,30 +70,30 @@ namespace HIS.PA.AC.PE.PS.DTO
         /// name : 환자번호
         /// </summary>
         [DataMember]
-        public string PT_NO
+        public string IN_PT_NO
         {
-            get { return pt_no; }
-            set { if (this.pt_no != value) { this.pt_no = value; this.OnPropertyChanged("PT_NO"); } }
+            get { return in_pt_no; }
+            set { if (this.in_pt_no != value) { this.in_pt_no = value; this.OnPropertyChanged("IN_PT_NO"); } }
         }
 
         /// <summary>
         /// name : 시작일자
         /// </summary>
         [DataMember]
-        public string APY_STR_DT
+        public string IN_APY_STR_DT
         {
-            get { return apy_str_dt; }
-            set { if (this.apy_str_dt != value) { this.apy_str_dt = value; this.OnPropertyChanged("APY_STR_DT"); } }
+            get { return in_apy_str_dt; }
+            set { if (this.in_apy_str_dt != value) { this.in_apy_str_dt = value; this.OnPropertyChanged("IN_APY_STR_DT"); } }
         }
 
         /// <summary>
         /// name : 하이패스토큰번호
         /// </summary>
         [DataMember]
-        public string TKN_NO
+        public string IN_TKN_NO
         {
-            get { return tkn_no; }
-            set { if (this.tkn_no != value) { this.tkn_no = value; this.OnPropertyChanged("TKN_NO"); } }
+            get { return in_tkn_no; }
+            set { if (this.in_tkn_no != value) { this.in_tkn_no = value; this.OnPropertyChanged("IN_TKN_NO"); } }
         }
 
 

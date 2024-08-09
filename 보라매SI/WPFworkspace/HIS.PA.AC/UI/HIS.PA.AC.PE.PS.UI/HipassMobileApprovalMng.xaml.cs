@@ -124,13 +124,9 @@ namespace HIS.PA.AC.PE.PS.UI
 
         private void grdList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // HIS.PA.AC.PC.OP.UI.SelectOtptEmergencyMedCost.xaml
-
-            //this.selectItemSearch((((((System.Windows.Controls.DataGridRow)(e.OriginalSource))).Item as HIS.PA.AC.PC.OP.DTO.OtpEmergencyMedCost_OUT)));
         }
         private void dgrdGroupList_RowDoubleClick(object sender, RoutedEventArgs e)
         {
-            //this.selectItemSearch((((((System.Windows.Controls.DataGridRow)(e.OriginalSource))).Item as HIS.PA.AC.PC.OP.DTO.OtpEmergencyMedCost_OUT)));
         }
     }
 }

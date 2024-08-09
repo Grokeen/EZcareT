@@ -57,7 +57,7 @@ namespace HIS.PA.AC.PE.PS.UI
         private void ControlInit()
         {
             // 화면 실행 시, 조회기간 초기화
-            this.calFromTo.FromDate = System.DateTime.Now.AddDays(-6);
+            this.calFromTo.FromDate = System.DateTime.Now.AddDays(-14);
             this.calFromTo.ToDate = System.DateTime.Now;
         }
         #endregion //Consts
@@ -89,12 +89,13 @@ namespace HIS.PA.AC.PE.PS.UI
             model.HipassMobile_GrIN.IN_TO_DATE = (this.calFromTo.ToDate.ToString().Substring(0, 10).Replace("-", ""));
 
 
+
             try
             {
                 // Radio 승인. 취소, 미승인 선택 없이 NULL 값을 보내면 = '전체조회'
                 model.HipassMobile_GrIN.IN_HPCD_CNCL_RSN_CD = (rbtFrvs.SelectedItem as RadioButtonListItem).Tag.ToString();
 
-                
+
             }
             catch (Exception e) {
                 // 전체 조회
@@ -102,7 +103,7 @@ namespace HIS.PA.AC.PE.PS.UI
             }
 
             model.HipassMobile_GrOUT = (HSFDTOCollectionBaseObject<HipassMobileApprovalMng_OUT>)UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "HipassMobileApprovalMng_GrDateAV", model.HipassMobile_GrIN);
-             
+
             // RegisterShowBusyIndicator("처리 중입니다.");
 
 
@@ -122,55 +123,44 @@ namespace HIS.PA.AC.PE.PS.UI
         private void GRbtn_Click(object sender)
         {
             /* --------------------------------------------------------------- */
-            // 승인 버튼
-            if (sender.Equals(btnConfirm))
+               // 승인/취소 버튼
+            if (sender.Equals(btnCancle) || sender.Equals(btnConfirm))
             {
-                MsgBox.Display("모바일하이패스를 승인하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                IList<HipassMobileApprovalMng_OUT> check_GrItems = grdList.SelectedItems.Cast<HipassMobileApprovalMng_OUT>().ToList();
 
+                if (sender.Equals(btnCancle)) {
+                    MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                } else if (sender.Equals(btnConfirm)) {
+                    MsgBox.Display("모바일하이패스를 승인하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                }
 
-                // 모바일하이패스 ASIS
-                //참고 : pkg_bil_ocals.pc_ap_HipssMobileAprvList
-                //참고 : PROCEDURE pc_ap_HipssMobileAprv_Upd 
-                //참고 : D:\AS-IS소스_20231226\WEB\BIL\ACC\CALS\OCALS
+                foreach (HipassMobileApprovalMng_OUT item in check_GrItems) {
+                    // 여러개를 한 번에 돌리면 안돼서 임시 예외처리, 없이는 하나 값 만 변경됩니다. (error : 0 테이블을 찾을 수 없습니다.)
+                    try
+                    {
 
-                // answp !!!! 여러 개를 체크해서 한 번에 처리하는게 가능한가?
+                        model.HipassMobile_GrUPDATE.IN_PT_NO = item.PT_NO;
+                        model.HipassMobile_GrUPDATE.IN_APY_STR_DT = item.APY_STR_DT;
+                        model.HipassMobile_GrUPDATE.IN_TKN_NO = item.TKN_NO;
+                        model.HipassMobile_GrUPDATE.IN_LSH_STF_NO = SessionManager.UserInfo.STF_NO;/*최종변경하는직원번호*/
+                        //model.HipassMobile_GrUPDATE.IN_LSH_STF_NO = "EZTST";
+                        if (sender.Equals(btnCancle))
+                        {
+                            model.HipassMobile_GrUPDATE.IN_HPCD_CNCL_RSN_CD = "09";
+                            model.HipassMobile_GrUPDATE.IN_CNCL_DT = DateTime.Now.ToString("yyyy-MM-dd");
+                        }
 
+                        UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "HipassMobileApprovalMng_UpdateYR", model.HipassMobile_GrUPDATE);
+                    } catch(Exception e) { 
+                
+                    }
+                    
 
-
-
-                // 변경되는 부분
-                model.HipassMobile_GrUPDATE.HPCD_CNCL_RSN_CD = SessionManager.UserInfo.STF_NO;/*최종변경하는직원번호*/
-
-
-
-
-                UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "UpdOtptPtReservationRegistration_update", model.HipassMobile_GrUPDATE);
-
+                    
+                }
 
                 
-            }
-            // 취소 버튼
-            if (sender.Equals(btnCancle))
-            {
-                MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
-                MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
-
-                // 체크박스에 맞는 애들을 불러와야 하는데
-                //model.HipassMobile_GrUPDATE.PT_NO = 
-                //model.HipassMobile_GrUPDATE.APY_STR_DT =
-                //model.HipassMobile_GrUPDATE.TKN_NO = 
-
-
-
-                // 변경되는 부분
-                model.HipassMobile_GrUPDATE.HPCD_CNCL_RSN_CD = "97516";/*최종변경하는직원번호*/
-                model.HipassMobile_GrUPDATE.HPCD_CNCL_RSN_CD = "09";/* 취소사유(09 : 모바일원무과승인거절)*/
-                model.HipassMobile_GrUPDATE.CNCL_DT = DateTime.Now.ToString("yyyy-MM-dd"); /* 취소날짜 */
-
-
-
-                UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "UpdOtptPtReservationRegistration_update", model.HipassMobile_GrUPDATE);
-
+                HipassSearch();
             }
 
 

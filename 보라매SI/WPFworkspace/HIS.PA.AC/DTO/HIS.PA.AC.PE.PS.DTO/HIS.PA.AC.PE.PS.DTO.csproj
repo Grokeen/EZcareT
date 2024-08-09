@@ -46,8 +46,9 @@
     <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.Core.dll</HintPath>
     </Reference>
     <Reference Include="HIS.Core.Global.DTO">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
@@ -75,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HSF.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\OutputPath\HIS.Core.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

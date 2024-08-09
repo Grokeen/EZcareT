@@ -73,13 +73,11 @@
                          IsReadOnly="True"
                          SelectionUnit="FullRow" RowDoubleClick="dgrdGroupList_RowDoubleClick" SelectionChanged="grdList_SelectionChanged" >
                 
-                         
                         <!--
                         재강 책임님 체크박스
                         ShowRowIndex="True" 
                         HeadersVisibility="Column"
                          -->
-
 
                         <!--
                         AutoGenerateColumns="False"  
@@ -95,23 +93,23 @@
                     <HDataGridTextColumn Header="신청일자" Binding="{Binding APLC_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
 
 
-                    <HDataGridTextColumn Header="환자번호" Binding="{Binding PT_NO}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="100"/>
-                    <HDataGridTextColumn Header="환자명" Binding="{Binding PT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
-                    <HDataGridTextColumn Header="주민번호" Binding="{Binding APCT_RRN}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
-                    <HDataGridTextColumn Header="승인여부" Binding="{Binding SMSS_PSB_YN}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="55"/>
-                    <HDataGridTextColumn Header="환자급종" Binding="{Binding PME_CLS_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
+                    <HDataGridTextColumn x:Name="pt_no" Header="환자번호" Binding="{Binding PT_NO}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="100"/>
+                    <HDataGridTextColumn x:Name="pt_nm" Header="환자명" Binding="{Binding PT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
+                    <HDataGridTextColumn x:Name="apct_rrn" Header="주민번호" Binding="{Binding APCT_RRN}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
+                    <HDataGridTextColumn x:Name="smss_psb_yn" Header="승인여부" Binding="{Binding SMSS_PSB_YN}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="55"/>
+                    <HDataGridTextColumn x:Name="pme_cls_cd" Header="환자급종" Binding="{Binding PME_CLS_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
 
 
-                    <HDataGridTextColumn Header="시작일자" Binding="{Binding APY_STR_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
-                    <HDataGridTextColumn Header="종료일자" Binding="{Binding APY_END_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
+                    <HDataGridTextColumn x:Name="apy_str_dt" Header="시작일자" Binding="{Binding APY_STR_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
+                    <HDataGridTextColumn x:Name="apy_end_dt" Header="종료일자" Binding="{Binding APY_END_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
 
 
 
-                    <HDataGridTextColumn Header="카드 회사" Binding="{Binding CARD_CMP_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
-                    <HDataGridTextColumn Header="카드 명의자" Binding="{Binding APCT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
-                    <HDataGridTextColumn Header="카드번호" Binding="{Binding CARD_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="*"/>
+                    <HDataGridTextColumn x:Name="card_cmp_nm" Header="카드 회사" Binding="{Binding CARD_CMP_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
+                    <HDataGridTextColumn x:Name="apct_nm" Header="카드 명의자" Binding="{Binding APCT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
+                    <HDataGridTextColumn x:Name="card_no" Header="카드번호" Binding="{Binding CARD_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="*"/>
 
-
+                    <HDataGridTextColumn x:Name="tkn_no" Header="" Binding="{Binding TKN_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden"  Width="*"/>
 
                 </HDataGridEx.Columns>
             </HDataGridEx>

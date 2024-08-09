@@ -22,7 +22,7 @@
             update date  : 
             </summary>
         </member>
-        <member name="M:HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngBL.UpdOtptPtReservationRegistration_update(HIS.PA.AC.PE.PS.DTO.HipassMobileApprovalMng_UPDATE)">
+        <member name="M:HIS.PA.AC.PE.PS.BIZ.HipassMobileApprovalMngBL.HipassMobileApprovalMng_UpdateYR(HIS.PA.AC.PE.PS.DTO.HipassMobileApprovalMng_UPDATE)">
             <summary>
             name         : HipassMobileApprovalMngBL
             desc         : 모바일하이패스 승인/취소 

@@ -25,7 +25,7 @@ namespace HIS.PA.AC.PE.PS.DTO
         private String apy_end_dt;  // 종료일자 
         private String card_cmp_nm; // 카드 회사 
         private String apct_nm;     // 카드 명의자 
-        private String card_no;      // 토큰번호 
+        private String card_no;     // 카드번호 
         private String tkn_no;      // 토큰번호 
         
 

@@ -39,19 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HIS.Core">
-      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.Core.dll</HintPath>
     </Reference>
     <Reference Include="HIS.Core.Global.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
-    </Reference>
-    <Reference Include="HIS.PA.AC.PE.PS.BIZ, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.BIZ.dll</HintPath>
-    </Reference>
-    <Reference Include="HIS.PA.AC.PE.PS.DAC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.DAC.dll</HintPath>
     </Reference>
     <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -60,16 +53,17 @@
     <Reference Include="HIS.PA.CORE.DTO">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.DTO.dll</HintPath>
     </Reference>
-    <Reference Include="HIS.PA.CORE.UI">
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
     </Reference>
     <Reference Include="HIS.PA.CORE.UI.UTIL">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
     </Reference>
-    <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
-    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\HIS.UI.Base.dll</HintPath>
+    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.UI.Base.dll</HintPath>
     </Reference>
+    <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
     <Reference Include="HIS.UI.Controls">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
     </Reference>
@@ -87,13 +81,11 @@
     <Reference Include="HIS.UI.Utility">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
     </Reference>
-    <Reference Include="HSF.COM.Core">
-      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HSF.COM.Core.dll</HintPath>
+    <Reference Include="HSF.Controls.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HSF.Controls.WPF.dll</HintPath>
     </Reference>
     <!-- 2408021029 토큰에러 -->
-    <Reference Include="HSF.Controls.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
-    </Reference>
     <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\HSF.TechSvc2010.Common.dll</HintPath>
