@@ -154,9 +154,7 @@ namespace HIS.PA.AC.PE.PS.UI
                     } catch(Exception e) { 
                 
                     }
-                    
 
-                    
                 }
 
                 
@@ -166,8 +164,8 @@ namespace HIS.PA.AC.PE.PS.UI
 
 
             /* --------------------------------------------------------------- */
-                // 알림톡 버튼
-                if (sender.Equals(btnAlarm))
+            // 알림톡 버튼
+            if (sender.Equals(btnAlarm))
             {
 
             }
@@ -183,8 +181,8 @@ namespace HIS.PA.AC.PE.PS.UI
 
             /* --------------------------------------------------------------- */
             // 엑셀 버튼
-            //if (sender.Equals(btnExcel))
-            //{
+            if (sender.Equals(btnExcel))
+            {
             //    //this.dgrdMain.ToExcel("과별예약현황", "", true, false, 1, 1);
             //    #region 다운로드/출력 로그 설정                
             //    var excelDownloadLog = new DownloadPrint_IN()
@@ -204,7 +202,7 @@ namespace HIS.PA.AC.PE.PS.UI
             //        this.dgrdMain.ToExcel("과별예약현황", "", true, false, 1, 1);
             //    }
             //    #endregion
-            //}
+            }
 
 
             /* --------------------------------------------------------------- */

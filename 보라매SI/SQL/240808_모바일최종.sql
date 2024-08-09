@@ -1,6 +1,6 @@
 ﻿EXEC :IN_FROM_DATE := '2023-07-21';
 EXEC :IN_TO_DATE := '2024-08-02' ;
-EXEC :IN_HPCD_CNCL_RSN_CD := 'Y';
+EXEC :IN_HPCD_CNCL_RSN_CD := 'A';
 
 
 SELECT * FROM ( /*+ HIS.PA.AC.PE.PS.HipassMobileApprovalMng */
@@ -34,7 +34,7 @@ SELECT * FROM ( /*+ HIS.PA.AC.PE.PS.HipassMobileApprovalMng */
    AND NVL(A.HPCD_CNCL_RSN_CD, 'XX') LIKE DECODE(:IN_HPCD_CNCL_RSN_CD,  'N', '09',                                                  -- 취소
                                                                         'U', '07',                                                  -- 미승인
                                                                         'Y', 'XX',                                                  -- 승인
-                                                                        NULL, '%')                                                  -- 전체
+                                                                        'A', '%')                                                  -- 전체
 
 
 
