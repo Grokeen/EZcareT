@@ -1,5 +1,8 @@
 ﻿
-
+SELECT *
+  FROM CCCCCSTE
+   WHERE COMN_GRP_CD = '22B'
+;;
 
 
 SELECT *
@@ -10,7 +13,8 @@ FROM ACPPIHLD WHERE HLS_CTH_PATH_TP_CD ='22B'
 
 EXEC :IN_PT_NO := '';
 SELECT  /*+ HIS.PA.AC.PI.PI.SelectWayfarerQualificationApplication */
-            TO_CHAR(A.EMRM_ARVL_DTM,'YYYY-MM-DD HH24:MI') EMRM_ARVL_DTM          --01.진료의뢰일시
+         PT_NO
+         ,   TO_CHAR(A.EMRM_ARVL_DTM,'YYYY-MM-DD HH24:MI') EMRM_ARVL_DTM          --01.진료의뢰일시
          ,  A.HLS_CTH_PATH_TP_CD                          HLS_CTH_PATH_TP_CD     --02.행려내원경로구분코드  (22B)
          ,  XCOM.FT_CCC_CODENAME('22B',A.HLS_CTH_PATH_TP_CD)
                                                           HLS_CTH_PATH_TP_NM     --03.행려내원경로구분명
@@ -44,7 +48,7 @@ SELECT  /*+ HIS.PA.AC.PI.PI.SelectWayfarerQualificationApplication */
          ,  A.HLS_RMK3                                    HLS_RMK3               --30.비고3
          ,  XCOM.FT_CNL_SELSTFINFO('4',LSH_STF_NO,NULL)   LSH_STF_NM	     	 --31.최종변경직원명
       FROM  ACPPIHLD A         -- 행려자격신청서
-     WHERE  A.PT_NO          = :IN_PT_NO
+     --WHERE  A.PT_NO          = :IN_PT_NO
      ORDER  BY A.EMRM_ARVL_DTM DESC
 
 
@@ -53,7 +57,7 @@ SELECT  /*+ HIS.PA.AC.PI.PI.SelectWayfarerQualificationApplication */
 ;
 SELECT *
   FROM EMBUMENT
- WHERE MENU_NM LIKE '%행려%'
+ WHERE MENU_NM LIKE '%입원%'
 ;
 ```
 
@@ -67,9 +71,9 @@ SELECT *
 select *
 from PCTPCPAM;
 
-EXEC :IN_OWNER      := 'HBIL';
+EXEC :IN_OWNER      := 'XBIL';
 --EXEC :IN_COMMENT    := '%행려%';
-EXEC :IN_TABLE_NAME := 'ACPPIHLD';
+EXEC :IN_TABLE_NAME := 'PCTPCPAM';
 
 SELECT C.TABLE_NAME
      , C.COMMENTS
@@ -104,3 +108,7 @@ SELECT C.TABLE_NAME
    AND A.TABLE_NAME = C.TABLE_NAME
    AND ROWNUM       < 10
  ORDER BY COLUMN_ID
+             ;;;
+             
+             
+             

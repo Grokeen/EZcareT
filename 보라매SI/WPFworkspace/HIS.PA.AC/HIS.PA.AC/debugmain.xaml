@@ -11,15 +11,15 @@
         </Grid.RowDefinitions>
         <Menu  Name="menMain"  VerticalAlignment="Top" Height="30" Background="#FF1E222D">
             <HMenuItem Header="HIS.PA.AC.PE.PS.UI" Name="menTopMenu1" Click ="menTopMenu_Click">
-                <HMenuItem Header="모바일하이패스  | CertificatesPrescribePublicationYesOrNoAsk" Name="menuTopMenu1Sub1"   Tag="HIS.PA.AC.PE.PS.UI;/HipassMobileApprovalMng.xaml"/>
-
-
+                <HMenuItem Header="모바일하이패스  | HipassMobileApprovalMng" Name="menuTopMenu1Sub1"   Tag="HIS.PA.AC.PE.PS.UI;/HipassMobileApprovalMng.xaml"/>
             </HMenuItem>
-           
 
-            
 
-            
+            <HMenuItem Header="HIS.PA.AC.PI.PI.UI" Name="menTopMenu2" Click ="menTopMenu_Click">
+                <HMenuItem Header="행려환자내역조회  | SelectWayfarerAsk" Name="menuTopMenu1Sub101"   Tag="HIS.PA.AC.PI.PI.UI;/SelectWayfarerAsk.xaml"/>
+            </HMenuItem>
+
+
         </Menu>
     </Grid>
 </base:WindowBase>

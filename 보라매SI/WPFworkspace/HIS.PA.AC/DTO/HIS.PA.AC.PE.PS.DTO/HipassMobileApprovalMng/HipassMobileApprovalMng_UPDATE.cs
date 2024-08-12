@@ -21,7 +21,6 @@ namespace HIS.PA.AC.PE.PS.DTO
 
 
         // 변경되는 값
-        private String in_lsh_stf_no;       // 최종변경하는직원번호
         private String in_hpcd_cncl_rsn_cd; // 취소코드
         private String in_cncl_dt;          // 취소날짜 
 
@@ -32,15 +31,7 @@ namespace HIS.PA.AC.PE.PS.DTO
         private String in_tkn_no;          // 하이패스토큰번호
 
 
-        /// <summary>
-        /// name : 최종변경하는직원번호
-        /// </summary>
-        [DataMember]
-        public string IN_LSH_STF_NO
-        {
-            get { return in_lsh_stf_no; }
-            set { if (this.in_lsh_stf_no != value) { this.in_lsh_stf_no = value; this.OnPropertyChanged("IN_LSH_STF_NO"); } }
-        }
+
 
         /// <summary>
         /// name : 취소코드 

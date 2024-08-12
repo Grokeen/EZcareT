@@ -1,0 +1,7 @@
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PI.PI.DAC.dll
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PI.PI.DAC.pdb
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Data\HIS.PA.AC.PI.PI.DAC\obj\Debug\HIS.PA.AC.PI.PI.DAC.csprojAssemblyReference.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Data\HIS.PA.AC.PI.PI.DAC\obj\Debug\HIS.PA.AC.PI.PI.DAC.csproj.CoreCompileInputs.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Data\HIS.PA.AC.PI.PI.DAC\obj\Debug\HIS.PA.AC.PI.PI.DAC.csproj.CopyComplete
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Data\HIS.PA.AC.PI.PI.DAC\obj\Debug\HIS.PA.AC.PI.PI.DAC.dll
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Data\HIS.PA.AC.PI.PI.DAC\obj\Debug\HIS.PA.AC.PI.PI.DAC.pdb

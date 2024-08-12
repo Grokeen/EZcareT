@@ -50,7 +50,7 @@ namespace HIS.PA.AC
         {
             //사용자세션정보 세팅
             User_IN user = new User_IN();
-            user.STF_NO = "C0ADM";
+            user.STF_NO = "Y0NGR";
             user.HSP_TP_CD = "7";
             user.SID = "8000004";
 

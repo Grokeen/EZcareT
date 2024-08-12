@@ -3,6 +3,7 @@ using HIS.PA.AC.PE.PS.DTO;
 using HSF.COM.Core;
 using HSF.TechSvc2010.Common;
 using HSF.TechSvc2010.Server.ComBase;
+using System;
 
 namespace HIS.PA.AC.PE.PS.DAC
 {
@@ -41,8 +42,17 @@ namespace HIS.PA.AC.PE.PS.DAC
         }
 
         public HipassMobileApprovalMng_UPDATE UpdateHipassMobileApprovalMng_UPDATE(HipassMobileApprovalMng_UPDATE tempGR) {
-            
-            return this.DacAgent.Fill("HIS.PA.AC.PE.PS.HipassMobileApprovalMngUpdate", tempGR, typeof(HipassMobileApprovalMng_UPDATE)) as HipassMobileApprovalMng_UPDATE;
+
+            try {
+                return this.DacAgent.Fill("HIS.PA.AC.PE.PS.HipassMobileApprovalMngUpdate", tempGR, typeof(HipassMobileApprovalMng_UPDATE)) as HipassMobileApprovalMng_UPDATE;
+
+
+            }
+            catch (Exception e) {
+                //UPDATE 시, 반환 값이 없어 0테이블 에러에 대한 예외처리
+                
+                return tempGR;
+            }
         }
 
 

@@ -1,0 +1,13 @@
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PI.PI.UI.dll
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PI.PI.UI.pdb
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI.csprojAssemblyReference.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\Properties\DesignTimeResources.baml
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI_MarkupCompile.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI.g.resources
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI.csproj.CoreCompileInputs.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI.csproj.CopyComplete
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI.dll
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI.pdb
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\SelectWayfarerAsk.g.cs
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\HIS.PA.AC.PI.PI.UI_MarkupCompile.lref
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PI.PI.UI\obj\Debug\SelectWayfarerAsk.baml

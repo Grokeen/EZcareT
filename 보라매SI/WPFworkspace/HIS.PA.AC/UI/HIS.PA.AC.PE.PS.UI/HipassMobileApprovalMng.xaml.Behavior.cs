@@ -43,7 +43,7 @@ namespace HIS.PA.AC.PE.PS.UI
     /// <summary>
     /// name         : HipassMobileApprovalMng Behavior 클래스
     /// desc         : HipassMobileApprovalMng Behavior 클래스
-    /// author       : 김영럭 
+    /// author       : 김용록
     /// create date  : 2024-07-10 오전 9:17:34
     /// update date  : 최종 수정 일자, 수정자, 수정개요 
     /// </summary>
@@ -111,14 +111,60 @@ namespace HIS.PA.AC.PE.PS.UI
             {
                 MsgBox.Display("데이터가 존재하지 않습니다.", MessageType.MSG_TYPE_INFORMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
             }
-            else {
+            else
+            {
                 MsgBox.Display("데이터가 조회되었습니다.", MessageType.MSG_TYPE_INFORMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
             }
 
         }
 
+        private void verificationValue (Exception e, HipassMobileApprovalMng_UPDATE sender)
+        {
 
+            String conmentError = String.Empty;
 
+            conmentError += "현재 <";
+
+            if (model.HipassMobile_GrUPDATE.HIS_IP_ADDR is null)
+            {
+                conmentError += "사용하는IP주소 ";
+            }
+            if (model.HipassMobile_GrUPDATE.HIS_PRGM_NM is null)
+            {
+                conmentError += "프로그램명 ";
+            }
+            if (model.HipassMobile_GrUPDATE.HIS_STF_NO is null)
+            {
+                conmentError += "직원번호 ";
+            }
+            if (sender.Equals(btnCancle)) { 
+                if (model.HipassMobile_GrUPDATE.IN_HPCD_CNCL_RSN_CD is null)
+                {
+                    conmentError += "취소코드 ";
+                }
+                if (model.HipassMobile_GrUPDATE.IN_CNCL_DT is null)
+                {
+                    conmentError += "취소날짜 ";
+                }
+            }
+            if (model.HipassMobile_GrUPDATE.IN_PT_NO is null)
+            {
+                conmentError += "환자번호 ";
+            }
+            if (model.HipassMobile_GrUPDATE.IN_APY_STR_DT is null)
+            {
+                conmentError += "하이패스시작일 ";
+            }
+            if (model.HipassMobile_GrUPDATE.IN_TKN_NO is null)
+            {
+                conmentError += "하이패스토큰번호 ";
+            }
+
+            conmentError +="등> 정보를 못찾고 있습니다. 잠시후 다시 시도해주세요. 같은 문제가 반복된다면 관리자에게 문의해준세요.";
+
+            MsgBox.Display(conmentError+ Environment.NewLine + Environment.NewLine + e, MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
+
+        }
 
         private void GRbtn_Click(object sender)
         {
@@ -127,38 +173,67 @@ namespace HIS.PA.AC.PE.PS.UI
             if (sender.Equals(btnCancle) || sender.Equals(btnConfirm))
             {
                 IList<HipassMobileApprovalMng_OUT> check_GrItems = grdList.SelectedItems.Cast<HipassMobileApprovalMng_OUT>().ToList();
-
-                if (sender.Equals(btnCancle)) {
-                    MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
-                } else if (sender.Equals(btnConfirm)) {
-                    MsgBox.Display("모바일하이패스를 승인하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                String verificationValueCh = String.Empty;
+                if (check_GrItems.Count < 1)
+                {
+                    MsgBox.Display("화면에서 체크하셨는지 확인 후, 다시 눌러주세요.", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
                 }
-
-                foreach (HipassMobileApprovalMng_OUT item in check_GrItems) {
-                    // 여러개를 한 번에 돌리면 안돼서 임시 예외처리, 없이는 하나 값 만 변경됩니다. (error : 0 테이블을 찾을 수 없습니다.)
-                    try
+                else {
+                    if (sender.Equals(btnCancle))
                     {
-
-                        model.HipassMobile_GrUPDATE.IN_PT_NO = item.PT_NO;
-                        model.HipassMobile_GrUPDATE.IN_APY_STR_DT = item.APY_STR_DT;
-                        model.HipassMobile_GrUPDATE.IN_TKN_NO = item.TKN_NO;
-                        model.HipassMobile_GrUPDATE.IN_LSH_STF_NO = SessionManager.UserInfo.STF_NO;/*최종변경하는직원번호*/
-                        //model.HipassMobile_GrUPDATE.IN_LSH_STF_NO = "EZTST";
-                        if (sender.Equals(btnCancle))
-                        {
-                            model.HipassMobile_GrUPDATE.IN_HPCD_CNCL_RSN_CD = "09";
-                            model.HipassMobile_GrUPDATE.IN_CNCL_DT = DateTime.Now.ToString("yyyy-MM-dd");
-                        }
-
-                        UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "HipassMobileApprovalMng_UpdateYR", model.HipassMobile_GrUPDATE);
-                    } catch(Exception e) { 
-                
+                        MsgBox.Display("모바일하이패스를 취소하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
+                    }
+                    else if (sender.Equals(btnConfirm))
+                    {
+                        MsgBox.Display("모바일하이패스를 승인하시겠습니까?", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OKCancel);
                     }
 
-                }
+                    foreach (HipassMobileApprovalMng_OUT item in check_GrItems)
+                    {
+                        if (item.SMSS_PSB_YN != "Y" && sender.Equals(btnCancle))
+                        {
+                            MsgBox.Display(item.PT_NO + "(" + item.PT_NM + ") 는(은) 이미 취소되어 있어 변경할 수 없습니다. 다시 확인해주세요.", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
+                            verificationValueCh = "Stop";
+                            break;
+                        }
+                        else if (item.SMSS_PSB_YN == "Y" && sender.Equals(btnConfirm))
+                        {
+                            MsgBox.Display(item.PT_NO + "(" + item.PT_NM + ") 는(은) 이미 승인되어 있어 변경할 수 없습니다. 다시 확인해주세요.", MessageType.MSG_TYPE_EXCLAMATION, Owner: this.OwnerWindow, messageButton: MessageBoxButton.OK);
+                            verificationValueCh = "Stop";
+                            break;
+                        }
 
+
+                        // 여러개를 한 번에 돌리면 안돼서 임시 예외처리, 없이는 하나 값 만 변경됩니다. (error : 0 테이블을 찾을 수 없습니다. -> update 시, 반환값이 없어서 발생)
+                        try
+                        {
+                            model.HipassMobile_GrUPDATE.IN_PT_NO = item.PT_NO;
+                            model.HipassMobile_GrUPDATE.IN_APY_STR_DT = item.APY_STR_DT;
+                            model.HipassMobile_GrUPDATE.IN_TKN_NO = item.TKN_NO;
+
+                            if (sender.Equals(btnCancle))
+                            {
+                                model.HipassMobile_GrUPDATE.IN_HPCD_CNCL_RSN_CD = "09";
+                                model.HipassMobile_GrUPDATE.IN_CNCL_DT = DateTime.Now.ToString("yyyy-MM-dd");
+                            }
+
+                            UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "HipassMobileApprovalMng_UpdateYR", model.HipassMobile_GrUPDATE);
+                        }
+                        catch (Exception e)
+                        {
+
+                            verificationValue(e, model.HipassMobile_GrUPDATE);
+                            verificationValueCh = "Stop";
+                            break;
+                        }
+
+                    }
+
+                    if (verificationValueCh == "Stop"){}
+                    else { HipassSearch(); }
+                    
+                }
                 
-                HipassSearch();
             }
 
 

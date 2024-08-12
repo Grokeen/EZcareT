@@ -1,0 +1,9 @@
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\$partname$\HIS.BIZ.XML
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PI.PI.BIZ.dll
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.PA.AC.PI.PI.BIZ.pdb
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\OutputPath\HIS.BIZ.XML
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PI.PI.BIZ\obj\Debug\HIS.PA.AC.PI.PI.BIZ.csprojAssemblyReference.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PI.PI.BIZ\obj\Debug\HIS.PA.AC.PI.PI.BIZ.csproj.CoreCompileInputs.cache
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PI.PI.BIZ\obj\Debug\HIS.PA.AC.PI.PI.BIZ.csproj.CopyComplete
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PI.PI.BIZ\obj\Debug\HIS.PA.AC.PI.PI.BIZ.dll
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\Business\HIS.PA.AC.PI.PI.BIZ\obj\Debug\HIS.PA.AC.PI.PI.BIZ.pdb
