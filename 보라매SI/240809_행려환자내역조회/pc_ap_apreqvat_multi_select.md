@@ -126,14 +126,14 @@ begin
               ,  b.rmk2                                        rmk2                     --37.비고2     2017.03.30 신원석 추가
               ,  b.rmk3                                        rmk3                     --38.비고3     2017.03.30 신원석 추가    
               ,  pkg_bil_common.FC_UserNameSel(b.edit_id)      edit_nm					--39.등록자명  2019.09.25 김선화 추가	
-           from  apemgrct a
-              ,  apreqvat b
+           from  apemgrct a -- 응급접수내역
+              ,  apreqvat b -- 행려자격신청서
               ,  appatbat c
-              ,  apiplist d  -- ACPPRAAM
+              ,  apiplist d -- ACPPRAAM 입원접수
               ,  cccodest e
-              ,  acoppayt f
-              ,  acippayt g
-              ,  apcustmt h              
+              ,  acoppayt f -- 응급외래수납
+              ,  acippayt g -- 입원수납
+              ,  apcustmt h -- 계약처마스터             
           where  a.pt_no    = nvl(in_pt_no, a.pt_no)
             and  a.arv_dtm  between nvl(to_date(in_from_dte,'yyyymmdd'), a.arv_dtm)
                                 and trunc(nvl(to_date(in_to_dte,'yyyymmdd'), a.arv_dtm)) + .99999

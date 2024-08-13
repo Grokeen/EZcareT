@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTableInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TableInfo>
+    <OWNER>HBIL</OWNER>
+    <TABLE_NAME>APOPRSVT</TABLE_NAME>
+    <TABLE_COMMENTS>외래예약접수</TABLE_COMMENTS>
+    <CREATED_DAYS>0</CREATED_DAYS>
+    <MODIFY_DAYS>0</MODIFY_DAYS>
+  </TableInfo>
+  <TableInfo>
+    <OWNER>HSUP</OWNER>
+    <TABLE_NAME>MSELMSID</TABLE_NAME>
+    <TABLE_COMMENTS>진단검사공통정보</TABLE_COMMENTS>
+    <CREATED_DAYS>0</CREATED_DAYS>
+    <MODIFY_DAYS>0</MODIFY_DAYS>
+  </TableInfo>
+  <TableInfo>
+    <OWNER>HSUP</OWNER>
+    <TABLE_NAME>MSELMSCC</TABLE_NAME>
+    <TABLE_COMMENTS>진단검사공통코드</TABLE_COMMENTS>
+    <CREATED_DAYS>0</CREATED_DAYS>
+    <MODIFY_DAYS>0</MODIFY_DAYS>
+  </TableInfo>
+  <TableInfo>
+    <OWNER>HSUP</OWNER>
+    <TABLE_NAME>MSBIOBHH</TABLE_NAME>
+    <TABLE_COMMENTS>혈액팩입출고이력</TABLE_COMMENTS>
+    <CREATED_DAYS>0</CREATED_DAYS>
+    <MODIFY_DAYS>0</MODIFY_DAYS>
+  </TableInfo>
+</ArrayOfTableInfo>

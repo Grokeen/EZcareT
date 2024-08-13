@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfFavQuery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FavQuery>
+    <QUERY_NAME>진검</QUERY_NAME>
+    <QUERY_TEXT>-- 처방정보
+SELECT O.SPCM_PTHL_NO
+     , O.EXM_PRGR_STS_CD
+     , O.TH1_SPCM_CD
+     , O.*
+  FROM MOOOREXM O
+ WHERE O.HSP_TP_CD = '01'
+   AND O.PT_NO = ''
+;
+
+-- 바코드정보
+SELECT *
+   FROM MSELMCED C
+ WHERE C.HSP_TP_CD = '01'
+   AND C.SPCM_NO = ''
+;
+
+-- 접수정보
+SELECT *
+  FROM MSELMSCD C
+ WHERE C.HSP_TP_CD = '01'
+   AND C.SPCM_NO = ''
+;
+
+-- 결과정보
+SELECT *
+  FROM MSELMSCD R
+ WHERE R.HSP_TP_CD = '01'
+   AND R.SPCM_NO = ''
+;</QUERY_TEXT>
+  </FavQuery>
+  <FavQuery>
+    <QUERY_NAME>과내</QUERY_NAME>
+    <QUERY_TEXT>-- 처방정보
+SELECT O.EXM_PRGR_STS_CD
+     , O.RSV_DTM
+     , O.EXM_HOPE_DT
+     , O.*
+   ROM MOOOREXM O
+ WHERE O.HSP_TP_CD = '01'
+   AND O.PT_NO = ''
+;
+
+
+-- 접수정보
+SELECT A.*
+  FROM MSERMAAD A
+ WHERE A.HSP_TP_CD = '01'
+   AND A.ORD_ID = ''
+
+</QUERY_TEXT>
+  </FavQuery>
+  <FavQuery>
+    <QUERY_NAME>미시행검사 -&gt; 임시테이블</QUERY_NAME>
+    <QUERY_TEXT>INSERT INTO MOOOREXM_NOFMT_0114_1
+SELECT ORD_ID
+     , PT_NO
+     , ORD_DT
+     , ORD_CD
+     , ORD_NM
+     , PACT_ID
+     , EXM_PRGR_STS_CD
+     , EXM_HOPE_DT
+     , FSR_STF_NO
+FROM (
+   SELECT O.*
+          FROM MOOOREXM O
+             , PCTPCPAM P
+             , MSERMMMC M
+          WHERE O.HSP_TP_CD = '01'
+
+          AND O.ORD_ID NOT LIKE 'MIG%'
+          AND O.ORD_DT &gt;= TO_DATE('2022-01-01', 'YYYY-MM-DD')
+          AND O.PACT_TP_CD = 'O'
+          AND O.RPY_STS_CD = 'Y'
+
+          AND O.EXM_HOPE_DT BETWEEN TO_DATE('2022-01-01', 'YYYY-MM-DD') AND TO_DATE('2022-01-13', 'YYYY-MM-DD') + 0.99999
+
+          AND O.EXM_PRGR_STS_CD NOT IN ('E','D','N','F' )
+          AND O.EXRM_HH_DTM IS NULL
+
+          AND O.ODDSC_TP_CD     = 'C'
+          AND O.PT_NO = P.PT_NO
+
+          AND O.ORD_CD = M.EXM_CD
+          AND O.HSP_TP_CD = M.HSP_TP_CD
+
+          AND EXISTS (SELECT 1
+                        FROM MSERMMMC M
+                       WHERE M.EXM_CD = O.ORD_CD
+                         AND M.HSP_TP_CD = O.HSP_TP_CD
+--                         AND NVL(M.ARGM_IMPL_YN, 'N') = 'Y' -- 진료실시행검사
+                         AND NVL(M.RSEX_YN, 'N') = 'N' -- 예약검사아닌것
+                         AND NVL(M.INTG_RSV_YN, 'N') = 'N' -- 통합예약검사아닌것
+                       )
+
+          AND O.ORD_CTG_CD NOT  IN ('BR1', 'BN1', 'CHV')
+
+--          AND O.PBSO_DEPT_CD != 'HPC'
+
+--          AND EXISTS (
+--                        SELECT 1
+--                          FROM HINF.MSERMINF_ORU
+--                         WHERE HISORDERID = O.ORD_ID
+--          )
+
+UNION ALL
+
+   SELECT O.*
+          FROM MOOOREXM O
+             , PCTPCPAM P
+          WHERE O.HSP_TP_CD = '01'
+
+          AND O.ORD_ID NOT LIKE 'MIG%'
+          AND O.ORD_DT &gt;= TO_DATE('2022-01-01', 'YYYY-MM-DD')
+          AND O.PACT_TP_CD = 'O'
+          AND O.RPY_STS_CD = 'Y'
+
+          AND O.EXM_HOPE_DT BETWEEN TO_DATE('2022-01-01', 'YYYY-MM-DD') AND TO_DATE('2022-01-13', 'YYYY-MM-DD') + 0.99999
+
+          AND O.EXM_PRGR_STS_CD NOT IN ('E', 'D', 'N', 'F')
+--          AND O.EXM_PRGR_STS_CD = 'B'
+--          AND O.EXM_PRGR_STS_CD = 'B'
+          AND O.EXRM_HH_DTM IS NULL
+          AND O.ODDSC_TP_CD     = 'C'
+          AND O.PT_NO = P.PT_NO
+
+          AND O.ORD_CTG_CD IN ('CP', 'PA1', 'NM')
+
+          AND O.ORD_SLIP_CTG_CD = 'LT'
+
+ORDER BY 1
+)</QUERY_TEXT>
+  </FavQuery>
+  <FavQuery>
+    <QUERY_NAME>미시행검사 시행</QUERY_NAME>
+    <QUERY_TEXT>DECLARE
+
+    V_EXEC_DTM DATE;
+    G_COST_DEPT VARCHAR2(20);
+    G_WORK_DEPT VARCHAR2(20);
+
+    IO_ERRYN    VARCHAR2(100);
+    IO_ERRMSG   VARCHAR2(1000);
+
+
+--    IN_FR_DT    VARCHAR2(12) := '2022-01-01';
+--    IN_TO_DT    VARCHAR2(12) := '2022-01-09';
+BEGIN
+
+
+    FOR DR IN
+    (
+        SELECT *
+          FROM MOOOREXM
+         WHERE HSP_TP_CD = '01'
+           AND ODDSC_TP_CD = 'C'
+--           AND ORD_ID = '150548975'
+           AND ORD_ID IN
+                (
+
+   SELECT ORD_ID
+          FROM MOOOREXM_NOFMT_0114_1 O
+--    WHERE O.ORD_ID = '150242151'
+
+---------------------------
+
+                )
+
+    ) LOOP
+    DBMS_OUTPUT.PUT_LINE('');
+
+
+        V_EXEC_DTM := DR.FSR_DTM +0.028;
+
+        BEGIN
+            SELECT /*+ XSUP.PC_MSE_MOOOREXM_UPDATE */
+                   C.EXPS_USE_DEPT_CD
+                 , C.EXPS_USE_WKDP_CD
+              INTO G_COST_DEPT
+                 , G_WORK_DEPT
+              FROM CNLRRUSD C
+             WHERE C.STF_NO = DR.FSR_STF_NO
+               AND NVL(C.RTRM_DT, TRUNC(SYSDATE) + 1)  &gt; TRUNC(SYSDATE)
+               AND C.HSP_TP_CD  = DR.HSP_TP_CD;
+
+--            EXCEPTION
+--                WHEN NO_DATA_FOUND THEN
+--                    IO_ERRYN  := 'Y';
+--                    IO_ERRMSG := '시행자의 비용사용부서/세부진료과 내역이 없습니다.(2) ERRCODE = '  TO_CHAR(SQLCODE);
+--
+--                    GOTO QUIT;
+--                WHEN OTHERS THEN
+--                    IO_ERRYN  := 'Y';
+--                    IO_ERRMSG := '시행자의 비용사용부서/세부진료과 조회 중 오류발생(3) ERRCODE = '  TO_CHAR(SQLCODE);
+--                    GOTO QUIT;
+        END;
+
+            IO_ERRYN := '';
+            IO_ERRMSG := '';
+
+            DBMS_OUTPUT.PUT_LINE('');
+
+
+
+            PC_MSE_MSERMAAD_WARD_INSERT
+            (
+                  DR.ORD_ID
+                , 'I'
+                , DR.FSR_STF_NO
+                , G_COST_DEPT
+                , ''
+                , ''
+                , G_WORK_DEPT
+                , DR.FSR_STF_NO
+                , 'Y'
+                , DR.HSP_TP_CD
+                , DR.FSR_STF_NO
+                , 'GOLDEN-SCS미시행검사 업데이트'
+                , '10.91.103.47'
+                , IO_ERRYN
+                , IO_ERRMSG
+
+            );
+
+
+          UPDATE /*+ XSUP.PC_MSE_MOOOREXM_UPDATE */
+                 MOOOREXM A
+             SET A.ACPT_DTM               = V_EXEC_DTM
+               , A.FMT_EXRM_NO            = A.HOPE_EXRM_NO
+               , A.EXRM_HH_DTM            = V_EXEC_DTM
+               , A.RTM_FMT_DTM            = V_EXEC_DTM     
+               , A.RTM_CLSN_DT            = SYSDATE --작업일자.
+               , A.LSH_STF_NO             = DR.FSR_STF_NO
+               , A.LSH_DTM                = SYSDATE
+               , A.LSH_PRGM_NM            = 'GOLDEN-SCS미시행검사 업데이트'
+               , A.LSH_IP_ADDR            = '10.91.103.47'
+    --           , A.RSV_DTM                = DECODE(A.PACT_TP_CD, 'O', NVL(A.RSV_DTM, DECODE( IN_EXM_PRGR_STS_CD, 'E', DECODE(G_RSEX_YN, 'Y', G_SHOT_DTETM, A.RSV_DTM),A.RSV_DTM)),  A.RSV_DTM)--2017-10-24 임재득 추가 - 예약검사 여부 확인 : 예약 검사인데, 선검사일경우 수납없이 접수가 가능함. BUT 수납에서 예약검사인데 예약없이 실행까지 한경우 수납을 할수가 없음. 그래서 예약 검사인데, 선검사인경우 RSV_DTM 정보를 넣어줌.
+           WHERE A.ORD_ID   = DR.ORD_ID
+             AND A.HSP_TP_CD  = DR.HSP_TP_CD
+          ;
+
+
+
+
+
+
+        DBMS_OUTPUT.PUT_LINE('DR.ORD_ID :: '  DR.ORD_ID);
+        DBMS_OUTPUT.PUT_LINE('IO_ERRYN :: '  IO_ERRYN);
+        DBMS_OUTPUT.PUT_LINE('IO_ERRMSG :: '  IO_ERRMSG);
+    END LOOP;
+
+--&lt;&lt;QUIT&gt;&gt;
+
+        DBMS_OUTPUT.PUT_LINE('Q IO_ERRYN :: '  IO_ERRYN);
+        DBMS_OUTPUT.PUT_LINE('Q IO_ERRMSG :: ' || IO_ERRMSG);
+END;
+</QUERY_TEXT>
+  </FavQuery>
+</ArrayOfFavQuery>
