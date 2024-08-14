@@ -1,123 +1,67 @@
-﻿using HIS.Core.Global.DTO;
+﻿using HIS.PA.AC.PI.PI.DTO;
 using HIS.UI.Base;
-using HIS.UI.Core;
-using HIS.UI.Core.Commands;
-using HIS.UI.Utility;
+using HSF.TechSvc2010.Common;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
 using System.Windows.Input;
+using HIS.PA.AC.PI.PI.DTO.SelectWayfarerAsk;
 
 namespace HIS.PA.AC.PI.PI.UI
 {
     /// <summary>
-    /// name         : #SelectWayfarerAsk Data 클래스
+    /// name         : 행려환자내역조회
     /// desc         : #SelectWayfarerAsk Data 클래스
-    /// author       : EZCARE 
-    /// create date  : 2024-08-11 오전 2:49:41
+    /// author       : 김용록 
+    /// create date  : 2024-08-08 오전 11:10:10
     /// update date  : 최종 수정 일자, 수정자, 수정개요 
     /// </summary>
     public class SelectWayfarerAskData : ViewModelBase
     {
-        #region [Consts]
 
-        private const string BIZ_CLASS = "";
 
-        #endregion //Consts
+        private SelectWayfarerAsk_IN selectWayfarerAsk_GrIN = new SelectWayfarerAsk_IN();
 
-        #region [Constructor]
+        private HSFDTOCollectionBaseObject<SelectWayfarerAsk_OUT> selectWayfarerAsk_GrOUT = new HSFDTOCollectionBaseObject<SelectWayfarerAsk_OUT>();
 
+        /// ---------------------------------------------------------------------
         /// <summary>
-        /// name         : SelectWayfarerAskData 생성자
-        /// desc         : SelectWayfarerAskData 생성자
-        /// author       : EZCARE 
-        /// create date  : 2024-08-11 오전 2:49:41
-        /// update date  : 최종 수정 일자, 수정자, 수정개요 
-        /// </summary>
-        public SelectWayfarerAskData()
+        /// desc         : SelectWayfarerAsk_IN DTO Property
+        /// author       : 김용록 
+        /// create Date  : 2024-08-14 오전 9:57:31                                   
+        /// update date  : 
+        /// ---------------------------------------------------------------------
+        public SelectWayfarerAsk_IN SelectWayfarerAsk_GrIN
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
-            this.Init();
+            get { return this.selectWayfarerAsk_GrIN; }
+            set
+            {
+                if (this.selectWayfarerAsk_GrIN != value)
+                {
+                    this.selectWayfarerAsk_GrIN = value;
+                    this.OnPropertyChanged("SelectWayfarerAsk_GrIN");
+                }
+            }
         }
-
-        #endregion //Constructor
-
-        #region [Member Variables]
-
-        #endregion //Member Variables
-
-        #region [ Properties ]
-        /*
-        private HSFDTOCollectionBaseObject<string> dataList;
+        /// ---------------------------------------------------------------------
         /// <summary>
-        /// desc         : #조회 데이터 리스트
-        /// author       : EZCARE 
-        /// create date  : 2024-08-11 오전 2:49:41
-        /// update date  : 최종 수정 일자, 수정자, 수정개요 
-        /// </summary>
-        public HSFDTOCollectionBaseObject<string> DataList
-        {
-            get { return this.dataList; }
-            set { if (this.dataList != value) { this.dataList = value; base.OnPropertyChanged("DataList", value); } }
-        }
-        */
-
-        #endregion //Properties
-
-        #region [Commands]
-
-        /*
-        private ICommand selectDataCommand;
-        /// <summary>
-        /// desc         : #데이터 조회 Command
-        /// author       : EZCARE 
-        /// create date  : 2024-08-11 오전 2:49:41
-        /// update date  : 최종 수정 일자, 수정자, 수정개요 
-        /// </summary>
-        /// <remarks></remarks>
-        public ICommand SelectDataCommand
+        /// desc         : SelectWayfarerAsk_OUT DTO Property
+        /// author       : 김용록 
+        /// create Date  : 2024-08-14 오전 9:57:31
+        /// update date  : 
+        /// ---------------------------------------------------------------------
+        public HSFDTOCollectionBaseObject<SelectWayfarerAsk_OUT> SelectWayfarerAsk_GrOUT
         {
             get
             {
-                if (selectDataCommand == null)
-                    selectDataCommand = new RelayCommand(p => this.SelectData(p));
-                return selectDataCommand;
+                return selectWayfarerAsk_GrOUT;
+            }
+            set
+            {
+                if (selectWayfarerAsk_GrOUT != value)
+                {
+                    selectWayfarerAsk_GrOUT = value;
+                    this.OnPropertyChanged("SelectWayfarerAsk_GrOUT", value);
+                }
             }
         }
-        */
-
-        #endregion //Commands
-
-        #region [Methods]
-
-        /// <summary>
-        /// name         : ViewModel 초기화
-        /// desc         : ViewModel을 초기화함
-        /// author       : EZCARE 
-        /// create date  : 2024-08-11 오전 2:49:41
-        /// update date  : 최종 수정 일자, 수정자, 수정개요 
-        /// </summary>
-        private void Init()
-        {
-
-        }
-
-        /*
-        /// <summary>
-        /// name         : 데이터 조회
-        /// desc         : 데이터를 조회함
-        /// author       : EZCARE 
-        /// create date  : 2024-08-11 오전 2:49:41
-        /// update date  : 최종 수정 일자, 수정자, 수정개요 
-        /// </summary>
-        private void SelectData(object p)
-        {
-            UIMiddlewareAgent.InvokeBizService(this, BIZ_CLASS, "SelectData", null);
-        }
-        */
-
-        #endregion //Methods
     }
 }

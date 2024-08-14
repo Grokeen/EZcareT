@@ -7,14 +7,22 @@
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:base="clr-namespace:HIS.UI.Base;assembly=HIS.UI.Base"
              xmlns:baseConverter="clr-namespace:HIS.UI.Utility.Converters;assembly=HIS.UI.Utility"
-             xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"    
+             xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
              xmlns:HIS_PA_CORE_UI="clr-namespace:HIS.PA.CORE.UI;assembly=HIS.PA.CORE.UI"
              xmlns:local="clr-namespace:HIS.PA.AC.PI.PI.UI"   
+        	 Loaded="OnLoaded" 
              mc:Ignorable="d" 
-             d:DesignWidth="300" d:DesignHeight="300"  DesignWidth="300" DesignHeight="300" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
-    <!--<UserControl.DataContext>
+             d:DesignWidth="1400" d:DesignHeight="950"  DesignWidth="1400" DesignHeight="950" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded"  SourceName="UserControl_ThisForm">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"
+					        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type base:UserControlBase}}}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.DataContext>
         <local:SelectWayfarerAskData />
-    </UserControl.DataContext>-->
+    </UserControl.DataContext>
     <base:UserControlBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,15 +36,112 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
+                <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0">
+                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
+                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="환자번호" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                        <!-- 환자번호 조회 라이브러리 -->
+                        <HIS_PA_CORE_UI:PACodeAsk x:Name="ucPt_no"  
+												IsCheckListPopUp="True"												 
+												Height="Auto" Margin="5,0,0,0" 
+												Text2Visibility="Collapsed" 
+												Text3Visibility="Collapsed" 
+												Text4Visibility="Collapsed" SelectedItemPopUpName="CODE_PATIENTNO" 
+												SelectedTextMode="AlphaNumeric"     
+                                                Width="Auto" SelectedTextCode="{Binding InData.IN_PT_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+												SelectedTextCodeMaxLength="8" OnSelectCodeChange="ucPt_no_OnSelectCodeChange">
+                        </HIS_PA_CORE_UI:PACodeAsk>
+
+
+                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
+
+                        <!-- 조회날짜 라이브러리 -->
+                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="조회기간" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                        <HFromToCalendar  x:Name="calFromTo" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                        <!-- 조회 버튼 -->
+                        <HButton Content="조회" ButtonStyleType="Search" Click="btn_Search" VerticalAlignment="Center" Margin="30,0,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Border>
+            <!-- 조회된 값, 화면 출력 -->
+            <HDataGridEx x:Name="grdList"  Grid.Row="1" Margin="0,10,0,0"
+                         ItemsSource="{Binding SelectWayfarerAsk_GrOUT}" 
+                         SelectionMode="Extended"
+                         ColumnHeaderHorizontalAlignment="Center"
+                         IsReadOnly="True"
+                         SelectionUnit="FullRow" RowDoubleClick="dgrdGroupList_RowDoubleClick" SelectionChanged="grdList_SelectionChanged" FrozenColumnCount="3" SummaryFooterVisibility="Visible">
+
+                <!-- 조회할 컬럼 명, 바인딩 지정 -->
+                <HDataGridEx.Columns>
+                    <!-- 1~10번 -->
+                    <HDataGridTextColumn x:Name="emrm_arvl_dtm" Header="의뢰일시" Binding="{Binding EMRM_ARVL_DTM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="150"  />
+                    <HDataGridTextColumn x:Name="pt_no" Header="환자번호" Binding="{Binding PT_NO}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="80"/>
+                    <HDataGridTextColumn x:Name="pt_nm" Header="환자명" Binding="{Binding PT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
+                    <HDataGridTextColumn x:Name="pt_rrn" Header="주민번호" Binding="{Binding PT_RRN}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
+                    <HDataGridTextColumn x:Name="pme_cls_cd" Header="환자유형" Binding="{Binding PME_CLS_CD}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="corg_nm" Header="계약처명" Binding="{Binding CORG_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+
+                    <HDataGridTextColumn x:Name="hls_cth_path_tp_cd" Header="내원경로코드" Binding="{Binding HLS_CTH_PATH_TP_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_cth_path_tp_nm" Header="내원경로명" Binding="{Binding HLS_CTH_PATH_TP_NM}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+
+                    <HDataGridTextColumn x:Name="hls_rfor_nm" Header="의뢰처" Binding="{Binding HLS_RFOR_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_rfor_dept_nm" Header="부서명" Binding="{Binding HLS_RFOR_DEPT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_mng_no" Header="전산관리번호" Binding="{Binding HLS_MNG_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+
+
+                    <!-- 11~20번 -->
+                    <HDataGridTextColumn x:Name="hls_qf_aplc_dt" Header="신청일자" Binding="{Binding HLS_QF_APLC_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_qf_rpy_dt" Header="회신일자" Binding="{Binding HLS_QF_RPY_DT}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="insu_orgn_cd" Header="보장기관" Binding="{Binding INSU_ORGN_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+
+                    <HDataGridTextColumn x:Name="hls_rjt_rsn_tp_cd" Header="불가사유코드" Binding="{Binding HLS_RJT_RSN_TP_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_rjt_rsn_tp_nm" Header="불가사유명" Binding="{Binding HLS_RJT_RSN_TP_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+
+                    <HDataGridTextColumn x:Name="hls_th_mcst_rslt_nm" Header="진료결과" Binding="{Binding HLS_TH_MCST_RSLT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="pt_chot_sts_cd" Header="퇴실일자" Binding="{Binding PT_CHOT_STS_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="ds_dtm" Header="퇴원일자" Binding="{Binding DS_DTM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="room_dir" Header="병동병실" Binding="{Binding ROOM_DIR}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_rmk1" Header="비고1" Binding="{Binding HLS_RMK1}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="hls_rmk2" Header="비고2" Binding="{Binding HLS_RMK2}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+
+                    <!-- 21~30번 -->
+                    <HDataGridTextColumn x:Name="hls_rmk3" Header="비고3" Binding="{Binding HLS_RMK3}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="chk_lnkg_yn" Header="채크리스트" Binding="{Binding CHK_LNKG_YN}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="mtcs_amt" Header="진료비총액" Binding="{Binding MTCS_AMT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="ins_sum_amt" Header="급여금액" Binding="{Binding INS_SUM_AMT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="nins_sum_amt" Header="비급여금액" Binding="{Binding NINS_SUM_AMT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="pbdn_hglm_ins_pt_brdn_amt" Header="환자부담총액단체부담금" Binding="{Binding PBDN_HGLM_INS_PT_BRDN_AMT}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="again_sss" Header="단체감액" Binding="{Binding AGAIN_SSS}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="uncl_amt" Header="미수납액" Binding="{Binding UNCL_AMT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="rpy_amt" Header="수납금액" Binding="{Binding RPY_AMT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="pbdn_hglm_ins_dmd_amt" Header="청구여부" Binding="{Binding PBDN_HGLM_INS_DMD_AMT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+
+                    <!-- 31~33번 -->
+                    <HDataGridTextColumn x:Name="goo_bn" Header="입원/외래구분" Binding="{Binding GOO_BN}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="fsr_dtm" Header="등록일시" Binding="{Binding FSR_DTM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="Auto"/>
+                    <HDataGridTextColumn x:Name="fsr_stf_nm" Header="등록자" Binding="{Binding FSR_STF_NM}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="Auto"/>
+
+                </HDataGridEx.Columns>
+            </HDataGridEx>
+
+
+
         </Grid>
         <Border Background="{StaticResource BoundaryLineNormalBackground}" BorderBrush="{StaticResource BoundaryLineNormalBorderBrush}" BorderThickness="0,0,0,1" Height="2" Grid.Row="1" Margin="0,-2,0,0" VerticalAlignment="Top"/>
         <Border Background="{StaticResource CommonButtonAreaNormalBackground}" Grid.Row="1">
+            <!-- 하단 기타 버튼 -->
             <DockPanel Margin="10,0" LastChildFill="False">
-                <HButton PermissionManager.ButtonPermission="None" Content="닫기" ButtonStyleType="Close" DockPanel.Dock="Right"/>
-                <HButton PermissionManager.ButtonPermission="None" Content="버튼" DockPanel.Dock="Right" Margin="0,0,5,0"/> 
+                <HButton PermissionManager.ButtonPermission="None" Content="닫기" Click="btn_Click" ButtonStyleType="Close" DockPanel.Dock="Right"/>
+                <HButton PermissionManager.ButtonPermission="None" Content="엑셀" Click="btn_Excel" Style="{StaticResource CommonButtonExcelStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
+                <HButton PermissionManager.ButtonPermission="None" Content="초기화" Click="btn_Fomat" Style="{StaticResource CommonButtonResetStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
             </DockPanel>
         </Border>
     </Grid>
 </base:UserControlBase>
-    
-    

@@ -1,62 +1,45 @@
-﻿
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
+
 using HSF.COM.Core;
 using HSF.TechSvc2010.Common;
+using HSF.TechSvc2010.Server.ORM;
 using HSF.TechSvc2010.Server.ComBase;
-using System;
-using System.Linq;
+
+using HIS.Core;
+using HIS.PA.AC.PI.PI.DTO;
+using HIS.PA.AC.PI.PI.DAC;
+using HIS.PA.AC.PI.PI.DTO.SelectWayfarerAsk;
 
 namespace HIS.PA.AC.PI.PI.BIZ
 {
     /// <summary>
-    /// name         : #논리BIZ 클래스명
-    /// desc         : #BIZ클래스 개요	
-    /// author       : EZCARE 
-    /// create date  : 2024-08-11 오전 2:51:18
-    /// update date  : #최종 수정 일자, 수정자, 수정개요 
+    /// name         : SelectWayfarerAskBL
+    /// desc         : 행려환자내역조회
+    /// author       : 감용록 
+    /// create date  : 2024-08-13 오후 7:58:25
+    /// update date  :  
     /// </summary>
     public class SelectWayfarerAskBL : BizBase//, ISelectWayfarerAskBL
     {
-        #region 샘플 코드
-        /* 
         /// <summary>
-        /// name               : #메소드 논리명
-        /// i/f inheritance yn : #인터페이스 상속여부 {Y|N} 
-        /// logic              : #서비스 처리 로직
-        /// desc               : #메소드 개요
-        /// author             : EZCARE 
-        /// create date        : 2024-08-11 오전 2:51:18
-        /// update date        : #최종 수정 일자, 수정자, 수정개요 
-        /// </summary>       
-        [HSFTransaction(HSFTransactionOption.Supported)]
-        public CCCCCSTE_INOUT SelectCode(CCCCCSTE_INOUT code)
-        {
-            using (CodeDL com = new CodeDL())
-            {
-                return com.SelectCode(code);
-            }
-        }
-
-        /// <summary>
-        /// name               : #메소드 논리명
-        /// i/f inheritance yn : #인터페이스 상속여부 {Y|N} 
-        /// logic              : #서비스 처리 로직
-        /// desc               : #메소드 개요
-        /// author             : EZCARE 
-        /// create date        : 2024-08-11 오전 2:51:18
-        /// update date        : #최종 수정 일자, 수정자, 수정개요 
-        /// </summary>      
+        /// name         : SelectWayfarerAskBL_GrSelect
+        /// desc         : 행려환자내역조회
+        /// author       : 김용록 
+        /// create date  : 2024-08-13
+        /// update date  : 
+        /// </summary>
         [HSFTransaction(HSFTransactionOption.Required)]
-        public Result_OUT SaveCode(CCCCCSTE_INOUT code)
+        public HSFDTOCollectionBaseObject<SelectWayfarerAsk_OUT> SelectWayfarerAskBL_GrSelect(SelectWayfarerAsk_IN tempYR)
         {
-
-            using (CodeDL com = new CodeDL())
+            using (SelectWayfarerAskDL YrDate_Average = new SelectWayfarerAskDL())
             {
-                base.SetHISProperty(code);
-                com.SaveCode(code);
+                return YrDate_Average.SelectWayfarerAsk_Select(tempYR);
             }
-            return new Result_OUT() { IsSucess = true };
         }
-        */
-        #endregion 샘플 코드
     }
 }
