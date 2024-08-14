@@ -13,9 +13,13 @@
              mc:Ignorable="d" 
              Loaded="OnLoaded" 
              d:DesignWidth="1000" d:DesignHeight="800"  DesignWidth="1000" DesignHeight="800" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
+    
+    <!-- 바인딩 선언 -->
     <UserControl.DataContext>
         <local:HipassMobileApprovalMngData/>
     </UserControl.DataContext>
+    
+    <!-- 디자인 라이브러리 선언 -->
     <base:UserControlBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,6 +27,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </base:UserControlBase.Resources>
+    
+    <!-- 메인 화면 -->
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -36,81 +42,57 @@
             <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
                 <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
                     <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
+                        
                         <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
+                        
+                        <!-- 날짜 조회 라이브러리 -->
                         <HTextBlock Foreground="{StaticResource TextHighlightForeground}" VerticalAlignment="Center" Margin="5,0,0,0" Text="신청일자"/>
-
-
                         <HFromToCalendar x:Name="calFromTo" Margin="5,0,0,0"/>
-                        
-                        
-                        
-                        
+             
                         <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="30,0,0,0"/>
+                        
+                        <!-- 승인/취소/미승인 체크박스 -->
                         <HTextBlock Foreground="{StaticResource TextHighlightForeground}" VerticalAlignment="Center" Margin="5,0,0,0" Text="승인상태"/>
                         <Border Style="{StaticResource GroupBorderLineStyle}" VerticalAlignment="Center" Margin="5,0,0,0">
-                            
                             <RadioButtonList x:Name="rbtFrvs" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,0" >
+                                
                                 <RadioButtonListItem Content="승인" Tag="Y"/>
-                                <!-- IsSelected="True" -->
                                 <RadioButtonListItem Content="취소" Tag="N" Margin="10,0,0,0"/>
                                 <RadioButtonListItem Content="미승인" Tag="U" Margin="10,0,0,0"/>
+                                <RadioButtonListItem x:Name="AllSe"   Visibility="Hidden" Tag="A" />
                             </RadioButtonList>
                         </Border>
+                        
+                        <!-- 조회 버튼 -->
                         <HButton x:Name="btnSearch"  Content="조회" ButtonStyleType="Search" VerticalAlignment="Center" Margin="30,0,0,0" Click="MobileHipassSearch"/>
                     </StackPanel>
                 </Border>
             </Border>
 
-            
-
-
-
-            <!-- 참고 :HIS.PA.AC.PE.PS.UI.SelectStfPsnyFamAdsCrccm -->
+            <!-- 조회된 값, 화면 출력 -->
             <HDataGridEx x:Name="grdList"  Grid.Row="1" Margin="0,10,0,0"
                          ItemsSource="{Binding HipassMobile_GrOUT}" 
                          SelectionMode="Extended"
                          ColumnHeaderHorizontalAlignment="Center"
                          IsReadOnly="True"
                          SelectionUnit="FullRow" RowDoubleClick="dgrdGroupList_RowDoubleClick" SelectionChanged="grdList_SelectionChanged" >
-                
-                        <!--
-                        재강 책임님 체크박스
-                        ShowRowIndex="True" 
-                        HeadersVisibility="Column"
-                         -->
 
-                        <!--
-                        AutoGenerateColumns="False"  
-                        CanUserDeleteRows="False" 
-                        HasRowHeaderStatus="True" 
-                        RowDetailsVisibilityMode="Collapsed" 
-
-                        ClipboardCopyMode="ExcludeHeader" 
-                         -->
-                            
-
-                    <HDataGridEx.Columns>
+                <!-- 조회할 컬럼 명, 바인딩 지정 -->
+                <HDataGridEx.Columns>
                     <HDataGridTextColumn Header="신청일자" Binding="{Binding APLC_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
-
-
                     <HDataGridTextColumn x:Name="pt_no" Header="환자번호" Binding="{Binding PT_NO}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="100"/>
                     <HDataGridTextColumn x:Name="pt_nm" Header="환자명" Binding="{Binding PT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
                     <HDataGridTextColumn x:Name="apct_rrn" Header="주민번호" Binding="{Binding APCT_RRN}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
                     <HDataGridTextColumn x:Name="smss_psb_yn" Header="승인여부" Binding="{Binding SMSS_PSB_YN}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="55"/>
                     <HDataGridTextColumn x:Name="pme_cls_cd" Header="환자급종" Binding="{Binding PME_CLS_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
-
-
                     <HDataGridTextColumn x:Name="apy_str_dt" Header="시작일자" Binding="{Binding APY_STR_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
                     <HDataGridTextColumn x:Name="apy_end_dt" Header="종료일자" Binding="{Binding APY_END_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
-
-
-
                     <HDataGridTextColumn x:Name="card_cmp_nm" Header="카드 회사" Binding="{Binding CARD_CMP_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
                     <HDataGridTextColumn x:Name="apct_nm" Header="카드 명의자" Binding="{Binding APCT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
                     <HDataGridTextColumn x:Name="card_no" Header="카드번호" Binding="{Binding CARD_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="*"/>
 
+                    <!-- Update 시, 필요한 토큰 값 Hidden 처리 -->
                     <HDataGridTextColumn x:Name="tkn_no" Header="" Binding="{Binding TKN_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden"  Width="*"/>
-
                 </HDataGridEx.Columns>
             </HDataGridEx>
         </Grid>
@@ -119,13 +101,15 @@
 
 
         <Border Background="{StaticResource BoundaryLineNormalBackground}" BorderBrush="{StaticResource BoundaryLineNormalBorderBrush}" BorderThickness="0,0,0,1" Height="2" Grid.Row="1" Margin="0,-2,0,0" VerticalAlignment="Top"/>
+        
+        <!-- 하단 버튼 -->
         <Border Background="{StaticResource CommonButtonAreaNormalBackground}" Grid.Row="1">
             <DockPanel Margin="10,0" LastChildFill="False">
-                <HButton x:Name="btnClose" Click="MobileHipassEtcBtn"  PermissionManager.ButtonPermission="None" Content="닫기" ButtonStyleType="Close" DockPanel.Dock="Right"/>
-                <HButton x:Name="btnExcel" Click="MobileHipassEtcBtn" PermissionManager.ButtonPermission="None" Content="엑셀" Style="{StaticResource CommonButtonExcelStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
+                <HButton x:Name="btnClose" Click="btn_Close"  PermissionManager.ButtonPermission="None" Content="닫기" ButtonStyleType="Close" DockPanel.Dock="Right"/>
+                <HButton x:Name="btnExcel" Click="btn_Excel" PermissionManager.ButtonPermission="None" Content="엑셀" Style="{StaticResource CommonButtonExcelStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
                 <HButton x:Name="btnCancle" Click="MobileHipassEtcBtn" PermissionManager.ButtonPermission="None" Content="취소" Style="{StaticResource CommonButtonCancelStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
-                <HButton x:Name="btnFormat" Click="MobileHipassEtcBtn" PermissionManager.ButtonPermission="None" Content="초기화" Style="{StaticResource CommonButtonResetStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
-                <HButton x:Name="btnAlarm" Click="MobileHipassEtcBtn" PermissionManager.ButtonPermission="None" Content="알림톡" DockPanel.Dock="Right" Margin="0,0,5,0"/>
+                <HButton x:Name="btnFormat" Click="btn_Format" PermissionManager.ButtonPermission="None" Content="초기화" Style="{StaticResource CommonButtonResetStyle}" DockPanel.Dock="Right" Margin="0,0,5,0"/>
+                <HButton x:Name="btnAlarm" Click="btn_Alarm" PermissionManager.ButtonPermission="None" Content="알림톡" DockPanel.Dock="Right" Margin="0,0,5,0"/>
                 <HButton x:Name="btnConfirm" Click="MobileHipassEtcBtn" PermissionManager.ButtonPermission="None" Content="승인" DockPanel.Dock="Right" Margin="0,0,5,0"/>
             </DockPanel>
         </Border>

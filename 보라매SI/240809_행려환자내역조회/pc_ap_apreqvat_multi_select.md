@@ -42,7 +42,7 @@ begin
               ,  to_char(b.qu_reply_dte,'yyyy-mm-dd')          qu_reply_dte          --12.자격회신일자
               ,  b.cr_orgn_cd                                  cr_orgn_cd            --13.보장기관기호
               ,  pkg_bil_common.FC_UnionNameSel('E',b.cr_orgn_cd)
-                                                               cr_orgn_nm            --14.보장기관기호명
+                                                               cr_orgn_nm            --14.보장 기관기호명
               ,  b.disapp_rsn_typ                              disapp_rsn_typ        --15.불가사유구분
               ,  pkg_bil_common.FC_CccodeNameSel('22B',b.disapp_rsn_typ)
                                                                disapp_rsn_typ_nm     --16.불가사유구분명

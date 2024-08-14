@@ -1,0 +1,32 @@
+﻿<src:WinBase x:Class="DH.View.Copyright"
+             xmlns:src="clr-namespace:DH.Lib" xmlns:uc="clr-namespace:DH.UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:DH.View" 
+             WindowStartupLocation="CenterScreen" 
+             ResizeMode="NoResize"
+             mc:Ignorable="d"
+             Title="Copyright" Height="120" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="#007ACC" BorderThickness="1" Margin="5,0,5,5" CornerRadius="2" >
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock FontFamily="Verdana" Height="20" TextAlignment="Center">
+                    <Run Text="Copyright ⓒ" FontSize="10" />
+                    <Run Text="2021" FontSize="10" x:Name="tbToYear" />
+                    <Run Text=" " FontSize="10" />
+                    
+                    <Run Text="SONG CHANG SU" FontWeight="Bold" FontSize="11" />
+                    <Run Text=" All Rights Reserverd." FontSize="10" />
+                </TextBlock>
+                <TextBlock Text="Mail : heybuba@gmail.com, Mobile : 010-9720-8283" FontFamily="Verdana" FontSize="10" TextAlignment="Center" />
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</src:WinBase>

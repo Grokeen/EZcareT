@@ -1,0 +1,695 @@
+﻿<src:UCBase x:Class="DH.View.DBHelper"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:src="clr-namespace:DH.Lib" 
+            xmlns:uc="clr-namespace:DH.UC"
+            mc:Ignorable="d" 
+            d:DesignHeight="768" d:DesignWidth="1600" Loaded="UserControl_Loaded">
+    <src:UCBase.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="Tab_Header">
+                <StackPanel Orientation="Horizontal">
+                    <!--<Image Width="16" Height="16" Source="/DH;component/Images/16/action_refresh.gif" Stretch="Fill" />-->
+                    <TextBlock Text="{Binding}" Margin="0" VerticalAlignment="Center" FontWeight="Normal" />
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </src:UCBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="Tab0Search" Style="{StaticResource SearchFormBoxHeight}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Style="{StaticResource SearchFormBox}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="500" />
+
+                </Grid.ColumnDefinitions>
+
+                <!--<TextBlock Height="16" HorizontalAlignment="Right" Text="DB User" VerticalAlignment="Center" Margin="0,4,5,5" Grid.Column="0" Width="44" />
+                <ComboBox x:Name="cboDB" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Width="100" SelectedIndex="0" SelectionChanged="cboDB_SelectionChanged" >
+                    <ComboBoxItem Content="ACK"/>
+                    <ComboBoxItem Content="COM"/>
+                    <ComboBoxItem Content="ADM"/>
+                    <ComboBoxItem Content="MED"/>
+                    <ComboBoxItem Content="SUP" IsSelected="True"/>
+                    <ComboBoxItem Content="MIG"/>
+                    <ComboBoxItem Content="MIGTEST"/>
+                    <ComboBoxItem Content="GEN"/>
+                </ComboBox>-->
+                <StackPanel Orientation="Horizontal">
+                    <!--<TextBlock Height="16" HorizontalAlignment="Left" Text="검색어" VerticalAlignment="Center" Margin="0,4,5,5" Width="36" />-->
+                    <uc:DHTextBox x:Name="txtKeyword" Margin="0,2,0,1" TextChanged="txtKeyword_TextChanged" MinWidth="160" PreviewKeyDown="TextBoxPreviewKeyDown_RemoveBlank" KeyDown="txtKeyword_KeyDown" ClearButtonVisibility="Visible" />
+                    <ComboBox x:Name="cboAndOr" Grid.Column="1" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Center" Width="50" SelectedIndex="0" 
+                              SelectedValuePath="Content">
+                        <ComboBoxItem Content="AND" IsSelected="True"/>
+                        <ComboBoxItem Content="OR"/>
+                    </ComboBox>
+                    <TextBlock Height="16" HorizontalAlignment="Left" FontSize="10" Text="키워드1,키워드2" VerticalAlignment="Center" Margin="5,6,5,5"  />
+
+                    <CheckBox x:Name="chkRealTime" Content="실시간검색" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsChecked="True" />
+                    <CheckBox x:Name="chkOwnerFilter" Content="Owner필터" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsChecked="False" Click="chkOwnerFilter_Click" >
+                        <CheckBox.Style>
+                            <Style TargetType="CheckBox">
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SelectedIndex, ElementName=tabMain}" Value="1">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <!--<TextBlock Height="16" HorizontalAlignment="Left" Text="검색어" VerticalAlignment="Center" Margin="0,4,5,5" Width="36" />-->
+                    <uc:DHTextBox x:Name="txtKeywordCol" Margin="0,2,0,1" TextChanged="txtKeywordCol_TextChanged" Width="160" ToolTip="키워드1,키워드2" PreviewKeyDown="TextBoxPreviewKeyDown_RemoveBlank" KeyDown="txtKeywordCol_KeyDown"
+                                  ClearButtonVisibility="Visible" />
+                    <ComboBox x:Name="cboAndOrCol" Grid.Column="1" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Center" Width="50" SelectedIndex="0" 
+                              SelectedValuePath="Content">
+                        <ComboBoxItem Content="AND" IsSelected="True"/>
+                        <ComboBoxItem Content="OR"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3">
+                    <!--<TextBlock Height="16" HorizontalAlignment="Left" Text="검색어" VerticalAlignment="Center" Margin="0,4,5,5" Width="36" />-->
+                    <uc:DHTextBox x:Name="txtKeywordObj" Margin="0,2,0,1" TextChanged="txtKeywordObj_TextChanged" Width="160" ToolTip="키워드1,키워드2" PreviewKeyDown="TextBoxPreviewKeyDown_RemoveBlank" KeyDown="txtKeywordObj_KeyDown"
+                                  ClearButtonVisibility="Visible" />
+                    <ComboBox x:Name="cboAndOrObj" Grid.Column="1" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Center" Width="50" SelectedIndex="0" 
+                              SelectedValuePath="Content">
+                        <ComboBoxItem Content="AND" IsSelected="True"/>
+                        <ComboBoxItem Content="OR"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <Button x:Name="BtnSelect" Click="BtnSelect_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0" Grid.Column="4" Height="25" Width="64">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="21" Height="21" Source="/DH;component/Images/Icon/Find.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,0,0,0" />
+                        <TextBlock Text="조회" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="WrapWithOverflow" Margin="5, 0, 5, 0" />
+                    </StackPanel>
+                </Button>
+
+
+
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="500" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+
+            <!-- RowEditEnding="dgdDocList_RowEditEnding"
+                SelectionChanged="dgdObjList_SelectionChanged" MouseDoubleClick="dgdDocList_MouseDoubleClick"-->
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0" x:Name="rdOwner" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border Height="Auto" Background="#DF5721">
+                    <ListBox x:Name="cblOwner" SelectionMode="Multiple" Background="#696969" BorderThickness="0" Margin="4,0,0,0">
+                        <ListBox.Style>
+                            <Style TargetType="ListBox">
+                                <Setter Property="ItemsPanel">
+                                    <Setter.Value>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" Width="Auto"/>
+                                        </ItemsPanelTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                            </Style>
+                        </ListBox.Style>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox MinWidth="60" Margin="0,1"
+                                          x:Name="cbOwner"
+                                          Click="cbOwner_Click"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                    <CheckBox.Content>
+                                        <TextBlock>
+                                            <Run Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </TextBlock>
+                                    </CheckBox.Content>
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Foreground" Value="Gold" />
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                </Trigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+
+
+
+                <TabControl HorizontalAlignment="Stretch" Margin="0,-2,0,0" x:Name="tabMain"
+                    VerticalAlignment="Stretch" SelectionChanged="tabMain_SelectionChanged"
+                    Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#696969" Padding="0" >
+
+                    <TabItem x:Name="tiAll" Header="전체" HeaderTemplate="{StaticResource Tab_Header}" Style="{StaticResource TabItemDepth2}">
+                        <DataGrid Margin="0,5,5,5" 
+                                  x:Name="dgdObjList" 
+                                  AutoGenerateColumns="False" 
+                                  HorizontalAlignment="Stretch" 
+                                  VerticalAlignment="Stretch" 
+                                  
+                                  CopyingRowClipboardContent="dgdObjList_CopyingRowClipboardContent"
+                                  LoadingRow="dgdObjList_LoadingRow" 
+                                  SelectionChanged="dgdObjList_SelectionChanged" 
+                                  
+                                  AllowDrop="True" 
+                                  CanUserAddRows="False"
+                                  
+                                  ScrollViewer.CanContentScroll="True"    
+                                 
+                                  EnableColumnVirtualization="True" 
+                                  EnableRowVirtualization="True"
+                                  VirtualizingPanel.IsVirtualizing="True"
+                                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                                  VirtualizingPanel.VirtualizationMode="Standard"
+                                  VirtualizingPanel.ScrollUnit="Pixel"
+                                  MaxHeight="1500"
+                                  HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5"  >
+                            <DataGrid.ContextMenu>
+                                <ContextMenu >
+
+                                    <MenuItem Click="Fav_Add_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                        </MenuItem.Icon>
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="즐겨찾기 추가" />
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <MenuItem Click="Qeury_Create_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                        </MenuItem.Icon>
+                                        <MenuItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="DDL Create" />
+                                                <!--<uc:DHTextBox Width="30" Name="tbInsertAlias" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />-->
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding OWNER}" Header="OWNER" Width="50" />
+                                <DataGridTextColumn Binding="{Binding TABLE_NAME}" Header="TABLE" Width="80" FontWeight="Bold" />
+                                <DataGridTextColumn Binding="{Binding TABLE_COMMENTS}" Header="TABLE COMMENTS" Width="*" FontSize="10" />
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="BtnMakeQuery_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="SELECT 쿼리를 복사합니다." >
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Width="16" Height="16" Source="/DH;component/Images/Icon/My-Documents-Inside-Green-128.png"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="BtnMakeQuery2_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="SELECT 쿼리를 복사합니다. (매개변수 포함)" >
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Width="16" Height="16" Source="/DH;component/Images/Icon/My-Documents-Inside-Green-128.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="BtnSelectQuery_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="데이터를 조회합니다." >
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Width="14" Height="16" Source="/DH;component/Images/Icon/edit-redo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Binding="{Binding CREATED_DAYS}" Header="CREATED_DAYS" Visibility="Collapsed" Width="30" />
+                                <DataGridTextColumn Binding="{Binding MODIFY_DAYS}" Header="MODIFY_DAYS" Visibility="Collapsed" Width="30" CellStyle="{StaticResource CellStyleCenter}" />
+                            </DataGrid.Columns>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem x:Name="tiFav" Header="즐겨찾기" HeaderTemplate="{StaticResource Tab_Header}" Style="{StaticResource TabItemDepth2}">
+                        <Grid>
+                            <DataGrid Margin="0,5,5,5" 
+                                  x:Name="dgdFavObjList" 
+                                  AutoGenerateColumns="False" 
+                                  HorizontalAlignment="Stretch" 
+                                  VerticalAlignment="Stretch" 
+                                  
+                                  CopyingRowClipboardContent="dgdFavObjList_CopyingRowClipboardContent"
+                                  LoadingRow="dgdObjList_LoadingRow" 
+                                  SelectionChanged="dgdObjList_SelectionChanged" 
+                                  
+                                  AllowDrop="True" 
+                                  CanUserAddRows="False"
+                                  
+                                  ScrollViewer.CanContentScroll="True"    
+                                 
+                                  EnableColumnVirtualization="True" 
+                                  EnableRowVirtualization="True"
+                                  VirtualizingPanel.IsVirtualizing="True"
+                                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                                  VirtualizingPanel.VirtualizationMode="Standard"
+                                  VirtualizingPanel.ScrollUnit="Pixel"
+                                  MaxHeight="1500"
+                                  HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5"  >
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu >
+
+                                        <MenuItem Click="Qeury_Create_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                            </MenuItem.Icon>
+                                            <MenuItem.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="DDL Create" />
+                                                    <!--<uc:DHTextBox Width="30" Name="tbInsertAlias" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />-->
+                                                </StackPanel>
+                                            </MenuItem.Header>
+                                        </MenuItem>
+
+
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding OWNER}" Header="OWNER" Width="50" />
+                                    <DataGridTextColumn Binding="{Binding TABLE_NAME}" Header="TABLE" Width="80" FontWeight="Bold" />
+                                    <DataGridTextColumn Binding="{Binding TABLE_COMMENTS}" Header="TABLE COMMENTS" Width="*" FontSize="10" />
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Click="BtnMakeQuery_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="SELECT 쿼리를 복사합니다." >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Width="16" Height="16" Source="/DH;component/Images/Icon/My-Documents-Inside-Green-128.png"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Click="BtnMakeQuery2_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="SELECT 쿼리를 복사합니다. (매개변수 포함)" >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Width="16" Height="16" Source="/DH;component/Images/Icon/My-Documents-Inside-Green-128.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Click="BtnSelectQuery_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="데이터를 조회합니다." >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Width="14" Height="16" Source="/DH;component/Images/Icon/edit-redo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTextColumn Binding="{Binding CREATED_DAYS}" Header="CREATED_DAYS" Visibility="Collapsed" Width="30" />
+                                    <DataGridTextColumn Binding="{Binding MODIFY_DAYS}" Header="MODIFY_DAYS" Visibility="Collapsed" Width="30" CellStyle="{StaticResource CellStyleCenter}" />
+                                </DataGrid.Columns>
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="DataGridRow">
+
+                                    </Style>
+                                </DataGrid.RowStyle>
+                            </DataGrid>
+
+
+
+
+
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+
+
+
+            </Grid>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,5,0" Panel.ZIndex="100">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedIndex, ElementName=tabMain}" Value="1">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+
+
+                <Button x:Name="BtnUp" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Height="20" Width="20" Margin="2,0,0,0" Click="BtnUp_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="14" Source="/DH;component/Images/Icon/arrow2_n.gif" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" />
+                        <!--<TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="WrapWithOverflow" Margin="5, 0, 5, 0" />-->
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnDown" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Height="20" Width="20" Margin="2,0,0,0" Click="BtnDown_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="14" Source="/DH;component/Images/Icon/arrow2_s.gif" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" />
+                        <!--<TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="WrapWithOverflow" Margin="5, 0, 5, 0" />-->
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnDelete" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Height="20" Width="20" Margin="2,0,0,0" Click="BtnDelete_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="14" Source="/DH;component/Images/Icon/subtract.gif" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" />
+                        <!--<TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="WrapWithOverflow" Margin="5, 0, 5, 0" />-->
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnSave" ToolTip="저장합니다." HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Height="20" Width="20" Margin="2,0,0,0" Click="BtnSave_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="14" Source="/DH;component/Images/Icon/document-save16.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" />
+                        <!--<TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="WrapWithOverflow" Margin="5, 0, 5, 0" />-->
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnReload" ToolTip="새로고침" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Grid.Column="2" Height="20" Width="20" Click="BtnReload_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="14" Source="/DH;component/Images/Icon/reload.gif" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" />
+                        <!--<TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="WrapWithOverflow" Margin="5, 0, 5, 0" />-->
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <GridSplitter Grid.Column ="0" Grid.RowSpan="3" Width ="5" />
+
+            <Grid Grid.Column="1" Grid.RowSpan="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="223" x:Name="GridRowCommonCodeGrid" />
+                </Grid.RowDefinitions>
+
+                <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:Name="dgdColInfo" VerticalAlignment="Stretch" 
+                      AllowDrop="True" CanUserAddRows="False" Margin="0,0,5,0"
+                      LoadingRow="dgdObjList_LoadingRow" 
+                      HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="DgdColInfo_SelectionChanged" >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem  x:Name="miSelect" >
+                                <!--Click="Qeury_Select_Click"-->
+
+
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Query.Select" />
+                                        <uc:DHTextBox Width="30" x:Name="tbSelectAlias" Text="A" GotFocus="tbSelectAlias_GotFocus" TextChanged="tbSelectAlias_TextChanged" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+
+                            <MenuItem Click="Qeury_Insert_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Query.Insert" />
+                                        <!--<uc:DHTextBox Width="30" Name="tbInsertAlias" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />-->
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+
+                            <MenuItem Click="Qeury_Update_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Query.Update" />
+                                        <!--<uc:DHTextBox Width="30" Name="tbUpdateAlias" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />-->
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+                            <MenuItem Click="Qeury_Merge_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Query.Merge" />
+                                        <!--<uc:DHTextBox Width="30" Name="tbUpdateAlias" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />-->
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+                            <MenuItem Click="Qeury_Delete_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Query.Delete" />
+                                        <!--<uc:DHTextBox Width="30" Name="tbDeleteAlias" Margin="2,0,0,0" Height="20" />
+                                        <Label Content="Alias" />-->
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Click="DTO_Property_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="DTO.Property" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+                            <MenuItem Click="DTO_InProperty_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="DTO.InProperty" />
+                                    </StackPanel>
+                                </MenuItem.Header>
+                            </MenuItem>
+                            <!--
+                            <MenuItem Header="DataSet.SetColumn" Click="DataSet_SetColumn_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            -->
+                            <!--
+                            <MenuItem Header="DataSet.ColInfo" Click="DataSet_ColInfo_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <Separator />
+                            -->
+                            <!--
+                            <MenuItem Header="Grid.Head:Body" Click="Grid_HeadBody_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            -->
+
+                            <Separator />
+                            <MenuItem Header="c#.Property" Click="Grid_C_Property_Click">
+                                <MenuItem.Icon>
+                                    <Image Source="/DH;component/Images/Icon/icon_wand.gif" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding COL_NAME}" Header="COLUMN" Width="100" />
+                        <DataGridTextColumn Binding="{Binding DATATYPE}" Header="DATA TYPE" Width="80" FontSize="10" />
+                        <DataGridTextColumn Binding="{Binding NULLABLE}" Header="NULL" Width="40"  FontSize="10" />
+                        <DataGridTextColumn Binding="{Binding DEFAULT}" Header="DEFAULT" Width="55" FontSize="10" />
+                        <DataGridTextColumn Binding="{Binding COMMENTS}" Header="COMMENT" Width="*" FontSize="10" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <GridSplitter Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" />
+
+
+                <!--CCCCCSTE-->
+                <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:Name="dgdCommonCodeInfo" VerticalAlignment="Stretch" 
+                    AllowDrop="True" CanUserAddRows="False" Margin="0,5,5,0" Grid.Row="1"
+                    LoadingRow="dgdObjList_LoadingRow" 
+                    HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding COMN_GRP_CD}" Header="COMN_GRP_CD" Width="90" />
+                        <DataGridTextColumn Binding="{Binding COMN_CD}" Header="COMN_CD" Width="80" />
+                        <DataGridTextColumn Binding="{Binding COMN_CD_NM}" Header="COMN_CD_NM" Width="200"  />
+                        <DataGridTextColumn Binding="{Binding COMN_CD_EXPL}" Header="COMN_CD_EXPL" Width="200" />
+                        <DataGridTextColumn Binding="{Binding SCRN_MRK_SEQ}" Header="SORT" Width="50" />
+                        <DataGridTextColumn Binding="{Binding USE_YN}" Header="USE_YN" Width="50" />
+
+                        <DataGridTextColumn Binding="{Binding DTRL1_NM}" Header="DTRL1_NM" Width="120" />
+                        <DataGridTextColumn Binding="{Binding DTRL2_NM}" Header="DTRL2_NM" Width="120" />
+                        <DataGridTextColumn Binding="{Binding DTRL3_NM}" Header="DTRL3_NM" Width="120" />
+                        <DataGridTextColumn Binding="{Binding DTRL4_NM}" Header="DTRL4_NM" Width="120" />
+                        <DataGridTextColumn Binding="{Binding DTRL5_NM}" Header="DTRL5_NM" Width="120" />
+                        <DataGridTextColumn Binding="{Binding DTRL6_NM}" Header="DTRL6_NM" Width="120" />
+                        <!--<DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="BtnSelectDBSourceCode_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                            Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="소스코드를 조회합니다." >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="14" Height="16" Source="/DH;component/Images/Icon/edit-redo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!--CCCCCSTE-->
+
+            </Grid>
+            <GridSplitter Grid.Column ="1" Grid.RowSpan="3" Width ="5" />
+
+            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:Name="dgdRefObjList" VerticalAlignment="Stretch" 
+                      LoadingRow="dgdObjList_LoadingRow" 
+                      AllowDrop="True" CanUserAddRows="False" Margin="0"  Grid.Column="2" Grid.RowSpan="3"
+                      HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding OWNER}" Header="OWNER" Width="50" />
+                    <DataGridTextColumn Binding="{Binding OBJ_NAME}" Header="OBJ NAME" Width="*"  />
+                    <DataGridTextColumn Binding="{Binding OBJ_TYPE}" Header="OBJ TYPE" Width="80" FontSize="10" />
+                    <DataGridTextColumn Binding="{Binding STATUS}" Header="STATUS" Width="50" FontSize="10" />
+                    <!--<DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="BtnOpenPLEdit_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="16" Width="16"
+                                        Background="Transparent" BorderBrush="Transparent" BorderThickness="0" ToolTip="PLEdit로 소스코드를 조회합니다." >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="14" Height="16" Source="/DH;component/Images/Icon/edit-redo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Width="44">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="BtnOpenPLEdit_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Height="17" Width="40"
+                                            BorderThickness="0" Tag="PLEdit"
+                                            ToolTip="PLEdit으로 소스코드를 조회합니다." >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="LightGreen" Width="5" Height="auto" BorderThickness="1" BorderBrush="LightSeaGreen" VerticalAlignment="Stretch" Margin="0,0,0,0" />
+                                        <TextBlock Text="PLEdit" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" Margin="2, 0, 5, 0" />
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <GridSplitter Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+
+            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:Name="dgdIndexInfo" VerticalAlignment="Stretch" 
+                      LoadingRow="dgdObjList_LoadingRow" 
+                      AllowDrop="True" CanUserAddRows="False" Margin="0,0,5,5"  Grid.Row="1" 
+                      HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding INDEX_NAME}" Header="INDEX NAME" Width="120" />
+                    <DataGridTextColumn Binding="{Binding COL_NAME}" Header="COLUMN" Width="100"  FontSize="10" />
+                    <DataGridTextColumn Binding="{Binding COMMENTS}" Header="COMMENT" Width="*"   FontSize="10" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <GridSplitter Height="5" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+
+            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:Name="dgdTableAddInfo" VerticalAlignment="Stretch" 
+                      LoadingRow="dgdObjList_LoadingRow" 
+                      AllowDrop="True" CanUserAddRows="False" Margin="0,0,5,0"  Grid.Row="2" 
+                      HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding COL_NAME}" Header="STATUS" Width="120" />
+                    <DataGridTextColumn Binding="{Binding COL_VALUE}" Header="VALUE" Width="*"  />
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <Button Visibility="Collapsed" Content="Button" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="45,43,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        </Grid>
+
+
+
+    </Grid>
+</src:UCBase>

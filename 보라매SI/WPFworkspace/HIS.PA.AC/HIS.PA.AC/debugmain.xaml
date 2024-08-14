@@ -10,8 +10,13 @@
             <RowDefinition Height="469*" />
         </Grid.RowDefinitions>
         <Menu  Name="menMain"  VerticalAlignment="Top" Height="30" Background="#FF1E222D">
+            
+            
             <HMenuItem Header="HIS.PA.AC.PE.PS.UI" Name="menTopMenu1" Click ="menTopMenu_Click">
                 <HMenuItem Header="모바일하이패스  | HipassMobileApprovalMng" Name="menuTopMenu1Sub1"   Tag="HIS.PA.AC.PE.PS.UI;/HipassMobileApprovalMng.xaml"/>
+
+
+                <HMenuItem Header="DH" Name="menuTopMenu1Sub0"   Tag="DH;/View/DBHelper.xaml"/>
             </HMenuItem>
 
 

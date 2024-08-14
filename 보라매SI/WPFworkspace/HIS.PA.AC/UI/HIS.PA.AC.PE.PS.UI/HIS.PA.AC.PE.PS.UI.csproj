@@ -74,6 +74,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\OutputPath\HIS.UI.Core.dll</HintPath>
     </Reference>
+    <Reference Include="HIS.UI.CoreWork">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.CoreWork.dll</HintPath>
+    </Reference>
     <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
     <Reference Include="HIS.UI.Design.Themes">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>

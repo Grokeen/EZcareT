@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F19956C-E70E-4AED-A949-2210814928D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DH</RootNamespace>
+    <AssemblyName>DH</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core">
+      <HintPath>..\..\OutputPath\HIS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO">
+      <HintPath>..\..\OutputPath\HIS.Core.Global.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Base">
+      <HintPath>..\..\OutputPath\HIS.UI.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\OutputPath\HIS.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Core">
+      <HintPath>..\..\OutputPath\HIS.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Design.Themes">
+      <HintPath>..\..\OutputPath\HIS.UI.Design.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Utility">
+      <HintPath>..\..\OutputPath\HIS.UI.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF">
+      <HintPath>..\..\OutputPath\HSF.Controls.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF.Extension">
+      <HintPath>..\..\OutputPath\HSF.Controls.WPF.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.ComBase">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.ComBase.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.Common">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.RemotingV35">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.RemotingV35.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI">
+      <HintPath>..\..\OutputPath\HIS.PA.CORE.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common">
+      <HintPath>C:\Program Files\DH\IBatisNet\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper">
+      <HintPath>C:\Program Files\DH\IBatisNet\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamCalendar.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Controls.Editors.XamCalendar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataPresenter.ExcelExporter.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.DataPresenter.ExcelExporter.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataPresenter.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.DataPresenter.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Documents.Core.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Documents.Core.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Documents.Excel.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Documents.Excel.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Editors.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Editors.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Reporting.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Reporting.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Tiles.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.Tiles.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.TeamFoundation.Client">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.TeamFoundation.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.Common">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Microsoft.VisualStudio.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="PoorMansTSqlFormatterLib">
+      <HintPath>C:\Program Files\DH\bin\Debug\PoorMansTSqlFormatterLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Page Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="UIPAMVVM1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Copyright.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DBHelper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Popup\CMBackup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SelectQuery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UIPAMVC1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Entity\BasicSetting.cs" />
+    <Compile Include="Entity\ColInfo.cs" />
+    <Compile Include="Entity\DBUser.cs" />
+    <Compile Include="Entity\IndexInfo.cs" />
+    <Compile Include="Entity\ParamInfo.cs" />
+    <Compile Include="Entity\RefObj.cs" />
+    <Compile Include="Entity\TableAddInfo.cs" />
+    <Compile Include="Entity\TableInfo.cs" />
+    <Compile Include="Entity\Table\ALL_SOURCE.cs" />
+    <Compile Include="Entity\Table\ALL_VIEWS.cs" />
+    <Compile Include="Entity\Table\CCCCCSTE.cs" />
+    <Compile Include="Entity\Table\FXQUERYSTORE.cs" />
+    <Compile Include="Lib\CheckBoxItem.cs" />
+    <Compile Include="Lib\DBSvc.cs" />
+    <Compile Include="Lib\UCBase.cs" />
+    <Compile Include="Lib\WinBase.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UC\DHTextBox.cs" />
+    <Compile Include="UIPAMVVM1.xaml.cs">
+      <DependentUpon>UIPAMVVM1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CodeWindow.xaml.cs">
+      <DependentUpon>CodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Copyright.xaml.cs">
+      <DependentUpon>Copyright.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DBHelper.xaml.cs">
+      <DependentUpon>DBHelper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Popup\CMBackup.xaml.cs">
+      <DependentUpon>CMBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SelectQuery.xaml.cs">
+      <DependentUpon>SelectQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UIPAMVC1.xaml.cs">
+      <DependentUpon>UIPAMVC1.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\DH.SqlMap.config" />
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon\action_refresh.gif" />
+    <Resource Include="Images\icon\add.gif" />
+    <Resource Include="Images\icon\add.png" />
+    <Resource Include="Images\icon\addressbook.gif" />
+    <Resource Include="Images\icon\alert.gif" />
+    <Resource Include="Images\icon\apple.gif" />
+    <Resource Include="Images\icon\arrow1_e.gif" />
+    <Resource Include="Images\icon\arrow1_n.gif" />
+    <Resource Include="Images\icon\arrow1_ne.gif" />
+    <Resource Include="Images\icon\arrow1_nw.gif" />
+    <Resource Include="Images\icon\arrow1_s.gif" />
+    <Resource Include="Images\icon\arrow1_se.gif" />
+    <Resource Include="Images\icon\arrow1_sw.gif" />
+    <Resource Include="Images\icon\arrow1_w.gif" />
+    <Resource Include="Images\icon\arrow2_e.gif" />
+    <Resource Include="Images\icon\arrow2_n.gif" />
+    <Resource Include="Images\icon\arrow2_ne.gif" />
+    <Resource Include="Images\icon\arrow2_nw.gif" />
+    <Resource Include="Images\icon\arrow2_s.gif" />
+    <Resource Include="Images\icon\arrow2_se.gif" />
+    <Resource Include="Images\icon\arrow2_sw.gif" />
+    <Resource Include="Images\icon\arrow2_w.gif" />
+    <Resource Include="Images\icon\arrow3_e.gif" />
+    <Resource Include="Images\icon\arrow3_n.gif" />
+    <Resource Include="Images\icon\arrow3_ne.gif" />
+    <Resource Include="Images\icon\arrow3_nw.gif" />
+    <Resource Include="Images\icon\arrow3_s.gif" />
+    <Resource Include="Images\icon\arrow3_se.gif" />
+    <Resource Include="Images\icon\arrow3_sw.gif" />
+    <Resource Include="Images\icon\arrow3_w.gif" />
+    <Resource Include="Images\icon\arrow_right.gif" />
+    <Resource Include="Images\icon\ascii.gif" />
+    <Resource Include="Images\icon\ascii.png" />
+    <Resource Include="Images\icon\back.gif" />
+    <Resource Include="Images\icon\bigsmile.gif" />
+    <Resource Include="Images\icon\binary.gif" />
+    <Resource Include="Images\icon\blah.gif" />
+    <Resource Include="Images\icon\bstop.gif" />
+    <Resource Include="Images\icon\buy.gif" />
+    <Resource Include="Images\icon\calday.gif" />
+    <Resource Include="Images\icon\calendar.gif" />
+    <Resource Include="Images\icon\camera.gif" />
+    <Resource Include="Images\icon\cart.gif" />
+    <Resource Include="Images\icon\cd.gif" />
+    <Resource Include="Images\icon\cellphone.gif" />
+    <Resource Include="Images\icon\chat.gif" />
+    <Resource Include="Images\icon\check.gif" />
+    <Resource Include="Images\icon\checkout-orange.gif" />
+    <Resource Include="Images\icon\close.gif" />
+    <Resource Include="Images\icon\comment.gif" />
+    <Resource Include="Images\icon\contact-new.png" />
+    <Resource Include="Images\icon\cube.gif" />
+    <Resource Include="Images\icon\database_%28edit%29_16x16.gif" />
+    <Resource Include="Images\icon\Date-Add.png" />
+    <Resource Include="Images\icon\Date-Delete.png" />
+    <Resource Include="Images\icon\Date-Edit.png" />
+    <Resource Include="Images\icon\Date-Error.png" />
+    <Resource Include="Images\icon\Date-Go.png" />
+    <Resource Include="Images\icon\Date-Link.png" />
+    <Resource Include="Images\icon\Date-Magnify.png" />
+    <Resource Include="Images\icon\Date-Next.png" />
+    <Resource Include="Images\icon\Date-Previous.png" />
+    <Resource Include="Images\icon\date.png" />
+    <Resource Include="Images\icon\date2.gif" />
+    <Resource Include="Images\icon\day.gif" />
+    <Resource Include="Images\icon\delete.png" />
+    <Resource Include="Images\icon\denied.gif" />
+    <Resource Include="Images\icon\Disk.png" />
+    <Resource Include="Images\icon\document-open.png" />
+    <Resource Include="Images\icon\document-save16.png" />
+    <Resource Include="Images\icon\document-save22.png" />
+    <Resource Include="Images\icon\document-save24.png" />
+    <Resource Include="Images\icon\Document-Todo-32.png" />
+    <Resource Include="Images\icon\Document-Todo2-32.png" />
+    <Resource Include="Images\icon\document.gif" />
+    <Resource Include="Images\icon\Documents .png" />
+    <Resource Include="Images\icon\download.gif" />
+    <Resource Include="Images\icon\drive-harddisk.png" />
+    <Resource Include="Images\icon\drive-removable-media.png" />
+    <Resource Include="Images\icon\edit-redo.png" />
+    <Resource Include="Images\icon\edit.gif" />
+    <Resource Include="Images\icon\edit.png" />
+    <Resource Include="Images\icon\eject.gif" />
+    <Resource Include="Images\icon\equalizer.gif" />
+    <Resource Include="Images\icon\exit.png" />
+    <Resource Include="Images\icon\Find.png" />
+    <Resource Include="Images\icon\first.gif" />
+    <Resource Include="Images\icon\flag.gif" />
+    <Resource Include="Images\icon\flash.gif" />
+    <Resource Include="Images\icon\Folder-Add.png" />
+    <Resource Include="Images\icon\Folder-Delete.png" />
+    <Resource Include="Images\icon\Folder-Find.png" />
+    <Resource Include="Images\icon\folder.gif" />
+    <Resource Include="Images\icon\Folder.png" />
+    <Resource Include="Images\icon\forward.gif" />
+    <Resource Include="Images\icon\frown.gif" />
+    <Resource Include="Images\icon\ftp.gif" />
+    <Resource Include="Images\icon\go-last.png" />
+    <Resource Include="Images\icon\go-next.png" />
+    <Resource Include="Images\icon\graph.gif" />
+    <Resource Include="Images\icon\heart.gif" />
+    <Resource Include="Images\icon\home.gif" />
+    <Resource Include="Images\icon\html.gif" />
+    <Resource Include="Images\icon\icon_user.gif" />
+    <Resource Include="Images\icon\icon_wand.gif" />
+    <Resource Include="Images\icon\ico_datemask.png" />
+    <Resource Include="Images\icon\ipod.gif" />
+    <Resource Include="Images\icon\last.gif" />
+    <Resource Include="Images\icon\Layer-Create.png" />
+    <Resource Include="Images\icon\list.png" />
+    <Resource Include="Images\icon\lock.gif" />
+    <Resource Include="Images\icon\loop.gif" />
+    <Resource Include="Images\icon\mail.gif" />
+    <Resource Include="Images\icon\man.gif" />
+    <Resource Include="Images\icon\manman.gif" />
+    <Resource Include="Images\icon\Monitor-Window-3d.png" />
+    <Resource Include="Images\icon\music.gif" />
+    <Resource Include="Images\icon\mute.gif" />
+    <Resource Include="Images\icon\mute_centered.gif" />
+    <Resource Include="Images\icon\My-Documents-Inside-Green-128.png" />
+    <Resource Include="Images\icon\newwindow.gif" />
+    <Resource Include="Images\icon\next.gif" />
+    <Resource Include="Images\icon\night.gif" />
+    <Resource Include="Images\icon\open.gif" />
+    <Resource Include="Images\icon\pause.gif" />
+    <Resource Include="Images\icon\pdf.png" />
+    <Resource Include="Images\icon\phone.gif" />
+    <Resource Include="Images\icon\play.gif" />
+    <Resource Include="Images\icon\preferences-desktop.png" />
+    <Resource Include="Images\icon\previous.gif" />
+    <Resource Include="Images\icon\quicktime.gif" />
+    <Resource Include="Images\icon\redo.gif" />
+    <Resource Include="Images\icon\reload.gif" />
+    <Resource Include="Images\icon\sad.gif" />
+    <Resource Include="Images\icon\save.gif" />
+    <Resource Include="Images\icon\save16.png" />
+    <Resource Include="Images\icon\save24.png" />
+    <Resource Include="Images\icon\scream.gif" />
+    <Resource Include="Images\icon\search.gif" />
+    <Resource Include="Images\icon\search.png" />
+    <Resource Include="Images\icon\seconds.gif" />
+    <Resource Include="Images\icon\Setting-Tools.png" />
+    <Resource Include="Images\icon\setup.png" />
+    <Resource Include="Images\icon\smile.gif" />
+    <Resource Include="Images\icon\smirk.gif" />
+    <Resource Include="Images\icon\star.gif" />
+    <Resource Include="Images\icon\stop.gif" />
+    <Resource Include="Images\icon\subtract.gif" />
+    <Resource Include="Images\icon\support2_%28edit%29_16x16.gif" />
+    <Resource Include="Images\icon\switch.gif" />
+    <Resource Include="Images\icon\system-users.png" />
+    <Resource Include="Images\icon\Table-Delete.png" />
+    <Resource Include="Images\icon\target.gif" />
+    <Resource Include="Images\icon\tcp.gif" />
+    <Resource Include="Images\icon\text-x-changelog.png" />
+    <Resource Include="Images\icon\text-x-script.png" />
+    <Resource Include="Images\icon\text-x-source.png" />
+    <Resource Include="Images\icon\time.gif" />
+    <Resource Include="Images\icon\titlewindow.gif" />
+    <Resource Include="Images\icon\toggle.gif" />
+    <Resource Include="Images\icon\tongue.gif" />
+    <Resource Include="Images\icon\tools.gif" />
+    <Resource Include="Images\icon\trackback.gif" />
+    <Resource Include="Images\icon\trash.gif" />
+    <Resource Include="Images\icon\tree.png" />
+    <Resource Include="Images\icon\tv.gif" />
+    <Resource Include="Images\icon\type.gif" />
+    <Resource Include="Images\icon\undo.gif" />
+    <Resource Include="Images\icon\unlock.gif" />
+    <Resource Include="Images\icon\upload.gif" />
+    <Resource Include="Images\icon\user.gif" />
+    <Resource Include="Images\icon\video.gif" />
+    <Resource Include="Images\icon\view_tree.png" />
+    <Resource Include="Images\icon\volume.gif" />
+    <Resource Include="Images\icon\volume_high.gif" />
+    <Resource Include="Images\icon\volume_low.gif" />
+    <Resource Include="Images\icon\Wand.png" />
+    <Resource Include="Images\icon\wifi.gif" />
+    <Resource Include="Images\icon\window.gif" />
+    <Resource Include="Images\icon\woman.gif" />
+    <Resource Include="Images\icon\womanman.gif" />
+    <Resource Include="Images\icon\work.gif" />
+    <Resource Include="Images\icon\zoomin.gif" />
+    <Resource Include="Images\icon\zoomout.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Config\FavQuery.xml" />
+    <Resource Include="Config\FavTableInfo.xml" />
+    <Resource Include="Config\SettingAPP.xml" />
+    <Resource Include="Config\SettingDEV.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Xml\DH.Sql.xml" />
+    <Content Include="Xml\FT_GET_VIEWTEXT.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

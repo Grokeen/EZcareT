@@ -1,0 +1,415 @@
+﻿<Application x:Class="DH.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:uc="clr-namespace:DH.UC"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--그리드 컬럼 가운데 정렬-->
+
+        <!--버튼 비활성화시 이미지 흐리게-->
+
+        <ResourceDictionary>
+
+
+
+            <!--<Style TargetType="DataGridRow">
+                <Setter Property="Background" Value="Transparent" />
+                <Style.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            
+                            <Condition Property="IsKeyboardFocusWithin" Value="False" />
+                            <Condition Property="IsSelected" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Background" Value="#DCDCDC" />
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>-->
+
+            <!--<Style TargetType="DataGridCell">
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="#DCDCDC" />
+                        <Setter Property="Foreground" Value="Black" />
+                    </Trigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsKeyboardFocusWithin" Value="False" />
+                            <Condition Property="IsSelected" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Background" Value="#DCDCDC" />
+                        -->
+            <!--<Setter Property="Foreground" Value="White" />-->
+            <!--
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>-->
+
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#696969" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#BBBBBB" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightColorKey}" Color="#00000000" />
+
+
+
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="#efefef" />
+            </Style>
+
+
+
+            <Style TargetType="CheckBox">
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Value="True" />
+                            <Condition Binding="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Foreground" Value="White" />
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+
+
+
+
+            <!--그리드 컬럼 가운데 정렬-->
+            <Style x:Key="CellStyleCenter" TargetType="{x:Type DataGridCell}">
+                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            </Style>
+
+            <!--버튼 비활성화시 이미지 흐리게-->
+            <Style TargetType="{x:Type Image}">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.50"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!--<Style TargetType="DataGridRow">
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="Red"/>
+                    </Trigger>
+
+                </Style.Triggers>
+            </Style>-->
+
+
+            <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="FontSize" Value="11" />
+            </Style>
+
+            <Style TargetType="{x:Type DataGridCell }">
+                <Setter Property="FontSize" Value="11" />
+            </Style>
+
+            <!--<Style TargetType="{x:Type TabControl}">
+                <Setter Property="Background" Value="White" />
+            </Style>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Background" Value="White" />
+            </Style>-->
+
+            <!--검색폼 Border-->
+            <Style x:Key="SearchFormBox" TargetType="{x:Type Border}">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="BorderBrush" Value="#B7B7B7" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Background" Value="#D3D3D3" />
+                <Setter Property="BorderThickness" Value="0,0,0,1" />
+            </Style>
+            <Style x:Key="SearchFormBox2" TargetType="{x:Type Border}">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="BorderBrush" Value="#B7B7B7" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Background" Value="#D3D3D3" />
+                <Setter Property="BorderThickness" Value="0,1,0,1" />
+            </Style>
+
+            <Style x:Key="SearchFormBoxHeight" TargetType="{x:Type RowDefinition}">
+                <Setter Property="Height" Value="34" />
+            </Style>
+
+            <!--TFS폼-->
+            <Style x:Key="TFSFormBox" TargetType="{x:Type Border}">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderBrush" Value="#B7B7B7" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Background" Value="#D3D3D3" />
+                <Setter Property="BorderThickness" Value="1,1,1,1" />
+            </Style>
+
+
+
+
+            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">0</sys:Double>
+            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+            <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}">0</sys:Double>
+            <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">10</sys:Double>
+
+
+
+
+            <!--<Style x:Key="TransparentButtonStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            
+            <Style x:Key="ClearButtonStyleForTextBox" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid HorizontalAlignment="Right">
+                                <Ellipse Name="border" Fill="#999999" Width="14" Height="14" />
+                                <Path Name="path"
+                                    Data="M4.5,0L6.5,0 6.5,4.5 11,4.5 11,6.5 6.5,6.5 6.5,11 4.5,11 4.5,6.5 0,6.5 0,4.5 4.5,4.5z" 
+                                    StrokeLineJoin="Round" 
+                                    Margin="0,0,0,0"
+                                    RenderOptions.BitmapScalingMode="HighQuality" 
+                                    RenderTransformOrigin="0.5,0.5" Stretch="Fill" SnapsToDevicePixels="True" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    Width="8" Height="8" Fill="#FFFFFFFF">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="45" />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>-->
+
+            <Style x:Key="copyButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="UIElement.Opacity" Value="0.7" />
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Background="#00FFFFFF">
+                                <Border Name="border" Background="#31859C" CornerRadius="2" Width="14" Height="14" ToolTip="텍스트를 복사합니다." ToolTipService.InitialShowDelay="10">
+                                    <TextBlock Text="C" HorizontalAlignment="Center" Foreground="White" FontSize="10" FontFamily="Consolas" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,0,0" />
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                    <Setter Property="UIElement.Opacity" Value="1" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style x:Key="closeButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="UIElement.Opacity" Value="0.7" />
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Background="#00FFFFFF">
+                                <!--<Ellipse Name="border" Fill="#C70000" />-->
+                                <Border Name="border" Background="#31859C" CornerRadius="2" />
+                                <Path Name="path" Data="M4.5,0L6.5,0 6.5,4.5 11,4.5 11,6.5 6.5,6.5 6.5,11 4.5,11 4.5,6.5 0,6.5 0,4.5 4.5,4.5z" 
+                                StrokeLineJoin="Round" RenderOptions.BitmapScalingMode="HighQuality" Margin="3" RenderTransformOrigin="0.5,0.5" 
+                                Stretch="Fill" SnapsToDevicePixels="True" VerticalAlignment="Center" 
+                                HorizontalAlignment="Center" Width="8" Height="8" Fill="#FFFFFFFF">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform />
+                                            <SkewTransform />
+                                            <RotateTransform Angle="45" />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                    <Setter Property="UIElement.Opacity" Value="1" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="{x:Type uc:DHTextBox}" TargetType="{x:Type uc:DHTextBox}">
+                <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+                <Setter Property="Control.Background" Value="White" />
+                <!--<Setter Property="Control.Foreground" Value="{StaticResource {x:Static local:ControlResourceKeys.ControlDefaultForegroundKey}}" />
+                <Setter Property="Control.Background" Value="{StaticResource {x:Static local:ControlResourceKeys.ControlNormalBackgroundKey}}" />
+                <Setter Property="Control.BorderBrush" Value="{StaticResource {x:Static local:ControlResourceKeys.ControlNormalBorderBrushKey}}" />-->
+                <Setter Property="Control.BorderBrush" Value="#ACAEB3" />
+                <Setter Property="Control.BorderThickness" Value="1" />
+                <Setter Property="Control.Padding" Value="2,2,1,1" />
+                <Setter Property="UIElement.AllowDrop" Value="True" />
+                <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+                <!--<Setter Property="FrameworkElement.Height" Value="22" />-->
+                <Setter Property="TextBoxBase.UndoLimit" Value="0" />
+                <Setter Property="TextBoxBase.IsUndoEnabled" Value="False" />
+                <Setter Property="TextBoxBase.SelectionBrush" Value="#333333" />
+                <Setter Property="TextBoxBase.SelectionOpacity" Value="0.3" />
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <DockPanel>
+                                <Border CornerRadius="3" DockPanel.Dock="Bottom" BorderThickness="1" BorderBrush="#FFE20000" Margin="0,2,0,0" HorizontalAlignment="Left">
+                                    <TextBlock Margin="3" TextBlock.Foreground="#FFFFFFFF" Text="{Binding ElementName=element, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
+                                            <GradientStop Color="#FFFF3B3B" Offset="0" />
+                                            <GradientStop Color="Red" Offset="1" />
+                                            <GradientStop Color="#FFFF1515" Offset="0.5" />
+                                            <GradientStop Color="#FFFF1414" Offset="0.5" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <AdornedElementPlaceholder Name="element" />
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type uc:DHTextBox}">
+                            <Grid Background="#00FFFFFF">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Name="col" Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <!--#ACAEB3-->
+                                <Rectangle Name="outer" ClipToBounds="True" Fill="{TemplateBinding Control.Background}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                                <Rectangle Name="outer2" ClipToBounds="True" StrokeThickness="{TemplateBinding Control.BorderThickness}" Stroke="{TemplateBinding Control.BorderBrush}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                                <Border Name="inner" CornerRadius="0" BorderThickness="{TemplateBinding Control.BorderThickness}" BorderBrush="{TemplateBinding Control.BorderBrush}" Grid.ColumnSpan="2" IsHitTestVisible="False" Opacity="1" />
+                                <Rectangle Name="DisableBorder" Fill="#cccccc" IsEnabled="False" Visibility="Collapsed" Grid.ColumnSpan="2" />
+                                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Padding="{TemplateBinding Control.Padding}" ClipToBounds="True" />
+                                <ContentPresenter Name="water" ContentSource="Watermark" Margin="{TemplateBinding Control.Padding}" Opacity="{TemplateBinding uc:DHTextBox.WatermarkOpacity}" IsHitTestVisible="False" 
+                                            Visibility="{TemplateBinding uc:DHTextBox.ComputedWatermarkVisibility}" />
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,3,0" >
+                                    <Button Name="PART_ClearButton" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                            Visibility="{TemplateBinding uc:DHTextBox.ClearButtonVisibility}" 
+                                            Style="{StaticResource closeButtonStyle}" Focusable="False" Grid.Column="1" />
+                                    <Button Name="PART_CopyButton" Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                            Visibility="{TemplateBinding uc:DHTextBox.CopyButtonVisibility}" 
+                                            Style="{StaticResource copyButtonStyle}" Focusable="False" Grid.Column="1" />
+
+                                </StackPanel>
+
+                                <Rectangle Name="over" StrokeThickness="{TemplateBinding Control.BorderThickness}" Stroke="#31859C" ClipToBounds="True" Visibility="Collapsed" Grid.ColumnSpan="2" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="UIElement.IsFocused" Value="True">
+                                    <Setter TargetName="over" Property="UIElement.Visibility" Value="Visible" />
+                                    <Setter TargetName="over" Property="UIElement.Visibility" Value="Visible" />
+                                    <Setter Property="Control.Padding" Value="2,2,20,1" />
+                                </Trigger>
+                                <Trigger Property="UIElement.IsEnabled" Value="False">
+                                    <Setter TargetName="DisableBorder" Property="UIElement.Visibility" Value="Visible" />
+                                </Trigger>
+                                <Trigger Property="uc:DHTextBox.ClearButtonVisibility" Value="Visible">
+                                    <Setter Property="Control.Padding" Value="2,2,16,1" />
+                                </Trigger>
+                                <Trigger Property="uc:DHTextBox.CopyButtonVisibility" Value="Visible">
+                                    <Setter Property="Control.Padding" Value="2,2,16,1" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="uc:DHTextBox.ClearButtonVisibility" Value="Visible" />
+                                        <Condition Property="uc:DHTextBox.CopyButtonVisibility" Value="Visible" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Control.Padding" Value="2,2,34,1" />
+                                </MultiTrigger>
+
+                                <!--<Trigger Property="Control.BorderThickness" Value="0">
+                        <Setter Property="FrameworkElement.Margin" Value="1" />
+                        <Setter TargetName="outer" Property="Rectangle.RadiusX" Value="0" />
+                        <Setter TargetName="outer" Property="Rectangle.RadiusY" Value="0" />
+                        <Setter TargetName="outer2" Property="UIElement.Visibility" Value="Collapsed" />
+                        <Setter TargetName="inner" Property="UIElement.Visibility" Value="Collapsed" />
+                        <Setter TargetName="over" Property="UIElement.Opacity" Value="0" />
+                        <Setter TargetName="over" Property="UIElement.Visibility" Value="Collapsed" />
+                        <Setter TargetName="inner" Property="UIElement.Visibility" Value="Collapsed" />
+                        <Setter TargetName="outer" Property="Shape.Stroke" Value="#00FFFFFF" />
+                    </Trigger>-->
+                                <Trigger Property="TextBoxBase.IsReadOnly" Value="True">
+                                    <Setter Property="Control.Background" Value="#eeeeee" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style x:Key="TabItemDepth2" TargetType="{x:Type TabItem}">
+                <Setter Property="AllowDrop" Value="True"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Border Name="border" BorderBrush="#B7B7B7" BorderThickness="0" Margin="1,0,1,0" >
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="6,0" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#696969" />
+                                    <Setter TargetName="border" Property="BorderThickness" Value="4,0,0,0" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#31859C" />
+                                    <Setter TargetName="border" Property="Height" Value="21"/>
+                                    <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="White"/>
+                                    <Setter TargetName="ContentSite" Property="TextElement.FontWeight" Value="Bold" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <!--<Setter TargetName="border" Property="CornerRadius" Value="3,3,0,0" />-->
+                                    <Setter TargetName="border" Property="Background" Value="#E4E4E4" />
+                                    <Setter TargetName="border" Property="BorderThickness" Value="1,1,1,0" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#d1d1d1" />
+                                    <Setter TargetName="border" Property="Height" Value="20"/>
+                                    <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="#444444" />
+                                    <Setter TargetName="ContentSite" Property="TextElement.FontWeight" Value="Normal" />
+                                    <!--<Setter TargetName="border" Property="Margin" Value="0,0,1,-1"/>-->
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="Border.IsMouseOver" Value="True"/>
+                                        <Condition Property="IsSelected" Value="False"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="border" Property="Background" Value="#FFFFFF" />
+
+                                    <!--<Setter TargetName="border" Property="BorderBrush" Value="#E4E4E4" />-->
+                                    <!--<Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="White"/>-->
+                                    <Setter TargetName="ContentSite" Property="TextElement.FontWeight" Value="Normal" />
+                                </MultiTrigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+
+
+
+    </Application.Resources>
+
+</Application>

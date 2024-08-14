@@ -1,0 +1,20 @@
+﻿FUNCTION XSUP.FT_GET_VIEWTEXT(P_VIEW_NAME VARCHAR2)
+RETURN CLOB
+AS
+  L_LONG LONG;
+BEGIN
+    BEGIN
+         SELECT TEXT
+           INTO L_LONG
+           FROM ALL_VIEWS
+          WHERE OWNER NOT IN ('GSMADMIN_INTERNAL', 'SYS', 'SYSTEM', 'WMSYS')
+            AND VIEW_NAME = P_VIEW_NAME
+          ;
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                RETURN '';
+    END;
+
+    RETURN TO_CLOB(L_LONG);
+END;

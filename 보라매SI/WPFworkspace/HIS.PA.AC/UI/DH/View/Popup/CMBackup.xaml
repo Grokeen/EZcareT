@@ -1,0 +1,38 @@
+﻿<src:WinBase x:Class="DH.View.Popup.CMBackup"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:src="clr-namespace:DH.Lib" xmlns:uc="clr-namespace:DH.UC"
+             Title="형상관리 파일백업"
+            Height="450" Width="720" Loaded="WinBase_Loaded_1" Unloaded="WinBase_Unloaded_1">
+    <Grid>
+
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="데이터코드목록및 정의서" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontWeight="Bold" Margin="10,10,0,0" Background="Gainsboro" BorderBrush="#FFA2A2A2"/>
+            <Label Content="메뉴구조도" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontWeight="Bold" Grid.Row="1" Margin="10,10,0,0" Background="Gainsboro" BorderBrush="#FFA2A2A2"/>
+            <Label Content="사용자 메뉴얼" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontWeight="Bold" Grid.Row="2" Margin="10,10,0,0" Background="Gainsboro" BorderBrush="#FFA2A2A2"/>
+            <Label Content="테이블_배치" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontWeight="Bold" Grid.Row="3" Margin="10,10,0,0" Background="Gainsboro" BorderBrush="#FFA2A2A2"/>
+            <Label Content="프로세스정의서" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontWeight="Bold" Grid.Row="4" Margin="10,10,0,0" Background="Gainsboro" BorderBrush="#FFA2A2A2"/>
+            <Label Content="화면_보고서_인터페이스" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Grid.Row="5" Margin="10,10,0,0" Background="Gainsboro" BorderBrush="#FFA2A2A2"/>
+            <Button Content="실행" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Height="30" Click="Button_Click_1" Margin="0,0,20,0"/>
+            <Button Content="실행" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Height="30" Grid.Row="1" Margin="0,0,20,0" Click="Button_Click_2"/>
+            <Button Content="실행" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Height="30" Grid.Row="2" Margin="0,0,20,0" Click="Button_Click_3"/>
+            <Button Content="실행" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Height="30" Grid.Row="3" Margin="0,0,20,0" Click="Button_Click_4"/>
+            <Button Content="실행" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Height="30" Grid.Row="4" Margin="0,0,20,0" Click="Button_Click_5"/>
+            <Button Content="실행" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Height="30" Grid.Row="5" Margin="0,0,20,0" Click="Button_Click_6"/>
+        </Grid>
+
+
+
+
+
+    </Grid>
+</src:WinBase>

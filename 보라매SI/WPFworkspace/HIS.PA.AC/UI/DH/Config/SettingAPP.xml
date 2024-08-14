@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ArrayOfDBUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <DBUser>
+        <USER_NAME>XBIL_ASIS</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xbil;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>HBIL_ASIS</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=hbil;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XORD_ASIS</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xord;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>HORD</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xord;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+    </ArrayOfDBUser>
