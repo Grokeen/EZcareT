@@ -68,13 +68,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectWayfarerAsk\SelectWayfarerAsk_IN.cs" />
+    <Compile Include="SelectWayfarerAsk\SelectWayfarerAsk_OUT.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HSF.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SelectWayfarerAsk\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>set DeployPath=D:\HISSolutions\HIS\Deploy\Server\
