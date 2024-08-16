@@ -4,6 +4,8 @@ EXEC :in_from_dte := '2023-07-21';
 EXEC :in_to_dte := '2024-08-02' ;
 
 
+select 'Y'
+from acopcalt;
 
 
 select  /*+ pkg_bil_srimd.pc_ap_apreqvat_multi_select */
@@ -35,10 +37,14 @@ select  /*+ pkg_bil_srimd.pc_ap_apreqvat_multi_select */
               ,  b.disapp_rsn_typ                              disapp_rsn_typ        --15.불가사유구분
               ,  pkg_bil_common.FC_CccodeNameSel('22B',b.disapp_rsn_typ)
                                                                disapp_rsn_typ_nm     --16.불가사유구분명
+
+
               --,  nvl(a.med_rslt,'진료중')                      med_rslt              --17.진료결과
               ,  b.med_rslt_typ                                med_rslt              --17.진료결과
               ,  e.csubcd_nm                                   med_rslt              --18.진료결과명
               ,  to_char(a.disrm_dtm,'yyyy-mm-dd')             disrm_dtm             --19.퇴실일자
+
+
               ,  d.wd_no||'-'||d.rm_no||'-'||d.bed_no          wd_no                 --20.병동병실
               ,  b.rmk                                         remark                --21.비고(행려)
               ,  to_char(b.edit_dtm,'yyyy-mm-dd hh24:mi')      eidt_dtm              --22.수정일시
@@ -92,7 +98,7 @@ select  /*+ pkg_bil_srimd.pc_ap_apreqvat_multi_select */
                       end                                      gubn                     --34.구분
               ,  case when a.adm_dte is null then --외래일때
                           nvl((select 'Y'
-                                 from acopcalt
+                                 from acopcalt -- 응급외래처방계산
                                 where pt_no = f.pt_no
                                   and med_dte = f.med_dte
                                   and med_dept = f.med_dept
@@ -103,7 +109,7 @@ select  /*+ pkg_bil_srimd.pc_ap_apreqvat_multi_select */
                                   and rownum = 1),'N')
                       else
                           nvl((select 'Y'
-                                 from acipcatt
+                                 from acipcatt -- 입원처방계산
                                 where pt_no = g.pt_no
                                   and adm_dte = g.adm_dte
                                   and mn_patt_typ = g.mn_patt_typ
@@ -134,13 +140,17 @@ select  /*+ pkg_bil_srimd.pc_ap_apreqvat_multi_select */
             and  e.ccd_typ  = '987'
             and  e.c_cd     = nvl(b.med_rslt_typ,0)
             and  d.adm_dte(+) = a.adm_dte
+
+
             --2013.03.07신원석 추가 시작
             and  a.pt_no    = f.pt_no(+)
-            and  a.arv_dtm  = f.med_dte(+)
+            and  a.arv_dtm  = f.med_dte(+) --진료일시
             and  f.cncl_dte(+) is null
+
             and  a.pt_no    = g.pt_no(+)
-            and  a.adm_dte  = g.adm_dte(+)
+            and  a.adm_dte  = g.adm_dte(+) --입원날짜
             and  g.cncl_dte(+) is null
+
             and  g.mn_patt_typ(+) = '0'  --주유형 건만
             and  a.cust_cd = h.cust_cd(+)
             --2013.03.07신원석 추가 끝
@@ -187,6 +197,7 @@ select  /*+ pkg_bil_srimd.pc_ap_apreqvat_multi_select */
               ,  null                                          disrm_dtm             --19.퇴실일자
               ,  null                                          wd_no                 --20.병동병실
               ,  b.rmk                                         remark                --21.비고(행려)
+
               ,  to_char(b.edit_dtm,'yyyy-mm-dd hh24:mi')      eidt_dtm              --22.수정일시
               ,  b.edit_id                                     edit_id               --23.수정자ID
               ,  null                                          dsch_dtm              --24.퇴원일자
