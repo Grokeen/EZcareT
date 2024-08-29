@@ -1,0 +1,58 @@
+﻿-- 환자번호 : 01741540(김용록)
+
+-- 본인확인
+INSERT INTO PCTPCOCD
+(SELECT
+'01741540' AS PT_NO
+,APY_STR_DT
+,'2097-05-16'AS APY_END_DT
+,OW_CFMT_YN
+,OW_CFMT_MTHD_TP_CD
+,NULL
+,NULL
+,NULL
+,FSR_STF_NO
+,FSR_DTM
+,FSR_PRGM_NM
+,FSR_IP_ADDR
+,LSH_STF_NO
+,LSH_DTM
+,LSH_PRGM_NM
+,LSH_IP_ADDR
+	FROM PCTPCOCD
+WHERE PT_NO ='00620040');
+
+-- 01741540
+-- 01966485 현석책임님
+SELECT *
+	FROM PCTPCOCD
+WHERE PT_NO ='01741540';
+
+
+------------------------------------------------
+
+-- 개인정보
+SELECT *
+	FROM PCTPDSPD
+WHERE PT_NO ='01741540'  ;
+------------------------------------------------
+
+SELECT *
+	FROM ACPPEOPD
+WHERE PT_NO ='01966485'
+  AND RPY_PACT_ID ='0008140217'
+ORDER BY 1,2,3,5,4;
+------------------------------------------------
+/*
+SELECT SUM(UNN_BRDN_AMT),SUM(PBDN_AMT)
+	FROM ACPPEOCE
+WHERE PT_NO ='01966485'
+  AND RPY_PACT_ID ='0008140217' ;
+  */
+------------------------------------------------
+
+SELECT *
+	FROM ACPPECPE
+WHERE PT_NO ='01966485'
+ AND SETL_APBT_ID = '0019039232'
+ORDER BY 1,2,3,5,4;
