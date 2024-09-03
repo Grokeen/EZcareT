@@ -1,0 +1,1143 @@
+"REM WORKSPACETAB0","마이그 TOBE 테이블 쿼리 조회",,34
+EXEC :IN_OWNER      := 'HBIL';
+EXEC :IN_TABLE_NAME := 'ACPPIHLD';
+
+SELECT C.TABLE_NAME
+     , C.COMMENTS
+     , CASE
+           WHEN ROWNUM = 1 THEN 'NULL AS ' || RPAD(A.COLUMN_NAME, 30, ' ') || ' -- ' || LPAD( TO_CHAR(A.COLUMN_ID), 3, '0') || '. ' || B.COMMENTS
+           ELSE '     , NULL AS ' || RPAD(A.COLUMN_NAME, 30, ' ') || ' -- ' || LPAD( TO_CHAR(A.COLUMN_ID), 3, '0') || '. ' || B.COMMENTS
+       END   AS ABC
+     , A.COLUMN_ID
+     , A.COLUMN_NAME
+     , B.COMMENTS
+     , A.DATA_TYPE
+     , (CASE WHEN A.DATA_TYPE LIKE '%CHAR%' THEN A.DATA_LENGTH END) AS LENGTH
+     , (SELECT 'Y'
+          FROM ALL_CONSTRAINTS AA
+             , ALL_CONS_COLUMNS BB
+         WHERE AA.TABLE_NAME = A.TABLE_NAME
+           AND AA.CONSTRAINT_TYPE ='P'
+           AND AA.OWNER = BB.OWNER
+           AND AA.CONSTRAINT_NAME = BB.CONSTRAINT_NAME
+           AND BB.COLUMN_NAME = A.COLUMN_NAME)  PK
+     , DECODE(NULLABLE, 'N', 'Y') NOTNULL
+  FROM ALL_TAB_COLUMNS A
+     , ALL_COL_COMMENTS B
+     , ALL_TAB_COMMENTS C
+ WHERE A.TABLE_NAME = :IN_TABLE_NAME
+   AND A.OWNER      = :IN_OWNER
+   AND A.OWNER      = B.OWNER
+   AND A.TABLE_NAME = B.TABLE_NAME
+   AND A.COLUMN_NAME= B.COLUMN_NAME
+   AND A.OWNER = C.OWNER
+   AND A.TABLE_NAME = C.TABLE_NAME
+ ORDER BY COLUMN_ID
+"REM WORKSPACETAB1","마이그 ASIS 테이블조회",,24
+EXEC :IN_OWNER      := UPPER('HBIL');
+EXEC :IN_TABLE_NAME := UPPER('APIPLIST');
+
+SELECT C.COMMENTS COMMENTS_TAB
+     , A.COLUMN_ID
+     , A.OWNER
+     , A.TABLE_NAME
+     , A.COLUMN_NAME
+     , B.COMMENTS COMMENTS_COL
+     , A.DATA_TYPE
+     , A.DATA_LENGTH
+     , DECODE(A.NULLABLE, 'N', 'Y', NULL) NOTNULL
+  FROM ALL_TAB_COLUMNS@DL_ORAMIG A
+     , ALL_COL_COMMENTS@DL_ORAMIG B
+     , ALL_TAB_COMMENTS@DL_ORAMIG C
+ WHERE A.TABLE_NAME = :IN_TABLE_NAME
+   AND A.OWNER      = :IN_OWNER
+   AND A.OWNER      = B.OWNER
+   AND A.TABLE_NAME = B.TABLE_NAME
+   AND A.COLUMN_NAME= B.COLUMN_NAME
+   AND A.TABLE_NAME = C.TABLE_NAME
+   AND A.OWNER = C.OWNER
+ ORDER BY COLUMN_ID
+
+"REM WORKSPACETAB2","ACDPCSCD(외래진료일정정보) 마이그레이션",,76
+
+SELECT APOPSCHT.MEDDR_ID AS MEDR_SID                       -- 001. 진료의직원식별ID
+     , APOPSCHT.MED_DEPT AS MED_DEPT_CD                    -- 002. 진료부서코드
+     , '1' AS MEDS_BSC_CD                    -- 003. 진료일정기본코드
+     , APOPSCHT.MED_DTM AS MED_DTM                        -- 004. 진료일시
+     , APOPSCHT.MEDDR_ID AS MEDR_STF_NO                    -- 005. 진료의직원번호
+     , APOPSCHT.CLINIC_CD AS CLNC_TP_CD                     -- 006. 클리닉구분코드
+     , NVL(APOPSCHT.TOTFSTSCH_CNT, NVL(APOPSCHT.TOTSCH_CNT, 0)) AS FSE_WHL_PT_CNT                 -- 007. 최초예정전체환자수
+     , NVL(APOPSCHT.SINFSTSCH_CNT, NVL(APOPSCHT.SINSCH_CNT, 0)) AS FSE_NWPT_PT_CNT                -- 008. 최초예정신환환자수
+     , NVL(APOPSCHT.CHFSTSCH_CNT, NVL(APOPSCHT.CHSCH_CNT, 0)) AS FSE_FRVS_PT_CNT                -- 009. 최초예정초진환자수
+     , NVL(APOPSCHT.JEFSTSCH_CNT, NVL(APOPSCHT.JESCH_CNT, 0)) AS FSE_RMDE_PT_CNT                -- 010. 최초예정재진환자수
+     , 0 AS FSE_NRGR_PT_CNT                -- 011. 최초예정비정규환자수
+     , NVL(APOPSCHT.TOTSCH_CNT, 0) AS EXPT_WHL_PT_CNT                -- 012. 예정전체환자수
+     , NVL(APOPSCHT.SINSCH_CNT, 0) AS EXPT_NWPT_PT_CNT               -- 013. 예정신환환자수
+     , 0 AS EXPT_NWPT_CNCL_PT_CNT          -- 014. 예정신환취소환자수
+     , NVL(APOPSCHT.CHSCH_CNT, 0) AS EXPT_FRVS_PT_CNT               -- 015. 예정초진환자수
+     , NVL(APOPSCHT.JESCH_CNT, 0) AS EXPT_RMDE_PT_CNT               -- 016. 예정재진환자수
+     , 0 AS EXPT_NRGR_PT_CNT               -- 017. 예정비정규환자수
+     , APOPSCHT.WAIT_SEQ AS RSV_WAIT_SEQ                   -- 018. 예약대기순번
+     , APOPSCHT.TOTRSV_CNT AS RSV_WHL_PT_CNT                 -- 019. 예약전체환자수
+     , APOPSCHT.SINRSV_CNT AS RSV_NWPT_PT_CNT                -- 020. 예약신환환자수
+     , 0 AS RSV_NWPT_CNCL_PT_CNT           -- 021. 예약신환취소환자수
+     , APOPSCHT.CHRSV_CNT AS RSV_FRVS_PT_CNT                -- 022. 예약초진환자수
+     , APOPSCHT.JERSV_CNT AS RSV_RMDE_PT_CNT                -- 023. 예약재진환자수
+     , 0 AS RSV_REVS_PT_CNT                -- 024. 예약재초진환자수
+     , 0 AS RSV_NRGR_PT_CNT                -- 025. 예약비정규환자수
+     , APOPSCHT.MEDCHG_RSN               -- 2024.07.15 밑줄에는 왜 이렇게 했는지 모르겠지만 이게 맞는 것같다.. 아마 휴진테이블에서 뭐.. 어떻게 가져오려고 했던 것 같음
+--     , APDRSCHT.OFF_RSN AS NSP_RSN_TP_CD                  -- 026. 휴진사유구분코드
+     , NVL(APOPSCHT.UNIT_TYP,'R') AS MED_RSV_TP_CD               -- 027. 진료예약구분코드
+     , CASE WHEN APOPSCHT.OFF_TYP = '0' THEN '11100'  								  --휴진     --(신초재)진료안함
+            WHEN APOPSCHT.OFF_TYP = '1' THEN '01000'   									--초진휴진   --(초)진료안함
+            WHEN APOPSCHT.OFF_TYP = '2' THEN '00100'   									--재진휴진   --(재)진료안함
+            WHEN APOPSCHT.OFF_TYP = '3' THEN '10000' 										--신환휴진   --(신)진료안함
+            WHEN APOPSCHT.OFF_TYP = '4' THEN '01100'  									--초진재진휴진 --(초재)진료안함
+            WHEN APOPSCHT.OFF_TYP = '5' THEN '11000'   									--초진신환휴진 --(신초)진료안함
+            WHEN APOPSCHT.OFF_TYP = '6' THEN '10100'   									--재진신환휴진 --(신재)진료안함
+	          ELSE '00000'
+            END AS ECH_NSP_TP_CD                  -- 028. 개별휴진구분코드
+     , APOPSCHT.RMK AS SCHD_BDY_MEMO                  -- 029. 일정일별메모
+     , NULL AS IRSV_APY_YN                    -- 030. 인터넷예약적용여부
+     , NULL AS MEMO_MDF_DTM                   -- 031. 메모수정일시
+     , NULL AS MEMO_MDF_STF_NO                -- 032. 메모수정직원번호
+     , NULL AS CHC_SFAD_YN                    -- 033. 선택대진여부
+     , NULL AS FSR_STF_NO                     -- 034. 최초등록직원번호
+     , NULL AS FSR_DTM                        -- 035. 최초등록일시
+     , NULL AS FSR_PRGM_NM                    -- 036. 최초등록프로그램명
+     , NULL AS FSR_IP_ADDR                    -- 037. 최초등록IP주소
+     , NVL(APOPSCHT.EDIT_ID,'MIG00') AS LSH_STF_NO                     -- 038. 최종변경직원번호
+     , NVL(APOPSCHT.EDIT_DTM, SYSDATE) AS LSH_DTM                        -- 039. 최종변경일시
+     , NULL AS LSH_PRGM_NM                    -- 040. 최종변경프로그램명
+     , NULL AS LSH_IP_ADDR                    -- 041. 최종변경IP주소
+     , 0 AS FSE_DS_FRVS_PT_CNT             -- 042. 최초예정퇴원초진환자수
+     , 0 AS FSE_DS_RMDE_PT_CNT             -- 043. 최초예정퇴원재진환자수
+     , 0 AS EXPT_DS_FRVS_PT_CNT            -- 044. 예정퇴원초진환자수
+     , 0 AS EXPT_DS_RMDE_PT_CNT            -- 045. 예정퇴원재진환자수
+     , 0 AS RSV_DS_FRVS_PT_CNT             -- 046. 예약퇴원초진환자수
+     , 0 AS RSV_DS_RMDE_PT_CNT             -- 047. 예약퇴원재진환자수
+     , APDRSCHT.EDIT_ID AS NSP_RSN_REQ_STF_NO             -- 048. 휴진사유요청직원번호
+     , APDRSCHT.OFF_RMK AS NSP_RSN_CNTE      -- 049. 휴진사유내용
+  FROM ASIS_HBIL.APOPSCHT@DL_PROD_MIG APOPSCHT
+     , (SELECT *
+          FROM (SELECT ROW_NUMBER() OVER(PARTITION BY APDRSCHT.MED_DEPT, APDRSCHT.MEDDR_ID, APDRSCHT.PATSITE, APDRSCHT.FROM_DTE ORDER BY APDRSCHT.TO_DTE DESC, APDRSCHT.EDIT_DTM DESC) RN
+                     , APDRSCHT.*
+                  FROM ASIS_HBIL.APDRSCHT@DL_PROD_MIG
+               )
+         WHERE RN = 1
+       ) APDRSCHT
+ WHERE 1=1
+   AND APOPSCHT.TOTSCH_CNT IS NULL
+--   AND
+
+
+
+
+
+
+"REM WORKSPACETAB3","HBIL.ACPPRTFD 테이블 생성 스크립트.sql",,62
+-----------------------------------------------------------
+-- 2024.01.20 BRMH 성현석
+-- HBIL.ACPPRTFD(자동차보험동의서) 테이블 생성요청
+-----------------------------------------------------------
+-- TABLE DESCRIPTION 
+CREATE TABLE HBIL.ACPPRTFD(                 --자동자보험동의서
+	 HSP_TP_CD      VARCHAR2(3)    NOT NULL   --병원구분코드
+	,PT_NO          VARCHAR2(8)    NOT NULL   --환자번호
+	,WK_DT          DATE           NOT NULL   --작성일자
+	,PT_REL_TP_CD   VARCHAR2(1)    NOT NULL   --환자관계구분코드
+	,REQR_NM        VARCHAR2(500)  NOT NULL   --요청자명
+	,REQR_SGNT_CENT VARCHAR2(4000)            --요청자서명내용
+	,BOBD_PT_NO     VARCHAR2(8)               --합본이전환자번호
+	,BIND_DTM       DATE                      --합본일시
+	,BIND_STF_NO    VARCHAR2(5)               --합본직원번호
+	,CCRC_YN        VARCHAR2(1)               --동의여부
+	,FSR_STF_NO     VARCHAR2(5)    NOT NULL   --최초등록직원번호
+	,FSR_DTM        DATE           NOT NULL   --최초등록일시
+	,FSR_PRGM_NM    VARCHAR2(500)  NOT NULL   --최초등록프로그램명
+	,FSR_IP_ADDR    VARCHAR2(50)   NOT NULL   --최초등록IP주소
+	,LSH_STF_NO     VARCHAR2(5)    NOT NULL   --최종변경직원번호
+	,LSH_DTM        DATE           NOT NULL   --최종변경일시
+	,LSH_PRGM_NM    VARCHAR2(500)  NOT NULL   --최종변경프로그램명
+	,LSH_IP_ADDR    VARCHAR2(50)   NOT NULL   --최종변경IP주소
+);
+-- COMMENT
+COMMENT ON TABLE HBIL.ACPPRTFD IS '자동자보험동의서';
+COMMENT ON COLUMN HBIL.ACPPRTFD.HSP_TP_CD IS '병원구분코드';
+COMMENT ON COLUMN HBIL.ACPPRTFD.PT_NO IS '환자번호';
+COMMENT ON COLUMN HBIL.ACPPRTFD.WK_DT IS '작성일자';
+COMMENT ON COLUMN HBIL.ACPPRTFD.PT_REL_TP_CD IS '환자관계구분코드';
+COMMENT ON COLUMN HBIL.ACPPRTFD.REQR_NM IS '요청자명';
+COMMENT ON COLUMN HBIL.ACPPRTFD.REQR_SGNT_CENT IS '요청자서명내용';
+COMMENT ON COLUMN HBIL.ACPPRTFD.BOBD_PT_NO IS '합본이전환자번호';
+COMMENT ON COLUMN HBIL.ACPPRTFD.BIND_DTM IS '합본일시';
+COMMENT ON COLUMN HBIL.ACPPRTFD.BIND_STF_NO IS '합본직원번호';
+COMMENT ON COLUMN HBIL.ACPPRTFD.CCRC_YN IS '동의여부';
+COMMENT ON COLUMN HBIL.ACPPRTFD.FSR_STF_NO IS '최초등록직원번호';
+COMMENT ON COLUMN HBIL.ACPPRTFD.FSR_DTM IS '최초등록일시';
+COMMENT ON COLUMN HBIL.ACPPRTFD.FSR_PRGM_NM IS '최초등록프로그램명';
+COMMENT ON COLUMN HBIL.ACPPRTFD.FSR_IP_ADDR IS '최초등록IP주소';
+COMMENT ON COLUMN HBIL.ACPPRTFD.LSH_STF_NO IS '최종변경직원번호';
+COMMENT ON COLUMN HBIL.ACPPRTFD.LSH_DTM IS '최종변경일시';
+COMMENT ON COLUMN HBIL.ACPPRTFD.LSH_PRGM_NM IS '최종변경프로그램명';
+COMMENT ON COLUMN HBIL.ACPPRTFD.LSH_IP_ADDR IS '최종변경IP주소'; 
+
+-- INDEX
+CREATE UNIQUE INDEX HBIL.ACPPRTFD_IDX 
+       ON HBIL.ACPPRTFD(HBIL.ACPPRTFD.HSP_TP_CD
+                      , HBIL.ACPPRTFD.PT_NO
+                      , HBIL.ACPPRTFD.WK_DT);
+-- PK  
+ALTER TABLE HBIL.ACPPRTFD ADD CONSTRAINT HBIL.ACPPRTFD_PK
+ PRIMARY KEY  (HBIL.ACPPRTFD.HSP_TP_CD
+	           , HBIL.ACPPRTFD.PT_NO
+	           , HBIL.ACPPRTFD.WK_DT) USING INDEX;
+	           
+-- SYNONYM
+CREATE PUBLIC SYNONYM ACPPRTFD FOR HBIL.ACPPRTFD;
+
+--AUTHORITY
+GRANT SELECT,INSERT,UPDATE,DELETE ON HBIL.ACPPRTFD TO XBIL;
+"REM WORKSPACETAB4","ACPPROSD ONESTOP진료의뢰서정보_테이블_생성_스크립트",,110
+CREATE TABLE HBIL.ACPPROSD(                   --ONESTOP진료의뢰서정보
+   HSP_TP_CD       VARCHAR2(2)    NOT NULL    --병원구분코드
+  ,PT_NO           VARCHAR2(8)    NOT NULL    --환자번호
+  ,REG_DT          DATE           NOT NULL    --등록일자
+  ,REG_SEQ         NUMBER         NOT NULL    --등록순번
+  ,RFFM_TP_CD      VARCHAR2(2)                --의뢰서구분코드
+  ,PT_RRN          VARCHAR2(13)               --환자주민등록번호
+  ,POST_NO         VARCHAR2(6)                --우편번호
+  ,POST_NO_SEQ     NUMBER                     --우편번호순번
+  ,BSC_ADDR        VARCHAR2(120)              --기본주소
+  ,DTL_ADDR        VARCHAR2(120)              --상세주소
+  ,TEL_NO          VARCHAR2(20)                --보호자명
+  ,MTEL_NO         VARCHAR2(20)                --환자관계구분코드
+  ,PACT_TP_CD      VARCHAR2(1)                 --원무접수구분코드
+  ,EMRG_KIT_USE_YN VARCHAR2(1)                 --응급키트사용여부
+  ,MED_DEPT_CD     VARCHAR2(7)                 --진료과코드
+  ,MEDR_STF_NO     VARCHAR2(5)                 --진료의직원번호
+  ,PME_CLS_CD      VARCHAR2(2)                 --환자급종유형코드
+  ,PSE_CLS_CD      VARCHAR2(3)                 --환자보조유형코드
+  ,CMED_DR_YN      VARCHAR2(1)                --선택진료의사여부
+  ,MED_DTM         DATE                       --진료일시
+  ,FRVS_RMDE_TP_CD VARCHAR2(1)                --초진재진구분코드
+  ,PRNT_RMK_CNTE   VARCHAR2(6)                --출력비고내용
+  ,RMK_CNTE        VARCHAR2(4000)             --비고내용
+  ,FRVS_CMED_YN    VARCHAR2(1)                --초진선택여부
+  ,RMDE_CMED_YN    VARCHAR2(1)                --재진선택여부
+  ,EXM_CMED_YN     VARCHAR2(1)                --검사선택여부
+  ,DGNS_CMED_YN    VARCHAR2(1)                --진단선택여부
+  ,CNCL_DT         DATE                       --취소일자
+  ,CNCL_STF_NO     VARCHAR2(5)                --취소직원번호
+  ,BLDG_MGMT_NO    VARCHAR2(50)               --건물관리번호
+  ,BOBD_PT_NO      VARCHAR2(8)                --합본이전환자번호
+  ,BIND_DTM        DATE                       --합본일시
+  ,BIND_STF_NO     VARCHAR2(5)                --합본직원번호
+  ,FSR_STF_NO      VARCHAR2(5)    NOT NULL    --최초등록직원번호
+  ,FSR_DTM         DATE           NOT NULL    --최초등록일시
+  ,FSR_PRGM_NM     VARCHAR2(500)  NOT NULL    --최초등록프로그램명
+  ,FSR_IP_ADDR     VARCHAR2(50)   NOT NULL    --최초등록IP주소
+  ,LSH_STF_NO      VARCHAR2(5)    NOT NULL    --최종변경직원번호
+  ,LSH_DTM         DATE           NOT NULL    --최종변경일시
+  ,LSH_PRGM_NM     VARCHAR2(500)  NOT NULL    --최종변경프로그램명
+  ,LSH_IP_ADDR     VARCHAR2(50)   NOT NULL    --최종변경IP주소
+) TABLESPACE TSBIL_D01;    
+
+
+-- COMMENT
+COMMENT ON TABLE HBIL.ACPPROSD IS 'ONESTOP진료의뢰서정보';
+
+COMMENT ON COLUMN HBIL.ACPPROSD.HSP_TP_CD IS '병원구분코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.PT_NO IS '환자번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.REG_DT IS '등록일자';
+COMMENT ON COLUMN HBIL.ACPPROSD.REG_SEQ IS '등록순번';
+COMMENT ON COLUMN HBIL.ACPPROSD.RFFM_TP_CD IS '의뢰서구분코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.PT_RRN IS '환자주민등록번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.POST_NO IS '우편번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.POST_NO_SEQ IS '우편번호순번';
+COMMENT ON COLUMN HBIL.ACPPROSD.BSC_ADDR IS '기본주소';
+COMMENT ON COLUMN HBIL.ACPPROSD.DTL_ADDR IS '상세주소';
+COMMENT ON COLUMN HBIL.ACPPROSD.TEL_NO IS '보호자명';
+COMMENT ON COLUMN HBIL.ACPPROSD.MTEL_NO IS '환자관계구분코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.PACT_TP_CD IS '원무접수구분코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.EMRG_KIT_USE_YN IS '응급키트사용여부';
+COMMENT ON COLUMN HBIL.ACPPROSD.MED_DEPT_CD IS '진료과코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.MEDR_STF_NO IS '진료의직원번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.PME_CLS_CD IS '환자급종유형코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.PSE_CLS_CD IS '환자보조유형코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.CMED_DR_YN IS '선택진료의사여부';
+COMMENT ON COLUMN HBIL.ACPPROSD.MED_DTM IS '진료일시';
+COMMENT ON COLUMN HBIL.ACPPROSD.FRVS_RMDE_TP_CD IS '초진재진구분코드';
+COMMENT ON COLUMN HBIL.ACPPROSD.PRNT_RMK_CNTE IS '출력비고내용';
+COMMENT ON COLUMN HBIL.ACPPROSD.RMK_CNTE IS '비고내용';
+COMMENT ON COLUMN HBIL.ACPPROSD.FRVS_CMED_YN IS '초진선택여부';
+COMMENT ON COLUMN HBIL.ACPPROSD.RMDE_CMED_YN IS '재진선택여부';
+COMMENT ON COLUMN HBIL.ACPPROSD.EXM_CMED_YN IS '검사선택여부';
+COMMENT ON COLUMN HBIL.ACPPROSD.DGNS_CMED_YN IS '진단선택여부';
+COMMENT ON COLUMN HBIL.ACPPROSD.CNCL_DT IS '취소일자';
+COMMENT ON COLUMN HBIL.ACPPROSD.CNCL_STF_NO IS '취소직원번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.BLDG_MGMT_NO IS '건물관리번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.BOBD_PT_NO IS '합본이전환자번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.BIND_DTM IS '합본일시';
+COMMENT ON COLUMN HBIL.ACPPROSD.BIND_STF_NO IS '합본직원번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.FSR_STF_NO IS '최초등록직원번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.FSR_DTM IS '최초등록일시';
+COMMENT ON COLUMN HBIL.ACPPROSD.FSR_PRGM_NM IS '최초등록프로그램명';
+COMMENT ON COLUMN HBIL.ACPPROSD.FSR_IP_ADDR IS '최초등록IP주소';
+COMMENT ON COLUMN HBIL.ACPPROSD.LSH_STF_NO IS '최종변경직원번호';
+COMMENT ON COLUMN HBIL.ACPPROSD.LSH_DTM IS '최종변경일시';
+COMMENT ON COLUMN HBIL.ACPPROSD.LSH_PRGM_NM IS '최종변경프로그램명';
+COMMENT ON COLUMN HBIL.ACPPROSD.LSH_IP_ADDR IS '최종변경IP주소';    
+
+
+CREATE UNIQUE INDEX HBIL.ACPPROSD_PK ON HBIL.ACPPROSD
+(HSP_TP_CD, PT_NO, REG_DT, REG_SEQ) TABLESPACE TSBIL_I01;
+
+ALTER TABLE HBIL.ACPPROSD ADD (
+  CONSTRAINT ACPPROSD_PK
+  PRIMARY KEY
+  (HSP_TP_CD, PT_NO, REG_DT, REG_SEQ)
+  USING INDEX HBIL.ACPPROSD_PK
+  ENABLE VALIDATE);
+
+
+
+-- SYNONYM
+CREATE PUBLIC SYNONYM ACPPROSD FOR HBIL.ACPPROSD;  
+
+--AUTHORITY                                        
+GRANT SELECT,INSERT,UPDATE,DELETE ON HBIL.ACPPROSD TO XBIL;
+   
+
+"REM WORKSPACETAB5","ACDPCDDD(진료의당일예약주의사항정보) 테이블 생성 스크립트.sql",,56
+CREATE TABLE HBIL.ACDPCDDD(                   --진료의당일예약주의사항정보 
+   DR_SID                     VARCHAR2(7)    NOT NULL    --의사직원식별ID
+  ,MED_DEPT_CD                VARCHAR2(5)    NOT NULL    --진료부서코드
+  ,MED_DT                     DATE           NOT NULL    --진료일자                     
+  ,DR_STF_NO                  VARCHAR2(5)    NOT NULL    --의사직원번호 
+  ,TDY_RSV_ATNT_CNTE          VARCHAR2(4000)             --당일예약유의사항                                           
+  ,TDY_NWPT_RSV_IMPB_RSN_CD   VARCHAR2(2)                --당일신환예약불가사유코드
+  ,TDY_NWPT_RSV_ATNT_CNTE     VARCHAR2(4000)             --당일신환예약유의사항                                                                                                     
+  ,FSR_STF_NO                 VARCHAR2(5)    NOT NULL    --최초등록직원번호
+  ,FSR_DTM                    DATE           NOT NULL    --최초등록일시
+  ,FSR_PRGM_NM                VARCHAR2(500)  NOT NULL    --최초등록프로그램명
+  ,FSR_IP_ADDR                VARCHAR2(50)   NOT NULL    --최초등록IP주소
+  ,LSH_STF_NO                 VARCHAR2(5)    NOT NULL    --최종변경직원번호
+  ,LSH_DTM                    DATE           NOT NULL    --최종변경일시
+  ,LSH_PRGM_NM                VARCHAR2(500)  NOT NULL    --최종변경프로그램명
+  ,LSH_IP_ADDR                VARCHAR2(50)   NOT NULL    --최종변경IP주소
+) TABLESPACE TSBIL_D01;   
+
+
+-- COMMENT
+COMMENT ON TABLE HBIL.ACDPCDDD IS '진료의당일예약주의사항정보';
+
+COMMENT ON COLUMN HBIL.ACDPCDDD.DR_SID IS '의사직원식별ID';
+COMMENT ON COLUMN HBIL.ACDPCDDD.MED_DEPT_CD IS '진료부서코드';
+COMMENT ON COLUMN HBIL.ACDPCDDD.MED_DT IS '진료일자';
+COMMENT ON COLUMN HBIL.ACDPCDDD.DR_STF_NO IS '의사직원번호';
+COMMENT ON COLUMN HBIL.ACDPCDDD.TDY_RSV_ATNT_CNTE IS '당일예약유의사항';
+COMMENT ON COLUMN HBIL.ACDPCDDD.TDY_NWPT_IMPB_RSN_CD IS '당일신환예약불가사유코드';
+COMMENT ON COLUMN HBIL.ACDPCDDD.TDY_NWPT_ACPT_ATNT_CNTE IS '당일신환예약유의사항';
+COMMENT ON COLUMN HBIL.ACDPCDDD.FSR_STF_NO IS '최초등록직원번호';
+COMMENT ON COLUMN HBIL.ACDPCDDD.FSR_DTM IS '최초등록일시';
+COMMENT ON COLUMN HBIL.ACDPCDDD.FSR_PRGM_NM IS '최초등록프로그램명';
+COMMENT ON COLUMN HBIL.ACDPCDDD.FSR_IP_ADDR IS '최초등록IP주소';
+COMMENT ON COLUMN HBIL.ACDPCDDD.LSH_STF_NO IS '최종변경직원번호'
+COMMENT ON COLUMN HBIL.ACDPCDDD.LSH_DTM IS '최종변경일시';
+COMMENT ON COLUMN HBIL.ACDPCDDD.LSH_PRGM_NM IS '최종변경프로그램명';
+COMMENT ON COLUMN HBIL.ACDPCDDD.LSH_IP_ADDR IS '최종변경IP주소';    
+
+
+CREATE UNIQUE INDEX HBIL.ACDPCDDD_PK ON HBIL.ACDPCDDD
+(DR_SID, MED_DEPT_CD, MED_DT ) TABLESPACE TSBIL_I01;
+
+ALTER TABLE HBIL.ACDPCDDD ADD (
+  CONSTRAINT ACDPCDDD_PK
+  PRIMARY KEY
+  (DR_SID, MED_DEPT_CD, MED_DT)
+  USING INDEX HBIL.ACDPCDDD_PK
+  ENABLE VALIDATE);
+
+
+
+-- SYNONYM
+CREATE PUBLIC SYNONYM ACDPCDDD FOR HBIL.ACDPCDDD;  
+
+--AUTHORITY                                        
+GRANT SELECT,INSERT,UPDATE,DELETE ON HBIL.ACDPCDDD TO XBIL;
+"REM WORKSPACETAB6","PK 조회",,16
+EXEC :IN_OWNER      := 'HBIL';
+EXEC :IN_TABLE_NAME := 'APDRSCHT';
+
+SELECT A.TABLE_NAME
+     , A.CONSTRAINT_NAME
+     , B.COLUMN_NAME
+     , B.POSITION
+  FROM ALL_CONSTRAINTS  A
+     , ALL_CONS_COLUMNS B
+ WHERE A.OWNER           = :IN_OWNER
+   AND A.TABLE_NAME      = :IN_TABLE_NAME
+   AND A.CONSTRAINT_TYPE = 'P'
+
+   AND A.OWNER           = B.OWNER
+   AND A.CONSTRAINT_NAME = B.CONSTRAINT_NAME
+ ORDER BY B.POSITION
+"REM WORKSPACETAB7",MIG_INSERT_공휴일정보,,20
+--INSERT INTO CCCCCHOD -- 공휴일정보
+
+SELECT CCHOLDYT.HLDY_DTE AS HDY_DT                         -- 001. 공휴일일자
+     , CCHOLDYT.HLDY_NM AS HDY_NM                         -- 002. 공휴일명
+     , CCHOLDYT.HLDY_TYP AS HDY_YN                         -- 003. 공휴일여부
+     , CCHOLDYT.AA_YN AS PA_DEPT_APY_YN                 -- 004. 원무부서적용여부
+     , CCHOLDYT.GG_YN AS HR_DEPT_APY_YN                 -- 005. 인사부서적용여부
+     , CCHOLDYT.PRSGW_APPL_YN AS MED_DEPT_APY_YN                -- 006. 진료부서적용여부
+     , CCHOLDYT.NR_TYP AS HDY_TP_CD                      -- 007. 공휴일구분코드                             -- 공통코드 CCCCCSTE.COMN_GRP_CD = '211'
+     , CCHOLDYT.INST_ID AS FSR_STF_NO                     -- 008. 최초등록직원번호
+     , CCHOLDYT.INST_DTE AS FSR_DTM                        -- 009. 최초등록일시
+     , NULL AS FSR_PRGM_NM                    -- 010. 최초등록프로그램명
+     , NULL AS FSR_IP_ADDR                    -- 011. 최초등록IP주소
+     , CCHOLDYT.EDIT_ID AS LSH_STF_NO                     -- 012. 최종변경직원번호
+     , CCHOLDYT.EDIT_DTE AS LSH_DTM                        -- 013. 최종변경일시
+     , NULL AS LSH_PRGM_NM                    -- 014. 최종변경프로그램명
+     , NULL AS LSH_IP_ADDR                    -- 015. 최종변경IP주소
+  FROM CCHOLDYT@DL_ORAMIG CCHOLDYT
+;;
+
+"REM WORKSPACETAB8",매핑기준,,75
+-- 매핑정의서 작성시 참고 데이터
+EXEC :TOBE_TABLE_NAME :='ACDPCSCC';
+EXEC :ASIS_TABLE_NAME :='APSCHTMT';
+
+--  참조  TOBE 테이블 LAYOUT  (MIGA.MIG_ETCOL_MAP)
+SELECT *
+  FROM MIGA.MIG_TABLE_INFO
+ WHERE TABLE_NAME =:TOBE_TABLE_NAME
+ ORDER BY MODEL_NM
+        , TABLE_NAME
+        , COLUMN_ID;
+
+--  참조 ETT 테이블 매핑  (MIGA.MIG_ETC_TAB_MAP)
+--TOBE 기준 서울대
+SELECT *
+  FROM MIGA.MIG_ETC_TAB_MAP
+ WHERE TOBE_TBL_NM = :TOBE_TABLE_NAME;
+
+--TOBE 기준 스탠다드
+SELECT *
+  FROM MIGA.MIG_ETC_TAB_MAP_C
+ WHERE TOBE_TBL_NM = :TOBE_TABLE_NAME;
+
+--ASIS 기준 서울대
+SELECT *
+  FROM MIGA.MIG_ETC_TAB_MAP
+ WHERE ASIS_TBL_NM = :ASIS_TABLE_NAME;
+
+--ASIS 기준 스탠다드
+SELECT *
+  FROM MIGA.MIG_ETC_TAB_MAP_C
+ WHERE ASIS_TBL_NM = :ASIS_TABLE_NAME;
+
+
+--  참조 ETT 컬럼 매핑  (MIGA.MIG_ETL_COL_MAP)
+-- TOBE 기준 테이블 식별 서울대
+SELECT *
+  FROM MIGA.MIG_ETC_COL_MAP
+ WHERE TABLE_NAME = :TOBE_TABLE_NAME;
+
+-- TOBE 기준 테이블 식별 스탠다드
+SELECT *
+  FROM MIGA.MIG_ETC_COL_MAP_C
+ WHERE TABLE_NAME = :TOBE_TABLE_NAME;
+
+-- ASSIS 기준 테이블 식별 서울대
+SELECT *
+  FROM MIGA.MIG_ETC_COL_MAP
+ WHERE ASIS_TBL_NM = :ASIS_TABLE_NAME;
+
+-- ASSIS 기준 테이블 식별 스탠다드
+SELECT *
+  FROM MIGA.MIG_ETC_COL_MAP
+ WHERE ASIS_TBL_NM = :ASIS_TABLE_NAME;
+
+
+--참조 ETT 마이그레이션 스크립터 소스  (MIGA.MIG_ETC_SOURCE) -- TOBE 테이블 기준 서울대
+SELECT *
+  FROM MIGA.MIG_ETC_SOURCE
+ WHERE TOBE_TBL_NM = :TOBE_TABLE_NAME;
+
+--참조 ETT 마이그레이션 스크립터 소스  (MIGA.MIG_ETC_SOURCE) -- TOBE 테이블 기준 스탠다드
+SELECT *
+  FROM MIGA.MIG_ETC_SOURCE_C
+ WHERE TOBE_TBL_NM = :TOBE_TABLE_NAME;
+
+--참조 ETT 마이그레이션 스크립터 소스  (MIGA.MIG_ETC_SOURCE) -- ASIS 테이블로 찾기 서울대
+SELECT *
+  FROM MIGA.MIG_ETC_SOURCE
+ WHERE UPPER(JOB_SCRIPT) LIKE '%'||:ASIS_TABLE_NAME||'%';
+
+--참조 ETT 마이그레이션 스크립터 소스  (MIGA.MIG_ETC_SOURCE) -- ASIS 테이블로 찾기 스탠다드
+SELECT *
+  FROM MIGA.MIG_ETC_SOURCE_C
+ WHERE UPPER(JOB_SCRIPT) LIKE '%'||:ASIS_TABLE_NAME||'%';
+"REM WORKSPACETAB9","매핑정의서 공통코드관련.sql",,65
+EXEC :ASIS_OWNER      :='HCOM';
+EXEC :ASIS_TABLE_NAME :='CCCODEST';
+EXEC :ASIS_CODE       :='223';
+
+EXEC :TOBE_OWNER      :='HCOM';
+EXEC :TOBE_TABLE_NAME :='CCCCCSTE';
+EXEC :TOBE_CODE       :='223';
+
+--ASIS기준
+SELECT :ASIS_OWNER AS TOBE_OWNER
+     , :ASIS_TABLE_NAME AS TOBE_TABLE_NAME
+     , CCCODELT.CCD_TYP AS COMN_GRP_CD
+     , CCCODELT.CCD_NM AS COMN_GRP_CD_NM
+     , CCCODEST.C_CD AS COMN_CD
+     , CCCODEST.CSUBCD_NM AS COMN_CD_NM
+  FROM ASIS_HCOM.CCCODEST@DL_PROD_MIG CCCODEST /*공통코드마스타(소분류)*/
+     , ASIS_HCOM.CCCODELT@DL_PROD_MIG CCCODELT /*공통그룹코드*/
+ WHERE CCCODEST.CCD_TYP = :ASIS_CODE
+   AND CCCODEST.CCD_TYP = CCCODELT.CCD_TYP
+ ORDER BY CCCODEST.SORT_SEQ
+;
+
+--TOBE기준
+SELECT :TOBE_OWNER AS TOBE_OWNER
+     , :TOBE_TABLE_NAME AS TOBE_TABLE_NAME
+     , CCCCCSTE.COMN_GRP_CD AS COMN_GRP_CD
+     , CCCCCLTC.COMN_GRP_CD_NM AS COMN_GRP_CD_NM
+     , CCCCCSTE.COMN_CD AS COMN_CD
+     , CCCCCSTE.COMN_CD_NM AS COMN_CD_NM
+  FROM CCCCCSTE CCCCCSTE /*공통그룹코드상세*/
+     , CCCCCLTC CCCCCLTC /*공통그룹코드*/
+ WHERE CCCCCSTE.COMN_GRP_CD = :TOBE_CODE
+   AND CCCCCSTE.COMN_GRP_CD = CCCCCLTC.COMN_GRP_CD
+ ORDER BY CCCCCSTE.SCRN_MRK_SEQ
+;;
+-- 통합조회
+SELECT ASIS_TABLE.*
+     , TOBE_TABLE.*
+  FROM (SELECT :ASIS_OWNER AS ASIS_OWNER
+             , :ASIS_TABLE_NAME AS ASIS_TABLE_NAME
+             , CCCODELT.CCD_TYP AS COMN_GRP_CD
+             , CCCODELT.CCD_NM AS COMN_GRP_CD_NM
+             , CCCODEST.C_CD AS COMN_CD
+             , CCCODEST.CSUBCD_NM AS COMN_CD_NM
+             , CCCODEST.SORT_SEQ AS SCRN_MRK_SEQ
+          FROM ASIS_HCOM.CCCODEST@DL_PROD_MIG CCCODEST /*공통코드마스타(소분류)*/
+             , ASIS_HCOM.CCCODELT@DL_PROD_MIG CCCODELT /*공통그룹코드*/
+         WHERE CCCODEST.CCD_TYP = :ASIS_CODE
+           AND CCCODEST.CCD_TYP = CCCODELT.CCD_TYP) ASIS_TABLE
+     , (SELECT :TOBE_OWNER      AS TOBE_OWNER
+             , :TOBE_TABLE_NAME AS TOBE_TABLE_NAME
+             , CCCCCSTE.COMN_GRP_CD AS COMN_GRP_CD
+             , CCCCCLTC.COMN_GRP_CD_NM AS COMN_GRP_CD_NM
+             , CCCCCSTE.COMN_CD AS COMN_CD
+             , CCCCCSTE.COMN_CD_NM AS COMN_CD_NM
+             , CCCCCSTE.SCRN_MRK_SEQ AS SCRN_MRK_SEQ
+          FROM CCCCCSTE CCCCCSTE /*공통그룹코드상세*/
+             , CCCCCLTC CCCCCLTC /*공통그룹코드*/
+         WHERE CCCCCSTE.COMN_GRP_CD = :TOBE_CODE
+           AND CCCCCSTE.COMN_GRP_CD = CCCCCLTC.COMN_GRP_CD) TOBE_TABLE
+ WHERE 1=1
+--   AND ASIS_TABLE.COMN_CD_NM = TOBE_TABLE.COMN_CD_NM(+)
+   AND REPLACE(ASIS_TABLE.COMN_CD_NM,' ') = TOBE_TABLE.COMN_CD_NM(+)
+ ORDER BY ASIS_TABLE.SCRN_MRK_SEQ
+;;
+"REM WORKSPACETAB10",공통코드조회.sql,,37
+
+SELECT *
+  FROM CCCCCLTC
+ WHERE COMN_GRP_CD_NM LIKE '%감면구분%'
+;
+
+SELECT *
+  FROM CCCCCSTE
+ WHERE COMN_GRP_CD = 'PA007'
+;
+
+
+SELECT *
+  FROM ALL_COL_COMMENTS
+ WHERE COLUMN_NAME = 'ECH_NSP_TP_CD'
+;;
+
+SELECT *
+  FROM ASIS_HCOM.CCCODEST@DL_PROD_MIG CCCODEST
+WHERE CCD_TYP = '222'
+;;
+
+SELECT *
+  FROM ASIS_HCOM.CCCODEST@DL_PROD_MIG CCCODEST
+WHERE CSUBCD_NM LIKE '%오후%'
+;;
+
+SELECT *
+  FROM  ASIS_HCOM.CCCODELT@DL_PROD_MIG CCCODELT
+WHERE CCD_NM LIKE '%시간%'
+;;
+
+--37K
+SELECT *
+  FROM ALL_TAB_COMMENTS@DL_PROD_MIG
+WHERE COMMENTS LIKE '%공통코%'
+;;
+"REM WORKSPACETAB11",ACDPCSCC(진료일정기본코드)_마이그레이션.sql,,47
+--DELETE FROM ACDPCSCC ;;            --진료일정기본코드             --진료일정기본
+--INSERT INTO ACDPCSCC(
+SELECT MEDR_SID, COUNT(1) FROM(
+SELECT APSCHTMT.MEDDR_ID AS MEDR_SID                       -- 001. 진료의직원식별ID                  >>> SID로 매핑
+     , APSCHTMT.MED_DEPT AS MED_DEPT_CD                    -- 002. 진료부서코드
+     , APSCHSDT.MEDS_BSC_CD AS MEDS_BSC_CD                    -- 003. 진료일정기본코드
+     , APSCHSDT.MEDS_BSC_CD_NM AS MEDS_BSC_CD_NM                 -- 004. 진료일정기본코드명
+     , TO_DATE('99991231','YYYY-MM-DD') AS END_DT                         -- 005. 종료일자
+     , 'MIG00' AS FSR_STF_NO                     -- 006. 최초등록직원번호
+     , SYSDATE AS FSR_DTM                        -- 007. 최초등록일시
+     , 'GOLDEN' AS FSR_PRGM_NM                    -- 008. 최초등록프로그램명
+     , '123.4.5.6' AS FSR_IP_ADDR                    -- 009. 최초등록IP주소
+     , NVL(APSCHTMT.EDIT_ID,'MIG00') AS LSH_STF_NO                     -- 010. 최종변경직원번호
+     , NVL(APSCHTMT.EDIT_DTM,SYSDATE) AS LSH_DTM                        -- 011. 최종변경일시
+     , 'GOLDEN' AS LSH_PRGM_NM                    -- 012. 최종변경프로그램명
+     ,  '123.4.5.6' AS LSH_IP_ADDR                    -- 013. 최종변경IP주소
+  FROM ASIS_HBIL.APSCHTMT@DL_PROD_MIG APSCHTMT  -- 진료일정기간
+     , (SELECT DISTINCT DENSE_RANK() OVER(PARTITION BY APSCHTMT.MEDDR_ID, APSCHTMT.MED_DEPT  ORDER BY APSCHSDT.MED_SCH_TERM_NO) AS MEDS_BSC_CD
+             , '마이그'||DENSE_RANK() OVER(PARTITION BY APSCHTMT.MEDDR_ID, APSCHTMT.MED_DEPT  ORDER BY APSCHSDT.MED_SCH_TERM_NO)  AS MEDS_BSC_CD_NM
+             , APSCHSDT.MED_SCH_TERM_NO                                                                                         AS A_MEDS_BSC_CD
+          FROM ASIS_HBIL.APSCHTMT@DL_PROD_MIG APSCHTMT
+             , ASIS_HBIL.APSCHSDT@DL_PROD_MIG APSCHSDT
+         WHERE APSCHTMT.MED_SCH_TERM_NO = APSCHSDT.MED_SCH_TERM_NO(+)
+           AND APSCHTMT.CNCL_ID IS NULL
+           AND APSCHTMT.MEDDR_ID IS NOT NULL
+           AND APSCHTMT.MED_DEPT IS NOT NULL
+         ORDER BY MEDS_BSC_CD
+        ) APSCHSDT
+ WHERE 1=1
+   AND APSCHTMT.CNCL_ID IS NULL
+   AND APSCHTMT.MEDDR_ID IS NOT NULL
+   AND APSCHTMT.MED_DEPT IS NOT NULL
+   AND APSCHTMT.MED_SCH_TERM_NO = APSCHSDT.A_MEDS_BSC_CD
+--);;
+--   AND A.A_MED_SCH_TERM_NO = APSCHTMT.MED_SCH_TERM_NO
+--   AND ROWNUM < 100
+--   AND APSCHTMT.CNCL_ID IS NULL
+) GROUP BY MEDR_SID
+
+
+;
+
+
+
+
+
+
+"REM WORKSPACETAB12","ACDPCBAD(의사휴진일정정보) 마이그레이션",,40
+--delete ACDPCBAD;
+--INSERT INTO ACDPCBAD
+SELECT to_char(rownum) AS DR_SID                         -- 001. 의사직원식별ID
+     , APDRSCHT.MED_DEPT AS MED_DEPT_CD                    -- 002. 진료부서코드
+     , APDRSCHT.PATSITE AS PACT_TP_CD                     -- 003. 원무접수구분코드
+     , APDRSCHT.FROM_DTE AS APY_STR_DT                     -- 004. 적용시작일자
+     , APDRSCHT.MEDDR_ID AS DR_STF_NO                      -- 005. 의사직원번호
+     , APDRSCHT.TO_DTE AS APY_END_DT                     -- 006. 적용종료일자
+     , APDRSCHT.OFF_RSN AS NSP_RSN_TP_CD                  -- 007. 휴진사유구분코드                                 ASIS에도 없는 값들 :07, 14, 34, 40, 43
+     , APDRSCHT.OFF_RMK AS NSP_MEMO                       -- 008. 휴진메모
+     , APDRSCHT.CALL_SEND_DTM AS MCSD_DTM                       -- 009. 진료변경전송일시
+     , APDRSCHT.CALL_SEND_STT AS MCSD_RSLT_CD                   -- 010. 진료변경전송결과코드                                  -- TOBE는 공통코드로 관리  . ASIS..는 아닌 거 같은디
+     , NULL AS CRDOC_YN                       -- 011. 협조전여부
+     , NULL AS NSP_STR_DT_CMED_AMT_OCUR_YN    -- 012. 휴진시작일자선택진료금액발생여부
+     , NULL AS NSP_END_DT_CMED_AMT_OCUR_YN    -- 013. 휴진종료일자선택진료금액발생여부
+     , NULL AS SPLM_YN                        -- 014. 보완여부
+     , NULL AS NSP_APLC_DT                    -- 015. 휴진신청일자
+     , NVL(APDRSCHT.FSTINST_ID, 'MIG00') AS FSR_STF_NO                     -- 016. 최초등록직원번호
+     , NVL(APDRSCHT.FSTINST_DTM, SYSDATE) AS FSR_DTM                        -- 017. 최초등록일시
+     , 'TEST' AS FSR_PRGM_NM                    -- 018. 최초등록프로그램명
+     , 'TEST' AS FSR_IP_ADDR                    -- 019. 최초등록IP주소
+     , APDRSCHT.EDIT_ID AS LSH_STF_NO                     -- 020. 최종변경직원번호
+     , APDRSCHT.EDIT_DTM AS LSH_DTM                        -- 021. 최종변경일시
+     , 'TEST' AS LSH_PRGM_NM                    -- 022. 최종변경프로그램명
+     , 'TEST' AS LSH_IP_ADDR                    -- 023. 최종변경IP주소
+     , CASE WHEN APDRSCHT.OFF_TIME = '1' THEN 'AM'
+            WHEN APDRSCHT.OFF_TIME = '2' THEN 'PM'
+            ELSE 'A'
+            END
+  FROM (SELECT *
+          FROM (SELECT ROW_NUMBER() OVER(PARTITION BY APDRSCHT.MED_DEPT, APDRSCHT.MEDDR_ID, APDRSCHT.PATSITE, APDRSCHT.FROM_DTE, APDRSCHT.OFF_TIME ORDER BY APDRSCHT.TO_DTE DESC, APDRSCHT.EDIT_DTM DESC) RN
+                     , APDRSCHT.*
+                  FROM ASIS_HBIL.APDRSCHT@DL_PROD_MIG
+               )
+         WHERE RN = 1
+       ) APDRSCHT
+;;
+
+
+
+"REM WORKSPACETAB13",ACDPCSCM(진료일정기본)_마이그레이션.sql,,63
+--DELETE FROM ACDPCSCM;;
+--INSERT INTO ACDPCSCM
+--(
+SELECT APSCHTMT.MED_DEPT AS MED_DEPT_CD                    -- 001. 진료부서코드
+     , APSCHTMT.MEDDR_ID AS MEDR_SID                       -- 002. 진료의직원식별ID
+     , DENSE_RANK() OVER(PARTITION BY APSCHTMT.MEDDR_ID, APSCHTMT.MED_DEPT  ORDER BY APSCHSDT.MED_SCH_TERM_NO) AS MEDS_BSC_CD                    -- 003. 진료일정기본코드
+     , APSCHSDT.MED_WDAY AS MED_DOW_KND_CD                 -- 004. 진료요일종류코드
+     , APSCHSDT.MEDFROM_TIME AS MED_STR_HMS                    -- 005. 진료시작시각
+     , APSCHSDT.MEDTO_TIME AS MED_END_HMS                    -- 006. 진료종료시각
+     , APSCHSDT.AMPM_TYP AS TM_UNIT_CD                     -- 007. 시간단위코드
+     , NULL AS COMN_USE_YN                    -- 008. 공통사용여부                                     > ASIS는 없음
+     , APSCHSDT.TOTSCH_CNT AS RSV_WHL_FXNO_PT_CNT            -- 009. 예약전체정원환자수
+     , APSCHSDT.SINSCH_CNT AS RSV_NWPT_FXNO_PT_CNT           -- 010. 예약신환정원환자수`
+     , APSCHSDT.CHSCH_CNT AS RSV_FRVS_FXNO_PT_CNT           -- 011. 예약초진정원환자수
+     , APSCHSDT.JESCH_CNT AS RSV_RMDE_FXNO_PT_CNT           -- 012. 예약재진정원환자수
+     , NULL AS RSV_NRGR_FXNO_PT_CNT           -- 013. 예약비정규정원환자수                                 > ASIS는 없음  TOBE도 안쓰는 내용
+     , TO_NUMBER(APSCHSDT.MEDTO_TIME) - TO_NUMBER(APSCHSDT.MEDFROM_TIME)+1 AS MED_ITVL_TM                    -- 014. 진료간격시간              > APSCHSMT 에 있...으나 테이블 행이 너무 많고 간단하게 계산 되므로 따로 처리
+     , APSCHSDT.CLINIC_CD AS CLNC_TP_CD                     -- 015. 클리닉구분코드
+     , NVL(APSCHSDT.UNIT_TYP,'R') AS MED_RSV_TP_CD                  -- 016. 진료예약구분코드
+     , NULL AS MEDS_ITVL_TP_CD                -- 017. 진료일정간격구분코드                                 > TOBE 빈값
+--     , APSCHSDT.OFF_TYP AS ECH_NSP_TP_CD                  -- 018. 개별휴진구분코드                                    > ASIS는 없음    , TOBE도 빈값
+     , CASE WHEN APSCHSDT.OFF_TYP = '0' THEN '3'   --휴진     --(신초재)진료안함
+            WHEN APSCHSDT.OFF_TYP = '1' THEN '1'   --초진휴진   --(초)진료안함
+            WHEN APSCHSDT.OFF_TYP = '2' THEN '2'   --재진휴진   --(재)진료안함
+            WHEN APSCHSDT.OFF_TYP = '3' THEN '0'   --신환휴진   --(신)진료안함
+            WHEN APSCHSDT.OFF_TYP = '4' THEN '6'   --초진재진휴진 --(초재)진료안함
+            WHEN APSCHSDT.OFF_TYP = '5' THEN '4'   --초진신환휴진 --(신초)진료안함
+            WHEN APSCHSDT.OFF_TYP = '6' THEN '5'   --재진신환휴진 --(신재)진료안함
+	          ELSE NULL
+            END AS ECH_NSP_TP_CD                  -- 018. 개별휴진구분코드                                    > ASIS는 없음    , TOBE도 빈값
+     , NULL AS NSP_RSN_TP_CD                  -- 019. 휴진사유구분코드                                    > ASIS는 없음    , TOBE도 빈값
+     , NULL AS AM_SSON_APCB_YN                -- 020. 오전세션해당여부                                    > ASIS는 없음    , TOBE도 빈값
+     , NULL AS PM_SSON_APCB_YN                -- 021. 오후세션해당여부                                    > ASIS는 없음    , TOBE도 빈값
+     , 'MIG00' AS FSR_STF_NO                     -- 006. 최초등록직원번호
+     , SYSDATE AS FSR_DTM                        -- 007. 최초등록일시
+     , 'GOLDEN' AS FSR_PRGM_NM                    -- 008. 최초등록프로그램명
+     , '123.4.5.6' AS FSR_IP_ADDR                    -- 009. 최초등록IP주소
+     , NVL(APSCHSDT.EDIT_ID,'MIG00') AS LSH_STF_NO                     -- 010. 최종변경직원번호
+--     ,      APSCHSDT.EDIT_DTM AS LSH_DTM
+     , NVL(APSCHSDT.EDIT_DTM,SYSDATE) AS LSH_DTM                        -- 011. 최종변경일시
+     , 'GOLDEN' AS LSH_PRGM_NM                    -- 012. 최종변경프로그램명
+     ,  '123.4.5.6' AS LSH_IP_ADDR                    -- 013. 최종변경IP주소             > ASIS는 없음
+     , NULL AS RSV_DS_FRVS_FXNO_PT_CNT        -- 030. 예약퇴원초진정원환자수                                    > ASIS는 없음  TOBE도 안쓰는 내용
+     , NULL AS RSV_DS_RMDE_FXNO_PT_CNT        -- 031. 예약퇴원재진정원환자수                                    > ASIS는 없음  TOBE도 안쓰는 내용
+  FROM ASIS_HBIL.APSCHSDT@DL_PROD_MIG APSCHSDT    -- 진료일정기준상세
+     , ASIS_HBIL.APSCHTMT@DL_PROD_MIG APSCHTMT  -- 진료일정기간
+     ,(SELECT MAX(APSCHSDT_MX.MED_SCH_STD_DTL_NO)      MED_SCH_STD_DTL_NO
+         FROM ASIS_HBIL.APSCHSDT@DL_PROD_MIG APSCHSDT_MX
+        GROUP BY APSCHSDT_MX.MED_SCH_TERM_NO
+               , APSCHSDT_MX.MED_WDAY
+               , APSCHSDT_MX.AMPM_TYP
+               , APSCHSDT_MX.MEDFROM_TIME
+        ) APSCHSDT_MX
+ WHERE 1=1
+   AND APSCHSDT.MED_SCH_TERM_NO = APSCHTMT.MED_SCH_TERM_NO
+   AND APSCHTMT.CNCL_ID IS NULL
+   AND APSCHSDT.MED_SCH_STD_DTL_NO = APSCHSDT_MX.MED_SCH_STD_DTL_NO
+   AND APSCHTMT.MEDDR_ID IS NOT NULL
+--)
+;;
+
+--SELECT *
+--  FROM ACDPCSCM;
+"REM WORKSPACETAB14","ACPPROSD (ONESTOP진료의뢰서 정보) 마이그레이션",,47
+SELECT '7' AS HSP_TP_CD                      -- 001. 병원구분코드
+     , APONESTT.PT_NO AS PT_NO                          -- 002. 환자번호
+     , APONESTT.REQ_DTE AS REG_DT                         -- 003. 등록일자
+     , APONESTT.REQ_SEQ AS REG_SEQ                        -- 004. 등록순번
+     , APONESTT.ATK_GUBN AS RFFM_TP_CD                     -- 005. 의뢰서구분코드
+     , CASE WHEN LENGTH(APONESTT.SSN1) || DAMO.DEC_SSN2(APONESTT.SSN2) > 13
+            THEN '1111111111111'
+            ELSE APONESTT.SSN1 || DAMO.DEC_SSN2(APONESTT.SSN2)
+            END AS PT_RRN                                -- 006. 환자주민등록번호
+     , APONESTT.ZIP_NO AS POST_NO                        -- 007. 우편번호
+     , APONESTT.ZIP_SEQ AS POST_NO_SEQ                    -- 008. 우편번호순번
+     , APMATCMT.SI_DO_NM AS BSC_ADDR                       -- 009. 기본주소
+     , APONESTT.ADDR AS DTL_ADDR                       -- 010. 상세주소
+     , NULL AS TEL_NO                         -- 011. 보호자명
+     , NULL AS MTEL_NO                        -- 012. 환자관계구분코드
+     , APONESTT.PATSITE AS PACT_TP_CD                     -- 013. 원무접수구분코드
+     , APONESTT.ER_KIT_YN AS EMRG_KIT_USE_YN                -- 014. 응급키트사용여부
+     , APONESTT.MED_DEPT AS MED_DEPT_CD                    -- 015. 진료과코드
+     , APONESTT.MEDDR_ID AS MEDR_STF_NO                    -- 016. 진료의직원번호
+     , APONESTT.PATTYPE AS PME_CLS_CD                     -- 017. 환자급종유형코드
+     , APONESTT.TYPE_CD AS PSE_CLS_CD                     -- 018. 환자보조유형코드
+     , APONESTT.SPC_DR_YN AS CMED_DR_YN                     -- 019. 선택진료의사여부
+     , APONESTT.MED_DTM AS MED_DTM                        -- 020. 진료일시
+     , APONESTT.MED_TYPE AS FRVS_RMDE_TP_CD                -- 021. 초진재진구분코드
+     , APONESTT.PRT_GUBN AS PRNT_RMK_CNTE                  -- 022. 출력비고내용
+     , APONESTT.RMK AS RMK_CNTE                       -- 023. 비고내용
+     , APONESTT.PRT_CHO_YN AS FRVS_CMED_YN                   -- 024. 초진선택여부
+     , APONESTT.PRT_JAE_YN AS RMDE_CMED_YN                   -- 025. 재진선택여부
+     , APONESTT.PRT_GUM_YN AS EXM_CMED_YN                    -- 026. 검사선택여부
+     , APONESTT.PRT_JIN_YN AS DGNS_CMED_YN                   -- 027. 진단선택여부
+     , APONESTT.CNCL_DTE AS CNCL_DT                        -- 028. 취소일자
+     , APONESTT.CNCL_ID AS CNCL_STF_NO                    -- 029. 취소직원번호
+     , APONESTT.BUILDING_NO AS BLDG_MGMT_NO                   -- 030. 건물관리번호
+     , NULL AS BOBD_PT_NO                     -- 031. 합본이전환자번호
+     , NULL AS BIND_DTM                       -- 032. 합본일시
+     , NULL AS BIND_STF_NO                    -- 033. 합본직원번호
+     , NULL AS FSR_STF_NO                     -- 034. 최초등록직원번호
+     , NULL AS FSR_DTM                        -- 035. 최초등록일시
+     , NULL AS FSR_PRGM_NM                    -- 036. 최초등록프로그램명
+     , NULL AS FSR_IP_ADDR                    -- 037. 최초등록IP주소
+     , APONESTT.EDIT_ID AS LSH_STF_NO                     -- 038. 최종변경직원번호
+     , APONESTT.EDIT_DTM AS LSH_DTM                        -- 039. 최종변경일시
+     , NULL AS LSH_PRGM_NM                    -- 040. 최종변경프로그램명
+     , NULL AS LSH_IP_ADDR                    -- 041. 최종변경IP주소
+  FROM ASIS_HBIL.APONESTT@DL_PROD_MIG APONESTT
+     , ASIS_HCOM.APMATCMT@DL_PROD_MIG APMATCMT
+ WHERE APONESTT.BUILDING_NO = APMATCMT.BLD_NO(+)
+"REM WORKSPACETAB15","ACDPCDDD(진료의당일예약주의사항정보) 마이그레이션",,20
+--INSERT INTO ACDPCDDD
+SELECT TO_CHAR(ROWNUM) AS DR_SID                         -- 001. 의사직원식별ID
+     , MNOUTALT.MED_DEPT AS MED_DEPT_CD                    -- 002. 진료부서코드
+     , MNOUTALT.MED_DTE AS MED_DT                         -- 003. 진료일자
+     , MNOUTALT.MEDDR_ID AS DR_STF_NO                      -- 004. 의사직원번호
+     , MNOUTALT.CONTENTS AS TDY_RSV_ATNT_CNTE              -- 005. 당일예약유의사항
+     , MNOUTALT.DAY_NOTNEWRSV_RSN_CD AS TDY_NWPT_RSV_IMPB_RSN_CD       -- 006. 당일신환예약불가사유코드
+     , MNOUTALT.DAY_NEWRSVINFO_TXT AS TDY_NWPT_RSV_ATNT_CNTE         -- 007. 당일신환예약유의사항
+     , 'TEST' AS FSR_STF_NO                     -- 008. 최초등록직원번호
+     , SYSDATE AS FSR_DTM                        -- 009. 최초등록일시
+     , 'TEST' AS FSR_PRGM_NM                    -- 010. 최초등록프로그램명
+     , 'TEST' AS FSR_IP_ADDR                    -- 011. 최초등록IP주소
+     , NVL(MNOUTALT.WK_ID,'MIG00') AS LSH_STF_NO                     -- 012. 최종변경직원번호
+     , MNOUTALT.WK_DTM AS LSH_DTM                        -- 013. 최종변경일시
+     , 'TEST' AS LSH_PRGM_NM                    -- 014. 최종변경프로그램명
+     , 'TEST' AS LSH_IP_ADDR                    -- 015. 최종변경IP주소
+  FROM ASIS_HORD.MNOUTALT@DL_PROD_MIG MNOUTALT
+;;
+
+
+"REM WORKSPACETAB16","ACPETCBD(발신번호) 테이블 생성 스크립트",,31
+CREATE TABLE HBIL.ACPETCBD(                              --직원별발신번호
+   STF_NO                     VARCHAR2(5)    NOT NULL    --직원번호
+  ,CALL_BACK_NO               VARCHAR2(8)    NOT NULL    --발신번호
+  ,CALL_BACK_CNTE             VARCHAR2(500)               --비고 
+)  
+
+-- COMMENT
+COMMENT ON TABLE HBIL.ACPETCBD IS '직원별발신번호';
+
+COMMENT ON COLUMN HBIL.ACPETMSG.SMSS_DTM           IS 'SMS전송일시';
+COMMENT ON COLUMN HBIL.ACPETMSG.PT_NO              IS '환자번호';
+COMMENT ON COLUMN HBIL.ACPETMSG.PT_NM              IS '환자명'; 
+
+
+CREATE UNIQUE INDEX HBIL.ACPETMSG_PK ON HBIL.ACPETMSG
+(PT_NO, SMSS_DTM, MED_DTM, MED_DEPT_CD, SEND_FLAG ) TABLESPACE TSBIL_I01;
+
+ALTER TABLE HBIL.ACPETMSG ADD (
+  CONSTRAINT ACPETMSG_PK
+  PRIMARY KEY
+  (PT_NO, SMSS_DTM, MED_DTM, MED_DEPT_CD, SEND_FLAG)
+  USING INDEX HBIL.ACPETMSG_PK
+  ENABLE VALIDATE);
+
+
+
+-- SYNONYM
+CREATE PUBLIC SYNONYM ACPETMSG FOR HBIL.ACPETMSG;  
+
+--AUTHORITY                                        
+GRANT SELECT,INSERT,UPDATE,DELETE ON HBIL.ACPETMSG TO XBIL;
+"REM WORKSPACETAB17","ACPETSGE (SMS전송대상그룹관리상세) 마이그레이션",,32
+-- ASIS의 그룹구분, 멤버번호 TOBE에 없는 데이터라 이관X    /      GROUP에는 없고 GROUPMEMBER에만 있는 전화번호 이관X
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+--DELETE ACPETSGE;;
+--INSERT INTO ACPETSGE
+SELECT SMS_GROUPMEMBER.SAWON_NO AS USE_STF_NO                     -- 001. 사용직원번호
+     , SMS_GROUPMEMBER.GROUP_NO AS CD_TP_VAL                      -- 002. 코드구분값
+     , CASE WHEN LENGTH(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO) = 9 THEN SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,1,2) ||'-'|| SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,3,3) ||'-'|| SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,6)
+            WHEN LENGTH(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO) = 10 THEN SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,1,3) ||'-'|| SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,4,3) ||'-'|| SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,7)
+            WHEN LENGTH(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO) = 11 THEN SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,1,3) ||'-'|| SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,4,4) ||'-'|| SUBSTR(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO,8)
+             END AS SMSS_TGT_TEL_NO                -- 003. SMS전송대상전화번호
+     , SMS_GROUPMEMBER.MEMBER_NM AS SMSS_TGTM_NM                   -- 004. SMS전송대상자명
+     , NULL AS RMK_CNTE                       -- 005. 비고내용
+     , SYSDATE AS FSR_DTM                        -- 006. 최초등록일시
+     , 'TEST' AS FSR_STF_NO                     -- 007. 최초등록직원번호
+     , 'TEST' AS FSR_PRGM_NM                    -- 008. 최초등록프로그램명
+     , 'TEST' AS FSR_IP_ADDR                    -- 009. 최초등록IP주소
+     , SMS_GROUPMEMBER.REG_DT AS LSH_DTM        -- 010. 최종변경일시
+     , 'TEST' AS LSH_STF_NO                     -- 011. 최종변경직원번호
+     , 'TEST' AS LSH_PRGM_NM                    -- 012. 최종변경프로그램명
+     , 'TEST' AS LSH_IP_ADDR                    -- 013. 최종변경IP주소
+  FROM ASIS_HSMS.SMS_GROUP@DL_PROD_MIG        SMS_GROUP
+     , (SELECT SMS_GROUPMEMBER.*
+             , ROW_NUMBER() OVER(PARTITION BY SMS_GROUPMEMBER.SAWON_NO, SMS_GROUPMEMBER.GROUP_NO, SMS_GROUPMEMBER.HP_NO ORDER BY SMS_GROUPMEMBER.REG_DT DESC) SEQ
+             , TRIM(REGEXP_REPLACE(SMS_GROUPMEMBER.HP_NO, '[^0-9]'))  SMSS_TGT_TEL_NO
+          FROM ASIS_HSMS.SMS_GROUPMEMBER@DL_PROD_MIG SMS_GROUPMEMBER
+        ) SMS_GROUPMEMBER
+ WHERE SMS_GROUP.SAWON_NO = SMS_GROUPMEMBER.SAWON_NO
+   AND SMS_GROUP.GROUP_NO = SMS_GROUPMEMBER.GROUP_NO
+   AND SMS_GROUPMEMBER.SEQ = '1'
+   AND LENGTH(SMS_GROUPMEMBER.SMSS_TGT_TEL_NO) BETWEEN 8
+                                                   AND 11
+;;
+"REM WORKSPACETAB18","ACPETSCC (SMS전송문구공통코드) 마이그레이션",,56
+--DELETE ACPETSCC;
+--INSERT INTO ACPETSCC
+             -- 상용구
+SELECT 'M' AS SMSS_WDNG_TP_CD                -- 001. SMS전송문구구분코드
+     , SMS_REPEATLYMSG.SAWON_NO AS USE_STF_NO                     -- 002. 사용직원번호
+     , SMS_REPEATLYMSG.MSG_NO AS CD_TP_VAL                      -- 003. 코드구분값
+	   , CASE WHEN SMS_REPEATLYMSG.USEPART_KB BETWEEN '1' AND '6' THEN SMS_REPEATLYMSG.USEPART_KB
+		        WHEN SMS_REPEATLYMSG.USEPART_KB = 'MMS' THEN '5'
+		        ELSE '7'
+		         END AS GRP_CD_TP_VAL                                                             -- 그 ,, 구분코드
+		 , CASE WHEN SMS_REPEATLYMSG.USEPART_KB NOT BETWEEN '1' AND '6' AND SMS_REPEATLYMSG.USEPART_KB != 'MMS' THEN SMS_REPEATLYMSG.USEPART_KB
+		        ELSE NULL
+		         END AS DEPT_CD                                                                  -- 구분코드가 부서일때 어느부서인지 넣기
+     , SMS_REPEATLYMSG.MSG_TX AS CD_TP_VAL_CNTE                   -- 004. 코드구분값내용
+     , SMS_REPEATLYMSG.MSG_SQ AS MRK_SEQ                        -- 005. 표시순번
+     , SYSDATE AS FSR_DTM                        -- 006. 최초등록일시
+     , 'TEST' AS FSR_STF_NO                     -- 007. 최초등록직원번호
+     , 'TEST' AS FSR_PRGM_NM                    -- 008. 최초등록프로그램명
+     , 'TEST' AS FSR_IP_ADDR                    -- 009. 최초등록IP주소
+     , SYSDATE AS LSH_DTM                        -- 010. 최종변경일시
+     , 'TEST' AS LSH_STF_NO                     -- 011. 최종변경직원번호
+     , 'TEST' AS LSH_PRGM_NM                    -- 012. 최종변경프로그램명
+     , 'TEST' AS LSH_IP_ADDR                    -- 013. 최종변경IP주소
+  FROM ASIS_HSMS.SMS_REPEATLYMSG@DL_PROD_MIG    SMS_REPEATLYMSG
+ WHERE LENGTH(TRIM(SAWON_NO)) = 5
+
+
+UNION ALL
+             -- 전화번호 그룹
+SELECT 'G' AS SMSS_WDNG_TP_CD                -- 001. SMS전송문구구분코드
+     , SMS_GROUP.SAWON_NO AS USE_STF_NO                     -- 002. 사용직원번호
+     , SMS_GROUP.GROUP_NO AS CD_TP_VAL                       -- 003. 코드구분값
+     , NULL AS GRP_CD_TP_VAL                                                      -- 그 ,, 구분코드
+     , NULL AS DEPT_CD                                                            -- 구분코드가 부서일때 어느부서인지 넣기
+     , SMS_GROUP.GROUP_NM AS CD_TP_VAL_CNTE                   -- 004. 코드구분값내용
+     , NULL AS MRK_SEQ                        -- 005. 표시순번
+     , SYSDATE AS FSR_DTM                        -- 006. 최초등록일시
+     , 'TEST' AS FSR_STF_NO                     -- 007. 최초등록직원번호
+     , 'TEST' AS FSR_PRGM_NM                    -- 008. 최초등록프로그램명
+     , 'TEST' AS FSR_IP_ADDR                    -- 009. 최초등록IP주소
+     , SMS_GROUP.REG_DT AS LSH_DTM                        -- 010. 최종변경일시
+     , 'TEST' AS LSH_STF_NO                     -- 011. 최종변경직원번호
+     , 'TEST' AS LSH_PRGM_NM                    -- 012. 최종변경프로그램명
+     , 'TEST' AS LSH_IP_ADDR                    -- 013. 최종변경IP주소
+  FROM ASIS_HSMS.SMS_GROUP@DL_PROD_MIG  SMS_GROUP
+ WHERE LENGTH(TRIM(SAWON_NO)) = 5
+
+;;
+
+
+
+
+
+SELECT *
+  FROM ACPETSCC;
+
+"REM WORKSPACETAB19","ACDPCSPD(의사보충일정정보) 테이블 생성 스크립트.sql",,61
+CREATE TABLE HBIL.ACDPCSPD(                              --의사보충일정정보
+   DR_SID                     VARCHAR2(7)    NOT NULL    --의사직원식별ID
+  ,MED_DEPT_CD                VARCHAR2(5)    NOT NULL    --진료부서코드
+  ,APY_STR_DT                 DATE           NOT NULL    --적용시작일자     
+  ,DR_STF_NO                  VARCHAR2(5)    NOT NULL    --의사직원번호
+  ,APY_END_DT                 DATE           NOT NULL    --적용종료일자
+  ,TM_UNIT_CD                 VARCHAR2(2)                --시간단위코드      
+  ,SUP_MEMO                   VARCHAR2(4000)             --보충메모                                                                                                   
+  ,CNCL_DT                    DATE                       --취소일자
+  ,CNCL_STF_NO                VARCHAR2(5)                --취소직원번호
+  ,FSR_STF_NO                 VARCHAR2(5)    NOT NULL    --최초등록직원번호
+  ,FSR_DTM                    DATE           NOT NULL    --최초등록일시
+  ,FSR_PRGM_NM                VARCHAR2(500)  NOT NULL    --최초등록프로그램명
+  ,FSR_IP_ADDR                VARCHAR2(50)   NOT NULL    --최초등록IP주소
+  ,LSH_STF_NO                 VARCHAR2(5)    NOT NULL    --최종변경직원번호
+  ,LSH_DTM                    DATE           NOT NULL    --최종변경일시
+  ,LSH_PRGM_NM                VARCHAR2(500)  NOT NULL    --최종변경프로그램명
+  ,LSH_IP_ADDR                VARCHAR2(50)   NOT NULL    --최종변경IP주소
+) TABLESPACE TSBIL_D01;   
+
+
+-- COMMENT
+COMMENT ON TABLE HBIL.ACDPCSPD IS '의사보충일정정보';
+
+COMMENT ON COLUMN HBIL.ACDPCSPD.DR_SID      IS '의사직원식별ID';
+COMMENT ON COLUMN HBIL.ACDPCSPD.MED_DEPT_CD IS '진료부서코드';
+COMMENT ON COLUMN HBIL.ACDPCSPD.APY_STR_DT  IS '적용시작일자'; 
+COMMENT ON COLUMN HBIL.ACDPCSPD.DR_STF_NO   IS '의사직원번호';
+COMMENT ON COLUMN HBIL.ACDPCSPD.APY_END_DT  IS '적용종료일자';
+COMMENT ON COLUMN HBIL.ACDPCSPD.TM_UNIT_CD  IS '시간단위코드'; 
+
+COMMENT ON COLUMN HBIL.ACDPCSPD.SUP_MEMO    IS '보충메모';
+COMMENT ON COLUMN HBIL.ACDPCSPD.CNCL_DT     IS '취소일자';
+COMMENT ON COLUMN HBIL.ACDPCSPD.CNCL_STF_NO IS '취소직원번호';
+COMMENT ON COLUMN HBIL.ACDPCSPD.FSR_STF_NO  IS '최초등록직원번호';
+COMMENT ON COLUMN HBIL.ACDPCSPD.FSR_DTM     IS '최초등록일시';
+COMMENT ON COLUMN HBIL.ACDPCSPD.FSR_PRGM_NM IS '최초등록프로그램명';
+COMMENT ON COLUMN HBIL.ACDPCSPD.FSR_IP_ADDR IS '최초등록IP주소';
+COMMENT ON COLUMN HBIL.ACDPCSPD.LSH_STF_NO  IS '최종변경직원번호';
+COMMENT ON COLUMN HBIL.ACDPCSPD.LSH_DTM     IS '최종변경일시';
+COMMENT ON COLUMN HBIL.ACDPCSPD.LSH_PRGM_NM IS '최종변경프로그램명';
+COMMENT ON COLUMN HBIL.ACDPCSPD.LSH_IP_ADDR IS '최종변경IP주소'; 
+
+
+CREATE UNIQUE INDEX HBIL.ACDPCSPD_PK ON HBIL.ACDPCSPD
+(DR_SID, MED_DEPT_CD, APY_STR_DT ) TABLESPACE TSBIL_I01;
+
+ALTER TABLE HBIL.ACDPCSPD ADD (
+  CONSTRAINT ACDPCSPD_PK
+  PRIMARY KEY
+  (DR_SID, MED_DEPT_CD, APY_STR_DT)
+  USING INDEX HBIL.ACDPCSPD_PK
+  ENABLE VALIDATE);
+
+
+
+-- SYNONYM
+CREATE PUBLIC SYNONYM ACDPCSPD FOR HBIL.ACDPCSPD;  
+
+--AUTHORITY                                        
+GRANT SELECT,INSERT,UPDATE,DELETE ON HBIL.ACDPCSPD TO XBIL;
+"REM WORKSPACETAB20","ACDPCSPD(의사보충일정정보) 마이그레이션",,31
+--DELETE ACDPCSPD;
+--INSERT INTO ACDPCSPD
+SELECT ROWNUM AS DR_SID                         -- 001. 의사직원식별ID
+     , APADDSCHT.MED_DEPT AS MED_DEPT_CD                    -- 002. 진료부서코드
+     , APADDSCHT.ADD_FROM_DTM AS APY_STR_DT                     -- 003. 적용시작일자
+     , APADDSCHT.MEDDR_ID AS DR_STF_NO                      -- 004. 의사직원번호
+     , APADDSCHT.ADD_TO_DTM AS APY_END_DT                     -- 005. 적용종료일자
+     , CASE WHEN APADDSCHT.AMPM_TYP = '1' THEN 'AM'
+            WHEN APADDSCHT.AMPM_TYP = '2' THEN 'PM'
+            WHEN APADDSCHT.AMPM_TYP = '3' THEN 'AP'
+             END AS TM_UNIT_CD                     -- 006. 시간단위코드
+     , APADDSCHT.RMK AS SUP_MEMO                       -- 007. 보충메모
+     , APADDSCHT.CNCL_DTM AS CNCL_DT                        -- 008. 취소일자
+     , APADDSCHT.CNCL_ID AS CNCL_STF_NO                    -- 009. 취소직원번호
+     , APADDSCHT.FSTINST_ID AS FSR_STF_NO                     -- 010. 최초등록직원번호
+     , APADDSCHT.FSTINST_DTM AS FSR_DTM                        -- 011. 최초등록일시
+     , 'TEST' AS FSR_PRGM_NM                    -- 012. 최초등록프로그램명
+     , 'TEST' AS FSR_IP_ADDR                    -- 013. 최초등록IP주소
+     , APADDSCHT.EDIT_ID AS LSH_STF_NO                     -- 014. 최종변경직원번호
+     , APADDSCHT.EDIT_DTM AS LSH_DTM                        -- 015. 최종변경일시
+     , 'TEST' AS LSH_PRGM_NM                    -- 016. 최종변경프로그램명
+     , 'TEST' AS LSH_IP_ADDR                    -- 017. 최종변경IP주소
+  FROM ASIS_HBIL.APADDSCHT@DL_PROD_MIG  APADDSCHT
+ WHERE TRIM(MEDDR_ID) IS NOT NULL
+--   AND AMPM_TYP = 2  AND TO_CHAR(ADD_FROM_DTM,'HH24MISS') < '130000'
+--   AND AMPM_TYP = 1  AND TO_CHAR(ADD_FROM_DTM,'HH24MISS') > '130000'
+--   AND AMPM_TYP = 3
+;
+
+SELECT *
+  FROM ACDPCSPD;
+"REM WORKSPACETAB21","ACPETMSG(MOSMS전송로그) 테이블 생성 스크립트.sql",,56
+CREATE TABLE HBIL.ACPETMSG(                              --MOSMS전송로그
+   SMSS_DTM                   DATE           NOT NULL    --SMS전송일시
+  ,PT_NO                      VARCHAR2(8)    NOT NULL    --환자번호
+  ,PT_NM                      VARCHAR2(500)              --환자명     
+  ,MED_DTM                    DATE           NOT NULL    --진료일자
+  ,MED_DEPT_CD                VARCHAR2(7)    NOT NULL    --진료과
+  ,SEND_FLAG                  VARCHAR2(2)    NOT NULL    --전송구분( 1 : 3일전, 2 : 1일전)      
+  ,SMSS_TGT_TEL_NO            VARCHAR2(20)               --SMS전송대상전화번호   
+  ,FSR_STF_NO                 VARCHAR2(5)    NOT NULL    --최초등록직원번호
+  ,FSR_DTM                    DATE           NOT NULL    --최초등록일시
+  ,FSR_PRGM_NM                VARCHAR2(500)  NOT NULL    --최초등록프로그램명
+  ,FSR_IP_ADDR                VARCHAR2(50)   NOT NULL    --최초등록IP주소
+  ,LSH_STF_NO                 VARCHAR2(5)    NOT NULL    --최종변경직원번호
+  ,LSH_DTM                    DATE           NOT NULL    --최종변경일시
+  ,LSH_PRGM_NM                VARCHAR2(500)  NOT NULL    --최종변경프로그램명
+  ,LSH_IP_ADDR                VARCHAR2(50)   NOT NULL    --최종변경IP주소
+) TABLESPACE TSBIL_D01;   
+
+                                                                         --   SMSS_TGT_TEL_NO                -- 003. SMS전송대상전화번호
+-- COMMENT
+COMMENT ON TABLE HBIL.ACPETMSG IS 'MOSMS전송로그';
+
+COMMENT ON COLUMN HBIL.ACPETMSG.SMSS_DTM           IS 'SMS전송일시';
+COMMENT ON COLUMN HBIL.ACPETMSG.PT_NO              IS '환자번호';
+COMMENT ON COLUMN HBIL.ACPETMSG.PT_NM              IS '환자명'; 
+COMMENT ON COLUMN HBIL.ACPETMSG.MED_DTM            IS '진료일시';
+COMMENT ON COLUMN HBIL.ACPETMSG.MED_DEPT_CD        IS '진료과';
+COMMENT ON COLUMN HBIL.ACPETMSG.SEND_FLAG          IS '전송구분( 1 : 3일전, 2 : 1일전)'; 
+COMMENT ON COLUMN HBIL.ACPETMSG.SMSS_TGT_TEL_NO    IS 'SMS전송대상전화번호';
+COMMENT ON COLUMN HBIL.ACPETMSG.FSR_STF_NO         IS '최초등록직원번호';
+COMMENT ON COLUMN HBIL.ACPETMSG.FSR_DTM            IS '최초등록일시';
+COMMENT ON COLUMN HBIL.ACPETMSG.FSR_PRGM_NM        IS '최초등록프로그램명';
+COMMENT ON COLUMN HBIL.ACPETMSG.FSR_IP_ADDR        IS '최초등록IP주소';
+COMMENT ON COLUMN HBIL.ACPETMSG.LSH_STF_NO         IS '최종변경직원번호';
+COMMENT ON COLUMN HBIL.ACPETMSG.LSH_DTM            IS '최종변경일시';
+COMMENT ON COLUMN HBIL.ACPETMSG.LSH_PRGM_NM        IS '최종변경프로그램명';
+COMMENT ON COLUMN HBIL.ACPETMSG.LSH_IP_ADDR        IS '최종변경IP주소'; 
+
+
+CREATE UNIQUE INDEX HBIL.ACPETMSG_PK ON HBIL.ACPETMSG
+(PT_NO, SMSS_DTM, MED_DTM, MED_DEPT_CD, SEND_FLAG ) TABLESPACE TSBIL_I01;
+
+ALTER TABLE HBIL.ACPETMSG ADD (
+  CONSTRAINT ACPETMSG_PK
+  PRIMARY KEY
+  (PT_NO, SMSS_DTM, MED_DTM, MED_DEPT_CD, SEND_FLAG)
+  USING INDEX HBIL.ACPETMSG_PK
+  ENABLE VALIDATE);
+
+
+
+-- SYNONYM
+CREATE PUBLIC SYNONYM ACPETMSG FOR HBIL.ACPETMSG;  
+
+--AUTHORITY                                        
+GRANT SELECT,INSERT,UPDATE,DELETE ON HBIL.ACPETMSG TO XBIL;
+"REM WORKSPACETAB22","ACDPCSND(외래진료일정휴진정보) 마이그레이션",,51
+-- 최초예정수 ? /   TOBE에 없는 컬럼 : 클리닉코드, 대기순번, 진료변경사유, UNIT구분, 개별휴진구분, 비고, 취소일자 및 ID
+-- 이 중 ASIS 화면에 보이는 컬럼은 클리닉, 비고, 취소일자 및 ID
+
+-- 휴진사유를 10.진료의요청으로 넣은 경우 저장되는 테이블
+
+--DELETE ACDPCSND;
+--INSERT INTO ACDPCSND
+SELECT TO_CHAR(ROWNUM) AS MEDR_SID                       -- 001. 진료의직원식별ID
+     , APOPSCBT.MED_DEPT AS MED_DEPT_CD                    -- 002. 진료부서코드
+     , '1' AS MEDS_BSC_CD                    -- 003. 진료일정기본코드
+     , APOPSCBT.MED_DTM AS MED_DTM                        -- 004. 진료일시
+     , APOPSCBT.MEDDR_ID AS MEDR_STF_NO                    -- 005. 진료의직원번호
+     , ROW_NUMBER() OVER(PARTITION BY APOPSCBT.MED_DEPT, APOPSCBT.MEDDR_ID, APOPSCBT.MED_DTM ORDER BY APOPSCBT.FSTINST_DTM)-1 AS SEQ                            -- 006. 순번         맞나..?
+     , APOPSCBT.MEDCHG_RSN AS NSP_RSN_TP_CD                  -- 007. 휴진사유구분코드
+     , APOPSCBT.FSTINST_DTM AS WK_DTM                         -- 008. 작업일시
+     , 'U' AS WK_CHG_TP_CD                   -- 009. 작업변경구분코드
+     , NULL AS WK_PRGM_NM                     -- 010. 작업프로그램명
+     , NULL AS WK_CPTR_NM                     -- 011. 작업컴퓨터명
+     , NULL AS WK_IP_ADDR                     -- 012. 작업IP주소
+     , APOPSCBT.TOTSCH_CNT AS NSP_EXPT_WHL_PT_CNT            -- 013. 휴진예정전체환자수
+     , APOPSCBT.SINSCH_CNT AS NSP_EXPT_NWPT_PT_CNT           -- 014. 휴진예정신환환자수
+     , APOPSCBT.CHSCH_CNT AS NSP_EXPT_FRVS_PT_CNT           -- 015. 휴진예정초진환자수
+     , APOPSCBT.JESCH_CNT AS NSP_EXPT_RMDE_PT_CNT           -- 016. 휴진예정재진환자수
+     , 0 AS NSP_EXPT_NRGR_PT_CNT           -- 017. 휴진예정비정규환자수
+     , 0 AS NSP_EXPT_DS_FRVS_PT_CNT        -- 018. 휴진예정퇴원초진환자수
+     , 0 AS NSP_EXPT_DS_RMDE_PT_CNT        -- 019. 휴진예정퇴원재진환자수
+     , APOPSCBT.TOTRSV_CNT AS NSP_RSV_WHL_PT_CNT             -- 020. 휴진예약전체환자수
+     , APOPSCBT.SINRSV_CNT AS NSP_RSV_NWPT_PT_CNT            -- 021. 휴진예약신환환자수
+     , APOPSCBT.CHRSV_CNT AS NSP_RSV_FRVS_PT_CNT            -- 022. 휴진예약초진환자수
+     , APOPSCBT.JERSV_CNT AS NSP_RSV_RMDE_PT_CNT            -- 023. 휴진예약재진환자수
+     , 0 AS NSP_RSV_NRGR_PT_CNT            -- 024. 휴진예약비정규환자수
+     , 0 AS NSP_RSV_DS_FRVS_PT_CNT         -- 025. 휴진예약퇴원초진환자수
+     , 0 AS NSP_RSV_DS_RMDE_PT_CNT         -- 026. 휴진예약퇴원재진환자수
+     , APOPSCBT.FSTINST_ID AS FSR_STF_NO                     -- 027. 최초등록직원번호
+     , APOPSCBT.FSTINST_DTM AS FSR_DTM                        -- 028. 최초등록일시
+     , NULL AS FSR_PRGM_NM                    -- 029. 최초등록프로그램명
+     , NULL AS FSR_IP_ADDR                    -- 030. 최초등록IP주소
+     , APOPSCBT.FSTINST_ID AS LSH_STF_NO                     -- 031. 최종변경직원번호
+     , APOPSCBT.FSTINST_DTM AS LSH_DTM                        -- 032. 최종변경일시
+     , NULL AS LSH_PRGM_NM                    -- 033. 최종변경프로그램명
+     , NULL AS LSH_IP_ADDR                    -- 034. 최종변경IP주소
+     , APOPSCBT.CLINIC_CD AS CLNC_TP_CD                      --클리닉구분코드
+     , APOPSCBT.FSTINST_ID AS NSP_RSN_REQ_STF_NO             --휴진사유요청직원번호
+     , APOPSCBT.RMK AS NSP_RSN_CNTE                   --휴진사유내용
+  FROM ASIS_HBIL.APOPSCBT@DL_PROD_MIG APOPSCBT
+
+ WHERE 1=1
+               ;
+-- 순번 : 기본적으로 0 이 들어가는데 진료의요청 사유를 변경하기위해서라거나,, 한번 더 중복으로 들어갈 때 +1 씩 됨  WHERE절은 위와 같고 FROM ACDPCSCD ,  SEQ = NVL(MAX(SEQ)+1,0)
+SELECT *
+  FROM ACDPCSND;
+"REM WORKSPACETAB23","ACPETCBD(발신번호) 마이그",,9
+--DELETE ACDPCSPD;
+--INSERT INTO ACDPCSPD
+SELECT CASE WHEN LENGTH(SMS_CALLBACK.SAWON_NO) > 5 THEN SUBSTR(SMS_CALLBACK.SAWON_NO, 2,5)
+            ELSE SAWON_NO
+            END                                        AS STF_NO
+     , SMS_CALLBACK.CALLBACK_NO                        AS CALL_BACK_NO
+     , SMS_CALLBACK.DEFAULT_FG                         AS CALL_BACK_CNTE
+  FROM ASIS_HSMS.SMS_CALLBACK@DL_PROD_MIG  SMS_CALLBACK
+;
