@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1CDE3BCC-CBEC-477A-A3C0-45AE3F035B9D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PE.PS.DTO</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PE.PS.DTO</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PC.OP.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PC.OP.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdmissionExpectationPatientPatientRoomAssignmentRegistration\AdmissionExpectationPatientPatientRoomAssignmentRegistration_INOUT.cs" />
+    <Compile Include="AdsNotificationMng\AdsNotificationMng_IN.cs" />
+    <Compile Include="AdsPtDischargeDayAsk\AdsPtDischargeDayAsk_IN.cs" />
+    <Compile Include="AdsPtDischargeDayAsk\AdsPtDischargeDayAsk_OUT.cs" />
+    <Compile Include="ClnlBfBlclPtAsk\ClnlBfBlclPtAsk_INOUT.cs" />
+    <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_IN.cs" />
+    <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_OUT.cs" />
+    <Compile Include="MedicalCareApprobationAsk\MedicalCareApprobationAsk_IN.cs" />
+    <Compile Include="MedicalCareApprobationAsk\MedicalCareApprobationAsk_OUT.cs" />
+    <Compile Include="MedicalCareNonApprobationAsk\MedicalCareApprobationInfo_IN.cs" />
+    <Compile Include="MedicalCareNonApprobationAsk\MedicalCareNonApprobationAsk_IN.cs" />
+    <Compile Include="MedicalCareNonApprobationAsk\MedicalCareNonApprobationAsk_OUT.cs" />
+    <Compile Include="NonFaceToFaceMedicalTreatmentPatientListAsk\ComboList_OUT.cs" />
+    <Compile Include="NonFaceToFaceMedicalTreatmentPatientListAsk\NnFtFMedPtAsk_IN.cs" />
+    <Compile Include="NonFaceToFaceMedicalTreatmentPatientListAsk\NnFtFMedPtAsk_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAskReceipt_OUT.cs" />
+    <Compile Include="Properties\ByDayAcceptPatientAsk\ByDayAcceptPatientAsk_IN.cs" />
+    <Compile Include="Properties\ByDayAcceptPatientAsk\ByDayAcceptPatientAsk_OUT.cs" />
+    <Compile Include="ByDayResPatientCntCurrCircumstancesAsk\ByDayResPatientCntCurrCircumstancesAsk_IN.cs" />
+    <Compile Include="ByDayResPatientCntCurrCircumstancesAsk\ByDayResPatientCntCurrCircumstancesAsk_OUT.cs" />
+    <Compile Include="DischargeCancelHistoryAsk\DischargeCancelHistoryAsk_IN.cs" />
+    <Compile Include="DischargeCancelHistoryAsk\DischargeCancelHistoryAsk_OUT.cs" />
+    <Compile Include="DischargeRegistration\DischargeRegistration_OUT.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\EachPtChoiceMedWardRetroactionApply_OUT.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\EachPtChoiceMedWardRetroactionApply_IN.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\InsSOGUP_IN.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\InsSOGUP_OUT.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\SelDischargePtGubn_OUT.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\SelWardCheckSogup_OUT.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApply\_SELADSPOSSIBILITYPTROOM__OUT.cs" />
+    <Compile Include="EachPtOtptReservationDayModification\EachPtOtptReservationDayModificationDay_OUT.cs" />
+    <Compile Include="EachPtOtptReservationDayModification\EachPtOtptReservationDayModification_IN.cs" />
+    <Compile Include="EachPtOtptReservationDayModification\EachPtOtptReservationDayModification_OUT.cs" />
+    <Compile Include="EachPtOtptReservationDayModification\SelAnotherDoctorSchedule_OUT.cs" />
+    <Compile Include="EmergencyPatientAsk\SaveEmergencyPatientAsk_INOUT.cs" />
+    <Compile Include="EmergencyPatientAsk\SelectEmergencyPatientAsk_BEDDTE_IN.cs" />
+    <Compile Include="EmergencyPatientAsk\SelectEmergencyPatientAsk_BEDDTE_OUT.cs" />
+    <Compile Include="EmergencyPatientAsk\SelectEmergencyPatientAsk_ERCPTNM_IN.cs" />
+    <Compile Include="EmergencyPatientAsk\SelectEmergencyPatientAsk_ERCPTNM_OUT.cs" />
+    <Compile Include="EmergencyPatientAsk\SelectEmergencyPatientAsk_IN.cs" />
+    <Compile Include="EmergencyPatientAsk\SelectEmergencyPatientAsk_OUT.cs" />
+    <Compile Include="EmergencyRoomCheckOutPatientMedicalCurrentAsk.xaml\EmergencyRoomCheckOutPatientMedicalCurrentOutpat_INOUT.cs" />
+    <Compile Include="EmergencyRoomCheckOutPatientMedicalCurrentAsk.xaml\EmergencyRoomCheckOutPatientMedicalCurrentPtCnt_OUT.cs" />
+    <Compile Include="EmergencyRoomCheckOutPatientMedicalCurrentAsk.xaml\EmergencyRoomCheckOutPatientMedicalCurrentPtSelect_OUT.cs" />
+    <Compile Include="EmergencyRoomCheckOutPatientMedicalCurrentAsk.xaml\EmergencyRoomCheckOutPatientMedicalCurrentWaitecntSum_OUT.cs" />
+    <Compile Include="EmergencyRoomCheckOutPatientMedicalCurrentAsk.xaml\EmergencyRoomCheckOutPatientMedicalCurrentWaitecnt_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\AdmissionHavingAMedicalExamination_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\HavingAMedicalAdmissionHistory_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\HavingAMedicalExaminationDateClassfiedBy_IN.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\HavingAMedicalExaminationDateClassfiedBy_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\HavingAMedicalExaminationHistoryAsk_IN.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\HavingAMedicalExaminationHistoryAsk_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\HavingAMedicalExaminationSickness_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelAdmissionHavingAMedicalDetail_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelAdmissionHavingAMedicalExaminationDetail_IN.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelAdmissionHavingAMedicalExaminationDetail_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelGradeWdDeptInfo_IN.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelGradeWdDeptInfo_OUT.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelOutPatientHavingAMedicalHistory_IN.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAsk\SelOutPatientHavingAMedicalHistory_OUT.cs" />
+    <Compile Include="MedicalTreDeptClassByOutPatientResvPatientCntAsk\MedicalTreDeptClassByOutPatientResvPatientCntAsk_IN.cs" />
+    <Compile Include="MedicalTreDeptClassByOutPatientResvPatientCntAsk\MedicalTreDeptClassByOutPatientResvPatientCntAsk_OUT.cs" />
+    <Compile Include="MedicalTreDeptClassByOutPatientResvPatientCntAsk\MedicalTreDeptClassByOutPatientResvPatientCntTree_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk1_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk2_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk3_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk4_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk5_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk6_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAskBill_OUT.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk_IN.cs" />
+    <Compile Include="OutPatientScheduleAsk\OutPatientScheduleAsk_OUT.cs" />
+    <Compile Include="PatientClassByMedicalTreatResvCurrCircumstancesAsk\PatientClassByMedicalTreatResvCurrCircumstancesAsk_IN.cs" />
+    <Compile Include="PatientClassByMedicalTreatResvCurrCircumstancesAsk\PatientClassByMedicalTreatResvCurrCircumstancesAsk_OUT.cs" />
+    <Compile Include="PerPeriodOtptNotSeeingPtsCrccmAsk\PerPeriodOtptNotSeeingPtsCrccmAsk_IN.cs" />
+    <Compile Include="PerPeriodOtptNotSeeingPtsCrccmAsk\PerPeriodOtptNotSeeingPtsCrccmAsk_OUT.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PtRoomCrccmAsk\PtRoomCrccmAsk_IN.cs" />
+    <Compile Include="PtRoomCrccmAsk\PtRoomCrccmAsk_OUT.cs" />
+    <Compile Include="PtRoomCrccmAsk\SelPtRoomPatientAsk_IN.cs" />
+    <Compile Include="PtRoomCrccmAsk\SelPtRoomPatientAsk_OUT.cs" />
+    <Compile Include="ReservationPtListPrinting\ReservationPtListPrinting_IN.cs" />
+    <Compile Include="ReservationPtListPrinting\ReservationPtListPrinting_OUT.cs" />
+    <Compile Include="RsexCancelAsk\RsexCancelAsk_IN.cs" />
+    <Compile Include="RsexCancelAsk\RsexCancelAsk_OUT.cs" />
+    <Compile Include="SalaryRestrictionPersonAsk\SalaryRestrictionPersonAsk_IN.cs" />
+    <Compile Include="SalaryRestrictionPersonAsk\SalaryRestrictionPersonAsk_OUT.cs" />
+    <Compile Include="SaveAdsMng\AdsPtClassification_NPDR_OUT.cs" />
+    <Compile Include="SaveAdsMng\AdsRegistration_INOUT.cs" />
+    <Compile Include="SaveAdsMng\BcodePrintScanSeq_INOUT.cs" />
+    <Compile Include="SaveAdsMng\ChoiceMedApplicationForm_OUT.cs" />
+    <Compile Include="SaveAdsMng\SaveAdsMng_OUT.cs" />
+    <Compile Include="SaveAdsMng\PrivacyProtectionApplicationForm_OUT.cs" />
+    <Compile Include="SaveAdsMng\SelAdsPossibilityPtRoom_OUT.cs" />
+    <Compile Include="SaveAdsMng\SelAdsRegistrationSignatureConfirmation_OUT.cs" />
+    <Compile Include="SaveAdsMng\SelAgeTpPtAdsNo_OUT.cs" />
+    <Compile Include="SaveAdsMng\SelectAdsNoCrePsbYn_INOUT.cs" />
+    <Compile Include="SaveAdsMng\SelectAdsPath_INOUT.cs" />
+    <Compile Include="SaveAdsMng\SelectAdsPtPtNmDupInsp_INOUT.cs" />
+    <Compile Include="SaveAdsMng\SelectGrtrInfAsk_IN.cs" />
+    <Compile Include="SaveAdsMng\SelectGrtrInfAsk_OUT.cs" />
+    <Compile Include="SaveAdsMng\SelectPrmPtclAsk_INOUT.cs" />
+    <Compile Include="SaveAdsMng\SelReductionPersonTargetAsk_OUT.cs" />
+    <Compile Include="SaveAdsMng\UpperPtRoomApplicationForm_OUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SaveAdsRsvMdf_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectDonrDgnsTpCd_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectAdsWragRegDT_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectDrNspMedSchd_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectDUR_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectIsolationYesOrNo_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectOtptClnlNoAsk_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectPatientRoomInfo_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectSrilPtRegApfr_INOUT.cs" />
+    <Compile Include="SaveAdsRsvMdf\SelectToucRwAirRw_INOUT.cs" />
+    <Compile Include="SaveHiPassRegMdf\SaveHiPassRegMdf_OUT.cs" />
+    <Compile Include="SaveHiPassRegMdf\SaveHiPassRegMdf_IN.cs" />
+    <Compile Include="SelectAdmissionFactClosedListDetail\SelectAdmissionFactClosedListDetail_IN.cs" />
+    <Compile Include="SelectAdmissionFactClosedListDetail\SelectAdmissionFactClosedListDetail_OUT.cs" />
+    <Compile Include="SelectAdmissionFactClosedList\SelectAdmissionFactClosedList_IN.cs" />
+    <Compile Include="SelectAdmissionFactClosedList\SelectAdmissionFactClosedList_OUT.cs" />
+    <Compile Include="SelectAdsExptPtCrccm\SelectAdsExptPtCrccm_OUT.cs" />
+    <Compile Include="SelectAdsExptPtCrccm\SelectAdsExptPtCrccm_IN.cs" />
+    <Compile Include="SaveAdsMng\SelectAdsMng_INOUT.cs" />
+    <Compile Include="SelectAdsRegExptPt\SelectAdsRegExptPt_IN.cs" />
+    <Compile Include="SelectAdsRegExptPt\SelectAdsRegExptPt_OUT.cs" />
+    <Compile Include="SelectAdsRsvExm\SelectAdsRsvExm_IN.cs" />
+    <Compile Include="SelectAdsRsvExm\SelectAdsRsvExm_OUT.cs" />
+    <Compile Include="SelectCnsgBtchReg\SelectCnsgBtchReg_IN.cs" />
+    <Compile Include="SelectCnsgBtchReg\SelectCnsgBtchReg_INOUT.cs" />
+    <Compile Include="SelectCnsgBtchReg\SelectCnsgBtchReg_OUT.cs" />
+    <Compile Include="SelectDstrMdeDmd\SelectDstrMdeDmd_IN.cs" />
+    <Compile Include="SelectDstrMdeDmd\SelectDstrMdeDmd_OUT.cs" />
+    <Compile Include="SelectDstrMdeSupPtMgmt\SelectDstrMdeSupPtMgmt_IN.cs" />
+    <Compile Include="SelectDstrMdeSupPtMgmt\SelectDstrMdeSupPtMgmt_OUT.cs" />
+    <Compile Include="SelectHiPassPtAsk\SelectHiPassPtAsk_OUT.cs" />
+    <Compile Include="SelectHiPassPtAsk\SelectHiPassPtAsk_IN.cs" />
+    <Compile Include="SelectHiPassRtmUnclAsk\SelectHiPassRtmUnclAsk_IN.cs" />
+    <Compile Include="SelectHiPassRtmUnclAsk\SelectHiPassRtmUnclAsk_OUT.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\CalcHiPassUnclAskPayment_IN.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\CalcHiPassUnclAskPayment_OUT.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\InsertHiPassUnclAskPaymentSMS_INOUT.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\RpyHiPassUnclAskPayment_IN.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\RpyHiPassUnclAskPayment_OUT.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\SelectHiPassUnclAskPayment_IN.cs" />
+    <Compile Include="SelectHiPassUnclAskPayment\SelectHiPassUnclAskPayment_OUT.cs" />
+    <Compile Include="SelectHiPassUnclAskSMS\SelectHiPassUnclAskSMS_IN.cs" />
+    <Compile Include="SelectHiPassUnclAskSMS\SelectHiPassUnclAskSMS_OUT.cs" />
+    <Compile Include="SelectHiPassUnclAsk\SelectComnCdNm_INOUT.cs" />
+    <Compile Include="SelectHiPassUnclAsk\SelectHiPassUnclAsk_IN.cs" />
+    <Compile Include="SelectHiPassUnclAsk\SelectHiPassUnclAsk_OUT.cs" />
+    <Compile Include="SelectImgnAcntAsk\SelectAdsImgnAcntAsk_INOUT.cs" />
+    <Compile Include="SelectImgnAcntAsk\SelectImgnAcntAsk_IN.cs" />
+    <Compile Include="SelectImgnAcntAsk\SelectImgnAcntAsk_OUT.cs" />
+    <Compile Include="SelectMedChangeHistory\SelectMedChangeHistory_IN.cs" />
+    <Compile Include="SelectMedChangeHistory\SelectMedChangeHistory_OUT.cs" />
+    <Compile Include="SelectMedRffm\SelectMedRffm_acppimrd_editdate_INOUT.cs" />
+    <Compile Include="SelectMtdDrSihsPtCrccm\SelectMtdDrSihsPtCrccm_IN.cs" />
+    <Compile Include="SelectMtdDrSihsPtCrccm\SelectMtdDrSihsPtCrccm_OUT.cs" />
+    <Compile Include="SelectOtdpDptfWdtfPrmAsgnAplc\SelectOtdpDptfWdtfPrmAsgnAplc_INOUT.cs" />
+    <Compile Include="SelectOtptEmrgViaAdsPtTranDtl\SelectOtptEmrgViaAdsPtTranDtl_IN.cs" />
+    <Compile Include="SelectOtptEmrgViaAdsPtTranDtl\SelectOtptEmrgViaAdsPtTranDtl_OUT.cs" />
+    <Compile Include="SelectOtptEmrgViaAdsPtTran\SelectOtptEmrgViaAdsPtTran_IN.cs" />
+    <Compile Include="SelectOtptEmrgViaAdsPtTran\SelectOtptEmrgViaAdsPtTran_OUT.cs" />
+    <Compile Include="SelectPatientInfoAsk\SelectPatientInfoAsk_IN.cs" />
+    <Compile Include="SelectPatientInfoAsk\SelectPatientInfoAsk_OUT.cs" />
+    <Compile Include="SelectPtExaminationProgressInsuranceAsk\SelectPtExaminationProgressInsuranceAsk_IN.cs" />
+    <Compile Include="SelectPtExaminationProgressInsuranceAsk\SelectPtExaminationProgressInsuranceAsk_OUT.cs" />
+    <Compile Include="SelectPtRoomClassByPtPastStayInHospital\SelectPtRoomClassByPtPastStayInHospital_INOUT.cs" />
+    <Compile Include="SelectRefundInformationAsk\SelectRefundInformationAsk_INOUT.cs" />
+    <Compile Include="SelectSihsBlncPtAsk\SelectSihsBlncPtAsk_IN.cs" />
+    <Compile Include="SelectSihsBlncPtAsk\SelectSihsBlncPtAsk_OUT.cs" />
+    <Compile Include="SelectSihsPtAskPa\SelectSihsPtAskPa_IN.cs" />
+    <Compile Include="SelectSihsPtAskPa\SelectSihsPtAskPa_OUT.cs" />
+    <Compile Include="SelectStfPsnyFamAdsCrccm\SelectStfPsnyFamAdsCrccm_IN.cs" />
+    <Compile Include="SelectStfPsnyFamAdsCrccm\SelectStfPsnyFamAdsCrccm_OUT.cs" />
+    <Compile Include="SelectVipInsp\SelectVipInsp_INOUT.cs" />
+    <Compile Include="SelMngDischargePt\SelMngDischargePt_IN.cs" />
+    <Compile Include="SelMngDischargePt\SelMngDischargePt_OUT.cs" />
+    <Compile Include="SendingBackAfterReReservationCurrentCircumstancesAsk\SendingBackAfterReReservationCurrentCircumstancesAsk_INOUT.cs" />
+    <Compile Include="SendingBackParticularsAsk\SendingBackParticularsAsk_IN.cs" />
+    <Compile Include="SendingBackParticularsAsk\SendingBackParticularsAsk_OUT.cs" />
+    <Compile Include="StayInHospitalPtHistoryRegistration\SelStayInHospitalPtHistoryRegistration_IN.cs" />
+    <Compile Include="StayInHospitalPtHistoryRegistration\SelStayInHospitalPtHistoryRegistration_OUT.cs" />
+    <Compile Include="StayInHospitalPtHistoryRegistration\SelStayInHospitalPtHistoryRegistration_StdStat_OUT.cs" />
+    <Compile Include="StayInHospitalPtMng\SelStayInHospitalPtMng_Combo_OUT.cs" />
+    <Compile Include="StayInHospitalPtMng\SelStayInHospitalPtMng_IN.cs" />
+    <Compile Include="StayInHospitalPtMng\SelStayInHospitalPtMng_OUT.cs" />
+    <Compile Include="StayInHospitalPtMng\SelStayInHospitalPtMng_Spc_OUT.cs" />
+    <Compile Include="TelReservationReasonAsk\TelReservationReasonAsk_Combo.cs" />
+    <Compile Include="TelReservationReasonAsk\TelReservationReasonAsk_IN.cs" />
+    <Compile Include="TelReservationReasonAsk\TelReservationReasonAsk_OUT.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /y "$(TargetPath)" "..\..\..\Deploy\Server\"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>attrib -R "$(TargetPath)"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

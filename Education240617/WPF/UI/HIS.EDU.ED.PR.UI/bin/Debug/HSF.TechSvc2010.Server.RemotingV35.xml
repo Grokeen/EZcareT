@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HSF.TechSvc2010.Server.RemotingV35</name>
+    </assembly>
+    <members>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent">
+            <summary>
+            Service 요청(송신) Packet을 생성하여 ServiceProxy를 통해 Service 호출
+            - WCF, XMLWebservice 혹은 .NET Remoting을 통해 서버에 설치된 비즈니스 컴포넌트의  메소드를 실행하고 결과값을 돌려 받습니다.
+            </summary>
+        </member>
+        <!-- 잘못된 형식의 XML 주석은 "M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.BeginInvokeBizService``1(System.Object,System.Action{``0},System.String,System.String,System.Object[])" 멤버에 대해 무시됩니다. -->
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.EndInvokeBizService(System.IAsyncResult)">
+            <summary>
+            비동기 호출 완료 함수
+            </summary>
+            <param name="iAsyncResult">비동기 결과값</param>
+            <returns>결과값</returns>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.Adapter">
+            <summary>
+            Middleware Adapter 
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.AddressManager">
+            <summary>
+            AddressManager for Adapter
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.AllowImpersionation">
+            <summary>
+            가장을 허용할지 설정된 값을 조회하거나 설정합니다. 기본값은 false입니다.
+            </summary>
+        </member>
+        <member name="E:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.OnStartRunBizSerivce">
+            <summary>
+            서비스 호출 시작시에 발생합니다.
+            </summary>
+        </member>
+        <member name="E:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.OnErrorRunBizService">
+            <summary>
+            서비스 호출 오류발생시에만 발생합니다.
+            </summary>
+        </member>
+        <member name="E:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.OnEndRunBizSerivce">
+            <summary>
+            서비스 호출 정상 종료시에만 발생합니다.
+            </summary>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAgent.doDisplay">
+            <summary>
+            화면 또는 수신개체에서 결과를 화면등에 표시할 수 있도록 합니다.
+            </summary>
+        </member>
+        <member name="F:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.CONST_URI_KEY">
+            <summary>
+            uri key in config file
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.Resolve">
+            <summary>
+            BHS의 워커프로세스들의 목록을 갱신합니다.
+            </summary>
+        </member>
+        <member name="F:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.current">
+            <summary>
+            현재 노드 저장 속성
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.GetAddress">
+            <summary>
+            BHS에서 호스팅 중인 WorkerProcess의 목록에서 자동으로 선택하여 주소를 반환합니다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.AddressList">
+            <summary>
+            Address List for WCF Middleware
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.ServiceManagerAddress">
+            <summary>
+            hosting manager uri address 
+            ex) net.tcp://localhost:7779/WCFBHSManagement
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFServiceAddressManager.Current">
+            <summary>
+            현재 Node를 조회하고 다음 커서로 이동합니다.
+            </summary>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig">
+            <summary>
+            BHS 및 WCF Agent WCF 바인딩 정보 환경관리자
+            </summary>
+        </member>
+        <member name="F:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.defaultMaxConnection">
+            <summary>
+            기본 tcp 연결의 개수
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.MaxConnection">
+            <summary>
+            tcp binding 최대 연결 개수 - 기본값 10000
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.ListenBacklogs">
+            <summary>
+            tcp listen block 수 - 기본 값 10000
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.TimeOut">
+            <summary>
+            timeout ( close, receive, send ) - 기본값 5분
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.MaxReceivedMessageSize">
+            <summary>
+            최대 수신/발신 메시지 크기 - 기본값 2147483647
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.MaxBufferSize">
+            <summary>
+            최대 임시 버퍼 크기
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFBindingConfig.MaxBufferPoolSize">
+            <summary>
+            최대 버퍼 풀 크기
+            </summary>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter">
+            <summary>
+            Service 요청(송신) Packet을 생성하여 ServiceProxy를 통해 Service 호출
+            - XMLWebservice 혹은 .NET Remoting을 통해 서버에 설치된 비즈니스 컴포넌트의  메소드를 실행하고 결과값을 돌려 받습니다.
+            - WCF까지 지원합니다.
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.SetTimeout(System.Int32)">
+            <summary>
+            타임아웃 설정 - 초 단위
+            </summary>
+            <param name="seconds"></param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.GetTimeout">
+            <summary>
+            현재 설정된 타임아웃 - 초 단위
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.#ctor(System.String,System.String,System.String,HSF.TechSvc2010.Common.Auth.AuthenticationInfo)">
+            <summary>
+            생성자
+            </summary>
+            <param name="ServiceURL"> service uri : ex) tcp://www.host.com/brokerService.bin</param>
+            <param name="className"> COM+ 개체명( 어셈블리명.개체명 )</param>
+            <param name="methodName">메소드명</param>
+            <param name="auth"> login info </param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.#ctor(System.String,HSF.TechSvc2010.Common.ServiceAssemblyInfo,System.String,System.String,HSF.TechSvc2010.Common.Auth.AuthenticationInfo)">
+            <summary>
+            생성자(2012-03-16, jegalhc)
+            </summary>
+            <param name="ServiceURL"> service uri : ex) tcp://www.host.com/brokerService.bin</param>
+            <param name="className"> COM+ 개체명( 어셈블리명.개체명 )</param>
+            <param name="methodName">메소드명</param>
+            <param name="auth"> login info </param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.#ctor(System.String,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="className"> 개체 이름 ( 어셈블리명.개체명 )</param>
+            <param name="methodName">메소드 명</param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.#ctor(HSF.TechSvc2010.Common.ServiceAssemblyInfo,System.String,System.String)">
+            <summary>
+            생성자(2012-03-16, jegalhc)
+            </summary>
+            <param name="assemblyInfo"> 어셈블리정보</param>
+            <param name="className"> 개체 이름 ( 어셈블리명.개체명 )</param>
+            <param name="methodName">메소드 명</param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.#ctor(System.String,System.String,HSF.TechSvc2010.Common.Auth.AuthenticationInfo)">
+            <summary>
+            생성자
+            </summary>
+            <param name="className"> 개체 이름 ( 어셈블리명.개체명 )</param>
+            <param name="methodName">메소드 명</param>
+            <param name="auth">인증정보</param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.#ctor(System.String,System.String,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="ServiceURL"> service uri : ex) tcp://www.host.com/brokerService.bin</param>
+            <param name="className"> COM+ 개체명( 어셈블리명.개체명 )</param>
+            <param name="methodName">메소드명</param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.RunRequest(HSF.TechSvc2010.Common.RequestPacket)">
+            <summary>
+            Runs the request.
+            </summary>
+            <param name="pk">The pk.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.RunRequestOneWay(HSF.TechSvc2010.Common.RequestPacket)">
+            <summary>
+            Runs the request(OneWay).
+            </summary>
+            <param name="pk">The pk.</param>
+            <returns></returns>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter.TimeOut">
+            <summary>
+            WCF 통신 TimeOUT - 밀리초 : 기본값 5분에 해당하는 5 * 60 * 1000
+            </summary>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.WCFBindingUtil">
+            <summary>
+            기본 WCF 바인딩을 반환합니다.
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFBindingUtil.GetDefaultBidning(HSF.TechSvc2010.Server.Remoting.WCFBindingType)">
+            <summary>
+            기본 바인딩을 반환합니다.
+            </summary>
+            <param name="bindingType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.WCFClientProxy`1">
+            <summary>
+            WCF 프록시 클래스
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent">
+            <summary>
+            Service 요청(송신) Packet을 생성하여 ServiceProxy를 통해 Service 호출
+            - XMLWebservice 혹은 .NET Remoting을 통해 서버에 설치된 비즈니스 컴포넌트의  메소드를 실행하고 결과값을 돌려 받습니다.
+            - 2013.07.03 제갈한철 : WCF Domain간 통신 시 Serialize 방식을 string 및 Byte[] 추가 변경 건
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.InvokeBizService(HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter,System.ComponentModel.IComponent,HSF.TechSvc2010.Common.ServiceAssemblyInfo,System.String,System.String,System.Guid,System.Boolean,System.Object[])">
+            <summary>
+            InvokeBizService Client에서 Server에 서비스를 요청하기 위한 최종 호출
+            </summary>
+            <param name="adt">WCFServiceAdapter object</param>
+            <param name="sender">IComponent object</param>
+            <param name="assemblyInfo">assembly Infomation</param>
+            <param name="className">class Name</param>
+            <param name="methodName">method Name</param>
+            <param name="contextId">context Id</param>
+            <param name="transmode">Serialize 전송방식 (true : string, false : byte[])</param>
+            <param name="args"> 파라미터 정보 Array</param>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.InvokeBizServiceOneWay(HSF.TechSvc2010.Server.Remoting.WCFServiceAdapter,System.ComponentModel.IComponent,HSF.TechSvc2010.Common.ServiceAssemblyInfo,System.String,System.String,System.Guid,System.Boolean,System.Boolean,System.Object[])">
+            <summary>
+            InvokeBizService Client에서 Server에 OneWay 서비스를 요청하기 위한 최종 호출
+            </summary>
+            <param name="adt">WCFServiceAdapter object</param>
+            <param name="sender">IComponent object</param>
+            <param name="assemblyInfo">assembly Infomation</param>
+            <param name="className">class Name</param>
+            <param name="methodName">method Name</param>
+            <param name="contextId">context Id</param>
+            <param name="isoneway">oneway 처리여부 (사실 필요없음)</param>
+            <param name="transmode">Serialize 전송방식 (true : string, false : byte[])</param>
+            <param name="args"> 파라미터 정보 Array</param>
+        </member>
+        <!-- 잘못된 형식의 XML 주석은 "M:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.BeginInvokeBizService``1(System.Object,System.Action{``0},System.String,System.String,System.Object[])" 멤버에 대해 무시됩니다. -->
+        <member name="M:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.EndInvokeBizService(System.IAsyncResult)">
+            <summary>
+            비동기 호출 완료 함수
+            </summary>
+            <param name="iAsyncResult">비동기 결과값</param>
+            <returns>결과값</returns>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.LoadValnceLocation">
+            <summary>
+            Load Valancing Type - Defualt : Server
+            ServiceAdapter 클래스의 내용과 동일하게 설정됩니다.
+            </summary>
+        </member>
+        <member name="E:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.OnStartRunBizSerivce">
+            <summary>
+            서비스 호출 시작시에 발생합니다.
+            </summary>
+        </member>
+        <member name="E:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.OnErrorRunBizService">
+            <summary>
+            서비스 호출 오류발생시에만 발생합니다.
+            </summary>
+        </member>
+        <member name="E:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.OnEndRunBizSerivce">
+            <summary>
+            서비스 호출 정상 종료시에만 발생합니다.
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.UseMiddleware">
+            <summary>
+            미들웨어(BHS)사용 유무를 설정합니다. - 기본값은 true이며 false로 설정할 경우 미들웨어가 아닌 로컬에서 비즈니스를 실행합니다.
+            configuration key "UseMiddleware"의 값을 "true", "false"로 설정 가능합니다.
+            </summary>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.WCFServiceAgent.doDisplay">
+            <summary>
+            화면 또는 수신개체에서 결과를 화면등에 표시할 수 있도록 합니다.
+            </summary>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAdapter">
+            <summary>
+            Service 요청(송신) Packet을 생성하여 ServiceProxy를 통해 Service 호출
+            - XMLWebservice 혹은 .NET Remoting을 통해 서버에 설치된 비즈니스 컴포넌트의  메소드를 실행하고 결과값을 돌려 받습니다.
+            - WCF까지 지원합니다.
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAdapter.GetImpersonation">
+             <summary>
+             AllowImpersionation 속성이 True일 경우에만 동작합니다.
+             Impersionation을 제공합니다.
+             LogContext.Current.UserID 와 LogContext.Current.UserIPAddress 가 인증정보로 가장되어 미들웨어에 전달됩니다.
+             가장을 사용하지 않으려면 null을 리턴하도록 재정의 하십시오.
+             </summary>
+             <example>
+                ServiceInfo sinfo = null;
+            
+                sinfo = new ServiceInfo("", "", "");
+            
+                AuthenticationInfo impersonation = new AuthenticationInfo(
+                    LogContext.Current.UserID,
+                    LogContext.Current.UserID,
+                    LogContext.Current.UserIPAddress, null);
+            
+                RequestPacket packet = new RequestPacket(sinfo, impersonation);
+                string token = GenerateClientAuthToken(packet);
+                impersonation.AuthTicket = token;
+            
+                return impersonation;
+             </example>
+             <returns></returns>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAdapter.GetAssmName(System.String)">
+            <summary>
+            ClassName(FullTypeName)의 Namespace를 Assembly File Name
+            </summary>
+            <param name="className"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAdapter.RunRequest(HSF.TechSvc2010.Common.RequestPacket)">
+            <summary>
+            Runs the request.
+            </summary>
+            <param name="pk">The pk.</param>
+            <returns></returns>
+        </member>
+        <member name="T:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager">
+            <summary>
+            Middleware Address Manager
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.Resolve">
+            <summary>
+            BHS의 워커프로세스들의 목록을 갱신합니다.
+            </summary>
+        </member>
+        <member name="F:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.current">
+            <summary>
+            현재 노드 저장 속성
+            </summary>
+        </member>
+        <member name="M:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.GetAddress">
+            <summary>
+            BHS에서 호스팅 중인 WorkerProcess의 목록에서 자동으로 선택하여 주소를 반환합니다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.AddressList">
+            <summary>
+            Address List for WCF (.NET 4.0) Middleware
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.TimerInterval">
+            <summary>
+            주소 점검 주기 - 기본값 50*1000 = 50초
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.ServiceManagerAddress">
+            <summary>
+            hosting manager uri address 
+            ex) net.tcp://localhost:7779/WCFBHSManagement
+            </summary>
+        </member>
+        <member name="P:HSF.TechSvc2010.Server.Remoting.HSFMiddlewareAddressManager.Current">
+            <summary>
+            현재 Node를 조회하고 다음 커서로 이동합니다.
+            </summary>
+        </member>
+    </members>
+</doc>
