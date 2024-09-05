@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{14F1234A-BBC1-4B07-80F9-1DC8ED6A2F4B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PE.TE.UI</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PE.TE.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.OnCidReceiverLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\AxInterop.OnCidReceiverLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Sign">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Sign.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.MC.CM.IM.PM.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\MC\HIS.MC.CM.IM.PM.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.MC.Core.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\MC\HIS.MC.Core.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.MC.Core.UI">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\MC\HIS.MC.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.MS.IR.RSVT.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\MS\HIS.MS.IR.RSVT.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PC.OP.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PC.OP.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.AP.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.AP.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.AP.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.AP.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.CA.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.CA.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.PS.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.PS.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.SC.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.SC.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.TE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.TE.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PI.PI.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PI.PI.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.AC.PM.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.AC.PM.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.BASE.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.CONVERTER, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.CONVERTER.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UCHELPER, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UCHELPER.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UTIL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UC, Version=1.0.5506.19686, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UC.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Base">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.CoreWork">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.CoreWork.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Design.Themes">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Utility">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataPresenter.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Editors.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Interop.OnCidReceiverLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\Interop.OnCidReceiverLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Page Include="EachTelephoneReservationRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiplexTelephoneReservationRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PproSttsAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="ReservationChangeDirectMailShipPrinting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReservationPtHappyCallTargetRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReservationPtMedScheduleChange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReservationPtMedScheduleMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SmsStatisticsAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TelephoneReservationRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EachTelephoneReservationRegistration.xaml.Behavior.cs">
+      <DependentUpon>EachTelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EachTelephoneReservationRegistration.xaml.cs">
+      <DependentUpon>EachTelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EachTelephoneReservationRegistration.xaml.Data.cs">
+      <DependentUpon>EachTelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiplexTelephoneReservationRegistration.xaml.Behavior.cs">
+      <DependentUpon>MultiplexTelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiplexTelephoneReservationRegistration.xaml.cs">
+      <DependentUpon>MultiplexTelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiplexTelephoneReservationRegistration.xaml.Data.cs">
+      <DependentUpon>MultiplexTelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PproSttsAsk.xaml.Behavior.cs">
+      <DependentUpon>PproSttsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PproSttsAsk.xaml.cs">
+      <DependentUpon>PproSttsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PproSttsAsk.xaml.Data.cs">
+      <DependentUpon>PproSttsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationChangeDirectMailShipPrinting.xaml.Behavior.cs">
+      <DependentUpon>ReservationChangeDirectMailShipPrinting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationChangeDirectMailShipPrinting.xaml.cs">
+      <DependentUpon>ReservationChangeDirectMailShipPrinting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationChangeDirectMailShipPrinting.xaml.Data.cs">
+      <DependentUpon>ReservationChangeDirectMailShipPrinting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtHappyCallTargetRegistration.xaml.Behavior.cs">
+      <DependentUpon>ReservationPtHappyCallTargetRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtHappyCallTargetRegistration.xaml.cs">
+      <DependentUpon>ReservationPtHappyCallTargetRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtHappyCallTargetRegistration.xaml.Data.cs">
+      <DependentUpon>ReservationPtHappyCallTargetRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtMedScheduleChange.xaml.Behavior.cs">
+      <DependentUpon>ReservationPtMedScheduleChange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtMedScheduleChange.xaml.cs">
+      <DependentUpon>ReservationPtMedScheduleChange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtMedScheduleChange.xaml.Data.cs">
+      <DependentUpon>ReservationPtMedScheduleChange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtMedScheduleMng.xaml.Behavior.cs">
+      <DependentUpon>ReservationPtMedScheduleMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtMedScheduleMng.xaml.cs">
+      <DependentUpon>ReservationPtMedScheduleMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationPtMedScheduleMng.xaml.Data.cs">
+      <DependentUpon>ReservationPtMedScheduleMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SmsStatisticsAsk.xaml.Behavior.cs">
+      <DependentUpon>SmsStatisticsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SmsStatisticsAsk.xaml.cs">
+      <DependentUpon>SmsStatisticsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SmsStatisticsAsk.xaml.Data.cs">
+      <DependentUpon>SmsStatisticsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml.Behavior.cs">
+      <DependentUpon>TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml.cs">
+      <DependentUpon>TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml.Data.cs">
+      <DependentUpon>TelephoneMedicalTreatmentApplicationCompletionPatientList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml.Behavior.cs">
+      <DependentUpon>TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml.cs">
+      <DependentUpon>TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml.Data.cs">
+      <DependentUpon>TelephoneMedicalTreatmentApplicationCompletionTargetManShortMessageService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneReservationRegistration.xaml.Behavior.cs">
+      <DependentUpon>TelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneReservationRegistration.xaml.cs">
+      <DependentUpon>TelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelephoneReservationRegistration.xaml.Data.cs">
+      <DependentUpon>TelephoneReservationRegistration.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,2 +1,11 @@
 ﻿SELECT
 * FROM AAWORKTT;
+
+
+SELECT *
+  FROM EMBUMENT
+ WHERE MENU_NM LIKE '%전화예약%'
+;
+
+select *
+from PCTPCPAM;
