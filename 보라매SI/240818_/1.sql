@@ -1,0 +1,13 @@
+mysql -u root -p
+20165270
+
+;
+
+
+-- Active: 1700244480938@@127.0.0.1@3306
+CREATE DATABASE 
+    DEFAULT CHARACTER SET = 'EZtable240818';
+
+
+
+    
