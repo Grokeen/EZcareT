@@ -1,0 +1,548 @@
+﻿<base:UserControlBase x:Class="HIS.PA.PZ.AC.UI.UserPersonalization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:base="clr-namespace:HIS.UI.Base;assembly=HIS.UI.Base"
+             xmlns:baseConverter="clr-namespace:HIS.UI.Utility.Converters;assembly=HIS.UI.Utility"
+             xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+             xmlns:local="clr-namespace:HIS.PA.PZ.AC.UI"   
+        	 Loaded="OnLoaded" 
+             mc:Ignorable="d" 
+             d:DesignWidth="650" d:DesignHeight="780" DesignWidth="650" DesignHeight="780" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
+    <UserControl.DataContext>
+        <local:UserPersonalizationData/>
+    </UserControl.DataContext>
+    <base:UserControlBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HIS.UI.Design.Themes;component/GeneralResources.xaml"/>
+                <ResourceDictionary Source="/HIS.UI.Design.Themes;component/AIResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </base:UserControlBase.Resources>
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="30"/>-->
+            </Grid.RowDefinitions>
+            <Grid Height="30" Margin="0,0,0,5">
+                <StackPanel Orientation="Horizontal">
+                    <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
+                    <HTextBlock TextWrapping="Wrap" Text="원무" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
+                </StackPanel>
+                <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
+            </Grid>
+            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <!--<RowDefinition Height="30"/>-->
+                        <!--<RowDefinition Height="30"/>-->
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="80"/>
+                        <ColumnDefinition Width="Auto" MinWidth="200"/>
+                        <ColumnDefinition Width="Auto" MinWidth="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1">
+                        <HTextBlock TextWrapping="Wrap" Text="금액표시기" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.ColumnSpan="3" Grid.Column="1">
+                        <RadioButtonList ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0" SelectedIndex="{Binding AMT_MRK_MCHN_SCRN_TP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <!--20240815 성현석 구형 LED, LCD는 사용하지 않지만 소스에서 사용하는 부분이 있어서 지우지않고 안보이게만 함.-->
+                            <RadioButtonListItem Content="구형 LED" Visibility="Collapsed"/>
+                            <RadioButtonListItem Content="LCD" Visibility="Collapsed"/>
+                            <RadioButtonListItem Content="환자모니터"/>
+                            <RadioButtonListItem Content="없음" Margin="0"/>
+                        </RadioButtonList>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1">
+                        <HTextBlock TextWrapping="Wrap" Text="진료비 수납 재정산" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="1">
+                        <HCheckBox Content="사용함" IsChecked="{Binding Path=MCST_RPY_ACAL_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="2">
+                        <HTextBlock TextWrapping="Wrap" Text="메인 위젯 패널 오픈여부" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="3">
+                        <HCheckBox IsChecked="{Binding Path=BLNG_MTD_LIST_MRK_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Content="사용함" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="2">
+                        <HTextBlock TextWrapping="Wrap" Text="계산서 출력" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="2" Grid.Column="1">
+                        <HCheckBox Content="사용함" IsChecked="{Binding Path=RCP_PRNT_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>
+                    <!-- 2024.08.19 예약증 출력설정 아예 막기 김태훈-->
+                    <!--<Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="2" Grid.Column="2">
+                        <HTextBlock TextWrapping="Wrap" Text="예약증 출력설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="2" Grid.Column="3">
+                        <HCheckBox Content="사용함" IsChecked="{Binding Path=RSV_PRNT_STU_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>-->
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="3">
+                        <HTextBlock TextWrapping="Wrap" Text="전화예약확인" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="3" Grid.Column="1">
+                        <HCheckBox Content="사용함" IsChecked="{Binding Path=TEL_RSV_CLOS_CFMT_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="3" Grid.Column="2">
+                        <HTextBlock TextWrapping="Wrap" Text="입원등록 공단자동체크 " VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="3" Grid.Column="3">
+                        <HCheckBox IsChecked="{Binding Path=ADS_REG_PCOR_AUTO_INSP_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="사용함" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>                   
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="4">
+                        <HTextBlock TextWrapping="Wrap" Text="지능형 순번기 설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.ColumnSpan="3" Grid.Row="4" Grid.Column="1">
+                        <RadioButtonList ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,5" ItemWidth="100" SelectedIndex="{Binding KNLG_SEQ_PV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <RadioButtonListItem Content="외래수납"/>
+                            <RadioButtonListItem Content="외래예약"/>
+                            <RadioButtonListItem Content="입원예약"/>
+                            <RadioButtonListItem Content="제증명"/>
+                            <RadioButtonListItem Content="퇴원계산서"/>
+                            <RadioButtonListItem Content="입원등록"/>
+                            <!--<RadioButtonListItem Content="퇴원금수납"/>-->
+                        </RadioButtonList>
+                    </Border>         
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="8">
+                        <HTextBlock TextWrapping="Wrap" Text="진찰권 프린터 설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3">
+                        <!-- 2024.06.19 보라매병원 진찰권 출력물 형태로 바꾸면서 라디오버튼 주석 - 서울대는 IC카드로 진찰권 뽑으니까 이게 필요한데 보라매는 필요없음 김태훈-->
+                            <!--<RadioButtonList x:Name="rdoPrcd" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0" ItemsSource="{Binding Path=PRCD_PRINT}" SelectedValuePath="COMN_CD" DisplayMemberPath="COMN_CD_NM"  SelectedValue="{Binding PRCD_ISSU_PV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+                        <!-- 2024.06.19 보라매병원 진찰권 출력물 형태로 바꾸면서 라디오버튼 주석 - 서울대는 IC카드로 진찰권 뽑으니까 이게 필요한데 보라매는 필요없음-->
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPrcdPrint" 
+                                       Width="140" 
+                                       HorizontalAlignment="Left" 
+                                       SelectionChanged="CboPrcdPrint_SelectionChanged" 
+                                       DisplayMemberPath="PRINT_NAME"
+                                       SelectedValuePath="Printer_Sources"/>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=PRCD_ISSU_PV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="7">
+                        <HTextBlock TextWrapping="Wrap" Text="라벨 프린터 설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3">
+                        <!--<RadioButtonList x:Name="rdoLabel" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0" ItemsSource="{Binding Path=LABEL_PRINT}" SelectedValuePath="COMN_CD" DisplayMemberPath="COMN_CD_NM" SelectedValue="{Binding LABEL_PRT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboLabelPrint" 
+                                       Width="140" 
+                                       HorizontalAlignment="Left" 
+                                       SelectionChanged="CboLabelPrint_SelectionChanged" 
+                                       DisplayMemberPath="PRINT_NAME"
+                                       SelectedValuePath="Printer_Sources"/>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=LABEL_PRT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        </StackPanel>
+                    </Border>
+                    <!-- 2024.08.19 금액표시기 안내문구 주석처리 김태훈-->
+                    <!--<Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="7">
+                        <HTextBlock TextWrapping="Wrap" Text="LCD 금액표시기 안내문구" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" Visibility="Collapsed"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="1">
+                        --><!--<RadioButtonList ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0" SelectedIndex="{Binding LCD_AMT_MRK_PV_GUID_WDNG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />--><!--
+                        <RadioButtonList x:Name="rdoScreen" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0" ItemsSource="{Binding Path=LCD_SCREENS}" SelectedValuePath="COMN_CD" DisplayMemberPath="COMN_CD_NM" SelectedValue="{Binding LCD_AMT_MRK_PV_GUID_WDNG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="rdoScreen_SelectionChanged" Visibility="Collapsed"/>
+                    </Border>-->
+                    <!--<Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="8">
+                        <HTextBlock TextWrapping="Wrap" Text="사용자의 병원구분 " VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.ColumnSpan="3" Grid.Row="8" Grid.Column="1">
+                        <RadioButtonList ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0" SelectedIndex="{Binding USR_HSP_TP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <RadioButtonListItem Content="본원"/>
+                            <RadioButtonListItem Content="어린이"/>
+                            <RadioButtonListItem Content="암병원"/>
+                            <RadioButtonListItem Content="임상" Margin="0"/>
+                        </RadioButtonList>
+                    </Border>-->
+                    <!-- 2024.08.19 응급실여부, FAX포트설정 아예 주석 김태훈 -->                    
+                    <!--<Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="8">
+                        --><!--<HTextBlock TextWrapping="Wrap" Text="응급실여부" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>--><!--
+                    </Border>-->
+                    <!--<Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="8" Grid.ColumnSpan="1" Grid.Column="1">
+                        --><!--<HCheckBox x:Name="chkEmrm_yn" HorizontalAlignment="Left" IsChecked="{Binding Path=EMRM_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Content="사용함"  Margin="5,0,0,0"/>--><!--
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="8" Grid.Column="2">
+                        --><!--<HTextBlock TextWrapping="Wrap" Text="FAX 포트설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" />--><!--
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="8" Grid.Column="3">
+                        --><!--<HTextBox Margin="5,0" Text="{Binding Path=FAX_PORT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>--><!--
+                    </Border>-->
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="5">
+                        <HTextBlock TextWrapping="Wrap" Text="외래수납조회시 default" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1">
+                        <RadioButtonList ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0,0,0" ItemMargin="0,0,10,0"  SelectedIndex="{Binding OTPT_RPY_ASK_PRD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <RadioButtonListItem Content="180일"/>
+                            <RadioButtonListItem Content="1년"/>
+                            <RadioButtonListItem Content="2년"/>
+                            <RadioButtonListItem Content="전체" Margin="0"/>
+                        </RadioButtonList>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="6">
+                        <HTextBlock TextWrapping="Wrap" Text="수납시 기본설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3">
+                        <RadioButtonList ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0" ItemMargin="0,0,10,0" SelectedIndex="{Binding RPY_HH_BSC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <RadioButtonListItem Content="현금"/>
+                            <RadioButtonListItem Content="카드"/>
+                            <RadioButtonListItem Content="현금영수증" Margin="0"/>
+                        </RadioButtonList>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="9">
+                        <HTextBlock TextWrapping="Wrap" Text="영수증 프린터설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPrint" Width="140" 
+                             HorizontalAlignment="Left" 
+                             SelectionChanged="CboPrint_SelectionChanged"
+                             DisplayMemberPath="PRINT_NAME"
+                             SelectedValuePath="Printer_Sources"/>
+                            <HTextBox Margin="5,0,0,0" 
+                                      Width="200" 
+                                      Text="{Binding Path=PRINT_INFO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      IsReadOnly="True"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="0" >
+                        <HTextBlock TextWrapping="Wrap" Text="영수증 용지함" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboBILLTray" 
+                                   Width="140"
+                                   SelectedItem="{Binding PRES_TRAY_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   SelectionChanged="CboBILLTray_SelectionChanged"
+                                   DisplayMemberPath="SOURCE_NAME"
+                                   SelectedValuePath="RAWKIND">
+                            </HComboBox>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=BILL_TRAY_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                            </HTextBox>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="11">
+                        <HTextBlock TextWrapping="Wrap" Text="원외처방전 프린터설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPrint4" 
+                                       Width="140" 
+                                       SelectionChanged="CboPrint4_SelectionChanged"
+                                       DisplayMemberPath="PRINT_NAME"
+                                       SelectedValuePath="Printer_Sources"
+                                       >
+                                <HComboBox.Style>
+                                    <Style TargetType="HComboBox" >
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkHSOT, Path=IsChecked}" Value="True">
+                                                <Setter Property="IsEnabled" Value="True"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </HComboBox.Style>
+                            </HComboBox>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=PRINT_INFO3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                                <HTextBox.Style>
+                                    <Style TargetType="HTextBox" >
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkHSOT, Path=IsChecked}" Value="True">
+                                                <Setter Property="IsEnabled" Value="True"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </HTextBox.Style>
+                            </HTextBox>
+                            <HCheckBox x:Name="chkHSOT" Content="사용함" IsChecked="{Binding Path=HSOT_ORD_PRTR_STU_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <!-- 2024.08.17 보라매병원 원무과에서 외래 원외처방전 출력 결정나서, 다중 트레이 프린터 추가하기로 함. 사용자가 기본 프린터 지정하고 들어가게 처리한다. -->
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="0" >
+                        <HTextBlock TextWrapping="Wrap" Text="원외처방전 용지함" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPresTray" 
+                                   Width="140"
+                                   SelectedItem="{Binding PRES_TRAY_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   SelectionChanged="CboPresTray_SelectionChanged"
+                                   DisplayMemberPath="SOURCE_NAME"
+                                   SelectedValuePath="RAWKIND">
+                                <HComboBox.Style>
+                                    <Style TargetType="HComboBox">
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkHSOT, Path=IsChecked}" Value="true">
+                                                <Setter Property="IsEnabled" Value="True"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </HComboBox.Style>
+                            </HComboBox>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=PRES_TRAY_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" TextChanged="HTextBox_TextChanged">
+                                <HTextBox.Style>
+                                    <Style TargetType="HTextBox" >
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkHSOT, Path=IsChecked}" Value="True">
+                                                <Setter Property="IsEnabled" Value="True"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </HTextBox.Style>
+                            </HTextBox>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="13">
+                        <HTextBlock TextWrapping="Wrap" Text="제증명 프린터설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPrint2" 
+                                       Width="140" 
+                                       SelectionChanged="CboPrint2_SelectionChanged" 
+                                       DisplayMemberPath="PRINT_NAME"
+                                       SelectedValuePath="Printer_Sources"/>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=CTFS_CONR_PRTR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="0" >
+                        <HTextBlock TextWrapping="Wrap" Text="제증명 용지함" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboREPOTray" 
+                                   Width="140"
+                                   SelectedItem="{Binding REPO_TRAY_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   SelectionChanged="CboREPOTray_SelectionChanged"
+                                   DisplayMemberPath="SOURCE_NAME"
+                                   SelectedValuePath="RAWKIND">
+                            </HComboBox>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=REPO_TRAY_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                            </HTextBox>
+                        </StackPanel>
+                    </Border>
+                    <!-- 2024.08.18 양면프린터 설정 아예 주석처리 김태훈-->
+                    <!--<Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="15">
+                        --><!--<HTextBlock TextWrapping="Wrap" Text="양면 프린터설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>--><!--
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="3">
+                        --><!--<StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPrint3" 
+                                       Width="140" 
+                                       SelectionChanged="CboPrint3_SelectionChanged"
+                                       DisplayMemberPath="PRINT_NAME"
+                                       SelectedValuePath="Printer_Sources"/>
+                            <HTextBox Margin="5,0,0,0" Width="200" Text="{Binding Path=PRINT_INFO2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"  />
+                        </StackPanel>--><!--
+                    </Border>-->
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="15">
+                        <HTextBlock TextWrapping="Wrap" Text="예약증프린터 설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,6,5,7"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="3">
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <HComboBox x:Name="CboPrint5" 
+                                       Width="140" 
+                                       SelectionChanged="CboPrint5_SelectionChanged" 
+                                       DisplayMemberPath="PRINT_NAME"
+                                       SelectedValuePath="Printer_Sources"/>
+                            <HTextBox Margin="5,0,0,0" Width="200" IsReadOnly="True"/>
+                            <HCheckBox Content="사용함" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="2" Grid.Column="2">
+                        <HTextBlock TextWrapping="Wrap" Text="전화예약 체크리스트" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1">
+                        <HCheckBox Content="사용함" IsChecked="{Binding Path=TEL_RSV_INSP_LIST_CFMT_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="16">
+                        <HTextBlock Text="환자모니터 위치설정" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}"  Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="16">
+                        <DockPanel LastChildFill="True" Margin="5,0">
+                            <HComboBox Width="140" Name="CboMonPos" SelectionChanged="CboMonPos_SelectionChanged"/>
+                            <HTextBox Margin="5,0,0,0" Text="{Binding Path=AMT_MRK_MCHN_SCRN_PSTN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        </DockPanel>
+                    </Border>
+                </Grid>
+            </Border>
+            <!--<Border Style="{StaticResource OneAreaDarkBorderStyle}" Grid.Row="1" Height="Auto" VerticalAlignment="Stretch">
+                    <Border Style="{StaticResource OneAreaLightBorderStyle}" Margin="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            -->
+            <!--<HCheckBox Content="접수시 수납" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" IsChecked="{Binding GRID_LAYOUT_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+            <!--
+                            <HCheckBox IsEnabled="False" Content="외래 수납시 180일 조회" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" IsChecked="{Binding Path=SIXMONTH_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"/>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                                <HTextBlock Text="프린터[진료비/원외처방전]" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <HTextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="245" Margin="5,0,0,0"  Text="{Binding Path=PRINT_INFO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                                <HTextBlock Text="프린터[진찰권 발행기]" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <HTextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="270" Margin="5,0,0,0"  Text="{Binding Path=PRINT_JINCARD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <HCheckBox Content="진료비영수증 출력" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" IsChecked="{Binding Path=BILL_AUTO_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                                <HTextBlock Text="진료비영수증 용지함번호" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <HTextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="5,0,0,0"  Text="{Binding Path=BILL_PORT_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextMode="Number" />
+                            </StackPanel>
+                            <HCheckBox Content="싸인패드 적용" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"  IsChecked="{Binding Path=SIGNPAD_USE_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="2"/>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                                <HTextBlock Text="원외처방전 용지함번호" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <HTextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="5,0,0,0" Text="{Binding Path=DRUG_PORT_NUM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextMode="Number" />
+                            </StackPanel>
+                            <HCheckBox Content="원외처방전발행" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"  IsChecked="{Binding Path=DRUG_AUTO_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
+                            <HCheckBox Content="12인치 안내시스템" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"  IsChecked="{Binding Path=MONITOR_USE_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"/>
+                            -->
+            <!--<HCheckBox Content="카드정보출력구분" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="4"/>-->
+            <!--
+                            <HCheckBox Content="외래 수납시 당일수진 체크" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="5"  IsChecked="{Binding Path=TODAY_SUJIN_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                            -->
+            <!--<HCheckBox Content="금액표기시 적용" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="5"/>-->
+            <!--
+                            <HCheckBox Content="외래 당일 일괄수납" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"  IsChecked="{Binding Path=TODAY_SUNAP_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" />
+                            <HCheckBox Content="묶음 영수증 사용유무" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"  IsChecked="{Binding Path=BIND_BILL_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" />
+                        </Grid>
+                    </Border>
+                </Border>-->
+            <Grid Height="30" Margin="0,5" Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
+                    <HTextBlock TextWrapping="Wrap" Text="보험" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
+                    <HCheckBox x:Name="txtTGT_PT" IsChecked="{Binding Path=TGT_PT_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="대상환자" Margin="10,0,0,0" BorderBrush="{StaticResource RCLightBorderBrush}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
+            </Grid>
+            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="4" VerticalAlignment="Top">
+                <Border.Style>
+                    <Style TargetType="Border" >
+                        <Setter Property="IsEnabled" Value="False"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=txtTGT_PT, Path=IsChecked}" Value="True">
+                                <Setter Property="IsEnabled" Value="True"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="80"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" MinWidth="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>                
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1">
+                        <HTextBlock Text="파일구분" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="1">
+                        <HComboBox x:Name="cboFileGB" SelectedIndex="{Binding FILE_TP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="130" HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="COMN_CD_NM" SelectedValuePath="COMN_CD"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="2">
+                        <HTextBlock Text="보험자구분" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Column="3">
+                        <HComboBox x:Name="cboIsurTp" SelectedIndex="{Binding ISUR_TP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="130" HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="COMN_CD_NM" SelectedValuePath="COMN_CD"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1">
+                        <HTextBlock Text="청구구분" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="1">
+                        <HComboBox x:Name="cboDmdTp" SelectedIndex="{Binding DMD_TP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="130" HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="COMN_CD_NM" SelectedValuePath="COMN_CD"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="2">
+                        <HTextBlock Text="진료년월" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="3">
+                        <HTextBox Text="{Binding MED_YY_MM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2">
+                        <HTextBlock Text="발송순번" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="1">
+                        <HTextBox Text="{Binding SHIP_SEQ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="40" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                    </Border>
+                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="2">
+                        <HTextBlock Text="진료분야" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" Grid.Row="2" Grid.Column="3">
+                        <HComboBox x:Name="cboMedFld" SelectedIndex="{Binding MED_FLD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="130" HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="COMN_CD_NM" SelectedValuePath="COMN_CD"/>
+                    </Border>
+                </Grid>
+            </Border>
+            <!--<Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="3">
+                <Border Style="{StaticResource TableThreeDepthBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <HCheckBox Content="선별심사 항목의 색깔표시" HorizontalAlignment="Left" Margin="5,0,0,0"  IsChecked="{Binding Path=COLOR_DIS_YN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                            <HTextBlock Text="추가퇴원알리미 조회 시간설정(분단위)" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <HTextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="5,0,0,0" Text="{Binding Path=ALARM_MINUTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextMode="Number" />
+                        </StackPanel>
+                        -->
+            <!--<HCheckBox Content="혈투류 환자의 알림 그림 표시" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="1"/>
+                            <HCheckBox Content="저장시 심사완료" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="2"/>
+                            <HCheckBox Content="환자의 Key Display 여부" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Row="3"/>-->
+            <!--
+                    </Grid>
+                </Border>
+            </Border>-->
+
+
+
+
+         
+        </Grid>
+    </Grid>
+</base:UserControlBase>
