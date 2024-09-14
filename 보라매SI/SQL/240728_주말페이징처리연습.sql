@@ -4,3 +4,6 @@
 
 
 SELECT 
+   *
+FROM DUAL
+

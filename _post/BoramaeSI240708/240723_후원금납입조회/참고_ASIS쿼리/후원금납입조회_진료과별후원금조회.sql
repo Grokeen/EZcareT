@@ -1,8 +1,8 @@
-﻿PROCEDURE pc_sw_sel_swsupamt_deptlist (
-    in_from_dte IN VARCHAR2,     -- 시작 날짜
-    in_to_dte IN VARCHAR2,       -- 종료 날짜
-    in_dept_cd IN VARCHAR2,      -- 진료 번로
-    in_pt_no IN VARCHAR2,        -- 환자 번호
+PROCEDURE pc_sw_sel_swsupamt_deptlist (
+    in_from_dte IN VARCHAR2,    -- 시작 날짜
+    in_to_dte IN VARCHAR2,      -- 종료 날짜
+    in_dept_cd IN VARCHAR2,     -- 부서 코드
+    in_pt_no IN VARCHAR2,       -- 환자 번호
     out_cursor OUT SYS_REFCURSOR -- 반환할 데이터셋
 ) IS
     -- 선언
@@ -49,36 +49,3 @@ BEGIN
     END;
 END pc_sw_sel_swsupamt_deptlist;
 
-
-
-
-/*
-- FTB_CCDEPART_NM : 뭐지 이거?
-    -> 진료과가 'Y' 냐?
-
-- ft_d_name : 뭐지??? NVL 같은 건가?
-
-*/
-
-
-/*
-FROM swsupamt a
-JOIN swintakt b ON a.pt_no = b.pt_no
-    AND a.talk_dte = b.talk_dte
-    AND a.talk_seq = b.talk_seq
-
-JOIN appatbat c ON a.pt_no = c.pt_no
-
-LEFT JOIN cccodest t ON a.sup_grp = t.c_cd
-    AND t.ccd_typ = 'SW24'
-
-- a와 b를 조인, 조건이 3개
-    - 환자번호
-    - 면담일자
-    - 면담순번
-- a와 c를 조인, 조건이 1개
-    - 환자번호
-- a와 t를 Left조인, 조건이 2개
-    - 후원기관분류콛드
-    - 공통분류코드 = sw24
-*/

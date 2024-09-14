@@ -104,4 +104,3 @@ WHERE ROWNUM < 10;
     );
 
 
-WHERE ROWNUM
