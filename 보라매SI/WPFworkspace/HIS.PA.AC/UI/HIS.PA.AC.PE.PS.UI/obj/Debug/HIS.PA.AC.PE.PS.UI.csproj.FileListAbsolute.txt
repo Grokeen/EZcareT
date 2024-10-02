@@ -76,3 +76,5 @@ D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PE.PS.UI\o
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PE.PS.UI\obj\Debug\HIS.PA.AC.PE.PS.UI.csproj.CopyComplete
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PE.PS.UI\obj\Debug\HIS.PA.AC.PE.PS.UI.dll
 D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PE.PS.UI\obj\Debug\HIS.PA.AC.PE.PS.UI.pdb
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PE.PS.UI\obj\Debug\MedDoctorScheduleRegistration.g.cs
+D:\kimyongrok\EZcareT\보라매SI\WPFworkspace\HIS.PA.AC\UI\HIS.PA.AC.PE.PS.UI\obj\Debug\MedDoctorScheduleRegistration.baml

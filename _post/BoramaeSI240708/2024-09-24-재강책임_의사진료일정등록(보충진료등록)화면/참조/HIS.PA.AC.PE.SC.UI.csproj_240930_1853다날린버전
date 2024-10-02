@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B21550F5-95E7-4AA4-8098-08524BF3BDE3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PE.SC.UI</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PE.SC.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamCalendar.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Controls.Schedules.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.DataPresenter.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Editors.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.v11.2">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Page Include="ByDayOptResvationStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ByMonthByMtdNotSeeingPtsAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClinicPatientReserved.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorChoiceYNManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMailSend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMajorFieldAndClinicCodeManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMedReservationCrccmAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMedReservationDetailAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMedReservationPtAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMedScheduleBatchMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMedScheduleNursingModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorMedTreatmentSupportManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorReservationCautionPointMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoctorSpltMedicalTreatmentFieldManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmergencyReceivePaymentBeAtWorkManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedDoctorScheduleCriteriaRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedDoctorScheduleRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedDoctorScheduleUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedicalTreatmentPossibilityDoctorAskRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedRoomCaution.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MedScheduleCrccmAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotSeeingPatientsScheduleAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NumOfMedAndNotSeeingSessionAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OptMedSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtptMedReservationAuthorityAsk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="SaveMedDeptMobile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SessionInformPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SessionInspect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ByDayOptResvationStatus.xaml.Behavior.cs">
+      <DependentUpon>ByDayOptResvationStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByDayOptResvationStatus.xaml.cs">
+      <DependentUpon>ByDayOptResvationStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByDayOptResvationStatus.xaml.Data.cs">
+      <DependentUpon>ByDayOptResvationStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByMonthByMtdNotSeeingPtsAsk.xaml.Behavior.cs">
+      <DependentUpon>ByMonthByMtdNotSeeingPtsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByMonthByMtdNotSeeingPtsAsk.xaml.cs">
+      <DependentUpon>ByMonthByMtdNotSeeingPtsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByMonthByMtdNotSeeingPtsAsk.xaml.Data.cs">
+      <DependentUpon>ByMonthByMtdNotSeeingPtsAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicPatientReserved.xaml.Behavior.cs">
+      <DependentUpon>ClinicPatientReserved.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicPatientReserved.xaml.cs">
+      <DependentUpon>ClinicPatientReserved.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicPatientReserved.xaml.Data.cs">
+      <DependentUpon>ClinicPatientReserved.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorChoiceYNManagement.xaml.Behavior.cs">
+      <DependentUpon>DoctorChoiceYNManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorChoiceYNManagement.xaml.cs">
+      <DependentUpon>DoctorChoiceYNManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorChoiceYNManagement.xaml.Data.cs">
+      <DependentUpon>DoctorChoiceYNManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMailSend.xaml.Behavior.cs">
+      <DependentUpon>DoctorMailSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMailSend.xaml.cs">
+      <DependentUpon>DoctorMailSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMailSend.xaml.Data.cs">
+      <DependentUpon>DoctorMailSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMajorFieldAndClinicCodeManagement.xaml.Behavior.cs">
+      <DependentUpon>DoctorMajorFieldAndClinicCodeManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMajorFieldAndClinicCodeManagement.xaml.cs">
+      <DependentUpon>DoctorMajorFieldAndClinicCodeManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMajorFieldAndClinicCodeManagement.xaml.Data.cs">
+      <DependentUpon>DoctorMajorFieldAndClinicCodeManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationCrccmAsk.xaml.Behavior.cs">
+      <DependentUpon>DoctorMedReservationCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationCrccmAsk.xaml.cs">
+      <DependentUpon>DoctorMedReservationCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationCrccmAsk.xaml.Data.cs">
+      <DependentUpon>DoctorMedReservationCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationDetailAsk.xaml.Behavior.cs">
+      <DependentUpon>DoctorMedReservationDetailAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationDetailAsk.xaml.cs">
+      <DependentUpon>DoctorMedReservationDetailAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationDetailAsk.xaml.Data.cs">
+      <DependentUpon>DoctorMedReservationDetailAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationPtAsk.xaml.Behavior.cs">
+      <DependentUpon>DoctorMedReservationPtAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationPtAsk.xaml.cs">
+      <DependentUpon>DoctorMedReservationPtAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedReservationPtAsk.xaml.Data.cs">
+      <DependentUpon>DoctorMedReservationPtAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedScheduleBatchMng.xaml.Behavior.cs">
+      <DependentUpon>DoctorMedScheduleBatchMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedScheduleBatchMng.xaml.cs">
+      <DependentUpon>DoctorMedScheduleBatchMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedScheduleBatchMng.xaml.Data.cs">
+      <DependentUpon>DoctorMedScheduleBatchMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedScheduleNursingModification.xaml.Behavior.cs">
+      <DependentUpon>DoctorMedScheduleNursingModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedScheduleNursingModification.xaml.cs">
+      <DependentUpon>DoctorMedScheduleNursingModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedScheduleNursingModification.xaml.Data.cs">
+      <DependentUpon>DoctorMedScheduleNursingModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedTreatmentSupportManagement.xaml.Behavior.cs">
+      <DependentUpon>DoctorMedTreatmentSupportManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedTreatmentSupportManagement.xaml.cs">
+      <DependentUpon>DoctorMedTreatmentSupportManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorMedTreatmentSupportManagement.xaml.Data.cs">
+      <DependentUpon>DoctorMedTreatmentSupportManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorReservationCautionPointMng.xaml.Behavior.cs">
+      <DependentUpon>DoctorReservationCautionPointMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorReservationCautionPointMng.xaml.cs">
+      <DependentUpon>DoctorReservationCautionPointMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorReservationCautionPointMng.xaml.Data.cs">
+      <DependentUpon>DoctorReservationCautionPointMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorSpltMedicalTreatmentFieldManagement.xaml.Behavior.cs">
+      <DependentUpon>DoctorSpltMedicalTreatmentFieldManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorSpltMedicalTreatmentFieldManagement.xaml.cs">
+      <DependentUpon>DoctorSpltMedicalTreatmentFieldManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorSpltMedicalTreatmentFieldManagement.xaml.Data.cs">
+      <DependentUpon>DoctorSpltMedicalTreatmentFieldManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyReceivePaymentBeAtWorkManagement.xaml.Behavior.cs">
+      <DependentUpon>EmergencyReceivePaymentBeAtWorkManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyReceivePaymentBeAtWorkManagement.xaml.cs">
+      <DependentUpon>EmergencyReceivePaymentBeAtWorkManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyReceivePaymentBeAtWorkManagement.xaml.Data.cs">
+      <DependentUpon>EmergencyReceivePaymentBeAtWorkManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleCriteriaRegistration.xaml.Behavior.cs">
+      <DependentUpon>MedDoctorScheduleCriteriaRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleCriteriaRegistration.xaml.cs">
+      <DependentUpon>MedDoctorScheduleCriteriaRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleCriteriaRegistration.xaml.Data.cs">
+      <DependentUpon>MedDoctorScheduleCriteriaRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleRegistration.xaml.Behavior.cs">
+      <DependentUpon>MedDoctorScheduleRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleRegistration.xaml.cs">
+      <DependentUpon>MedDoctorScheduleRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleRegistration.xaml.Data.cs">
+      <DependentUpon>MedDoctorScheduleRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleUC.xaml.Behavior.cs">
+      <DependentUpon>MedDoctorScheduleUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleUC.xaml.cs">
+      <DependentUpon>MedDoctorScheduleUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedDoctorScheduleUC.xaml.Data.cs">
+      <DependentUpon>MedDoctorScheduleUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml.Behavior.cs">
+      <DependentUpon>MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml.cs">
+      <DependentUpon>MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml.Data.cs">
+      <DependentUpon>MedicalTreatmentNotSeeingPatientsCodeInputReasonAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalTreatmentPossibilityDoctorAskRegistration.xaml.Behavior.cs">
+      <DependentUpon>MedicalTreatmentPossibilityDoctorAskRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalTreatmentPossibilityDoctorAskRegistration.xaml.cs">
+      <DependentUpon>MedicalTreatmentPossibilityDoctorAskRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalTreatmentPossibilityDoctorAskRegistration.xaml.Data.cs">
+      <DependentUpon>MedicalTreatmentPossibilityDoctorAskRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedRoomCaution.xaml.Behavior.cs">
+      <DependentUpon>MedRoomCaution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedRoomCaution.xaml.cs">
+      <DependentUpon>MedRoomCaution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedRoomCaution.xaml.Data.cs">
+      <DependentUpon>MedRoomCaution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedScheduleCrccmAsk.xaml.Behavior.cs">
+      <DependentUpon>MedScheduleCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedScheduleCrccmAsk.xaml.cs">
+      <DependentUpon>MedScheduleCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MedScheduleCrccmAsk.xaml.Data.cs">
+      <DependentUpon>MedScheduleCrccmAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml.Behavior.cs">
+      <DependentUpon>MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml.cs">
+      <DependentUpon>MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml.Data.cs">
+      <DependentUpon>MtdClassfiedByMedPossibilityDateAndTimeAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotSeeingPatientsScheduleAsk.xaml.Behavior.cs">
+      <DependentUpon>NotSeeingPatientsScheduleAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotSeeingPatientsScheduleAsk.xaml.cs">
+      <DependentUpon>NotSeeingPatientsScheduleAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotSeeingPatientsScheduleAsk.xaml.Data.cs">
+      <DependentUpon>NotSeeingPatientsScheduleAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NumOfMedAndNotSeeingSessionAsk.xaml.Behavior.cs">
+      <DependentUpon>NumOfMedAndNotSeeingSessionAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NumOfMedAndNotSeeingSessionAsk.xaml.cs">
+      <DependentUpon>NumOfMedAndNotSeeingSessionAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NumOfMedAndNotSeeingSessionAsk.xaml.Data.cs">
+      <DependentUpon>NumOfMedAndNotSeeingSessionAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptMedSchedule.xaml.Behavior.cs">
+      <DependentUpon>OptMedSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptMedSchedule.xaml.cs">
+      <DependentUpon>OptMedSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptMedSchedule.xaml.Data.cs">
+      <DependentUpon>OptMedSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtptMedReservationAuthorityAsk.xaml.Behavior.cs">
+      <DependentUpon>OtptMedReservationAuthorityAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtptMedReservationAuthorityAsk.xaml.cs">
+      <DependentUpon>OtptMedReservationAuthorityAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtptMedReservationAuthorityAsk.xaml.Data.cs">
+      <DependentUpon>OtptMedReservationAuthorityAsk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveMedDeptMobile.xaml.Behavior.cs">
+      <DependentUpon>SaveMedDeptMobile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveMedDeptMobile.xaml.cs">
+      <DependentUpon>SaveMedDeptMobile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveMedDeptMobile.xaml.Data.cs">
+      <DependentUpon>SaveMedDeptMobile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInformPopup.xaml.Behavior.cs">
+      <DependentUpon>SessionInformPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInformPopup.xaml.cs">
+      <DependentUpon>SessionInformPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInformPopup.xaml.Data.cs">
+      <DependentUpon>SessionInformPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInspect.xaml.Behavior.cs">
+      <DependentUpon>SessionInspect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInspect.xaml.cs">
+      <DependentUpon>SessionInspect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInspect.xaml.Data.cs">
+      <DependentUpon>SessionInspect.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <!-- <ItemGroup>
+    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.AP.DTO\HIS.PA.AC.PE.AP.DTO.csproj">
+      <Project>{275fc439-74e7-410d-aee1-19b619e1e81a}</Project>
+      <Name>HIS.PA.AC.PE.AP.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.SC.DTO\HIS.PA.AC.PE.SC.DTO.csproj">
+      <Project>{d63e103f-4866-4da8-ac74-e1f3400f290a}</Project>
+      <Name>HIS.PA.AC.PE.SC.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup> -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

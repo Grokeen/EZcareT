@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- 원래 오ㅓㅄ음 -->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E819C112-AA94-4B55-8C61-860ACDDD73A4}</ProjectGuid>
+    <!-- WinExe -> Library -->
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PE.PS.UI</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PE.PS.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\OutputPath\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\OutputPath\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.PS.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.PA.AC.PE.PS.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.DTO">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UTIL">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.UI.Base.dll</HintPath>
+    </Reference>
+    <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Controls.Extension">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HIS.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.CoreWork">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.CoreWork.dll</HintPath>
+    </Reference>
+    <!-- Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL, processorArchitecture=MSIL -->
+    <Reference Include="HIS.UI.Design.Themes">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UI.Utility">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OutputPath\HSF.Controls.WPF.dll</HintPath>
+    </Reference>
+    <!-- 2408021029 토큰에러 -->
+    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\HSF.TechSvc2010.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\InfragisticsWPF4.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HipassMobileApprovalMng.xaml.Behavior.cs">
+      <DependentUpon>HipassMobileApprovalMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HipassMobileApprovalMng.xaml.cs">
+      <DependentUpon>HipassMobileApprovalMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HipassMobileApprovalMng.xaml.Data.cs">
+      <DependentUpon>HipassMobileApprovalMng.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="HipassMobileApprovalMng.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.2%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

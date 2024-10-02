@@ -53,6 +53,49 @@
     <Reference Include="HIS.Core.Global.DTO">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
     </Reference>
+    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.BASE.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.CARDPRINT">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.CARDPRINT.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.CASHCALL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.CASHCALL.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.CONTROL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.CONTROL.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.CONVERTER">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.CONVERTER.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.EXCELEXPORT">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.EXCELEXPORT.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.LOADER">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.LOADER.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.SignPad, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.SignPad.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UCHELPER">
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UCHELPER.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.UI.UTIL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
+    </Reference>
     <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
@@ -70,6 +113,8 @@
     <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_IN.cs" />
     <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_UPDATE.cs" />
     <Compile Include="HipassMobileApprovalMng\HipassMobileApprovalMng_OUT.cs" />
+    <Compile Include="MedDoctorScheduleRegistration1\MedDoctorScheduleRegistration_PlusWork_INOUT.cs" />
+    <Compile Include="MedDoctorScheduleRegistration1\MedDoctorScheduleRegistration_PlusWork_UPDATE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\ByDayAcceptPatientAsk\ByDayAcceptPatientAsk_IN.cs" />
     <Compile Include="Properties\ByDayAcceptPatientAsk\ByDayAcceptPatientAsk_OUT.cs" />

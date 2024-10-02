@@ -20,7 +20,12 @@
             </HMenuItem>
 
 
-            <HMenuItem Header="HIS.PA.AC.PI.PI.UI" Name="menTopMenu2" Click ="menTopMenu_Click">
+            <HMenuItem Header="HIS.PA.AC.PE.SC.UI" Name="menTopMenu2" Click ="menTopMenu_Click">
+                <HMenuItem Header="의사진료일정등록(보충진료등록)   | MedDoctorScheduleRegistration" Name="menuTopMenu1Sub1001"   Tag="HIS.PA.AC.PE.PS.UI;/MedDoctorScheduleRegistration.xaml"/>
+
+            </HMenuItem>
+
+            <HMenuItem Header="HIS.PA.AC.PI.PI.UI" Name="menTopMenu3" Click ="menTopMenu_Click">
                 <HMenuItem Header="행려환자내역조회  | SelectWayfarerAsk" Name="menuTopMenu1Sub101"   Tag="HIS.PA.AC.PI.PI.UI;/SelectWayfarerAsk.xaml"/>
             </HMenuItem>
 

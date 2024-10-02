@@ -1,9 +1,11 @@
 ﻿
 
-exec :IN_DR_STF_NO := '01920';
+exec :IN_DR_STF_NO := '05292';  --운영  -- 05292     -- 01920
+exec :IN_DR_STF_NO := '01815';  --스테이징
+exec :IN_CHECK_ALL := 'all';
 
 SELECT /*+ HIS.PA.AC.PE.SC.SelectDoctorPlusWork */
-    DR_SID		                                   AS DR_SID                     /* 1.구분 */
+   DR_SID	  	                                   AS DR_SID                     /* 1.구분 */
    ,FC_GET_DEPT_NM(MED_DEPT_CD)                  AS DEPT_NM                    /* 2.진료과 */
    ,FT_STF_INF(DR_STF_NO,'STF_NM')               AS STF_NM                     /* 3.진료의사 */
    ,TO_CHAR(APY_STR_DTM,'YYYY-MM-DD AM HH12:MI') AS APY_STR_DTM                /* 4.보충진료시작일시 */
@@ -55,19 +57,23 @@ SELECT /*+ HIS.PA.AC.PE.SC.SelectDoctorPlusWork */
               THEN TO_CHAR((SUM(TO_NUMBER(SPLM_MED_TM)) OVER (PARTITION BY :IN_DR_STF_NO))-FLOOR((SUM(TO_NUMBER(SPLM_MED_TM)) OVER (PARTITION BY :IN_DR_STF_NO))/60)*60)
               ELSE '00'
     END                                          AS SUM_SPLM_MED_TM2             /* 12-0.남은휴진시간 */
+   ,CNCL_DT                                      AS CNCL_DT                      /* 13.취소날짜 */
 FROM ACDPCSPD
-WHERE CNCL_DT IS NOT NULL
-  AND DR_STF_NO = :IN_DR_STF_NO;
+WHERE (NVL2(:IN_CHECK_ALL,NULL,CNCL_DT) IS NULL)
+  AND DR_STF_NO = :IN_DR_STF_NO
+ORDER BY OLD_APY_STR_DTM DESC
+  ;
 
-                
---------------------------------------------------------------------------------------------------------------------------  
-  
-  
-  
-  
-  
-  
-  
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+select
+*
+FROM ACDPCSPD
+where splm_med_tm is null
 AND ROWNUM <10;
 
 SELECT TO_CHAR(SYSDATE,'YYYYMMDDHH24MI'), SYSDATE FROM DUAL;

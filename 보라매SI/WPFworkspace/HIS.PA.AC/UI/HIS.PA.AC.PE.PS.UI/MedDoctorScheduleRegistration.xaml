@@ -1,33 +1,29 @@
-﻿<base:UserControlBase x:Name="ucb"
+﻿<base:UserControlBase x:Class="HIS.PA.AC.PE.PS.UI.MedDoctorScheduleRegistration"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:base="clr-namespace:HIS.UI.Base;assembly=HIS.UI.Base"
-             xmlns:igDP="http://infragistics.com/DataPresenter"
-             xmlns:igEditors="http://infragistics.com/Editors"
-			 xmlns:local="clr-namespace:HIS.PA.AC.PE.SC.UI"    
-        	 xmlns:HIS_PA_CORE_UI="clr-namespace:HIS.PA.CORE.UI;assembly=HIS.PA.CORE.UI" x:Class="HIS.PA.AC.PE.SC.UI.MedDoctorScheduleRegistration"  
-             xmlns:Utility="clr-namespace:HIS.UI.Utility.Extension;assembly=HIS.UI.Utility"
-        	 Loaded="OnLoaded" 
+             xmlns:baseConverter="clr-namespace:HIS.UI.Utility.Converters;assembly=HIS.UI.Utility"
+             xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"    
+             xmlns:HIS_PA_CORE_UI="clr-namespace:HIS.PA.CORE.UI;assembly=HIS.PA.CORE.UI"
+             xmlns:local="clr-namespace:HIS.PA.AC.PE.PS.UI"   
+             
              mc:Ignorable="d" 
              d:DesignWidth="1600" d:DesignHeight="950" DesignWidth="1600" DesignHeight="950" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
-    <UserControl.DataContext>
-        <local:MedDoctorScheduleRegistrationData></local:MedDoctorScheduleRegistrationData>
-    </UserControl.DataContext>
+    
+
+
+
     <base:UserControlBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <SharedResourceDictionary SourcePath="/HIS.UI.Design.Themes;component/GeneralResources.xaml" Source="/HIS.UI.Design.Themes;component/GeneralResources.xaml"/>
                 <SharedResourceDictionary SourcePath="/HIS.UI.Design.Themes;component/ACResources.xaml" Source="/HIS.UI.Design.Themes;component/ACResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <igEditors:ComboBoxItemsProvider x:Key="CLINIC_CD"/>
-            <igEditors:ComboBoxItemsProvider x:Key="AMPM_CD"/>
-            <igEditors:ComboBoxItemsProvider x:Key="NSP_RSN_TP_CD"/>
-            <igEditors:ComboBoxItemsProvider x:Key="OI_CD"/>
-            <igEditors:ComboBoxItemsProvider x:Key="CRDOC_CD"/>
-            <igEditors:ComboBoxItemsProvider x:Key="MED_DOW_KND_CD"/>
+
         </ResourceDictionary>
     </base:UserControlBase.Resources>
     <Grid Grid.IsSharedSizeScope="True">
@@ -42,476 +38,17 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <HTreeView Name="tvMedTree" NodeDescriptionPath="MED_DEPT_NM" ParentIdPath="MEDR_SID" IdPath="MED_DEPT_NM" ItemsSource="{Binding Path=MedDoctorScheduleCriteriaRegistrationTreeOutObj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" NodeDoubleClik="HTreeView_NodeDoubleClick" Width="240"/>
-            <HTreeView Name="tvMedTree2" NodeDescriptionPath="MED_DEPT_NM" ParentIdPath="MEDR_SID" IdPath="MED_DEPT_CD" ItemsSource="{Binding Path=MedDoctorScheduleCriteriaRegistrationTree2OutObj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" NodeDoubleClik="HTreeView_NodeDoubleClick" Width="240"/>
-            <HTreeView Name="tvMedTree3" NodeDescriptionPath="MEDR_NM" ParentIdPath="MAIN_STF_NO" IdPath="ASST_STF_NO"  ItemsSource="{Binding Path=MedDoctorScheduleCriteriaRegistrationTree3OutObj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" NodeDoubleClik="HTreeView_NodeDoubleClick" MouseRightButtonDown="HTreeView_MouseRightButtonDown" Width="240"/>
+            
             <Border Style="{StaticResource BoundaryLineVerticalStyle}" Grid.Column="1"/>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <HExpander Name="exp_calYear" Header="기간설정" Grid.Row="0" IsExpanded="True">
-                    <Grid Margin="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <HCalendarYear Name="calYear" Margin="0,10,0,0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDateChanged="calYear_SelectedDateChanged" DisplayChanged="calYear_DisplayChanged"
-                                       EventDayInfoCollection="{Binding Path=EventCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PatternDayInfoCollection="{Binding Path=PatternCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
-                            <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
-                                <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="기간" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                    <HFromToCalendar Name="ftcal_Year" Margin="5,0,0,0" KeyDown="HFromToCalendar_KeyDown" MinWidth="210"/>
-                                    <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="구분" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                    <HComboBox Name="cbx_Year_Pattern" Width="100" Margin="5,0,0,0" SelectionChanged="HComboBox_SelectionChanged">
-                                        <HComboBoxItem Content="" Visibility="Collapsed"/>
-                                        <HComboBoxItem Content="격주 주"/>
-                                        <HComboBoxItem Content="모든 주"/>
-                                    </HComboBox>
-                                    <!--20240314 김재강 주차 선택할 수 있도록 코드 추가-->
-                                    <Border  Grid.Column="5"  Grid.RowSpan="2" BorderBrush="{StaticResource DefaultLineNormalBorderBrush}" >
-                                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                            <HCheckBox Name ="chk1" Content="1주차" IsChecked="True" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chk_Button" Unchecked="chk_Button" Tag="1"/>
-                                            <HCheckBox Name ="chk2" Content="2주차" IsChecked="True" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chk_Button" Unchecked="chk_Button" Tag="2"/>
-                                            <HCheckBox Name ="chk3" Content="3주차" IsChecked="True" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chk_Button" Unchecked="chk_Button" Tag="3"/>
-                                            <HCheckBox Name ="chk4" Content="4주차" IsChecked="True" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chk_Button" Unchecked="chk_Button" Tag="4"/>
-                                            <HCheckBox Name ="chk5" Content="5주차" IsChecked="True" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chk_Button" Unchecked="chk_Button" Tag="5"/>
-                                            <HCheckBox Name ="chk6" Content="6주차" IsChecked="True" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chk_Button" Unchecked="chk_Button" Tag="6"/>
-                                        </WrapPanel>
-                                    </Border>
-                                    <HButton ButtonTyped="None" Name="btn_Year_Search" Content="적용" Style="{StaticResource CommonButtonApplyStyle}" ButtonStyleType="Normal" Margin="20,0,0,0" Click="HButton_Click"/>
-                                </StackPanel>
-                            </Border>
-                        </Border>
-                    </Grid>
-                </HExpander>
-                <HTabControl Name="tabMain" Grid.Row="1" Margin="0,10,0,0" Padding="0,10" TabChanged="tabMain_TabChanged" >
-                    <HTabItem Header="진료일정 등록" >
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
-                                <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
-                                    <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="의사코드" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        <!--<HTextBox x:Name="ucPACodeAsk2" Width="130" Foreground="{StaticResource TextHighlightForeground}" Text="" VerticalAlignment="Center" Margin="5,0,0,0" Utility:FocusExtension.IsFocused="{Binding IsFocused1, Mode=TwoWay}" />-->
-                                        <HIS_PA_CORE_UI:PACodeAsk x:Name="ucPACodeAsk" Margin="5,0,0,0" Code1Visibility="Visible" Text2Visibility="Collapsed" Text3Visibility="Visible" Text4Visibility="Collapsed" Text5Visibility="Collapsed" Text6Visibility="Collapsed" TextButtonVisibility="Collapsed" SelectedTextCodeWidth="60" SelectedTextName1Width="120" SelectedTextName3Width="60" HorizontalAlignment="Left" SelectedTextCodeMaxLength="5" 
-                                                  SelectedItemPopUpName="CODE_MEDDR"
-                                                  SelectedTextName3="{Binding MedDoctorScheduleCriteriaRegistrationInObj.MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectedTextName2Hidden="{Binding MedDoctorScheduleCriteriaRegistrationInObj.MEDR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnSelectCodeChange="ucPACodeAsk_OnSelectCodeChange" TxtFocus="{Binding IsFocused1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="일정패턴" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        <HComboBox Name="cbx_Schd_Code" Width="160" Margin="5,0,0,0" SelectionChanged="HComboBox_SelectionChanged" DisplayMemberPath="MEDS_BSC_CD_NM" SelectedValuePath="MEDS_BSC_CD" ItemsSource="{Binding Path=ScheduleCodeOutObj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            SelectedValue="{Binding Path=MedDoctorScheduleCriteriaRegistrationInObj.MEDS_BSC_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <HButton ButtonTyped="None" x:Name="btn_Pattern_S" Content="패턴적용" ButtonStyleType="Normal" Style="{StaticResource CommonButtonApplyStyle}" Margin="10,0,0,0" Click="HButton_Click"/>
-                                        <HButton ButtonTyped="None" x:Name="btn_Pattern_D" Content="패턴삭제" ButtonStyleType="Normal" Style="{StaticResource CommonButtonDelStyle}" Margin="5,0,0,0" Click="HButton_Click"/>
-                                        <HButton ButtonTyped="None" x:Name="btn_Search" Content="조회" ButtonStyleType="Search" Margin="20,0,0,0" Click="HButton_Click" Visibility="Collapsed"/>
-                                    </StackPanel>
-                                </Border>
-                            </Border>
-                            <Border Style="{StaticResource BoundaryLineHorizontalStyle}" Grid.Row="1"/>
-                            <Grid Grid.Row="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.5*"/>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="0.5*"/>
-                                </Grid.ColumnDefinitions>
-                                <Border Style="{StaticResource BoundaryLineVerticalStyle}" Grid.Column="1" Margin="0,-10,0,0"/>
-                                <Grid >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid Height="30" Margin="0,0,0,5">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border HorizontalAlignment="Left" Style="{StaticResource TitleOneDepthBulletStyle}"/>
-                                            <HTextBlock TextWrapping="Wrap" Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
-                                        </StackPanel>
-                                        <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
-                                    </Grid>
-                                    <HDataGrid Name="dgrd_Schedule_AM" Grid.Row="2" IsMultiHeader="True" IsEditing="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SummaryDisplayAreas="BottomFixed">
-                                        <HDataGrid.FieldLayoutSettings>
-                                            <FieldLayoutSettings AllowFieldMoving="No" AutoGenerateFields="False" AllowClipboardOperations="Copy" AutoArrangeCells="Never" />
-                                        </HDataGrid.FieldLayoutSettings>
-                                        <HDataGrid.Resources>
-                                            <Style x:Key="AMPM" TargetType="{x:Type igDP:CellValuePresenter}" BasedOn="{x:Static HDataPresenter.CellValuePresenter}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding   RelativeSource={RelativeSource Self} ,Path=Record.DataItem.TM_UNIT_CD, UpdateSourceTrigger=PropertyChanged}"  Value="AM" >
-                                                        <Setter Property="Background" Value="Transparent"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding   RelativeSource={RelativeSource Self} ,Path=Record.DataItem.TM_UNIT_CD, UpdateSourceTrigger=PropertyChanged}"  Value="PM" >
-                                                        <Setter Property="Background" Value="MediumPurple" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </HDataGrid.Resources>
-                                        <HDataGrid.Fields>
-                                            <FieldData ColumnIndex="0" RowIndex="0" RowSpan="2" FieldLabel="진료시간" FieldName="MED_HMS" Width="0.52*" CellTextHorizontalAlignment="Center" FieldType="MaskedTextBox" Format="##:##~##:##"/>
-                                            <!--퇴원환자 외래 진료예약 개선 방안 2018.11.27  예약퇴원초진정원환자수 예약퇴원재진정원환자수 추가-->
-                                            <UnBoundField ColumnIndex="1" RowSpan="1" RowIndex="0" ColumnSpan="10"  Label="진료의사"  CellTextHorizontalAlignment="Center" FieldType="SpanHeader"/>
-                                            <FieldData ColumnIndex="1" RowSpan="1" RowIndex="1" FieldLabel="세션" FieldName="TM_UNIT_CD" Width="0.23*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource AMPM_CD}" Visibility="Collapsed" >
-                                                <FieldData.Settings>
-                                                    <FieldSettings CellValuePresenterStyle="{StaticResource AMPM}"/>
-                                                </FieldData.Settings>
-                                            </FieldData>
-                                            <FieldData ColumnIndex="2" RowSpan="1" RowIndex="1" FieldLabel="전체" FieldName="RSV_WHL_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="3" RowSpan="1" RowIndex="1" FieldLabel="신환" FieldName="RSV_NEWP_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="4" RowSpan="1" RowIndex="1" FieldLabel="초진" FieldName="RSV_FRVS_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="5" RowSpan="1" RowIndex="1" FieldLabel="재진" FieldName="RSV_RMDE_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <!--<FieldData ColumnIndex="6" RowSpan="1" RowIndex="1" FieldLabel="비정규" FieldName="RSV_ABNO_FXNO_CNT" Width="0.14*" CellTextHorizontalAlignment="Center"/>-->
-                                            <!--<FieldData ColumnIndex="7" RowSpan="1" RowIndex="1" FieldLabel="구분" FieldName="CLNC_TP_CD" Width="0.3*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource CLINIC_CD}"/>-->
-                                            <!--<FieldData ColumnIndex="8" RowSpan="1" RowIndex="1" FieldLabel="변경사유" FieldName="NSP_RSN_TP_CD" Width="0.2*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource NSP_RSN_TP_CD}" />-->
-                                            <FieldData ColumnIndex="6" RowSpan="1" RowIndex="1" FieldLabel="퇴초" FieldName="RSV_DS_FRVS_FXNO_PT_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="7" RowSpan="1" RowIndex="1" FieldLabel="퇴재" FieldName="RSV_DS_RMDE_FXNO_PT_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <!--20240124 김재강 비정규 주석처리-->
-                                            <FieldData ColumnIndex="8" RowSpan="1" RowIndex="1" FieldLabel="비정규" Visibility="Collapsed" FieldName="RSV_ABNO_FXNO_CNT" Width="0.18*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="9" RowSpan="1" RowIndex="1" FieldLabel="구분" FieldName="CLNC_TP_CD" Width="0.3*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource CLINIC_CD}"/>
-                                            <FieldData ColumnIndex="10" RowSpan="1" RowIndex="1" FieldLabel="변경사유" FieldName="NSP_RSN_TP_CD" Width="0.22*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource NSP_RSN_TP_CD}" />
-                                        </HDataGrid.Fields>
-                                    </HDataGrid>
-                                </Grid>
-                                <Grid Grid.Column="2" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="0.888*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid Height="30" Margin="0,0,0,5">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
-                                            <HTextBlock TextWrapping="Wrap" Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
-                                        </StackPanel>
-                                        <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
-                                    </Grid>
-                                    <HDataGrid Name="dgrd_Schedule_PM" Grid.Row="2" IsMultiHeader="True" IsEditing="False">
-                                        <HDataGrid.FieldLayoutSettings>
-                                            <FieldLayoutSettings AllowFieldMoving="No" AutoGenerateFields="False" AllowClipboardOperations="Copy" AutoArrangeCells="Never" />
-                                        </HDataGrid.FieldLayoutSettings>
-                                        <HDataGrid.Resources>
-                                            <Style x:Key="AMPM" TargetType="{x:Type igDP:CellValuePresenter}" BasedOn="{x:Static HDataPresenter.CellValuePresenter}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding   RelativeSource={RelativeSource Self} ,Path=Record.DataItem.TM_UNIT_CD, UpdateSourceTrigger=PropertyChanged}"  Value="AM" >
-                                                        <Setter Property="Background" Value="Transparent"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding   RelativeSource={RelativeSource Self} ,Path=Record.DataItem.TM_UNIT_CD, UpdateSourceTrigger=PropertyChanged}"  Value="PM" >
-                                                        <Setter Property="Background" Value="MediumPurple" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </HDataGrid.Resources>
-                                        <HDataGrid.Fields>
-                                            <FieldData ColumnIndex="0" RowIndex="0" RowSpan="2" FieldLabel="진료시간" FieldName="MED_HMS" Width="0.52*" CellTextHorizontalAlignment="Center" FieldType="MaskedTextBox" Format="##:##~##:##"/>
-                                            <!--퇴원환자 외래 진료예약 개선 방안 2018.11.27   예약퇴원초진정원환자수 예약퇴원재진정원환자수 추가-->
-                                            <UnBoundField ColumnIndex="1" RowSpan="1" RowIndex="0" ColumnSpan="10"  Label="진료의사"  CellTextHorizontalAlignment="Center" FieldType="SpanHeader"/>
-                                            <FieldData ColumnIndex="1" RowSpan="1" RowIndex="1" FieldLabel="세션" FieldName="TM_UNIT_CD" Width="0.23*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource AMPM_CD}" Visibility="Collapsed"  >
-                                                <FieldData.Settings>
-                                                    <FieldSettings CellValuePresenterStyle="{StaticResource AMPM}"/>
-                                                </FieldData.Settings>
-                                            </FieldData>
-                                            <FieldData ColumnIndex="2" RowSpan="1" RowIndex="1" FieldLabel="전체" FieldName="RSV_WHL_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="3" RowSpan="1" RowIndex="1" FieldLabel="신환" FieldName="RSV_NEWP_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="4" RowSpan="1" RowIndex="1" FieldLabel="초진" FieldName="RSV_FRVS_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="5" RowSpan="1" RowIndex="1" FieldLabel="재진" FieldName="RSV_RMDE_FXNO_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <!--<FieldData ColumnIndex="6" RowSpan="1" RowIndex="1" FieldLabel="비정규" FieldName="RSV_ABNO_FXNO_CNT" Width="0.14*" CellTextHorizontalAlignment="Center"/>-->
-                                            <!--<FieldData ColumnIndex="7" RowSpan="1" RowIndex="1" FieldLabel="구분" FieldName="CLNC_TP_CD" Width="0.3*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource CLINIC_CD}"/>-->
-                                            <!--<FieldData ColumnIndex="8" RowSpan="1" RowIndex="1" FieldLabel="변경사유" FieldName="NSP_RSN_TP_CD" Width="0.2*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource NSP_RSN_TP_CD}" />-->
-                                            <FieldData ColumnIndex="6" RowSpan="1" RowIndex="1" FieldLabel="퇴초" FieldName="RSV_DS_FRVS_FXNO_PT_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="7" RowSpan="1" RowIndex="1" FieldLabel="퇴재" FieldName="RSV_DS_RMDE_FXNO_PT_CNT" Width="0.13*" CellTextHorizontalAlignment="Center"/>
-                                            <!--20240124 김재강 비정규 주석처리-->
-                                            <FieldData ColumnIndex="8" RowSpan="1" RowIndex="1" FieldLabel="비정규" Visibility="Collapsed" FieldName="RSV_ABNO_FXNO_CNT" Width="0.18*" CellTextHorizontalAlignment="Center"/>
-                                            <FieldData ColumnIndex="9" RowSpan="1" RowIndex="1" FieldLabel="구분" FieldName="CLNC_TP_CD" Width="0.3*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource CLINIC_CD}"/>
-                                            <FieldData ColumnIndex="10" RowSpan="1" RowIndex="1" FieldLabel="변경사유" FieldName="NSP_RSN_TP_CD" Width="0.22*" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource NSP_RSN_TP_CD}" />
-                                        </HDataGrid.Fields>
-                                    </HDataGrid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </HTabItem>
-                    <HTabItem Header="휴진 Schedule 등록">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="0.559*"/>
-                            </Grid.RowDefinitions>
-                            <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}" VerticalAlignment="Top">
-                                <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
-                                    <StackPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center">
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="작업순서" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        <Border Style="{StaticResource GroupBorderLineStyle}" Margin="5,0,0,0" HorizontalAlignment="Left" Grid.Column="3">
-                                            <RadioButtonList Name="rdo_NSP_Wrk_Seq" Margin="5,0" ItemMargin="0,0,10,0" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedIndex="{Binding Path=NspInObj.NSP_GUBUN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                <RadioButtonListItem Name="rdo_NSP_Wrk" Content="등록일자" Selected="RadioButtonListItem_Selected"/>
-                                                <RadioButtonListItem Name="rdo_NSP_DT" Content="휴진일자" Selected="RadioButtonListItem_Selected"/>
-                                                <RadioButtonListItem Name="rdo_NSP_Medr" Content="의사코드" Selected="RadioButtonListItem_Selected" Margin="0"/>
-                                            </RadioButtonList>
-                                        </Border>
-                                        <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_NSP_Medr1" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" SelectedTextName1Width="140" SelectedTextName2Width="80" SelectedTextName3Width="60" Margin="5,0,0,0"
-                                                              SelectedItemPopUpName="CODE_MEDDR"  SelectedTextCodeMaxLength="5"
-                                                              OnSelectChange="ucPACodeAsk_NSP_Medr1_OnSelectChange"
-                                                              SelectedTextCode="{Binding Path=NspInObj.MEDR_STF_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='', TargetNullValue=''}"
-                                                              SelectedTextName3="{Binding Path=NspInObj.MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                              SelectedTextName2Hidden="{Binding Path=NspInObj.MEDR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <HCheckBox Name="chk_NSP_Batch" Content="일괄휴진등록" VerticalAlignment="Center" DockPanel.Dock="Right" Visibility="Collapsed" Checked="HCheckBox_Checked" Unchecked="HCheckBox_Checked"
-                                               IsCheckedValue="{Binding Path=NspInObj.BATCH_STAT, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0"/>
-                                        <HDatePicker Name="dtpck_Nsp_Wrk" Margin="5,0,0,0" HorizontalAlignment="Left" SelectedDateChanged="HDatePicker_SelectedDateChanged" KeyDown="HDatePicker_KeyDown" MinWidth="95"/>
-                                        <StackPanel x:Name="stpNspHsptp" Orientation="Horizontal">
-                                            <!--20231211 성현석 BRMH 병원구분 주석처리(조회조건)-->
-                                            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
-                                                <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                                <HTextBlock Text="병원구분" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                                <Border Style="{StaticResource GroupBorderLineStyle}" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                                                    <RadioButtonList x:Name="rbtNspHspTp" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" Margin="5,0" ItemMargin="0,0,10,0">
-                                                        <RadioButtonListItem Content="본원"/>
-                                                        <RadioButtonListItem Content="어린이"/>
-                                                        <RadioButtonListItem Content="암병원"/>
-                                                        <RadioButtonListItem Content="전체" Margin="0" IsSelected="True"/>
-                                                    </RadioButtonList>
-                                                </Border>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <HButton ButtonTyped="None" Name="btn_NSP_Search" Content="조회" ButtonStyleType="Search" Margin="20,0,0,0" Click="HButton_Click"/>
-                                    </StackPanel>
-                                </Border>
-                            </Border>
-                            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" Margin="0,10,0,0" BorderThickness="1" Grid.Row="1">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="32"/>
-                                        <RowDefinition Height="32"/>
-                                        <RowDefinition Height="32"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="110"/>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="90"/>
-                                        <ColumnDefinition Width="110"/>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1">
-                                        <HTextBlock Text="진료의" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.Column="1">
-                                        <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_NSP_Medr2" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" SelectedTextName1Width="140"                                                                   
-                                                                  SelectedTextName2Width="80" SelectedTextName3Width="60" Margin="5,0,0,-1" HorizontalAlignment="Left" Height="Auto" d:LayoutOverrides="HorizontalMargin" Text3Visibility="Collapsed" 
-                                                                  SelectedItemPopUpName="CODE_MEDDR" SelectedTextCodeMaxLength="5"                                                                                                                                    
-                                                                  OnSelectChange="ucPACodeAsk_NSP_Medr2_OnSelectChange"
-                                                                  SelectedTextCode="{Binding Path=NspInOutObj.MEDR_STF_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                  SelectedTextName3="{Binding Path=NspInOutObj.MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                  SelectedTextName2Hidden="{Binding Path=NspInOutObj.MEDR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnCodeLoaded="ucPACodeAsk_NSP_Medr2_OnCodeLoaded" />
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="4">
-                                        <HTextBlock Text="등록자" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="5">
-                                        <HTextBox Name="txt_NSP_Reg" Grid.Column="3" Margin="5,0,0,0" Width="80" HorizontalAlignment="Left" Text="{Binding Path=NspInOutObj.LSH_STF_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="6">
-                                        <HTextBlock Text="등록일자" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="7">
-                                        <HDatePicker Name="dtpck_Nsp_Reg" Grid.Column="5" Margin="5,0" HorizontalAlignment="Left" SelectedDate="{Binding Path=NspInOutObj.LSH_DTM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" MinWidth="95"/>
-                                    </Border>
-                                    <!--20240713 김재강 추가-->
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="8">
-                                        <CheckBoxList x:Name="cbxAMPM" Margin="5,0,0,0" ItemMargin="0,0,10,0" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <CheckBoxListItem x:Name="cbx_AM" Content="오전" IsSelected ="True"/>
-                                            <CheckBoxListItem x:Name="cbx_PM" Content="오후" IsSelected ="True" Margin="0" />
-                                        </CheckBoxList>
-                                    </Border>
-                                    <!--20240502 김재강 보충진료 관련 임시주석 (위에 columnSpan까지 추가)-->
-                                    <Border Visibility="Collapsed" Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Column="8">
-                                        <HCheckBox x:Name="chxSplm" Content="보충여부" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1">
-                                        <HTextBlock Text="휴진사유" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.Column="1"  Grid.Row="1">
-                                        <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_NSP_Rsn" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" SelectedTextName1Width="170" SelectedTextName2Width="80" SelectedTextName3Width="60" Margin="5,0,0,-1" HorizontalAlignment="Left" Height="Auto" Text3Visibility="Collapsed" d:LayoutOverrides="HorizontalMargin" SelectedTextCodeWidth="50" Text2Visibility="Collapsed" SelectedItemPopUpName="CODE_COMMON_NSP" SelectedTextCodeMaxLength="2" SelectedTextMode="AlphaNumeric"
-                                                                  OnSelectChange="ucPACodeAsk_NSP_Rsn_OnSelectChange"
-                                                                  SelectedTextCode="{Binding Path=NspInOutObj.NSP_RSN_TP_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnCodeLoaded="PACodeAsk_OnCodeLoaded" />
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="4" Grid.Row="1">
-                                        <HTextBlock Text="휴진신청일자" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="5" Grid.Row="1">
-                                        <HDatePicker x:Name="dtp_nsp_apy" MinWidth="95" SelectedDate="{Binding Path=NspInOutObj.NSP_APLC_DT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0" HorizontalAlignment="Left" KeyUp="dtp_nsp_apy_KeyUp"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="6" Grid.Row="1">
-                                        <HTextBlock Text="휴진기간" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Column="7" Grid.Row="1">
-                                        <HFromToCalendar Name="ftcal_NSP_Prd" Margin="5,0" KeyDown="HFromToCalendar_KeyDown" MinWidth="210"
-                                                             FromDate="{Binding Path=NspInOutObj.APY_STR_DT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                             ToDate="{Binding Path=NspInOutObj.APY_END_DT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Column="8" Grid.Row="1">
-                                        <RadioButtonList Name="rdo_NSP_OI" Margin="5,0,0,0" ItemMargin="0,0,10,0" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <RadioButtonListItem Content="외래"/>
-                                            <RadioButtonListItem Content="입원"/>
-                                            <RadioButtonListItem IsSelected="True" Content="외래/입원" Margin="0"/>
-                                        </RadioButtonList>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2">
-                                        <HTextBlock Text="당일지정료 발생" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="2">
-                                        <CheckBoxList  Margin="5,0,0,0" ItemMargin="0,0,10,0" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <CheckBoxListItem x:Name="chxStrAmt" Content="휴진시작일자"/>
-                                            <CheckBoxListItem x:Name="chxEndAmt" Content="휴진종료일자" Margin="0" />
-                                        </CheckBoxList>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Column="4" Grid.Row="2">
-                                        <HTextBlock Text="비고" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}"  Grid.ColumnSpan="4" Grid.Column="5" Grid.Row="2">
-                                        <HTextBox Name="txtNsp_Remark" Margin="5,0" Text="{Binding Path=NspInOutObj.NSP_MEMO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <HDataGrid Name="dgrd_NSP"  Margin="0,10,0,0" Grid.Row="2" IsEditing="False" DataSource="{Binding Path=NspOutObj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseRightButtonDown="HDataGrid_MouseRightButtonDown" CellDoubleClick="HDataGrid_CellDoubleClick" CellActivated="HDataGrid_CellActivated" >
-                                <HDataGrid.Fields>
-                                    <!--<FieldData ColumnIndex="0" RowSpan="1" RowIndex="1"  FieldLabel="" FieldName="ISCHECKED" FieldType="CheckBox" Width="30">
-                                        <FieldData.Settings>
-                                            <igDP:FieldSettings AllowEdit="True" />
-                                        </FieldData.Settings>
-                                    </FieldData>-->
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="진료과" FieldName="MED_DEPT_CD" Width="50" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="의사" FieldName="MEDR_STF_NM" Width="70" CellTextHorizontalAlignment="Center"/>
-
-                                    <!--<FieldData ColumnIndex="3" RowSpan="1" RowIndex="1" FieldLabel="휴진기간" FieldName="APY_DT" Width="160" CellTextHorizontalAlignment="Center" FieldType="MaskedTextBox" Format="####-##-## ~ ####-##-##"/>-->
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="휴진기간" FieldName="APY_DT" Width="160" CellTextHorizontalAlignment="Center" FieldType="TextBox" />
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="시간" FieldName="TM_UNIT_CD" Width="40" CellTextHorizontalAlignment="Center" FieldType="TextBox" />
-                                    <!--<FieldData RowSpan="1" RowIndex="1" FieldLabel="구분" Visibility="Collapsed" FieldName="PACT_TP_CD" Width="40" CellTextHorizontalAlignment="Center" FieldType="ComboBox"  DataSource="{StaticResource OI_CD}"/>-->
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="구분" FieldName="PACT_TP_NM" Width="40" CellTextHorizontalAlignment="Center" FieldType="TextBox"/>
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="휴진사유" FieldName="NSP_RSN_TP_NM" Width="80" CellTextHorizontalAlignment="Center"/>
-                                    <!--<FieldData RowSpan="1" RowIndex="1" Visibility="Collapsed" FieldLabel="공문" FieldName="CRDOC_YN" Width="35" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource CRDOC_CD}">
-                                        <igDP:Field.Settings>
-                                            <FieldSettings >
-                                                <FieldSettings.CellValuePresenterStyle>
-                                                    <Style TargetType="{x:Type igDP:CellValuePresenter}" BasedOn="{x:Static HDataPresenter.CellValuePresenter}">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding  RelativeSource={RelativeSource Self}, Path=Record.DataItem.CRDOC_YN}" Value="Y" >
-                                                                <Setter Property="Foreground"  Value="DarkOrange"/>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </FieldSettings.CellValuePresenterStyle>
-                                            </FieldSettings>
-                                        </igDP:Field.Settings>
-                                    </FieldData>-->
-
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="등록자" FieldName="FSR_STF_NO" Width="80" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="등록일시" FieldName="FSR_DTM" Width="150" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="수정자" FieldName="LSH_STF_NO" Width="80" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData RowSpan="1" RowIndex="1" FieldLabel="수정일시" FieldName="LSH_DTM" Width="150" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData  RowSpan="1" RowIndex="1" FieldLabel="휴진신청일자" FieldName="NSP_APLC_DT" Width="140" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData  RowSpan="1" RowIndex="1" FieldLabel="비고" FieldName="NSP_MEMO" Width="200" CellTextHorizontalAlignment="Left"/>
-                                    <FieldData  RowSpan="1" RowIndex="1" FieldLabel="Call전송일자" FieldName="MCSD_DTM" Width="150" CellTextHorizontalAlignment="Center" />
-                                    <FieldData  RowSpan="1" RowIndex="1" FieldLabel="전송" FieldName="MCSD_RSLT_CD" Width="40" CellTextHorizontalAlignment="Center" />
-                                    <!--<FieldData  RowSpan="1" RowIndex="1" FieldLabel="보충여부" FieldName="SPLM_YN" Width="90" CellTextHorizontalAlignment="Center"/>-->
-                                </HDataGrid.Fields>
-                            </HDataGrid>
-                        </Grid>
-                    </HTabItem>
-                    <HTabItem Header="대진 Schedule 등록">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
-                                <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
-                                    <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Border HorizontalAlignment="Right" Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="진료의" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_SFAD_Medr1" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" SelectedTextName1Width="140" SelectedTextName2Width="80" SelectedTextName3Width="60" Margin="5,0,0,0"
-                                                              SelectedItemPopUpName="CODE_MEDDR"  SelectedTextCodeMaxLength="5"
-                                                              OnSelectChange="ucPACodeAsk_SFAD_Medr1_OnSelectChange"
-                                                              SelectedTextName2Hidden="{Binding Path=SFAD_IN.MEDR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  FallbackValue='', TargetNullValue=''}"
-                                                              SelectedTextName3="{Binding Path=SFAD_IN.MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  FallbackValue='', TargetNullValue=''}"
-                                                              SelectedTextCode="{Binding Path=SFAD_IN.MEDR_STF_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  FallbackValue='', TargetNullValue=''}"/>
-                                        <HButton ButtonTyped="None" Name="btn_SFAD_Search" Content="조회" ButtonStyleType="Search" Margin="5,0,0,0" Click="HButton_Click" />
-                                    </StackPanel>
-                                </Border>
-                            </Border>
-                            <Border Style="{StaticResource BoundaryLineHorizontalStyle}" Grid.Row="1"/>
-                            <Border Style="{StaticResource OneAreaDarkBorderStyle}" Grid.Row="2">
-                                <Border Style="{StaticResource OneAreaLightBorderStyle}" Margin="0">
-                                    <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                        <HTextBlock Text="대진의" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                        <HIS_PA_CORE_UI:PACodeAsk x:Name="ucPACodeAsk_SFAD_Medr2" Height="Auto" Margin="5,0" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" 
-                                                                  PassingReference="{Binding Path=SFAD_IN.SFAD_MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Text4Visibility="Collapsed" SelectedTextCodeWidth="60" SelectedTextName2Width="50" SelectedTextName3Width="40" Text3Visibility="Collapsed"
-                                            SelectedTextCode="{Binding Path=SFAD_IN.SFAD_MEDR_STF_NO,Mode=TwoWay, UpdateSourceTrigger=Explicit,  FallbackValue='', TargetNullValue=''}" 
-                                            SelectedTextName2Hidden="{Binding Path=SFAD_IN.SFAD_MEDR_SID,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            SelectedTextCodeMaxLength="5" SelectedItemPopUpName="CODE_MEDDR" />
-                                        <!--PassingReference="{Binding ElementName=dgrd_SFAD, Path=ActiveDataItem.SFAD_MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Text4Visibility="Collapsed" SelectedTextCodeWidth="60" SelectedTextName2Width="50" SelectedTextName3Width="40" Text3Visibility="Collapsed"  AllowLockMaxLenth="True"
-                                            SelectedTextCode="{Binding ElementName=dgrd_SFAD, Path=ActiveDataItem.SFAD_MEDR_STF_NO,Mode=TwoWay, UpdateSourceTrigger=Explicit,  FallbackValue='', TargetNullValue=''}" 
-                                            SelectedTextCodeMaxLength="5" SelectedItemPopUpName="CODE_MEDDR" SelectedTextMode="AlphaNumeric"/>-->
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                        <HTextBlock Text="대진기간" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                        <HFromToCalendar Name="ftcal_SFAD" DateTimeFormat="DateTime" Margin="5,0,0,0" KeyDown="HFromToCalendar_KeyDown" Height="21" MinWidth="280"
-                                                             FromDate="{Binding Path=SFAD_IN.SFAD_STR_DTM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                             ToDate="{Binding Path=SFAD_IN.SFAD_END_DTM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                        <HTextBlock Text="대진사유" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                        <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_SFAD_Rsn" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" SelectedTextName1Width="170" SelectedTextName2Width="80" SelectedTextName3Width="60" Margin="5,0,0,-1" HorizontalAlignment="Left" Height="Auto" Text3Visibility="Collapsed" d:LayoutOverrides="HorizontalMargin" SelectedTextCodeWidth="50" Text2Visibility="Collapsed" 
-                                                                  SelectedItemPopUpName="CODE_COMMON_NSP" SelectedTextMode="AlphaNumeric" SelectedTextCodeMaxLength="2"
-                                                                  SelectedTextCode="{Binding Path=SFAD_IN.SFAD_RSN_TP_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnSelectCodeChange="ucPACodeAsk_SFAD_Rsn_OnSelectCodeChange"/>
-                                        <HButton x:Name="btnUpdNspRsnTpCd" Click="btnUpdNspRsnTpCd_Click" Content="확인" Margin="5,0,0,0" Visibility="Collapsed" Style="{StaticResource CommonButtonConfirmStyle}"/>
-                                    </StackPanel>
-                                </Border>
-                            </Border>
-                            <HDataGridEx Name="dgrd_SFAD" HeadersVisibility="Column" SelectionMode="Single"  Margin="0,10,0,0" Grid.Row="3" IsReadOnly="True" ItemsSource="{Binding Path=SFAD_OUT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="HDataGridEx_SelectionChanged"  >
-                                <HDataGridEx.Columns>
-
-
-                                    <HDataGridTextColumn Header="직원번호" Width="100" Binding="{Binding SFAD_MEDR_STF_NO}"   HDataGridColumnHeaderManager.IsMerged="True" HorizontalAlignment="Center" HDataGridColumnHeaderManager.MergeSpan="3" HDataGridColumnHeaderManager.MergeHeader="대진의사" TextAlignment="Center"
-                                         />
-                                    <HDataGridTextColumn Header="진료과" Width="70" HDataGridColumnHeaderManager.IsMerged="True"
-                                         Binding="{Binding SFAD_MED_DEPT_CD}" HorizontalAlignment="Center" TextAlignment="Center"/>
-
-
-                                    <HDataGridTextColumn Header="의사명" Width="200" HDataGridColumnHeaderManager.IsMerged="True"
-                                         Binding="{Binding SFAD_MEDR_NM}" HorizontalAlignment="Center" TextAlignment="Center"/>
-                                    <HDataGridTextColumn Header="대진기간" Width="450"                                  Binding="{Binding SFAD_DTM}" HorizontalAlignment="Center"/>
-                                    <HDataGridTextColumn Header="대진코드" Width="100" Binding="{Binding SFAD_RSN_TP_CD}"   HDataGridColumnHeaderManager.IsMerged="True" HorizontalAlignment="Center" HDataGridColumnHeaderManager.MergeSpan="2" HDataGridColumnHeaderManager.MergeHeader="대진사유"
-                                         />
-                                    <HDataGridTextColumn Header="대진사유" Width="200" HDataGridColumnHeaderManager.IsMerged="True"
-                                         Binding="{Binding SFAD_RSN_TP_NM}" HorizontalAlignment="Center"/>
-                                    <HDataGridTextColumn Header="최종수정자" Width="200" HDataGridColumnHeaderManager.IsMerged="True"
-                                         Binding="{Binding LSH_STF_NO}" HorizontalAlignment="Center"/>
-                                </HDataGridEx.Columns>
-                            </HDataGridEx>
-                            <!--<HDataGrid Name="dgrd_SFAD" Margin="0,10,0,0" Grid.Row="3" IsMultiHeader="True" IsEditing="False" DataSource="{Binding Path=SFAD_OUT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RecordActivated="HDataGrid_RecordActivated">
-                                <HDataGrid.Fields>
-                                    <UnBoundField FieldType="SpanHeader"  Column="0" Label="대진의사" Width="250" FieldName="A" RowSpan="1" ColumnSpan="2" Row="0"/>
-                                    <FieldData ColumnIndex="0" RowSpan="2" RowIndex="1" FieldLabel="직원번호" FieldName="SFAD_MEDR_STF_NO" Width="100" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="1" RowSpan="2" RowIndex="1" FieldLabel="의사명" FieldName="SFAD_MEDR_NM" Width="200" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="2" RowSpan="3" RowIndex="0" FieldLabel="대진기간" FieldName="SFAD_DTM" Width="450" CellTextHorizontalAlignment="Center"/>
-                                    <UnBoundField FieldType="SpanHeader"  Column="3" Label="대진사유" Width="250" FieldName="B" RowSpan="1" ColumnSpan="2" Row="0"/>
-                                    <FieldData ColumnIndex="3" RowSpan="2" RowIndex="1" FieldLabel="대진코드" FieldName="SFAD_RSN_TP_CD" Width="100" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="4" RowSpan="2" RowIndex="1" FieldLabel="대진사유" FieldName="SFAD_RSN_TP_NM" Width="200" CellTextHorizontalAlignment="Center"/>
-                                </HDataGrid.Fields>
-                            </HDataGrid>-->
-                        </Grid>
-                    </HTabItem>
+               
+                <HTabControl Name="tabMain" Grid.Row="1" Margin="0,10,0,0" Padding="0,10" >
+                   
+                    
                     <HTabItem Header="보충 진료 등록">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -524,13 +61,16 @@
                                     <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
                                         <Border HorizontalAlignment="Right" Style="{StaticResource TitleThreeDepthBulletStyle}"/>
                                         <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="진료의" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        <HTextBox Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                                        <HButton ButtonStyleType="SearchSingle" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                                        <HTextBox Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsReadOnly="True"/>
-                                        <HTextBox Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsReadOnly="True"/>
-                                        <HTextBox Width="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsReadOnly="True"/>
-                                        <HCheckBox Content="전체조회" VerticalAlignment="Center" Margin="20,0,0,0"/>
-                                        <HButton Content="조회" ButtonStyleType="Search" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                                        <HTextBox x:Name="SelectedTextCode" VerticalAlignment="Center" Margin="5,0" Width="80"/> 
+                                        <!-- 진료의 정보 -->
+                                        <!--<HIS_PA_CORE_UI:PACodeAsk x:Name="ucPACodeAsk_PLUS_Medr1" Margin="5,0,0,0" Code1Visibility="Visible" Text2Visibility="Collapsed" Text3Visibility="Visible" Text4Visibility="Collapsed" Text5Visibility="Collapsed" Text6Visibility="Collapsed" TextButtonVisibility="Collapsed" SelectedTextCodeWidth="60" SelectedTextName1Width="120" SelectedTextName3Width="60" HorizontalAlignment="Left" SelectedTextCodeMaxLength="5" 
+                                                  SelectedItemPopUpName="CODE_MEDDR"
+                                                  SelectedTextName3="{Binding MedDoctorScheduleCriteriaRegistrationInObj.MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedTextName2Hidden="{Binding MedDoctorScheduleCriteriaRegistrationInObj.MEDR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OnSelectCodeChange="ucPACodeAsk_OnSelectCodeChange" TxtFocus="{Binding IsFocused1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+
+
+                                        <HCheckBox x:Name="check_All" Content="전체조회" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                                        <HButton Content="조회" Click="btnPlusWork_Select"  ButtonStyleType="Search" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
                                     </StackPanel>
                                 </Border>
                             </Border>
@@ -563,516 +103,62 @@
                                         <HTextBlock Text="보충진료사유" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" TextWrapping="Wrap"/>
                                     </Border>
                                     <Border Grid.Row="1" Grid.Column='0' Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0">
-                                        <StackPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <HRadioButton Content="종일"/>
-                                            <HRadioButton Content="오전" Margin="5,0,0,0" />
-                                            <HRadioButton Content="오후" Margin="5,0,0,0" />
+                                        <!-- 오전/오후 구분 -->
+                                        <StackPanel  Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <HRadioButton Content="종일" x:Name="tm_unit_cd1"/>
+                                            <HRadioButton Content="오전" Margin="5,0,0,0" x:Name="am_unit_cd2" />
+                                            <HRadioButton Content="오후" Margin="5,0,0,0" x:Name="pm_unit_cd3" />
                                         </StackPanel>
                                     </Border>
+
+
+
                                     <Border Grid.Row="1" Grid.Column='1' Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0">
-                                        <HFromToCalendar DateTimeFormat="DateTime" Margin="5,0" KeyDown="HFromToCalendar_KeyDown" Height="21" MinWidth="280" />
+                                        <!-- 보충 진료 등록 날짜 선택 -->
+                                        <HFromToCalendar x:Name="PlusWorkCal" DateTimeFormat="DateTime" Margin="5,0"  Height="21" MinWidth="280" />
                                     </Border>
+                                    
+                                    
+                                    
                                     <Border Grid.Row="1" Grid.Column='2' Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0">
-                                        <HTextBox VerticalAlignment="Center" Margin="5,0"/>
+                                        <HTextBox x:Name="gr_splm_med_tm" VerticalAlignment="Center" Margin="5,0"/>
                                     </Border>
                                     <Border Grid.Row="1" Grid.Column='3' Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0">
-                                        <HTextBox VerticalAlignment="Center" Margin="5,0"/>
+                                        <HTextBox x:Name="gr_sum_splm_med_tm" VerticalAlignment="Center" Margin="5,0" IsReadOnly="True"/>
                                     </Border>
                                     <Border Grid.Row="1" Grid.Column='4' Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,0">
-                                        <HTextBox VerticalAlignment="Center" Margin="5,0"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <HDataGridEx Grid.Row="2" Margin="0,5,0,0"/>
-                        </Grid>
-                    </HTabItem>
-                    <HTabItem Header="콜전송내역" Margin="0" Visibility="Collapsed">
-                        <Grid Margin="10,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Border BorderThickness="0,0,1,1" Height="80" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
-                                <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
-                                    <Grid Margin="10,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                            <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="휴진등록기간" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        </StackPanel>
-                                        <HFromToCalendar Name="ftcal_CALL_NSP" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" HorizontalAlignment="Left"
-                                                         FromDate="{Binding Path=CALL_IN.NSP_STR_DT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                         ToDate="{Binding Path=CALL_IN.NSP_END_DT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2">
-                                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                            <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="콜전송여부" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                            <Border Style="{StaticResource GroupBorderLineStyle}" Margin="5,0,0,0">
-                                                <RadioButtonList Name="rbl_CALL" HorizontalAlignment="Left" VerticalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="5,0" ItemMargin="0,0,10,0">
-                                                    <RadioButtonListItem Content="전체" VerticalAlignment="Center"/>
-                                                    <RadioButtonListItem Content="전송완료" VerticalAlignment="Center"/>
-                                                    <RadioButtonListItem Content="미전송" VerticalAlignment="Center" Margin="0"/>
-                                                </RadioButtonList>
-                                            </Border>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
-                                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                            <HTextBlock Text="휴진사유" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                        </StackPanel>
-                                        <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_CALL_NSP" Grid.Row="1" Grid.Column="1" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" HorizontalAlignment="Left" Text3Visibility="Collapsed" d:LayoutOverrides="HorizontalMargin" Text2Visibility="Collapsed" SelectedTextCodeMaxLength="2" SelectedTextMode="AlphaNumeric" SelectedTextCodeWidth="60" SelectedTextName1Width="159"
-                                                                  SelectedItemPopUpName="CODE_COMMON_NSP" Margin="5,0,0,0"
-                                                                  SelectedTextCode="{Binding Path=CALL_IN.NSP_RSN_TP_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
-                                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                            <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="진료과" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                            <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_CALL_DEPT" Grid.Row="1" Grid.Column="3" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" HorizontalAlignment="Left" Text3Visibility="Collapsed" d:LayoutOverrides="HorizontalMargin" Text2Visibility="Collapsed" SelectedTextCodeMaxLength="5" SelectedTextMode="AlphaNumeric" SelectedTextCodeWidth="60" SelectedTextName1Width="159"
-                                                                  SelectedItemPopUpName="CODE_MEDDEPT" Margin="5,0,0,0"
-                                                                  SelectedTextCode="{Binding Path=CALL_IN.MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
-                                            <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="의사코드" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                            <HIS_PA_CORE_UI:PACodeAsk Name="ucPACodeAsk_CALL_Medr" Margin="5,0,0,0" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" HorizontalAlignment="Left" Text3Visibility="Collapsed" d:LayoutOverrides="HorizontalMargin" Text2Visibility="Collapsed" SelectedTextCodeMaxLength="5" SelectedTextCodeWidth="60" SelectedTextName1Width="159"
-                                                                  SelectedItemPopUpName="CODE_MEDDR"
-                                                                  SelectedTextName2Hidden="{Binding Path=CALL_IN.MEDR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        </StackPanel>
-                                        <Border Background="{StaticResource SearchAreaBoundaryLineBackground}" BorderBrush="{StaticResource SearchAreaBoundaryLineBorderBrush}" Margin="-10,0" BorderThickness="0,0,0,1" Height="2" Grid.ColumnSpan="4" VerticalAlignment="Bottom"/>
-                                    </Grid>
-                                </Border>
-                            </Border>
-                            <HButton ButtonTyped="None" Name="btn_CALL_Search" Grid.Row="1" Content="조회" HorizontalAlignment="Right" VerticalAlignment="Bottom" ButtonStyleType="Search" Click="HButton_Click"/>
-                            <HDataGrid Name="dgrd_CALL" Grid.Row="2" Margin="0,10,0,0" IsEditing="False" DataSource="{Binding Path=CALL_OUT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                <HDataGrid.Fields>
-                                    <FieldData ColumnIndex="1" RowSpan="1" RowIndex="1" FieldLabel="진료과" FieldName="MED_DEPT_CD" Width="80" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="2" RowSpan="1" RowIndex="1" FieldLabel="의사" FieldName="MEDR" Width="120" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="3" RowSpan="1" RowIndex="1" FieldLabel="휴진기간" FieldName="NSP_DT" Width="170" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="4" RowSpan="1" RowIndex="1" FieldLabel="휴진시간" FieldName="NSP_TM" Width="110" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="5" RowSpan="1" RowIndex="1" FieldLabel="요일" FieldName="MED_DOW_KND_CD" Width="40" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource MED_DOW_KND_CD}" />
-                                    <FieldData ColumnIndex="6" RowSpan="1" RowIndex="1" FieldLabel="휴진사유" FieldName="NSP_RSN_TP_CD" Width="130" CellTextHorizontalAlignment="Center" FieldType="ComboBox" DataSource="{StaticResource NSP_RSN_TP_CD}" />
-                                    <FieldData ColumnIndex="7" RowSpan="1" RowIndex="1" FieldLabel="콜센터 전송일" FieldName="MCSD_DTM" Width="130" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="8" RowSpan="1" RowIndex="1" FieldLabel="전송여부" FieldName="MCSD_RSLT_CD" Width="60" CellTextHorizontalAlignment="Center"/>
-                                    <FieldData ColumnIndex="9" RowSpan="1" RowIndex="1" FieldLabel="비고" FieldName="NSP_MEMO" Width="260" CellTextHorizontalAlignment="Left"/>
-                                </HDataGrid.Fields>
-                            </HDataGrid>
-                        </Grid>
-                    </HTabItem>
-                    <HTabItem Header="기타 환자수 등록" Visibility="Collapsed">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Border BorderThickness="0,0,1,1" Height="40" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
-                                <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
-                                    <StackPanel Margin="10,0" Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
-                                        <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="진료의" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                        <HIS_PA_CORE_UI:PACodeAsk x:Name="pacaCrrMeddr" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" SelectedTextName1Width="140" SelectedTextName2Width="80" SelectedTextName3Width="60" Margin="5,0,0,0"
-                                                              SelectedItemPopUpName="CODE_MEDDR" SelectedTextCodeMaxLength="5"/>
-                                        <HButton x:Name="btnCrrSearch" ButtonTyped="None" Content="조회" ButtonStyleType="Search" Margin="5,0,0,0" Click="HButton_Click" />
-                                    </StackPanel>
-                                </Border>
-                            </Border>
-                            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Margin="0,10,0,0" Grid.Row="1">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <!-- 2019.03.06 퇴원환자 외래 진료예약 개선 방안 -->
-                                        <ColumnDefinition Width="0" IsEnabled="False"/>
-                                        <ColumnDefinition Width="0" IsEnabled="False"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2">
-                                        <HTextBlock Text="강남센터" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="1">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2">
-                                        <HTextBox x:Name="txtNedAm1" Text="0"  IsEnabled="False"  TextAlignment="Right" Margin="5,0" />
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="1">
-                                        <HTextBox x:Name="txtNedPm1" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="2">
-                                        <HTextBlock Text="진료협력" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="2">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="3">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="2">
-                                        <HTextBox x:Name="txtNedAm2" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="3">
-                                        <HTextBox x:Name="txtNedPm2" Text="0" IsEnabled="False"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <!-- 2019.03.06 퇴원환자 외래 진료예약 개선 방안 - 퇴원환자에 대한 추가 로직 삭제-->
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="4" Visibility="Collapsed">
-                                        <HTextBlock Text="퇴원환자" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="4" Visibility="Collapsed">
-                                        <HTextBox x:Name="txtNedAm3" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="5" Visibility="Collapsed">
-                                        <HTextBox x:Name="txtNedPm3" Text="0" IsEnabled="False"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="4" Visibility="Collapsed">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="5" Visibility="Collapsed">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.ColumnSpan="2" Grid.Column="6">
-                                        <HTextBlock Text="타과의뢰" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="6">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="7">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="6">
-                                        <HTextBox x:Name="txtNedAm4" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" Grid.Row="2" Grid.Column="7">
-                                        <HTextBox x:Name="txtNedPm4" Text="0" IsEnabled="False"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <Grid Height="30" Margin="0,5" Grid.Row="2">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
-                                    <HTextBlock TextWrapping="Wrap" Text="진료과" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
-                            </Grid>
-                            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="3">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2">
-                                        <HTextBlock Text="월요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="1">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2">
-                                        <HTextBox x:Name="txtNedAm52" Text="0" IsEnabled="False"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="1">
-                                        <HTextBox x:Name="txtNedPm52" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="2">
-                                        <HTextBlock Text="화요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="2">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="3">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="2">
-                                        <HTextBox x:Name="txtNedAm53" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="3">
-                                        <HTextBox  x:Name="txtNedPm53" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="4">
-                                        <HTextBlock Text="수요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="4">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="5">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="4">
-                                        <HTextBox  x:Name="txtNedAm54" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="5">
-                                        <HTextBox x:Name="txtNedPm54" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="6">
-                                        <HTextBlock Text="목요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="6">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="7">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="6">
-                                        <HTextBox  x:Name="txtNedAm55" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="7">
-                                        <HTextBox x:Name="txtNedPm55" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="8">
-                                        <HTextBlock Text="금요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="8">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="9">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="8">
-                                        <HTextBox  x:Name="txtNedAm56" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="9">
-                                        <HTextBox x:Name="txtNedPm56" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.ColumnSpan="2" Grid.Column="10">
-                                        <HTextBlock Text="토요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="10">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="11">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="10">
-                                        <HTextBox  x:Name="txtNedAm57" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" Grid.Row="2" Grid.Column="11">
-                                        <HTextBox x:Name="txtNedPm57" Text="0" IsEnabled="False" TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <Grid Height="30" Margin="0,5" Grid.Row="4">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
-                                    <HTextBlock TextWrapping="Wrap" Text="한타임당 절대인원수" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
-                            </Grid>
-                            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="30"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2">
-                                        <HTextBlock Text="월요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="1">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2">
-                                        <HTextBox  x:Name="txtNedAm62" Text="0" IsEnabled="False" TextAlignment="Right" Foreground="Orange" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="1">
-                                        <HTextBox  x:Name="txtNedPm62" Text="0" IsEnabled="False" Foreground="Orange"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="2">
-                                        <HTextBlock Text="화요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="2">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="3">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="2">
-                                        <HTextBox  x:Name="txtNedAm63" Text="0" IsEnabled="False" TextAlignment="Right" Foreground="Orange" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="3">
-                                        <HTextBox  x:Name="txtNedPm63"  Text="0" IsEnabled="False" Foreground="Orange"  TextAlignment="Right" Margin="5,0"/>
-
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="4">
-                                        <HTextBlock Text="수요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="4">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="5">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="4">
-                                        <HTextBox  x:Name="txtNedAm64" Text="0" IsEnabled="False" Foreground="Orange" TextAlignment="Right"  Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="5">
-                                        <HTextBox  x:Name="txtNedPm64"  Text="0" IsEnabled="False" Foreground="Orange"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="6">
-                                        <HTextBlock Text="목요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="6">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="7">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="6">
-                                        <HTextBox  x:Name="txtNedAm65" Text="0" IsEnabled="False" TextAlignment="Right" Foreground="Orange" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="7">
-                                        <HTextBox  x:Name="txtNedPm65" Text="0" IsEnabled="False" Foreground="Orange"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.Column="8">
-                                        <HTextBlock Text="금요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="8">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="9">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="8">
-                                        <HTextBox  x:Name="txtNedAm66" Text="0" IsEnabled="False" TextAlignment="Right" Foreground="Orange" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="9">
-                                        <HTextBox  x:Name="txtNedPm66" Text="0" IsEnabled="False" Foreground="Orange"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.ColumnSpan="2" Grid.Column="10">
-                                        <HTextBlock Text="토요일" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,1,1" Grid.Row="1" Grid.Column="10">
-                                        <HTextBlock Text="오전" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableTwoDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Row="1" Grid.Column="11">
-                                        <HTextBlock Text="오후" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="2" Grid.Column="10">
-                                        <HTextBox  x:Name="txtNedAm67" Text="0" IsEnabled="False" TextAlignment="Right" Foreground="Orange" Margin="5,0"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" Grid.Row="2" Grid.Column="11">
-                                        <HTextBox  x:Name="txtNedPm67" Text="0" IsEnabled="False" Foreground="Orange"  TextAlignment="Right" Margin="5,0"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <Grid Height="30" Margin="0,5" Grid.Row="6">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
-                                    <HTextBlock TextWrapping="Wrap" Text="예약시 유의사항" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
-                            </Grid>
-                            <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="7" VerticalAlignment="Top">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" MinWidth="80"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="90"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0">
-                                        <HTextBlock Text="예약시 유의사항" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                                    </Border>
-                                    <Border Style="{StaticResource TableThreeDepthBorderStyle}" Grid.Column="1">
-                                        <HTextBox x:Name="txtReqMemo" Height="Auto" Margin="5" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" TextMode="Hangule"/>
+                                        <HTextBox x:Name="gr_sup_memo" VerticalAlignment="Center" Margin="5,0"/>
                                     </Border>
                                 </Grid>
                             </Border>
 
-                            <HDataGridEx x:Name="dgrd5" Margin="0,10,0,0" Grid.Row="3"  Visibility="Collapsed" HeadersVisibility="Column" ItemsSource="{Binding SelCostRegularReservation}" IsReadOnly="True" SelectionMode="Single" MouseDoubleClick="dgrd5_MouseDoubleClick">
+                            <!-- 2024-09-25 김용록 : 보충진료등록 조회 화면 추가 -->
+                            <HDataGridEx x:Name="yrdList"  Grid.Row="2" Margin="0,5,0,0" ItemsSource="{Binding SelectDrPlusWork_OUT}">
+
+                                <!-- 조회할 컬럼 명, 바인딩 지정 -->
                                 <HDataGridEx.Columns>
-                                    <HDataGridTextColumn Header="진료과" Width="80" Binding="{Binding MED_DEPT_CD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="의사" Width="80" Binding="{Binding DR_SID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="의사명" Width="80" Binding="{Binding STF_NM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="강AM" Width="45" Binding="{Binding AM_1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="강PM" Width="45" Binding="{Binding PM_1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="진AM" Width="45" Binding="{Binding AM_2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="진PM" Width="45" Binding="{Binding PM_2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="퇴AM" Width="45" Binding="{Binding AM_3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="퇴PM" Width="45" Binding="{Binding PM_3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="타AM" Width="45" Binding="{Binding AM_4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="타PM" Width="45" Binding="{Binding PM_4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="월AM" Width="45" Binding="{Binding AM_5_MON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="월PM" Width="45" Binding="{Binding PM_5_MON, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="화AM" Width="45" Binding="{Binding AM_5_TUE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="화PM" Width="45" Binding="{Binding PM_5_TUE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="수AM" Width="45" Binding="{Binding AM_5_WED, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <HDataGridTextColumn Header="수PM" Width="45" Binding="{Binding PM_5_WED, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="목AM" Width="45" Binding="{Binding AM_5_THR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="목PM" Width="45" Binding="{Binding PM_5_THR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="금AM" Width="45" Binding="{Binding AM_5_FRI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="금PM" Width="45" Binding="{Binding PM_5_FRI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="토AM" Width="45" Binding="{Binding AM_5_SAT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="토PM" Width="45" Binding="{Binding PM_5_SAT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="일AM" Width="45" Binding="{Binding AM_5_Sun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <HDataGridTextColumn Header="일PM" Width="45" Binding="{Binding PM_5_Sun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <HDataGridTextColumn x:Name="dr_sid" Header="구분" Binding="{Binding DR_SID}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
+                                    <HDataGridTextColumn x:Name="dept_nm" Header="진료과" Binding="{Binding DEPT_NM}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="80"/>
+                                    <HDataGridTextColumn x:Name="stf_nm" Header="진료의사" Binding="{Binding STF_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
+                                    <HDataGridTextColumn x:Name="apy_str_dtm" Header="보충진료시작일시" Binding="{Binding APY_STR_DTM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="120"/>
+                                    <HDataGridTextColumn x:Name="apy_end_dtm" Header="보충진료종료일시" Binding="{Binding APY_END_DTM}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Visible" Width="120"/>
+                                    <HDataGridTextColumn x:Name="splm_med_hh" Header="보충시간" Binding="{Binding SPLM_MED_HH}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="60"/>
+                                    <HDataGridTextColumn x:Name="sup_memo" Header="보충메모" Binding="{Binding SUP_MEMO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="*"/>
+                                    <HDataGridTextColumn x:Name="fsr_dtm" Header="최초등록일시" Binding="{Binding FSR_DTM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
+                                    <HDataGridTextColumn x:Name="fsr_stf_no" Header="최초등록자" Binding="{Binding FSR_STF_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
+                                    <HDataGridTextColumn x:Name="lsh_dtm" Header="수정일자" Binding="{Binding LSH_DTM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="100"/>
+                                    <HDataGridTextColumn x:Name="lsh_stf_no" Header="수정자" Binding="{Binding LSH_STF_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" Width="80"/>
+                                    <HDataGridTextColumn x:Name="splm_med_tm" Header="" Binding="{Binding SPLM_MED_TM}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden"  Width="*"/>
                                 </HDataGridEx.Columns>
                             </HDataGridEx>
 
                         </Grid>
                     </HTabItem>
+                    
                 </HTabControl>
             </Grid>
             <AnimateExpander Header="메뉴 목록" Grid.Column="3" ExpandDirection="Left" Margin="10,0,0,0" IsExpanded="True">
-                <StackPanel Margin="5" Width="150">
-                    <HButton x:Name="btnScr" Click="AllLink_Click" ButtonStyleType="Link" Content="의사진료일정기준등록" Margin="0,0,0,5"/>
-                    <HButton x:Name="btnSbm" Click="AllLink_Click" ButtonStyleType="Link" Content="의사진료일정일괄작업" Margin="0,0,0,5"/>
-                    <HButton x:Name="btnSnm" Click="AllLink_Click" ButtonStyleType="Link" Content="의사진료일정수정" Margin="0,0,0,5"/>
-                    <HButton x:Name="btnCall" Click="AllLink_Click" ButtonStyleType="Link" Content="휴진일정조회(Call전송)" Margin="0,0,0,5"/>
-                </StackPanel>
+                
             </AnimateExpander>
         </Grid>
         <Border Background="{StaticResource BoundaryLineNormalBackground}" BorderBrush="{StaticResource BoundaryLineNormalBorderBrush}" BorderThickness="0,0,0,1" Height="2" Grid.Row="1" Margin="0,-2,0,0" VerticalAlignment="Top"/>
@@ -1080,66 +166,18 @@
             <DockPanel Margin="10,0" LastChildFill="False">
                 <HButton x:Name="btnSessionchk" Click="HButton_Click" ButtonStyleType="Link" Content="세션체크"/>
                 <HButton ButtonTyped="None" Name="btn_Close" Content="닫기" ButtonStyleType="Close" DockPanel.Dock="Right" Click="HButton_Click"/>
-                <HButton ButtonTyped="None" Name="btn_Save" Style="{StaticResource CommonButtonSaveStyle}" Content="저장" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
-                <HButton ButtonTyped="None" Name="btn_Update" Style="{StaticResource CommonButtonModifyStyle}" Content="수정" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
-                <HButton ButtonTyped="None" Name="btn_Delete" Style="{StaticResource CommonButtonDelStyle}" Content="삭제" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
-                <HButton ButtonTyped="None" Name="btn_Excel" Style="{StaticResource CommonButtonExcelStyle}" Content="엑셀" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
-                <HButton ButtonTyped="None" Name="btn_Add" Style="{StaticResource CommonButtonAddStyle}" Content="추가" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
+                <HButton ButtonTyped="None" Name="btn_Save"  Content="저장" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
+                <HButton ButtonTyped="None" Name="btn_Update"  Content="수정" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
+                <HButton ButtonTyped="None" Name="btn_Delete" Content="삭제" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
+                <HButton ButtonTyped="None" Name="btn_Excel"  Content="엑셀" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
+                <HButton ButtonTyped="None" Name="btn_Add"  Content="추가" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
                 <HButton ButtonTyped="None" Name="btn_Rcep" Content="예약현황" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
                 <HButton ButtonTyped="None" Name="btn_CrDoc" Content="협조전여부" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
-                <HButton ButtonTyped="None" Name="btn_Init" Style="{StaticResource CommonButtonResetStyle}" Content="초기화" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
+                <HButton ButtonTyped="None" Name="btn_Init"  Content="초기화" DockPanel.Dock="Right" Margin="0,0,5,0" Click="HButton_Click"/>
             </DockPanel>
         </Border>
-        <HPopup Width="400" Height="300" x:Name="HReceiptPop" Placement="Center"  IsOpen="False" Margin="0,0,0,0" Visibility="Visible">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid Height="30" Margin="0,0,0,5">
-                    <StackPanel Orientation="Horizontal">
-                        <Border Style="{StaticResource TitleOneDepthBulletStyle}"/>
-                        <HTextBlock TextWrapping="Wrap" Text="진료의 요청사유" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
-                        <!--<HButton ButtonTyped="None" x:Name="btnHReceiptPopClose"  Content="닫기" ButtonStyleType="Close" Margin="5,0,0,0" DockPanel.Dock="Right" Click="btnHReceiptPopClose_Click"  />-->
-                    </StackPanel>
-                    <HButton x:Name="btnUpdNspRsnTpCd_POP" Click="btnUpdNspRsnTpCd_POP_Click" Content="확인" Margin="5,0,0,0" Style="{StaticResource CommonButtonConfirmStyle}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
-                </Grid>
-                <Border BorderBrush="{StaticResource PointLineNormalBorderBrush}" BorderThickness="1" Grid.Row="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="80"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,1">
-                            <HTextBlock Text="요청자" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                        </Border>
-                        <Border Style="{StaticResource TableThreeDepthBorderStyle}" BorderThickness="0,0,0,1" Grid.Column="1">
-                            <HIS_PA_CORE_UI:PACodeAsk x:Name="ucNSP_RSN_STF_NO"  SelectedTextCodeMaxLength="5" SelectedTextMode="AlphaNumeric" SelectedItemPopUpName="CODE_SAWON" TextButtonVisibility="Collapsed" Text5Visibility="Collapsed" Text3Visibility="Collapsed" Text2Visibility="Collapsed"  Margin="5,0,0,0" 
-                                                  KeyDown="ucNSP_RSN_STF_NO_KeyDown" SelectedTextCode="{Binding Path=SFAD_IN.NSP_RSN_REQ_STF_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  FallbackValue='', TargetNullValue=''}" />
-                        </Border>
-                        <Border Style="{StaticResource TableOneDepthBorderStyle}" BorderThickness="0,0,1,0" Grid.Row="1">
-                            <HTextBlock Text="사유" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0" HorizontalAlignment="Left" TextWrapping="Wrap"/>
-                        </Border>
-                        <Border Style="{StaticResource TableThreeDepthBorderStyle}" Grid.Row="1" Grid.Column="1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <HComboBox Name="cboNSP_RSN_CNTE" Margin="5,0" SelectionChanged="cboNSP_RSN_CNTE_SelectionChanged" DisplayMemberPath="COMN_CD_NM" SelectedValuePath="COMN_CD_NM" ItemsSource="{Binding Path=RsvRtcRsnList, UpdateSourceTrigger=PropertyChanged}">
-                                </HComboBox>
-                                <!--<HTextBox Name="txtSCHD_BDY_MEMO" IsEnabled="False"  Margin="5" Height="Auto" Text="{Binding ElementName=drgMedSchedule, Path=ActiveDataItem.SCHD_BDY_MEMO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  FallbackValue='', TargetNullValue=''}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"  Grid.Row="1"/> 삭제 20160329 송민수 김수현샘요청-->
-                                <HTextBox Name="txtNSP_RSN_CNTE"  Margin="5,0,5,5" Height="Auto" Text="{Binding Path=SFAD_IN.NSP_RSN_CNTE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  FallbackValue='', TargetNullValue=''}" Grid.Row="1"/>
-                            </Grid>
-                        </Border>
-                    </Grid>
-                </Border>
-            </Grid>
-        </HPopup>
+        
     </Grid>
 </base:UserControlBase>
+    
+    

@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HipassMobileApprovalMngBL.cs" />
+    <Compile Include="MedDoctorScheduleRegistrationBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

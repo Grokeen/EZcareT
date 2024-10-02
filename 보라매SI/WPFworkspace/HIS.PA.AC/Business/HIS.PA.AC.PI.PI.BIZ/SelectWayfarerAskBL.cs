@@ -11,9 +11,9 @@ using HSF.TechSvc2010.Server.ORM;
 using HSF.TechSvc2010.Server.ComBase;
 
 using HIS.Core;
-using HIS.PA.AC.PI.PI.DTO;
-using HIS.PA.AC.PI.PI.DAC;
-using HIS.PA.AC.PI.PI.DTO.SelectWayfarerAsk;
+//using HIS.PA.AC.PI.PI.DTO;
+//using HIS.PA.AC.PI.PI.DAC;
+//using HIS.PA.AC.PI.PI.DTO.SelectWayfarerAsk;
 
 namespace HIS.PA.AC.PI.PI.BIZ
 {
@@ -33,13 +33,13 @@ namespace HIS.PA.AC.PI.PI.BIZ
         /// create date  : 2024-08-13
         /// update date  : 
         /// </summary>
-        [HSFTransaction(HSFTransactionOption.Required)]
-        public HSFDTOCollectionBaseObject<SelectWayfarerAsk_OUT> SelectWayfarerAskBL_GrSelect(SelectWayfarerAsk_IN tempYR)
-        {
-            using (SelectWayfarerAskDL YrDate_Average = new SelectWayfarerAskDL())
-            {
-                return YrDate_Average.SelectWayfarerAsk_Select(tempYR);
-            }
-        }
+        //[HSFTransaction(HSFTransactionOption.Required)]
+        //public HSFDTOCollectionBaseObject<SelectWayfarerAsk_OUT> SelectWayfarerAskBL_GrSelect(SelectWayfarerAsk_IN tempYR)
+        //{
+        //    using (SelectWayfarerAskDL YrDate_Average = new SelectWayfarerAskDL())
+        //    {
+        //        return YrDate_Average.SelectWayfarerAsk_Select(tempYR);
+        //    }
+        //}
     }
 }
