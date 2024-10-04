@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{078051C1-A86F-49D0-8C4F-2EFBDAE31F12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.CORE.UI.UTIL</RootNamespace>
+    <AssemblyName>HIS.PA.CORE.UI.UTIL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\HIS.Deploy\Client\PA\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>HIS.PA.CORE.UI.UTIL.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+    <DebugType>full</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DefineConstants>CODE_ANALYSIS</DefineConstants>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Global.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Sign">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.Sign.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PI.PI.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PI.PI.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.BASE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.BASE.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.UC">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UC.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Base">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Controls.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Controls.Extension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Core">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Design.Themes">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Design.Themes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.UI.Utility">
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.UI.Utility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.Controls.WPF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HSF_Framework\BaseLibraries\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamCalendar.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Controls.Schedules.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.DataPresenter.ExcelExporter.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.DataPresenter.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Documents.Core.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Documents.Excel.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Editors.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Reporting.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Tiles.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.v11.2, Version=11.2.20112.1012, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bench.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="CommonEnums.cs" />
+    <Compile Include="CommonError.cs" />
+    <Compile Include="CommonList.cs" />
+    <Compile Include="CommonServiceHelper.cs" />
+    <Compile Include="ControlHelper.cs" />
+    <Compile Include="EnumItemsSource.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="LabelPrintUtil.cs" />
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="PAConstantEnum.cs" />
+    <Compile Include="PatientHelper.cs" />
+    <Compile Include="PInvokeHelper.cs" />
+    <Compile Include="PopupCall.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PSE_CLS_CD.cs" />
+    <Compile Include="QualificationSearchHelper.cs" />
+    <Compile Include="SortHelper.cs" />
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="StringToDTO.cs" />
+    <Compile Include="Style\PAReSizeGridDictionary.cs">
+      <DependentUpon>Style\PAReSizeGridDictionary.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnumItemsSourceEx.cs" />
+    <Compile Include="CommonMsg.cs" />
+    <Compile Include="Style\PACommonDictionary.cs">
+      <DependentUpon>Style\PACommonDictionary.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UIHelper.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="HSF.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Style\PACommonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\PAReSizeGridDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DTO\HIS.PA.CORE.DTO\HIS.PA.CORE.DTO.csproj">
+      <Project>{e2e0255b-fa4c-417c-8285-f26e3931be4d}</Project>
+      <Name>HIS.PA.CORE.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\HIS.PA.CORE.CONTROL\HIS.PA.CORE.CONTROL.csproj">
+      <Project>{150558a0-9236-4dab-b040-296ceb32ea21}</Project>
+      <Name>HIS.PA.CORE.CONTROL</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
