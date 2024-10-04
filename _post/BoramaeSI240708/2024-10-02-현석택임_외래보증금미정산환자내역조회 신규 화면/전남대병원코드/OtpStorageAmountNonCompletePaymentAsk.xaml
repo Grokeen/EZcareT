@@ -1,0 +1,167 @@
+﻿<base:UserControlBase x:Class="HIS.PA.AC.PC.OP.UI.OtpStorageAmountNonCompletePaymentAsk"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:base="clr-namespace:HIS.UI.Base;assembly=HIS.UI.Base"
+			 xmlns:local="clr-namespace:HIS.PA.AC.PC.OP.UI"
+             xmlns:conv="clr-namespace:HIS.PA.CORE.UI.CONVERTER;assembly=HIS.PA.CORE.UI.CONVERTER" xmlns:HIS_PA_CORE_UI="clr-namespace:HIS.PA.CORE.UI;assembly=HIS.PA.CORE.UI"
+                      Loaded="OnLoaded"
+             mc:Ignorable="d" 
+             d:DesignWidth="1620" d:DesignHeight="900"  DesignWidth="1620" DesignHeight="900" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
+    <UserControl.DataContext>
+        <local:OtpStorageAmountNonCompletePaymentAskData />
+    </UserControl.DataContext>
+    <base:UserControlBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <SharedResourceDictionary SourcePath="/HIS.UI.Design.Themes;component/ACResources.xaml" Source="/HIS.UI.Design.Themes;component/ACResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:DateFormatStringConverter x:Key="DateFormatStringConverter"></conv:DateFormatStringConverter>
+        </ResourceDictionary>
+    </base:UserControlBase.Resources>
+
+
+
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.83*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30" SharedSizeGroup="CommonRow"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="0">
+
+                    <Border BorderThickness="0,0,1,1" Height="85" BorderBrush="{StaticResource SearchAreaDarkBorderBrush}" Background="{StaticResource SearchAreaBackground}">
+                        <Border BorderBrush="{StaticResource SearchAreaLightBorderBrush}" BorderThickness="1,1,0,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="{StaticResource SearchAreaBoundaryLineBackground}" BorderBrush="{StaticResource SearchAreaBoundaryLineBorderBrush}" BorderThickness="0,0,0,1" Height="2" VerticalAlignment="Bottom" Grid.ColumnSpan="10"/>
+                                <StackPanel Orientation="Horizontal" Margin="30,0,5,2" VerticalAlignment="Center" Grid.Row="0" Height="40">
+                                    <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="조회기간" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <HFromToCalendar Name="ftcal" FromDate="{Binding Path=OtpStorageAmountNonCompletePaymentAsk_INObj.IN_FROMDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateFormatStringConverter}, ConverterParameter='yyyyMMdd'}" ToDate="{Binding Path=OtpStorageAmountNonCompletePaymentAsk_INObj.IN_TODATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateFormatStringConverter}, ConverterParameter='yyyyMMdd'}" Margin="5,0,20,0" KeyDown="ftcal_KeyDown" MinWidth="210" />
+
+                                    <Border HorizontalAlignment="Right" Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="구분" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <Border Style="{StaticResource GroupBorderLineStyle}" Margin="5,0,20,0">
+                                        <RadioButtonList Name="rblPactTpCd" SelectedIndex="0" ItemMargin="5,0" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                            <RadioButtonListItem Content="전체" Tag="A"/>
+                                            <RadioButtonListItem Content="외래" Tag="O"/>
+                                            <RadioButtonListItem Content="입원" Tag="I"/>
+                                        </RadioButtonList>
+                                    </Border>
+
+
+                                    <Border HorizontalAlignment="Right" Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="기준차액" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                                    <HTextBox x:Name="txtUpAmt" Text="{Binding Path=OtpStorageAmountNonCompletePaymentAsk_INObj.IN_UP_AMT, StringFormat=N0}" TextWrapping="Wrap" Height="22" Margin="5,0" Width="80" d:LayoutOverrides="Width" HorizontalContentAlignment="Right" TextMode="Number" />
+                                    <HRadioButton x:Name="rdoMore" GroupName="rdoMB" Content="이상" VerticalAlignment="Center" Margin="5,0,20,0" Checked="rdoMB_Checked" />
+
+
+
+                                    <Border HorizontalAlignment="Right" Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="기준차액" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <HTextBox x:Name="txtFromAmt" Text="{Binding Path=OtpStorageAmountNonCompletePaymentAsk_INObj.IN_FROM_AMT, StringFormat=N0}" TextWrapping="Wrap" Height="22" Margin="5,0" Width="80" d:LayoutOverrides="Width" HorizontalContentAlignment="Right" TextMode="Number" />
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="~" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                    <HTextBox x:Name="txtToAmt" Text="{Binding Path=OtpStorageAmountNonCompletePaymentAsk_INObj.IN_TO_AMT, StringFormat=N0}" TextWrapping="Wrap" Height="22" Margin="5,0" Width="80" d:LayoutOverrides="Width" HorizontalContentAlignment="Right" TextMode="Number" />
+                                    <HRadioButton x:Name="rdoBetween" GroupName="rdoMB" Content="사이" VerticalAlignment="Center" Margin="5,0,20,0" Checked="rdoMB_Checked" />
+
+
+                                    <Border HorizontalAlignment="Right" Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="20,0,0,0"/>
+                                    <HTextBlock TextWrapping="Wrap" Foreground="{StaticResource TextHighlightForeground}" Text="담당자" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <HIS_PA_CORE_UI:PACodeAsk Name="ucSAWON" Height="Auto" Margin="5,0,0,0" TextButtonVisibility="Collapsed" Text6Visibility="Collapsed" Text5Visibility="Collapsed" Text4Visibility="Collapsed" Text3Visibility="Collapsed" Text2Visibility="Collapsed" SelectedTextCodeWidth="80" SelectedTextName1Width="120"
+                                                  SelectedItemPopUpName="CODE_SAWON" SelectedTextMode="AlphaNumeric" SelectedTextCodeMaxLength="7"
+                                                  SelectedTextCode="{Binding OtpStorageAmountNonCompletePaymentAsk_INObj.IN_STF_NO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <HButton ButtonTyped="None" Name="btnSearch" Content="조회" ButtonStyleType="Search" Margin="30,0,0,0" Click="btnSearch_Click" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="30,12,5,11" VerticalAlignment="Center" Grid.Row="1">
+                                    <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="메시지포함종류" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                                    <HCheckBox x:Name="chkName" Content="환자명포함"  VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chkMsg_Checked" />
+                                    <HCheckBox x:Name="chkMedDt" Content="진료일자포함"  VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chkMsg_Checked" />
+                                    <HCheckBox x:Name="chkMedDept" Content="진료과포함"  VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="True" Click="chkMsg_Checked" />
+
+                                    <Border Style="{StaticResource TitleThreeDepthBulletStyle}"  Margin="20,0,0,0"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="메시지내용" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <HTextBox x:Name="txtMsg1" TextWrapping="Wrap" Height="22" Margin="5,0" Width="200" HorizontalContentAlignment="Left" IsReadOnly="True" />
+                                    <HTextBox x:Name="txtMsg2" TextWrapping="Wrap" Height="22" Margin="5,0" Width="300" HorizontalContentAlignment="Left"  />
+                                    
+
+                                    <Border Style="{StaticResource TitleThreeDepthBulletStyle}"  Margin="20,0,0,0"/>
+                                    <HTextBlock Foreground="{StaticResource TextHighlightForeground}" Text="발신번호" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <HTextBox x:Name="txtNumber" TextWrapping="Wrap" Height="22" Margin="5,0" Width="100" d:LayoutOverrides="Width" HorizontalContentAlignment="Left" TextMode="Number" />
+                                </StackPanel>
+
+                            </Grid>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+
+
+
+            <!--<HDataGrid Name="dgrdResult" DataSource="{Binding Path=OtpStorageAmountNonCompletePaymentAsk_OUTObj}" Margin="0,10,0,0" Grid.Row="1" RecordDoubleClick="dgrdResult_RecordDoubleClick">
+                <HDataGrid.Fields>
+                    
+                    <FieldData FieldLabel="선택" FieldType="CheckBox" FieldName="CHK" Width="40"  />
+                    <FieldData FieldLabel="등록번호" FieldName="PT_NO" Width="80" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="환자명" FieldName="PT_NM" Width="100" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="진료일" FieldName="MED_DT" Width="80" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="진료과" FieldName="MED_DEPT_CD" Width="80" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="전화번호" FieldName="TEL_NO" Width="120" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="발생일자" FieldName="RPY_DT" Width="80" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="발생액" FieldName="RPY_AMT" Width="120" CellTextHorizontalAlignment="Right"></FieldData>
+                    <FieldData FieldLabel="발생자" FieldName="RPY_STF_NO" Width="100" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="사유" FieldName="STRG_AMT_RMK" Width="200" CellTextHorizontalAlignment="Stretch"></FieldData>
+                    <FieldData FieldLabel="최근예약일" FieldName="RCN_RSV_DT" Width="80" CellTextHorizontalAlignment="Center"></FieldData>
+                    <FieldData FieldLabel="미수금액" FieldName="UNCL_AMT" Width="120" CellTextHorizontalAlignment="Right"></FieldData>
+                </HDataGrid.Fields>
+            </HDataGrid>-->
+
+            <HDataGridEx Margin="0,10" Grid.Row="2" x:Name="dgrdResult" SelectionMode="Extended" SelectionUnit="FullRow" ItemsSource="{Binding OtpStorageAmountNonCompletePaymentAsk_OUTObj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"	IsReadOnly="True" RowDoubleClick="dgrdResult_RowDoubleClick"  >
+                <HDataGridEx.Columns>
+                    <HDataGridTextColumn Header="구분"  Width="40" Binding="{Binding PACT_TP_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="등록번호"  Width="80" Binding="{Binding PT_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="환자명"  Width="100" Binding="{Binding PT_NM}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="주소(우편번호)"  Width="320" Binding="{Binding PT_ADDR}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <HDataGridTextColumn Header="진료일"  Width="80" Binding="{Binding MED_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="진료과"  Width="80" Binding="{Binding MED_DEPT_CD}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="전화번호"  Width="120" Binding="{Binding TEL_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="발생일자"  Width="80" Binding="{Binding RPY_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="발생액"  Width="120" Binding="{Binding RPY_AMT}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <HDataGridTextColumn Header="발생자"  Width="100" Binding="{Binding RPY_STF_NO}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="사유"  TextTrimming="WordEllipsis" Width="200" Binding="{Binding STRG_AMT_RMK}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <HDataGridTextColumn Header="최근예약일"  Width="80" Binding="{Binding RCN_RSV_DT}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <HDataGridTextColumn Header="미수금액"  Width="120" Binding="{Binding UNCL_AMT}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+
+                </HDataGridEx.Columns>
+            </HDataGridEx>
+
+        </Grid>
+        <Border Background="{StaticResource BoundaryLineNormalBackground}" BorderBrush="{StaticResource BoundaryLineNormalBorderBrush}" BorderThickness="0,0,0,1" Height="2" Grid.Row="1" Margin="0,-2,0,0" VerticalAlignment="Top"/>
+        <Border Background="{StaticResource CommonButtonAreaNormalBackground}" Grid.Row="1">
+            <DockPanel Margin="10,0" LastChildFill="False">
+                <HButton ButtonTyped="None" x:Name="btnSMS" Content="SMS전송"  Click="btnSMS_Click" DockPanel.Dock="Left" Margin="0,0,5,0"/>
+                <HButton ButtonTyped="None" Name="btnClose" Content="닫기" ButtonStyleType="Close" DockPanel.Dock="Right" Click="btnClose_Click" />
+                <HButton ButtonTyped="None" Name="btnExcel" Style="{StaticResource CommonButtonExcelStyle}" Content="엑셀" DockPanel.Dock="Right" Margin="0,0,5,0" Click="btnExcel_Click"/>
+                <HButton ButtonTyped="None" Name="btnPrint" Content="출력" Style="{StaticResource CommonButtonPrintStyle}" DockPanel.Dock="Right" Margin="0,0,5,0" Click="btnPrint_Click"/>
+                <HButton ButtonTyped="None" Name="btnInit" Style="{StaticResource CommonButtonResetStyle}" Content="초기화" DockPanel.Dock="Right" Margin="0,0,5,0" Click="btnInit_Click"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</base:UserControlBase>

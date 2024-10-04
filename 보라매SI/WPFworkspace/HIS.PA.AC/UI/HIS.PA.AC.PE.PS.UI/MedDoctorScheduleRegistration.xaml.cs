@@ -78,7 +78,7 @@ namespace HIS.PA.AC.PE.PS.UI
         /// ---------------------------------------------------------------------
         private void HFromToCalendar_KeyDown(object sender, ResourceKey e)
         {
-            
+            SelectPlusWork();
         }
 
 

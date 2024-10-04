@@ -1,13 +1,19 @@
 ﻿
-exec :in_fdate := '202409011204';
+select * from cccccste where comn_grp_cd = 'BIL203';
+
+
+
+exec :in_fdate := '202402292000';
 exec :in_tdate := ;
 
-select *
-from ACDPCAPD
-where rownum < 10;
+select *--TO_CHAR(APY_END_DTM,'YYYYMMDDHH24MI')
+from ACDPCSPD
+--where rownum < 10;
 -- ACDPCAPD -- 외래추가예약가능환자건수정보
 -- ACDPCSPD -- 의사보충일정정보
-where APY_STR_DTM =  TO_CHAR(:in_fdate, 'YYYY-MM-DD')
+--where TO_CHAR(APY_END_DTM,'YYYYMMDDHH24MI') =  :in_fdate --TO_CHAR(:in_fdate, 'YYYYMMDDHH24MI')
+WHERE APY_END_DTM =   TO_DATE(:in_fdate,'YYYY-MM-DD HH24:MI')
+
 ;;;
         ACDPCAPD;
 

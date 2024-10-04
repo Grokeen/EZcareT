@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AC3BE465-6052-4A70-9436-36C259D659BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PE.PS.DAC</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PE.PS.DAC</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Server\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>..\..\..\..\HIS\Deploy\Server\HIS.Template.DAC.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>HSFCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Server\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Server\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Server\HIS.Core.Global.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PC.OP.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\HIS.PA.AC.PC.OP.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.AC.PE.AP.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.AC.PE.AP.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\PA\HIS.PA.CORE.DTO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.COM.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.COM.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common.Log, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.Log.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.ComBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.ComBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.DAC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.DAC.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.RemotingV35, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.RemotingV35.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdmissionExpectationPatientPatientRoomAssignmentRegistrationDL.cs" />
+    <Compile Include="AdsNotificationMngDL.cs" />
+    <Compile Include="AdsPtDischargeDayAskDL.cs" />
+    <Compile Include="ByDayAcceptPatientAskDL.cs" />
+    <Compile Include="ByDayResPatientCntCurrCircumstancesAskDL.cs" />
+    <Compile Include="ClnlBfBlclPtAskDL.cs" />
+    <Compile Include="DischargeCancelHistoryAskDL.cs" />
+    <Compile Include="DischargeRegistrationDL.cs" />
+    <Compile Include="EachPtChoiceMedWardRetroactionApplyDL.cs" />
+    <Compile Include="EachPtOtptReservationDayModificationDL.cs" />
+    <Compile Include="EmergencyPatientAskDL.cs" />
+    <Compile Include="EmergencyRoomCheckOutPatientMedicalCurrentDL.cs" />
+    <Compile Include="HavingAMedicalExaminationHistoryAskDL.cs" />
+    <Compile Include="HipassMobileApprovalMngDL.cs" />
+    <Compile Include="MedicalCareApprobationAskDL.cs" />
+    <Compile Include="MedicalCareNonApprobationAskDL.cs" />
+    <Compile Include="MedicalTreDeptClassByOutPatientResvPatientCntAskDL.cs" />
+    <Compile Include="MngDischargePtDL.cs" />
+    <Compile Include="NonFaceToFaceMedicalTreatmentPatientListAskDL.cs" />
+    <Compile Include="OutPatientScheduleAskDL.cs" />
+    <Compile Include="PatientClassByMedicalTreatResvCurrCircumstancesAskDL.cs" />
+    <Compile Include="PerPeriodOtptNotSeeingPtsCrccmAskDL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PtRoomCrccmAskDL.cs" />
+    <Compile Include="ReservationPtListPrintingDL.cs" />
+    <Compile Include="RsexCancelAskDL.cs" />
+    <Compile Include="SalaryRestrictionPersonAskDL.cs" />
+    <Compile Include="SaveAdsMngDL.cs" />
+    <Compile Include="SaveAdsRsvMdfDL.cs" />
+    <Compile Include="SaveHiPassRegMdfDL.cs" />
+    <Compile Include="SelectAdmissionFactClosedListDetailDL.cs" />
+    <Compile Include="SelectAdmissionFactClosedListDL.cs" />
+    <Compile Include="SelectAdsExptPtCrccmDL.cs" />
+    <Compile Include="SelectAdsRegExptPtDL.cs" />
+    <Compile Include="SelectAdsRsvExmDL.cs" />
+    <Compile Include="SelectCnsgBtchRegDL.cs" />
+    <Compile Include="SelectDstrMdeDmdDL.cs" />
+    <Compile Include="SelectDstrMdeSupPtMgmtDL.cs" />
+    <Compile Include="SelectHiPassPtAskDL.cs" />
+    <Compile Include="SelectHiPassRtmUnclAskDL.cs" />
+    <Compile Include="SelectHiPassUnclAskDL.cs" />
+    <Compile Include="SelectHiPassUnclAskPaymentDL.cs" />
+    <Compile Include="SelectHiPassUnclAskPaymentSMSDL.cs" />
+    <Compile Include="SelectHiPassUnclAskSMSDL.cs" />
+    <Compile Include="SelectImgnAcntAskDL.cs" />
+    <Compile Include="SelectMedChangeHistoryDL.cs" />
+    <Compile Include="SelectMedRffmDL.cs" />
+    <Compile Include="SelectMtdDrSihsPtCrccmDL.cs" />
+    <Compile Include="SelectOtdpDptfWdtfPrmAsgnAplcDL.cs" />
+    <Compile Include="SelectOtptEmrgViaAdsPtTranDL.cs" />
+    <Compile Include="SelectOtptEmrgViaAdsPtTranDtlDL.cs" />
+    <Compile Include="SelectPtExaminationProgressInsuranceAskDL.cs" />
+    <Compile Include="SelectPtRoomClassByPtPastStayInHospitalDL.cs" />
+    <Compile Include="SelectRefundInformationAskDL.cs" />
+    <Compile Include="SelectSihsBlncPtAskDL.cs" />
+    <Compile Include="SelectSihsPtAskPaDL.cs" />
+    <Compile Include="SelectStfPsnyFamAdsCrccmDL.cs" />
+    <Compile Include="SelectVipInspDL.cs" />
+    <Compile Include="SelStayInHospitalPtMngDL.cs" />
+    <Compile Include="SendingBackAfterReReservationCurrentCircumstancesAskDL.cs" />
+    <Compile Include="SendingBackParticularsAskDL.cs" />
+    <Compile Include="StayInHospitalPtHistoryRegistrationDL.cs" />
+    <Compile Include="TelReservationReasonAskDL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DTO\HIS.PA.AC.PE.PS.DTO\HIS.PA.AC.PE.PS.DTO.csproj">
+      <Project>{1cde3bcc-cbec-477a-a3c0-45ae3f035b9d}</Project>
+      <Name>HIS.PA.AC.PE.PS.DTO</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
