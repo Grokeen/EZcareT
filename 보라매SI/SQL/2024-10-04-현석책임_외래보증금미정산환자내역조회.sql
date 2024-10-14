@@ -44,7 +44,7 @@ SELECT A.PT_NO
 
 
 
-
+-- 전남대에서 들고올 때 부터 주석
 --     , ( SELECT NVL(SUM(X.UNCL_AMT_BLNC),0)
 --                   FROM ACPPEUED X
 --                  WHERE X.HSP_TP_CD = :HIS_HSP_TP_CD
