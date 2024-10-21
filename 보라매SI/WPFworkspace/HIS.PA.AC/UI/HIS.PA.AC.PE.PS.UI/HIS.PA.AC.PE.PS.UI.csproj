@@ -77,6 +77,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.CONVERTER.dll</HintPath>
     </Reference>
+    <Reference Include="HIS.PA.CORE.UI.LOADER, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.LOADER.dll</HintPath>
+    </Reference>
     <Reference Include="HIS.PA.CORE.UI.UTIL">
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\PA\HIS.PA.CORE.UI.UTIL.dll</HintPath>
     </Reference>
@@ -108,6 +112,10 @@
     <Reference Include="HSF.Controls.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\HISSolutions\HIS\Deploy\Client\HSF.Controls.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.Controls.WPF.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\BESTCare\DEMO\HISDEMO\Core\HSF.Controls.WPF.Extension.dll</HintPath>
     </Reference>
     <!-- 2408021029 토큰에러 -->
     <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
@@ -155,6 +163,24 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SeriousIllnessApplicationFormEDIReg.xaml.Behavior.cs">
+      <DependentUpon>SeriousIllnessApplicationFormEDIReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeriousIllnessApplicationFormEDIReg.xaml.cs">
+      <DependentUpon>SeriousIllnessApplicationFormEDIReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeriousIllnessApplicationFormEDIReg.xaml.Data.cs">
+      <DependentUpon>SeriousIllnessApplicationFormEDIReg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIPAMVC1.xaml.Behavior.cs">
+      <DependentUpon>SeriousIllnessApplicationFormEDIReg1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeriousIllnessApplicationFormEDIReg1.xaml.cs">
+      <DependentUpon>SeriousIllnessApplicationFormEDIReg1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIPAMVC1.xaml.Data.cs">
+      <DependentUpon>SeriousIllnessApplicationFormEDIReg1.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="HipassMobileApprovalMng.xaml">
@@ -168,6 +194,14 @@
     <Page Include="Properties\DesignTimeResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SeriousIllnessApplicationFormEDIReg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeriousIllnessApplicationFormEDIReg1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

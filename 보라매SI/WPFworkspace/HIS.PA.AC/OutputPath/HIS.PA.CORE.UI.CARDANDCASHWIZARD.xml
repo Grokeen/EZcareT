@@ -1,0 +1,2975 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.PA.CORE.UI.CARDANDCASHWIZARD</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew">
+            <summary>
+            카드,현금승인 - FirstData 기준.
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CARD_SETTING_IP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CARD_SETTING_PORT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.SECTION_NO_사업자등록번호별구분">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CARDANDCASHID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CLIENTID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.SUPERPASS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CANCEL_BYPASS1">
+            <summary>
+            NICE 거래구분 상 망상취소 코드1
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CASH_SELFAPP_TELNO">
+                                                                                       
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CASH_DIVIDE_개인">
+            <summary>
+            현금영수증 구분 01 개인 02 사업자 03 자진발급
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CASH_DIVIDE_법인">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CARD_DIVIDE_일시불">
+            <summary>
+            카드 기본 할부개월 일시불(00)
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CARD_DIVIDE_고운맘">
+            <summary>
+            고운맘카드 할부개월 39로 들어옴.
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CASH_CARD_INPUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.CASH_CARD_NOTINPUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.S">
+            <summary>
+            리더기 입력구분 - Swipe
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.K">
+            <summary>
+            리더기 입력구분 - KeyIn
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.KSNET">
+            <summary>
+            KSNET
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.KICC">
+            <summary>
+            KICC
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICE">
+            <summary>
+            NICE
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.KIS">
+            <summary>
+            KIS
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.KSNET_KO_NM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.KICC_KO_NM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICE_KO_NM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.KIS_KO_NM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.VAN_GB_TWOSPACE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_카드승인요청">
+            2024.07.29 거래구분코드 보라매 asis 기준으로 수정 김태훈
+             <summary>
+             ORDER_GB_카드승인요청
+             </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_카드승인응답">
+            <summary>
+            ORDER_GB_카드승인응답
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_카드취소요청">
+            <summary>
+            ORDER_GB_카드취소요청
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_카드취소응답">
+            <summary>
+            ORDER_GB_카드취소응답
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_현금영수증승인요청">
+            <summary>
+            ORDER_GB_현금영수증승인요청
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_현금영수증승인응답">
+            <summary>
+            ORDER_GB_현금영수증승인응답
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_현금영수증취소요청">
+            <summary>
+            ORDER_GB_현금영수증취소요청
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_현금영수증취소응답">
+            <summary>
+            ORDER_GB_현금영수증취소응답
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_현금IC승인요청응답">
+            <summary>
+            ORDER_GB_현금IC승인요청응답
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_현금IC취소요청응답">
+            <summary>
+            ORDER_GB_현금IC취소요청응답
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_제로페이승인">
+            <summary>
+            ORDER_GB_제로페이승인
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_제로페이취소">
+            <summary>
+            ORDER_GB_제로페이취소
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_서울페이승인">
+            <summary>
+            ORDER_GB_서울페이승인
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.ORDER_GB_서울페이취소">
+            <summary>
+            ORDER_GB_서울페이취소
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.SEQNO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.JOB_SEQ">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.TIP_AMT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.TAX_AMT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.승인">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.취소">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.SEOULPAYCATID">
+             <summary>
+            서울페이(신한은행)는 카드결제 프로세스 내에서 개발되어, 대금 정산시 카드대금에 포함된다고 함.
+            보라매(최정실쌤)에서는 카드대금과 구분을 짓도록 요청하여, 단말기번호를 분리하여 대금 구분 처리
+             </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.BASECATID">
+            "서울페이" 바코드 결제 시 들어가야 하는 CATID
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.MOBILECATID">
+            서울페이 제외한 나머지 결제 시 들어가야 하는 CATID. 그러니 보라매 asis 카드결제 전문에 CATID가 다 박혀있었지....
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICESIGNBINARY">
+            모바일 결제건 취소시 들어가야 하는 CATID - 이걸 이제 봤다....20240905김태훈
+            2024.08.18 카드 서명 데이터 저장 때문에...김태훈.
+            NICE의 경우 서명 바이너리 데이터를 자기네들 기본 폴더 밑에 파일 형태로 떨구고 있어서 그 경로를 이용한다. 
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICECONTROLLER">
+            <summary>
+            10 - 신용카드, 서울페이 거래 시 사용.
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICEBANKUNIONCONTROLLER">
+            <summary>
+            UP - 은련카드 거래 시 사용
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICECASHRECEIPTCONTROLLER">
+            <summary>
+            21 - 현금영수증 거래 시 사용
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICECASHICAPPROVALCONTROLLER">
+            <summary>
+            I1 - 현금IC 승인 시 사용
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICECASHICCANCELCONTROLLER">
+            <summary>
+            I4 - 현금IC 취소 시 사용
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICEPAYPROAPPROVALCONTROLLER">
+            <summary>
+            P1 - 제로페이 승인 시 사용
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICEPAYPROCANCELCONTROLLER">
+            <summary>
+            P3 - 제로페이 취소 시 사용
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICEHIPASSREGISTERCONTROLLER">
+            <summary>
+            S1 - 하이패스 등록신청
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICEHIPASSAPPROVALCONTROLLER">
+            <summary>
+            S2 - 하이패스 결제
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.NICEHIPASSREMOVECONTROLLER">
+            <summary>
+            S3 - 하이패스 삭제
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.LoadOrderMsg(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.LoadOrderMsg2(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.LoadOrderTypeCd(System.String)">
+            <summary>
+            NICE 리턴해주는 거래전문코드를, 우리 쪽 거래구분코드로 변환.
+            </summary>
+            <param name="str">VAN에서 주는 전문코드</param>
+            <returns></returns>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.LEMONMOBILECANCELDATE">
+            <summary>
+            2024.08.30 레몬 헬스케어 결제건 취소: 20240730까지의 모바일 결제건은 레몬 결제취소 API를 활용해야 해서....
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashClassNew.LEMONMOBILETRADESTARTER">
+            <summary>
+            레몬 모바일 전문고유번호는 LM으로 시작한다. 식별용으로 상수 추가.
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.CARD">
+            FirstData 관련 Enum
+             <summary>
+             
+             </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.CASH_SELF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.CASH">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.ICCARD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.DCC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.REQUEST">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew.CANCEL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._0000">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._6">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._7">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._8">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._9">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._10">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._11">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._12">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._13">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._14">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2001">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2003">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2019">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2021">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2023">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2025">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2027">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2045">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2048">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2057">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2066">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2075">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2077">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2089">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2093">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2095">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2096">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2097">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2103">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2113">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2127">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._2129">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._XX01">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._XX02">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._XX03">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._XX04">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._XX05">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1001">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1003">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1007">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1016">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1032">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1034">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1036">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1039">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1041">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1043">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1045">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1047">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1049">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1050">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1051">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1061">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1064">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1065">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew._1074">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD">
+            <summary>
+            name         : 논리 UI Behavior 클래스 명
+            desc         : WPF Page Item Itemplate입니다.
+            author       : jeonkwangsik 
+            create date  : 2012-12-13 오후 7:58:08
+            update date  : 2012-12-13 오후 7:58:08 , jeonkwangsik , 수정개요
+            </summary>
+            <summary>
+            id           : UI-XX-YY-ZZ-001
+            name         : 화면 논리명
+            clss         : {메인|공통|팝업|일반용지|서식용지|바코드}
+            desc         : 화면 클래스 개요
+            author       : jeonkwangsik
+            create date  : 2012-12-13 오후 7:58:08
+            update date  : 2012-12-13 오후 7:58:08, jeonkwangsik, 수정내용
+            </summary>
+            <summary>
+            CARDANDCASHWIZARD
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnAllowAprovCancel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnAllowAprovCancelCheck">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARDChangeDelegate">
+            <summary>
+            
+            </summary>
+            <param name="signPad_INOUT"></param>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARDCloseDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnCloseDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.model">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.IsCancel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.AllowApprovCancel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.AllowApprovCancelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.AllowCashChangeCheck">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.AllowCashChangeCheckProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.UC_CashReceiptReceivePaymentRegistration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.UC_CardApprobationMng">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_01_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_01_INOUTProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_01_INOUT_CallBack(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            name         : CARDANDCASHWIZARD_01_INOUT_CallBack
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnCARDANDCASHWIZARD_01_INOUTChanged">
+            <summary>
+            name         : CARDANDCASHWIZARD_01_INOUT_CallBack
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_02_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_02_INOUTProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_02_INOUT_CallBack(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            name         : CARDANDCASHWIZARD_02_INOUT_CallBack
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnCARDANDCASHWIZARD_02_INOUTChanged">
+            <summary>
+            name         : OnCARDANDCASHWIZARD_02_INOUTChanged
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.GUID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.승인">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.취소">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SEQNO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.KSNET">
+            <summary>
+            VAN 구분코드 - KSNET
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.KICC">
+            <summary>
+            VAN 구분코드 - KICC
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.KSNET_KO_NM">
+            <summary>
+            VAN 구분코드이름 - KSNET
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.KICC_KO_NM">
+            <summary>
+            VAN 구분코드이름 - KICC
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.NICE">
+            <summary>
+            VAN 구분코드 - NICE
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.KIS">
+            <summary>
+            VAN 구분코드 - KIS
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.NICE_KO_NM">
+            <summary>
+            VAN 구분코드이름 - NICE
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.KIS_KO_NM">
+            <summary>
+            VAN 구분코드이름 - KIS
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.#ctor">
+            <summary>
+            name         : CARDANDCASHWIZARD
+            desc         : 결재승인 메인
+            author       : baesangjin 
+            create date  : 2016-06 
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : OnLoaded 
+            desc         : 로드이벤트
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.OnClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            name         : OnClosing
+            desc         : 결재창 닫기 이벤트
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.btn_ApprClick_1(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : 1. btn_ApprClick_1
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.grid1_MouseDoubleClick(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            name         : 2. grid1_MouseDoubleClick
+            desc         : 선택 그리드 재승인 (화면상에 보이지 않음으로 사용하지 않는다. 테스트용인듯) 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CancelCardAndCash">
+            <summary>
+            name         : 3. CancelCardAndCash
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.LoadCardInfo(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT,HIS.PA.CORE.DTO.SelectCardApprobationDerecognition_OUT,System.Collections.Generic.List{System.String})">
+            <summary>
+            name         : 5. LoadCardInfo
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.LoadCardInfo2(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT,HIS.PA.CORE.DTO.SelectCardApprobationDerecognition_OUT,System.Collections.Generic.List{System.String})">
+            <summary>
+            name         : 5. LoadCardInfo
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CompactAcknowledgment">
+            <summary>
+            name         : 6. CompactAcknowledgment
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.Acknowledgment">
+            <summary>
+            name         : 7. Acknowledgment
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ReAcknowledgment">
+            <summary>
+            name         : 8. ReAcknowledgment
+            desc         : 재승인(언제쓰나?)
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CommitYesOrNo(HIS.PA.CORE.DTO.SignPad_INOUT)">
+            <summary>
+            name         : 9. CommitYesOrNo
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.NextControl">
+            <summary>
+            name         : 10.NextControl
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ReNextControl">
+            <summary>
+            name         : 11. ReNextControl
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardAndCashValidataion">
+            <summary>
+            name         : 12. CardAndCashValidataion
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ReCalPaymentLogic">
+            <summary>
+            name         : 13. ReCalPaymentLogic
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ReCalPaymentLogicSection">
+            <summary>
+            name         : 14. ReCalPaymentLogicSection
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.VisibilityCard(System.Int32,HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 1. VisibilityCard
+            desc         : 카드승인부 표출 및 세팅
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.uc_CardApprobationMng_OnNextChangeDelegate">
+            <summary>
+            name         : 2. uc_CardApprobationMng_OnNextChangeDelegate
+            desc         : 카드승인 이벤트(대리자)
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.uc_CardApprobationMng_DccCurrencyDelegate">
+            <summary>
+            name         : 3. uc_CardApprobationMng_DccCurrencyDelegate
+            desc         : DCC환율조회(대리자)
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardCancelDtoLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT)">
+            <summary>
+            name         : 4. CardCancelDtoLoad
+            desc         : 승인취소 DTO 세팅
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SelectCardApprobationDerecognitionCheck(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 5. SelectCardApprobationDerecognitionCheck
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardAppInParameterLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 6. CardAppInParameterLoad
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CashAndCashInfoLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT,System.Boolean,System.String)">
+            <summary>
+            name         : 7. CashAndCashInfoLoad
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardAndCashInfoLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT,System.Boolean,System.String)">
+            <summary>
+            name         : 8. CardAndCashInfoLoad
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardCancelInParameterLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT)">
+            <summary>
+            name         : 9. CardCancelInParameterLoad
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardFocus">
+            <summary>
+            name         : 10. CardFocus
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetCard(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 11. SetCard
+            desc         : 카드 정보 설정 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetNomalCard(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         :12. SetNomalCard
+            desc         : 일반카드 승인
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetICCard(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 13. SetICCard
+            desc         : IC카드 승인
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetDCCCard(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 14. SetDCCCard
+            desc         : DCC 일련로직
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetCardClear(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 15. SetCardClear
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetBarcodePayment(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 16. SetBarcodePayment
+            desc         : 바코드 결제에 필요한 데이터를 세팅한다.
+            author       : 김태훈
+            create date  : 2024.07.21
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.VisibilityCashReceipt(System.Int32,HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 1. VisibilityCashReceipt
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.VisibilityCash(System.Int32,HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 2. VisibilityCash
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_OnAllowAprovCancel(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : 3. CARDANDCASHWIZARD_OnAllowAprovCancel
+            desc         : 현금영수증 취소승인시에 기능인가???
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.uc_CashReceiptReceivePaymentRegistration_OnNextChangeDelegate">
+            <summary>
+            name         : 4. uc_CashReceiptReceivePaymentRegistration_OnNextChangeDelegate
+            desc         : 현금영수증 승인 대리자 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CashCancelDtoLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT)">
+            <summary>
+            name         : 5. CashCancelDtoLoad
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CashAppInParameterLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 6. CashAppInParameterLoad: 현금영수증 결제를 위한 정보 세팅.
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CashCancelInParameterLoad(HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT)">
+            <summary>
+            name         : 7. CashCancelInParameterLoad
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CashInfoSetting">
+            <summary>
+            name         : 8. CashInfoSetting
+            desc         : 수납연결키 DTO 정보를 세팅
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CashFocus">
+            <summary>
+            name         : 9. CashFocus
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetCashReceiptClear(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 10. SetCashReceiptClear
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SetCashReceipt(HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : 11. SetCashReceipt
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.VisibilitySignPad">
+            <summary>
+            name         : 1. VisibilitySignPad
+            desc         : 싸인화면 활성화
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ReVisibilitySignPad">
+            <summary>
+            name         : 2. ReVisibilitySignPad
+            desc         : 싸인화면 재활성화
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.uc_SignPad_OnAcknowledgmentDelegate(System.Boolean)">
+            <summary>
+            name         : 3. uc_SignPad_OnAcknowledgmentDelegate
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.uc_SignPad_OnNextChangeDelegate">
+            <summary>
+            name         : 4. uc_SignPad_OnNextChangeDelegate
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.uc_SignPad_OnCommit(System.Object,System.EventArgs)">
+            <summary>
+            name         : 5. uc_SignPad_OnCommit
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CloseWizard(HIS.PA.CORE.DTO.SignPad_INOUT)">
+            <summary>
+            name         : 6. CloseWizard
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.PadFocus">
+            <summary>
+            name         : 7. PadFocus
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.RePadFocus">
+            <summary>
+            name         : 8. RePadFocus
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.AprroValPad">
+            <summary>
+            name         : 9. AprroValPad
+            desc         : 싸인요청
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.StackTraceToString">
+            <summary>
+            name         : StackTraceToString
+            desc         : 1. 로그남길때 처리 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.HButton_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : HButton_Click
+            desc         : 닫기버튼 클릭
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CARDANDCASHWIZARD_OnCloseDelegate">
+            <summary>
+            name         : CARDANDCASHWIZARD_OnCloseDelegate
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.grid2_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            name         : grid2_SelectionChanged
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.LoadTitle(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT})">
+            <summary>
+            name         : LoadTitle
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardAndCashIsEnabllity(System.Boolean)">
+            <summary>
+            name         : CardAndCashIsEnabllity
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ReCardAmtCheck(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT})">
+            <summary>
+            name         : ReCardAmtCheck
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CardAmtCheck(HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT)">
+            <summary>
+            name         : CardAmtCheck
+            desc         : 서명 거래 체크
+                           (50000원 이상 싸인저장 - 서명을 벤사 모듈에서 받는다고 하면 그냥 제외 예정 영수증에도 서명출력 안음으로 저장할 필요가 없을 듯 )
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.LoadStorageType(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT},System.String)">
+            <summary>
+            name         : LoadStorageType
+            desc         : 승인 종류 판단(카드, 현금, 현금영수증, 복합)
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CloseMethod(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            name         : CloseMethod
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ChangeMsg(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.PA.CORE.DTO.CARDANDCASHINFO_02_INOUT})">
+            <summary>
+            name         : ChangeMsg
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.ChangeMethod(HIS.PA.CORE.DTO.SignPad_INOUT)">
+            <summary>
+            name         : ChangeMethod
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CheckNextRow(System.Int32,HSF.Controls.WPF.HDataGridEx)">
+            <summary>
+            name         : CheckNextRow
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.Grid3CheckRow2(System.Int32,HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT)">
+            <summary>
+            name         : Grid3CheckRow2
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.LoadSetting">
+            <summary>
+            name         : LoadSetting
+            desc         : 호출화면에서 불러온 숨겨진 그리드 CARDANDCASHWIZARD_01_INOUT 내역을 세번째 그리드 정보로 세팅.
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.Clear">
+            <summary>
+            name         : Clear
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.CalPaymentLogic">
+            <summary>
+            name         : CalPaymentLogic
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.test(HSF.TechSvc2010.Common.HSFDTOCollectionBaseObject{HIS.PA.CORE.DTO.CARDANDCASHINFO_01_INOUT})">
+            <summary>
+            name         : test
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.HTextBlock_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            name         : 승인에러 무한루프 탈출용 
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.BtnShutDown_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : 승인에러 무한루프 탈출용 
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.Border_MouseRightButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            name         : 히든버튼 살리기
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.Border_MouseRightButtonUp_1(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.SendStrInfor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            name         : 전문 로그 저장
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARD.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData">
+            <summary>
+            name         : 논리 UI Data 클래스 명
+            desc         : UI Data 클래스 개요
+            author       : jeonkwangsik 
+            create date  : 2012-12-13 오후 7:58:08
+            update date  : 최종 수정일자 , 수정자, 수정개요
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.SignPad_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.signpad_inout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDANDCASHINFO_01_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardandcashinfo_01_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDANDCASHINFO_02_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardandcashinfo_02_inout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDANDCASHINFO_01_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardandcashinfo_01_inout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDANDCASHWIZARD_01_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardandcashwizard_01_inout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDANDCASHWIZARD_02_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardandcashwizard_02_inout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.SelOverseaIssueCardApprobationPossibilityYesOrNo_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.seloverseaissuecardapprobationpossibilityyesorno_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.SelOverseaIssueCardApprobationPossibilityYesOrNo_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.seloverseaissuecardapprobationpossibilityyesorno_out">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CASHSERACH_01_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cashserach_01_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CASHSERACH_01_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cashserach_01_out">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CASHAPPV_01_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cashappv_01_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CASHAPPV_01_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cashappv_01_out">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDSERACH_01_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardserach_01_in">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.CARDSERACH_01_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.cardserach_01_out">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.HIPASSSMSYN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CARDANDCASHWIZARDData.hipasssmsyn">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng">
+            <summary>
+            name         : 논리 UI Behavior 클래스 명
+            desc         : WPF Page Item Itemplate입니다.
+            author       : kimeunjung 
+            create date  : 2012-07-02 오후 03:23:38
+            update date  : 2012-07-02 오후 03:23:38 , kimeunjung , 수정개요
+            </summary>
+            <summary>
+            id           : UI-PA-AC-PC-053 
+            name         : 카드승인관리
+            clss         : 팝업
+            desc         : 카드 정보 및 서명을 요청하여 카드 승인신청을 할 수 있는 기능을 제공함.
+            author       : kimeunjung
+            create date  : 2012-07-02 오후 03:23:38
+            update date  : 2012-07-02 오후 03:23:38, kimeunjung, 수정내용
+            </summary>
+            <summary>
+            CardApprobationMng
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.NextChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.NextChangeDelegate2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.OnNextChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.DccCurrencyDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.model">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.IsApprovCancel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.IsApprovCancelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardType2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.Ptno">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.sACQ_CODE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.sENCRYPT_INFO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.sCARD_NO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.sPASSWD_YN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.sTRACKDATA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.Today">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.#ctor">
+            <summary>
+            name         : CardApprobationMng
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.OnLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : OnLoaded
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.InitControl">
+            <summary>
+            name         : InitControl
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.Clear_OUT">
+            <summary>
+            name         : Clear_OUT
+            desc         : DTO 초기화
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.IsDate(System.String)">
+            <summary>
+            name         : IsDate
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.Close(System.Object)">
+            <summary>
+            name         : Close
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.rdoGubn2_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            name         : rdoGubn2_SelectionChanged
+            desc         : 결재구분 라디오 변경
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.HipassSelect(System.String,System.String,System.String)">
+            <summary>
+            name         : 하이패스 카드 정보세팅
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.btnNext_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : btnNext_Click
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.btnAly_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            알리페이결제
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.btnEun_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            은련카드결제
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.SetSetting(System.String,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : SetSetting
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.IsEnable(System.Boolean)">
+            <summary>
+            name         : IsEnable
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.PrintCurrencyInfor">
+            <summary>
+            name         : PrintCurrencyInfor
+            desc         : DCC 환율정보 조회
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.Strlen(System.Byte[])">
+            <summary>
+            name         : Strlen
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.LoadCardInfoOfTexbox">
+            <summary>
+            name         : LoadCardInfoOfTexbox
+            desc         : 결재정보 세팅
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.ProcessSave(System.Object)">
+            <summary>
+            name         : ProcessSave
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.LoadedLogic(HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : LoadedLogic
+            desc         : 실제 POS 결제 전 필수 인자값들을 점검하고 결제승인취소 로직을 호출한다.
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.IsTestMode">
+            <summary>
+            name         : IsTestMode
+            clss         : 테스트모드(원무공통 444) 여부 체크 
+            author       : baesangjin 
+            create date  : 2016-06
+            update note  : 2024-07-05 테스트 결제 설정 보완. 테스트 결제 원무공통코드 기준으로 테스트 여부 확인하되, 리더기 에이전트 세팅이 VAN사 개발기 세팅이라면 리더기 결제가 되도록 처리하자.
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CreateAdmit(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : CreateAdmit
+            clss         : 카드승인(분개-카드/현금IC/DCC)
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CreateAdmitAliPay(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : CreateAdmitAliPay
+            clss         : 알리페이승인
+            author       : baesangjin 
+            create date  : 2016-06
+            update date  : 2024-05-30 2024.05.30 김태훈 서울대 POS 연동 소스 주석처리
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CreateAdmitCard(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : CreateAdmitCard
+            clss         : 신용카드승인
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CreateCancel(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : CreateCancel
+            clss         : 카드 취소
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CreateCancelAliPay(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : CreateCancelAliPay
+            clss         : 알리페이 취소
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CreateCancelCard(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : CreateCancelCard
+            clss         : 일반카드 취소
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardApproveAfter(System.Text.StringBuilder,System.String,System.String)">
+            카드 승인결과를 거래결과 저장용 DTO에 담기 위한 분기 처리 - 전문 결과를 StringBuilder로 받은 경우. 서울대 FDK 방식.
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardApproveAfter(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            카드 승인결과를 거래결과 저장용 DTO에 담기 위한 분기 처리 - 전문 결과를 Dictionary로 받은 경우. 2024-05-31 김태훈
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardApproveAfterCardAndDcc(System.Text.StringBuilder,System.String)">
+            <summary>
+            카드결제 후 String으로 넘겨져온 거래결과를 DTO에 매핑한다. 서울대 방식.
+            </summary>
+            <param name="rbuffer"></param>
+            <param name="sTid"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardApproveAfterCardAndDcc(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            2024.05.31 보라매 NICE 승인결과 처리 - 카드 결제.
+            </summary>
+            <param name="niceReturnDictionary">승인결과 Dictionary</param>
+            <param name="sTid">단말기 catId - 보라매도 위치에 따라 단말기 CATID 따로 관리한다면 그다음에 생각하자.</param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardApproveAfterIc(System.Text.StringBuilder,System.String)">
+            <summary>
+            현금IC 거래결과(String)을 DTO에 매핑 - 만들다 말았네....
+            </summary>
+            <param name="rbuffer"></param>
+            <param name="sTid"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.CardApproveAfterIc(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            현금IC 거래결과(Dictionary)을 DTO에 매핑
+            </summary>
+            <param name="niceReturnDictionary"></param>
+            <param name="sTid"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.SendStrInfor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            name         : 전문 로그 저장
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.TidSelect(System.String,System.String,System.String)">
+            <summary>
+            name         : 아이피 정보로 터미널 ID 조회
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.TidChange(System.String,HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            name         : tid 세팅
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.BizChange(System.String)">
+            <summary>
+            name         : Biz 세팅
+            desc         : 
+            author       : chaesanghoon 
+            create date  : 2018-04
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.fnGetErrMsg(System.Int32)">
+            <summary>
+            name         : 카드승인 오류 메시지
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            update date  : 2024-05-30 김태훈 2024.05.30 김태훈 서울대 POS 연동 소스 주석처리
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.test_Click">
+            <summary>
+            name         : 아이피 정보로 터미널 ID 조회
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            update date  : 2024-05-30 김태훈 2024.05.30 김태훈 서울대 POS 연동 소스 주석처리
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.GetCatID">
+            <summary>
+            CAT ID 가져오기 - 2024.05.30 김태훈 서울대 POS 연동 소스 주석처리
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.ICCardInforGet">
+            <summary>
+            name         : ICCardInforGet
+            desc         : 현금IC카드 정보를 조회한다?
+            author       : baesangjin 
+            create date  : 2016-06
+            update date  : 2024.05.30 김태훈 서울대 POS 연동 소스 주석처리
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.btnBarcode_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            제로페이, 서울페이 등 바코드 리딩
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMng.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData">
+            <summary>
+            name         : 논리 UI Data 클래스 명
+            desc         : UI Data 클래스 개요
+            author       : kimeunjung 
+            create date  : 2012-07-02 오후 03:23:38
+            update date  : 최종 수정일자 , 수정자, 수정개요
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.SelectCardApprobationMng_IN">
+            <summary>
+            카드정보 DTO
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.SelectCardApprobationDerecognition_OUT">
+            <summary>
+            카드결과 반환 DTO
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.SelOverseaIssueCardApprobationPossibilityYesOrNo_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.SelOverseaIssueCardApprobationPossibilityYesOrNo_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.SelectCardApprobationMngLicense_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.CardOutFilter">
+            <summary>
+            CardOutFilter
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.Selectcardandcashwizard_dcc_inout">
+            <summary>
+            DCC 환율조회 반환 DTO
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.HiPASSYN">
+            <summary>
+            하이패스 적용 대상 여부
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.HIPASSUSEYN">
+            <summary>
+            하이패스 사용 여부
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.HiPASSCARDNO">
+            <summary>
+            하이패스 카드 번호
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.HiPASSVAILD">
+            <summary>
+            하이패스 카드 유효기간
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.HiPASSTKN_NO">
+            <summary>
+            하이패스 카드 유효기간
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.CARD_TID">
+            <summary>
+            터미널 ID
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.CARD_HSP_TP_CD">
+            <summary>
+            카드병원구분 ID card_hsp_tp_cd
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.HIPASS_NM">
+            <summary>
+            하이패스 카드 환자성명
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.SIGNPASS">
+            <summary>
+            강제닫기 처리시 서명 받지 않고 취소처리 SIGNPASS
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardApprobationMngData.STARTCARD">
+            <summary>
+            연속카드읽기세팅
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration">
+            <summary>
+            name         : 논리 UI Behavior 클래스 명
+            desc         : WPF Page Item Itemplate입니다.
+            author       : kimeunjung 
+            create date  : 2012-07-02 오후 03:26:47
+            update date  : 2012-07-02 오후 03:26:47 , kimeunjung , 수정개요
+            </summary>
+            <summary>
+            id           : UI-PA-AC-PC-055
+            name         : 현금영수증수납등록
+            clss         : 팝업
+            desc         : 현금영수증 수납 부분에 대한 정보를 적용 및 기본등록을 시행할 수 있는 기능을 제공함.
+            author       : kimeunjung
+            create date  : 2012-07-02 오후 03:26:47
+            update date  : 2012-07-02 오후 03:26:47, kimeunjung, 수정내용
+            </summary>
+            <summary>
+            CashReceiptReceivePaymentRegistration
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.NextChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.OnNextChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.model">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.IsApprovCancel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.IsApprovCancelProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.btnNextClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CashType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CashType2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.DirectPass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.Ptno">
+                                                                 
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.Today">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.ucCashReceiptReceivePaymentRegistration_Load(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : ucCashReceiptReceivePaymentRegistration_Load
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.InitControl">
+            <summary>
+            name         : InitControl
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.LoadCardInfoOfTexbox">
+            <summary>
+            name         : LoadCardInfoOfTexbox
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.ShowCardForm">
+            <summary>
+            name         : ShowCardForm
+            desc         : 화면 로드시 리턴 값 처리
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.SetSetting(System.String,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : SetSetting
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.IsEnable(System.Boolean)">
+            <summary>
+            name         : IsEnable
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.rdoGubnChange">
+            <summary>
+            name         : rdoGubnChange
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.ControlEnable(System.Boolean)">
+            <summary>
+            name         : ControlEnable
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CardQuery">
+            <summary>
+            name         : CardQuery
+            desc         : 현금수납 조회 (현금수납취소시만 사용)함. 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CardQueryDisplay(HIS.PA.CORE.DTO.SelectCashReceiptReceivePaymentReg_OUT)">
+            <summary>
+            name         : CardQueryDisplay
+            desc         :  현금수납내역 조회함.
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CreateAdmit(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : CreateAdmit
+            desc         : 현금영수증승인
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CreateCancel(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : CreateCancel
+            desc         : 현금영수증취소
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CashApproveAfter(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            DIctionary로 받아온 NICE 승인처리 결과를 DTO에 매핑한다.
+            </summary>
+            <param name="niceReturnDictionary">NICE 승인전문결과</param>
+            <param name="sTid">TID - 보라매도 위치 따라 TID 달리 관리한다면 그때 생각.</param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CashApproveAfter(System.Text.StringBuilder,System.String)">
+            <summary>
+            name         : CashApproveAfter
+            desc         : 현금영수증 승인취소 후 값세팅 - 서울대버전...
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary> 
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CashApproveAfter2(System.Text.StringBuilder,System.String)">
+            <summary>
+            name         : CashApproveAfter
+            desc         : 현금영수증 승인취소 후 값세팅 - 서울대버전..
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary> 
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CashApproveAfterError(System.String,System.String)">
+            <summary>
+            name         : CashApproveAfter
+            desc         : 현금영수증 승인요청 후 에러 발생 시 값세팅
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary> 
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.ProcessSave(HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : ProcessSave
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.LoadedLogic(HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew,HIS.PA.CORE.UI.CARDANDCASHWIZARD.CardAndCashTypeNew)">
+            <summary>
+            name         : LoadedLogic
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.TRACK2_DATA">
+            <summary>
+            name         : TRACK2_DATA
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            현금영수증 발행목적 데이터 안 들어오면 01로 리턴하게 수정. 20240905 김태훈 -> 자진발급으로 처리한다.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.CitizenCheck(System.String,System.String)" -->
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.btn_BasicUpdate_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : btn_BasicUpdate_Click
+            desc         : 환자별 현금영수증 기본을 등록함
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.OnNextChange">
+            <summary>
+            name         : OnNextChange
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.txtCardNo_MouseDoubleClick(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            name         : txtCardNo_MouseDoubleClick
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.cbxCleRsn_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            name         : cbxCleRsn_SelectionChanged
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.TidSelect(System.String,System.String,System.String)">
+            <summary>
+            name         : 아이피 정보로 터미널 ID 조회
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.TidChange(System.String)">
+            <summary>
+            name         : TidChange
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            update note  : 2024-09-05 TID 식별로직 막는다. 김태훈.
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.BizChange(System.String)">
+            <summary>
+            name         : Biz 세팅
+            desc         : 
+            author       : chaesanghoon 
+            create date  : 2018-04
+            update note  : 2024-09-05 막는다.
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.SendStrInfor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            name         : 전문 로그 저장
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.rdoGubn2Changed">
+            <summary>
+            name         : rdoGubn2Changed
+            desc         : 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.IsTestMode">
+            <summary>
+            name         : IsTestMode
+            clss         : 테스트모드(원무공통 444) 여부 체크 
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.btnPinIn_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : btnPinIn_Click
+            desc         : 핀데이터 입력
+            author       : baesangjin 
+            create date  : 2016-06
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistration.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData">
+            <summary>
+            name         : 논리 UI Data 클래스 명
+            desc         : UI Data 클래스 개요
+            author       : kimeunjung 
+            create date  : 2012-07-02 오후 03:26:47
+            update date  : 최종 수정일자 , 수정자, 수정개요
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectCardApprobationMng_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectCardApprobationDerecognition_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.InPutDtoModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectCardAndCashInfo_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.InsertCashReceiptDefaultValue_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectCashReceiptReceivePaymentReg_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectPatientInformation3_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectCashReceiptReceivePaymentReg_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelValiditySSN_IN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelValiditySSN_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.CashReceiptApprove_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.CashReceiptDerecognition_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.InsertCashReceiptReceivePaymentReg_INOUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.SelectCashReceiptReturnVal_OUT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.CancelMsg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.CARD_TID">
+            <summary>
+            터미널 ID
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.CARD_HSP_TP_CD" -->
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CashReceiptReceivePaymentRegistrationData.OutFilter">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry">
+            <summary>
+            name         : #CheckInquiry Behavior 클래스
+            desc         : #CheckInquiry Behavior 클래스
+            author       : User 
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            </summary>
+            <summary>
+            id           : #프로그램 ID
+            name         : #화면 논리명
+            clss         : #{메인|공통|팝업|일반용지|서식용지|바코드}
+            desc         : #화면 클래스 개요
+            author       : 김태훈
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            내 오픈하고 이 화면 하루에 한 번이라도 안 쓰면 내가 원무과 조진다.
+            </summary>
+            <summary>
+            CheckInquiry
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.BIZ_CLASS">
+            <summary>
+            Biz 클래스명
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.model">
+            <summary>
+            프레젠테이션 모델(PM) 
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.ControlInit">
+            <summary>
+            name         : 컨트롤 초기화
+            desc         : UI에서 사용할 컨트롤을 초기화 함
+            author       : User
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.DataInit">
+            <summary>
+            name         : 데이터 초기화
+            desc         : 화면 로드시 데이터를 초기화 함
+            author       : User 
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정일자 , 수정자, 수정개요
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.SelectData(System.Object)">
+            <summary>
+            name         : 데이터 조회
+            desc         : 데이터를 조회함
+            author       : User 
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.#ctor">
+            <summary>
+            name         : CheckInquiry 생성자
+            desc         : CheckInquiry 생성자
+            author       : User 
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.OnLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            name         : UserControl Loaded 이벤트
+            desc         : 화면 로드시 공통 데이터 및 컨트롤 초기화 함수를 호출함
+            author       : User 
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.btnInquiry_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            선택된 인자값을 갖고 수표 조회를 한다.        
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.cboCheckBookType_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            수표권종 콤보박스 선택 이벤트 
+            걍 하드코딩 박는다.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiry.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.CheckInquiryData">
+            <summary>
+            name         : #CheckInquiry Data 클래스
+            desc         : #CheckInquiry Data 클래스
+            author       : User 
+            create date  : 2024-06-12 오후 12:36:34
+            update date  : 최종 수정 일자, 수정자, 수정개요 
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.MobileReceiptMng">
+            <summary>
+            모바일 수납 취소처리 위한 클래스
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.MobileReceiptMng.CancelReceivedMobilePay(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            모바일 수납 취소처리(알림톡으로 수납한 입원 중간금, 퇴원금 취소)
+            큐어링크에서 제공한 모바일 취소 API 호출 모듈
+            2024.08.30 보라매병원도 2024.07.31 이전 모바일 결제건은 레몬에서 제공하는 취소 API 태워서 취소해야 함.
+            </summary>
+            <param name="mode">개발(DEV), 운영(HIS) 모드구분</param>
+            <param name="tid">TID</param>
+            <param name="amount">금액</param>
+            <param name="type">KAKAO, 삼성페이, PAYCO</param>
+            <param name="catId">병원구분별 가맹구분</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.MobileReceiptMng.CancelReceivedMobilePayBRMH(System.String)">
+            <summary>
+            보라매버전으로 모바일 결제 승인 건 취소 처리.
+            2024.08.30 보라매병원도 2024.07.31 이전 모바일 결제건은 레몬에서 제공하는 취소 API 태워서 취소해야 함.
+            </summary>
+            <param name="mode">현재 접속환경(개발기,스테이징,운영기)</param>
+            <param name="tradeNo">NICE 거래고유번호</param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS">
+            <summary>
+            NICE 연동용 클래스    
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.NICEVCAT(System.Byte[],System.Byte[])">
+            <summary>
+            NICE 결제 메서드
+            </summary>
+            <param name="SendBuf">Byte Code로 변환된 승인요청전문</param>
+            <param name="RecvBuf">NVCAT 승인요청 후 넘어오는 결과 전문</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.CallPOS(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)" -->
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.CallPOSCashIC(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            현금IC 카드승인 전문으로 결제
+            </summary>
+            <param name="inModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.CallPosBarcode(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            서울페이, 제로페이 등 바코드 결제 시 승인요청 전문 생성하여 결제 처리
+            </summary>
+            <param name="inModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeRequest(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            NVCAT 명세서에 따라 요청 전문을 생성한다. 신용카드, 현금영수증
+            </summary>
+            <param name="inModel"></param>
+            <returns>NVCAT 결제 요청 전문</returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeRequestCashIC(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            NVCAT 명세서에 따라 요청 전문을 생성한다.(현금IC결제)
+            </summary>
+            <param name="inModel"></param>
+            <returns>NVCAT 결제 요청 전문</returns>        
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeRequestHipassRegister(HIS.PA.CORE.DTO.HIPASSREGISTRATION_INOUT)">
+            <summary>
+            하이패스 등록을 위한 NICE 전문 가공
+            </summary>
+            <param name="inModel">하이패스 등록 필요 정보</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeRequestBarcode(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            NVCAT 명세서에 따라 요청전문을 생성한다(제로페이, 서울페이 - 얘들은 바코드 리딩해야 함.)
+            </summary>
+            <param name="inModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeRequestHipass(HIS.PA.CORE.DTO.SelectCardApprobationMng_IN)">
+            <summary>
+            NVCAT 명세서에 따라 요청전문을 생성한다(하이패스결제)
+            </summary>
+            <param name="inModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeResponse(System.Byte[])">
+            <summary>
+            승인결과 전문을 Dictionary 형태로 가공하여 리턴한다.(일반 신용카드, 현금영수증 결제)
+            </summary>
+            <param name="mRecv"></param>
+            <returns>NVCAT 승인결과 Dictionary</returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeResponseCashIC(System.Byte[])">
+            <summary>
+            승인결과 전문을 Dictionary 형태로 가공하여 리턴한다.(현금IC결제)
+            </summary>
+            <param name="mRecv"></param>
+            <returns>NVCAT 승인결과 Dictionary</returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeResponseBarcode(System.Byte[])">
+            <summary>
+            승인결과 전문을 Dictionary 형태로 가공하여 리턴한다.(바코드결제)
+            </summary>
+            <param name="mRecv"></param>
+            <returns>NVCAT 승인결과 Dictionary</returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.MakeResponseHipass(System.Byte[])">
+            <summary>
+            승인결과 전문을 Dictionary 형태로 가공하여 리턴한다(하이패스 결제)
+            </summary>
+            <param name="mRecv"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.CheckInquiry(HIS.PA.CORE.DTO.CHECKINQUIRY_IN)">
+            <summary>
+            NICE NVCAT으로 수표조회 실행
+            </summary>
+            <param name="inModel">수표조회 DTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.NVCATErrorCodeParser(System.String)">
+            <summary>
+            NVCAT 모듈에서 보내준 에러 메시지 정리. 필요하면 당겨 쓰자.
+            </summary>
+            <param name="errCode">NICEVCAT 호출결과에 _를 붙여서 사용. 에러코드 -4 => -4_ 식으로..</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.IsCashICCard">
+            <summary>
+            카드결제 시 현금IC카드 여부 점검.
+            </summary>
+            <returns>계좌 수 - 현금IC결제는 카드 통해서 내 계좌로 직불 결제 처리하는 것이므로.</returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.NICEHipassRegister(HIS.PA.CORE.DTO.HIPASSREGISTRATION_INOUT)">
+            <summary>
+            나이스 하이패스 등록 후 결과를 DTO로 리턴한다.
+            </summary>
+            <param name="inModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.REQ_BARCODE">
+            <summary>
+            NICE 멀티패드에 바코드 리딩 명령을 보내 바코드 데이터를 받아온다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.NICEPOS.IsPortOpen">
+            <summary>
+            NICE 에이전트 설정 정보 바탕으로 해당 Port가 인식되어 있는지 점검.
+            </summary>
+            <returns>설정값</returns>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.PatientCardCardinalNumberReading">
+            <summary>
+            카드 리더기에서 환자 카드번호 가져오기
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.PatientCardCardinalNumberReading.GetPatientCardCardinalNumber(System.String@,System.String@)">
+            <summary>
+            name         : 카드 리더기에서 환자 카드번호 가져오기
+            desc         : 카드 리더기에서 환자 카드번호 가져오기
+            author       : 이동욱 
+            create date  : 2018-04-24
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad">
+            <summary>
+            name         : 논리 UI Behavior 클래스 명
+            desc         : WPF Page Item Itemplate입니다.
+            author       : jeonkwangsik 
+            create date  : 2012-12-17 오후 1:51:44
+            update date  : 2012-12-17 오후 1:51:44 , jeonkwangsik , 수정개요
+            </summary>
+            <summary>
+            id           : UI-XX-YY-ZZ-001
+            name         : 화면 논리명
+            clss         : {메인|공통|팝업|일반용지|서식용지|바코드}
+            desc         : 화면 클래스 개요
+            author       : jeonkwangsik
+            create date  : 2012-12-17 오후 1:51:44
+            update date  : 2012-12-17 오후 1:51:44, jeonkwangsik, 수정내용
+            </summary>
+            <summary>
+            SignPad
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.OnCommit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.AcknowledgmentDelegate">
+            <summary>
+            
+            </summary>
+            <param name="isCehck"></param>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.OnAcknowledgmentDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.NextChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.OnNextChangeDelegate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.model">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.Commit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.Pay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.IsSignLoad">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.image">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.SingRequst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPad.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPadData">
+            <summary>
+            name         : 논리 UI Data 클래스 명
+            desc         : UI Data 클래스 개요
+            author       : jeonkwangsik 
+            create date  : 2012-12-17 오후 1:51:44
+            update date  : 최종 수정일자 , 수정자, 수정개요
+            </summary>
+        </member>
+        <member name="P:HIS.PA.CORE.UI.CARDANDCASHWIZARD.SignPadData.SignPad_INOUT">
+            <summary>
+            SignPad_INOUT
+            </summary>
+        </member>
+    </members>
+</doc>

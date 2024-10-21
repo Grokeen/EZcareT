@@ -84,6 +84,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Server.DAC.dll</HintPath>
     </Reference>
+    <Reference Include="HSF.TechSvc2010.Server.QueryStorage">
+      <HintPath>C:\BESTCare\DEMO\HISDEMO\Core\HSF.TechSvc2010.Server.QueryStorage.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
@@ -97,6 +100,7 @@
     <Compile Include="HipassMobileApprovalMngDL.cs" />
     <Compile Include="MedDoctorScheduleRegistrationDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeriousIllnessApplicationFormEDIRegDL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HSF.snk" />

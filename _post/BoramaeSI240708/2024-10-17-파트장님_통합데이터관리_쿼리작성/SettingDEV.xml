@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ArrayOfDBUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- TOBE -->
+      <DBUser>
+        <USER_NAME>XBIL</USER_NAME>
+        <CONNECT_STRING>Data Source=BCDEV;User Id=xbil;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XCOM</USER_NAME>
+        <CONNECT_STRING>Data Source=BCDEV;User Id=xcom;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XBIL_STG</USER_NAME>
+        <CONNECT_STRING>Data Source=BCSTG;User Id=xbil;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XCOM_STG</USER_NAME>
+        <CONNECT_STRING>Data Source=BCSTG;User Id=xcom;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XBIL_CNU_STD</USER_NAME>
+        <CONNECT_STRING>Data Source=BRMH_CNUH_DEMO;User Id=xbil;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XBIL_SNU_STD</USER_NAME>
+        <CONNECT_STRING>Data Source=BRMH_SNUH_DEMO;User Id=xbil;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XBIL_PROD</USER_NAME>
+        <CONNECT_STRING>Data Source=BCPRD;User Id=xbil;Password=Xbil2024!;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XMED</USER_NAME>
+        <CONNECT_STRING>Data Source=BCDEV;User Id=xmed;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XGAB</USER_NAME>
+        <CONNECT_STRING>Data Source=BCDEV;User Id=xgab;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XSUP</USER_NAME>
+        <CONNECT_STRING>Data Source=BCDEV;User Id=xsup;Password=ez123;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+    </ArrayOfDBUser>

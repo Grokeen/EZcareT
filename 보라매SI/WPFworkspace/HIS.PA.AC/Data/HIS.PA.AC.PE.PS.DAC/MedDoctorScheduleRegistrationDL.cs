@@ -5,17 +5,35 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 
-using HSF.COM.Core;
 using HSF.TechSvc2010.Common;
 using HSF.TechSvc2010.Server.ORM;
 using HSF.TechSvc2010.Server.ComBase;
 using HIS.PA.AC.PE.PS.DTO;
 using HSF.TechSvc2010.Server.DAC;
 
+
+
+using HSF.COM.Core;
+
 namespace HIS.PA.AC.PE.PS.DAC
 {
+
+    [HSFTransaction(HSFTransactionOption.Supported)]
     class MedDoctorScheduleRegistrationDL
     {
+
+        /// <summary>
+        /// name         : #DB Connection 설정
+        /// desc         : #실행할 DB Connection을 지정합니다.
+        /// author       : 김용록 
+        /// create date  : 2024-07-21 오후 1:14:17
+        /// update date  : 
+        /// </summary>
+        //protected override void SetDataSource()
+        //{
+        //    base.DataSource = DBEnum.BILOracle; // #팀별 적절한 DBEnum으로 변경
+        //}
+
 
 
         /// ---------------------------------------------------------------------
@@ -30,18 +48,18 @@ namespace HIS.PA.AC.PE.PS.DAC
         public Boolean UpdateDoctorPlusWork(MedDoctorScheduleRegistration_PlusWork_UPDATE GR_inObj)
         {
 
-            if (GR_inObj.IN_TYPE == "1")
-            { //신규
-                return (int)this.DacAgent.ExecuteBatch(GR_inObj, "HIS.PA.AC.PE.SC.InsertDoctorPlusWork") > 0;
-            }
-            else if (GR_inObj.IN_TYPE == "2")
-            { //수정
-                return (int)this.DacAgent.ExecuteBatch(GR_inObj, "HIS.PA.AC.PE.SC.UpdateDoctorPlusWork") > 0;
-            }
-            else if (GR_inObj.IN_TYPE == "3")
-            {//삭제
-                return (int)this.DacAgent.ExecuteBatch(GR_inObj, "HIS.PA.AC.PE.SC.UpdateCnlDoctorPlusWork") > 0;
-            }
+            //if (GR_inObj.IN_TYPE == "1")
+            //{ //신규
+            //    return (int)this.DacAgent.ExecuteBatch(GR_inObj, "HIS.PA.AC.PE.SC.InsertDoctorPlusWork") > 0;
+            //}
+            //else if (GR_inObj.IN_TYPE == "2")
+            //{ //수정
+            //    return (int)this.DacAgent.ExecuteBatch(GR_inObj, "HIS.PA.AC.PE.SC.UpdateDoctorPlusWork") > 0;
+            //}
+            //else if (GR_inObj.IN_TYPE == "3")
+            //{//삭제
+            //    return (int)this.DacAgent.ExecuteBatch(GR_inObj, "HIS.PA.AC.PE.SC.UpdateCnlDoctorPlusWork") > 0;
+            //}
             return false;
         }
 
@@ -56,7 +74,15 @@ namespace HIS.PA.AC.PE.PS.DAC
         /// ---------------------------------------------------------------------
         public HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT> SelectDoctorPlusWork(MedDoctorScheduleRegistration_PlusWork_INOUT YR_inObj)
         {
-            return (HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>)this.DacAgent.Fill("HIS.PA.AC.PE.SC.SelectDoctorPlusWork", YR_inObj, typeof(HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>));
+            //return (HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>)this.DacAgent.Fill("HIS.PA.AC.PE.SC.SelectDoctorPlusWork", YR_inObj, typeof(HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>));
+
+            //return this.DacAgent.Fill("HIS.PA.AC.PE.SC.SelectDoctorPlusWork", YR_inObj, typeof(HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>)) as HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>;
+
+            HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT> aa = new HSFDTOCollectionBaseObject<MedDoctorScheduleRegistration_PlusWork_INOUT>();
+            return aa;
+
         }
+
+
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ArrayOfDBUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- ASIS 설정 -->
+      <DBUser>
+        <USER_NAME>XBIL_ASIS</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xbil;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>HBIL_ASIS</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=hbil;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XORD_ASIS</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xord;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XSUP</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xsup;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XGAB</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xgab;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+      <DBUser>
+        <USER_NAME>XMED</USER_NAME>
+        <CONNECT_STRING>Data Source=ORAMIG;User Id=xmed;Password=x1234;Integrated Security=no</CONNECT_STRING>
+      </DBUser>
+    </ArrayOfDBUser>

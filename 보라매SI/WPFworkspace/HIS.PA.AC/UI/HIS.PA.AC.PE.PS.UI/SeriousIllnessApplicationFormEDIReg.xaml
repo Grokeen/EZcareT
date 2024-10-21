@@ -1,0 +1,262 @@
+﻿<base:UserControlBase x:Class="HIS.PA.AC.PE.PS.UI.SeriousIllnessApplicationFormEDIReg"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:base="clr-namespace:HIS.UI.Base;assembly=HIS.UI.Base"
+             xmlns:baseConverter="clr-namespace:HIS.UI.Utility.Converters;assembly=HIS.UI.Utility"
+			 xmlns:local="clr-namespace:HIS.PA.AC.PE.PS.UI"     
+             xmlns:HIS_PA_CORE_UI="clr-namespace:HIS.PA.CORE.UI;assembly=HIS.PA.CORE.UI"
+             mc:Ignorable="d" 
+			 x:Name="userControl"
+             d:DesignWidth="1500" d:DesignHeight="800"  DesignWidth="1500" DesignHeight="800" Background="{StaticResource MainNormalBackground}" UseLayoutRounding="True">
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded" SourceName="userControl">
+            <i:InvokeCommandAction 
+				Command="{Binding LoadCommand}" 
+				CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type base:UserControlBase}}}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.DataContext>
+        <local:SeriousIllnessApplicationFormEDIRegData />
+    </UserControl.DataContext>-->
+    <base:UserControlBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <SharedResourceDictionary SourcePath="/HIS.UI.Design.Themes;component/GeneralResources.xaml" Source="/HIS.UI.Design.Themes;component/GeneralResources.xaml"/>
+                <SharedResourceDictionary SourcePath="/HIS.UI.Design.Themes;component/ACResources.xaml" Source="/HIS.UI.Design.Themes;component/ACResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </base:UserControlBase.Resources>
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.65*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="0.35*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid Height="30" Margin="0,0,0,5">
+                    <DockPanel LastChildFill="False">
+                        <StackPanel Orientation="Horizontal" Margin="10,0" VerticalAlignment="Center" >
+                            <Border HorizontalAlignment="Left" Style="{StaticResource TitleOneDepthBulletStyle}"/>
+                            <HTextBlock TextWrapping="Wrap" Text="EDI 생성" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" ToolTip="20130427 V01" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Center">
+                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}"/>
+                            <HTextBlock Text="조회구분" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <HFromToCalendar x:Name="ftc" FromDate="{Binding FromDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToDate="{Binding ToDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="5,0,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Center">
+                            <Border Style="{StaticResource TitleThreeDepthBulletStyle}" Margin="5,0,0,0"/>
+                            <HTextBlock Text="등록번호" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <HIS_PA_CORE_UI:PACodeAsk x:Name="Ptno" Margin="5,5,0,0" Text1Visibility="Visible" Text2Visibility="Visible" Text3Visibility="Collapsed" Text4Visibility="Collapsed" Text5Visibility="Collapsed" Text6Visibility="Collapsed" TextButtonVisibility="Collapsed" 
+                                                SelectedTextCodeWidth="70" SelectedTextName1Width="70" SelectedTextName2Width="95" SelectedItemPopUpName="CODE_PATIENTNO" SelectedTextCodeMaxLength="8" />
+                        <StackPanel Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Center">
+                            <HTextBlock Text="송신여부" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <HCheckBox x:Name="chbSendFg" Content="미송신" VerticalAlignment="Center" Margin="10,0,0,0" BorderBrush="{StaticResource RCLightBorderBrush}"/>
+                        <HCheckBox x:Name="chkSignMissing" Content="환자서명 누락건 제외" VerticalAlignment="Center" IsChecked="{Binding IsCheck_DP, UpdateSourceTrigger=PropertyChanged }" Visibility="Collapsed"/>
+                        <HButton ButtonTyped="Retrive" x:Name="btnSearhCommand1" Content="조회" ButtonStyleType="Search" Margin="35,0,0,0" />
+                    </DockPanel>
+                    <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
+                </Grid>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" >
+                    <HTextBox x:Name="txtGridCount1" Margin="0,0,5,0" Grid.Row="2" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Left" TextBlock.TextAlignment="Center" IsReadOnly="True"></HTextBox>
+                    <HRadioButton  x:Name="rdocncr" Content="암" Margin="0,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="True"/>
+                    <HRadioButton  x:Name="rdocfsc" Content="희귀난치" Margin="0,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <HRadioButton  x:Name="rdotb" Content="결핵" Margin="0,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <HRadioButton  x:Name="rdolt" Content="잠복결핵" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </StackPanel>
+                <HButton ButtonTyped="None" x:Name="btnInsertCommand"  Content="생성" Margin="0" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" IsEnabled="False"/>
+                <HDataGridEx   Margin="0,0,0,0" Grid.Row="1"
+						x:Name="grid1"
+						AutoGenerateColumns="False" 
+						CanUserReorderColumns="True" 
+						SelectionMode="Single" 
+						SelectionUnit="FullRow" 
+						IsReadOnly="True" 
+						HasRowHeaderStatus="True"
+						HeadersVisibility="Column" 
+						GridLinesVisibility="All"   
+						ScrollViewer.CanContentScroll="False"  
+						PixelBasedScrollingBehavior.IsEnabled="False"
+						ItemsSource="{Binding SelSeriousIllnessApplicationFormEDIReg1_OUT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <HDataGridEx.Resources>
+                        <Style TargetType="{x:Type HDataGridCell}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=UPDATE_YN}" Value="0">
+                                    <Setter Property="Background" Value="{StaticResource PointColorOrangeAreaBackground}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=UPDATE_YN}" Value="1">
+                                    <Setter Property="Background" Value="{StaticResource PointColorOrangeAreaBackground}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </HDataGridEx.Resources>
+                    <HDataGridEx.Columns>
+                        <HDataGridTextColumn Header="신청일자"					Binding="{Binding C56}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="등록번호"					Binding="{Binding PT_NO}"			VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="수진자성명"				Binding="{Binding C3}"  			VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="수진자주민번호"			Binding="{Binding C4}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="휴대전화번호"				Binding="{Binding C5}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="자택전화번호"				Binding="{Binding C6}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="우편번호"					Binding="{Binding C7}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="주소(기본)"				Binding="{Binding C8}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="주소(상세)"				Binding="{Binding C9}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="등록결과통보방법"			Binding="{Binding C10}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="이메일주소"				Binding="{Binding C11}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="질환구분"					Binding="{Binding C12}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="신청구분"					Binding="{Binding C13}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="진료과목"					Binding="{Binding C14}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="진료구분"					Binding="{Binding C15}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="진단확진일자"				Binding="{Binding C16}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="특정기호"					Binding="{Binding C17}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="상병코드"					Binding="{Binding C18}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="상병코드 중복연번"			Binding="{Binding C19}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1번"			Binding="{Binding C20}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1_1번"		Binding="{Binding C21}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1_2번"		Binding="{Binding C22}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1_3번"		Binding="{Binding C23}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1_4번"		Binding="{Binding C24}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1_5번"		Binding="{Binding C25}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_1_5번 내용"	Binding="{Binding C26}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_2번"			Binding="{Binding C27}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_3번"			Binding="{Binding C28}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_4번"			Binding="{Binding C29}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_5번"			Binding="{Binding C30}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_5번 내용"		Binding="{Binding C31}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_6번"			Binding="{Binding C32}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="최종확진방법_6번 내용"		Binding="{Binding C33}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력 없음"				Binding="{Binding C34}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력 있음"				Binding="{Binding C35}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_1(조부)"		Binding="{Binding C36}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_2(조모)"		Binding="{Binding C37}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_3(외조부)"		Binding="{Binding C38}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_4(외조모)"		Binding="{Binding C39}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_5(부)"			Binding="{Binding C40}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_6(모)"			Binding="{Binding C41}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_7(동성형제)"	Binding="{Binding C42}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_8(이성형제)"	Binding="{Binding C43}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_9(자)"			Binding="{Binding C44}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="가족력_있음_10(녀)"		Binding="{Binding C45}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="요양기관명"				Binding="{Binding C46}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="요양기관기호"				Binding="{Binding C47}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="입력자 주민번호"			Binding="{Binding C48}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="의사면허번호"				Binding="{Binding C49}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="담당자의사성명"			Binding="{Binding C50}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="전문의자격번호"			Binding="{Binding C51}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="담당의사전문과목"			Binding="{Binding C52}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="신청자성명"				Binding="{Binding C53}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="수진자와의 관계"			Binding="{Binding C54}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="발행일자"					Binding="{Binding C55}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="신청일자"					Binding="{Binding C56}"				VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="진료과"					Binding="{Binding MEDDEPT}" 		VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="송신여부"					Binding="{Binding SENDYN}"			VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="송신일자"					Binding="{Binding SENDDATE}"		VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <HDataGridTextColumn Header="AIDYN"						Binding="{Binding AIDYN}"			VerticalAlignment="Center" HorizontalAlignment="Center"	Visibility="Collapsed"/>
+                        <HDataGridTextColumn Header="FILETEXT"					Binding="{Binding FILETEXT}"		VerticalAlignment="Center" HorizontalAlignment="Center"	Visibility="Collapsed"/>
+                        <HDataGridTextColumn Header="DOCTOR_NOTE_ID"			Binding="{Binding DOCTOR_NOTE_ID}"	VerticalAlignment="Center" HorizontalAlignment="Center"	Visibility="Collapsed"/>
+                        <HDataGridTextColumn Header="REQTYPE"					Binding="{Binding REQTYPE}"			VerticalAlignment="Center" HorizontalAlignment="Center"	Visibility="Collapsed"/>
+                        <HDataGridTextColumn Header="UPDATE_YN"					Binding="{Binding UPDATE_YN}"		VerticalAlignment="Center" HorizontalAlignment="Center"	Visibility="Collapsed"/>
+                    </HDataGridEx.Columns>
+                </HDataGridEx>
+            </Grid>
+            <Border Background="{StaticResource BoundaryLineNormalBorderBrush}" BorderBrush="{StaticResource BoundaryLineNormalBackground}" BorderThickness="1,0,0,0" Margin="0" Width="2" Grid.Column="1" HorizontalAlignment="Center" />
+            <HGridSplitter HorizontalAlignment="Center" Width="8" Grid.Column="1"/>
+            <Grid Margin="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="0.931*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid Height="30" Margin="0,0,0,5">
+                    <DockPanel LastChildFill="False">
+                        <Border HorizontalAlignment="Left" Style="{StaticResource TitleOneDepthBulletStyle}"/>
+                        <HTextBlock TextWrapping="Wrap" Text="EDI 업로드" VerticalAlignment="Center" Foreground="{StaticResource TextHighlightForeground}" Margin="5,0,0,0"/>
+                        <StackPanel DockPanel.Dock="Right" Margin="0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" >
+                            <HButton Background="{StaticResource ButtonBlueBackground}" x:Name="btnOpenCommand">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Style="{StaticResource IconUploadStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <HTextBlock Text="중증등록증 파일찾기" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="{StaticResource TextHighlightForeground}"/>
+                                </StackPanel>
+                            </HButton>
+                            <HButton ButtonTyped="Retrive" x:Name="btnSearhCommand2"  Content="조회" ButtonStyleType="Search" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DockPanel>
+                    <Border Background="{StaticResource OneDepthTitleLineBackground}" VerticalAlignment="Bottom" Height="2"/>
+                </Grid>
+
+                <HTextBox x:Name="txtGridCount2"  Grid.Row="2" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Left"  TextBlock.TextAlignment="Center" IsReadOnly="True"/>
+                <HButton ButtonTyped="None" x:Name="btnUpLoadCommand" Content="업로드" Margin="0" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" IsEnabled="False"/>
+                <HDataGridEx   Margin="0,0,0,0" Grid.Row="1"
+						x:Name="grid2"
+						AutoGenerateColumns="False" 
+						CanUserReorderColumns="True" 
+						SelectionMode="Single" 
+						SelectionUnit="FullRow" 
+						IsReadOnly="True" 
+						HasRowHeaderStatus="True"
+						HeadersVisibility="Column" 
+						GridLinesVisibility="All"   
+						ScrollViewer.CanContentScroll="False"  
+						PixelBasedScrollingBehavior.IsEnabled="False"
+						ItemsSource="{Binding SelSeriousIllnessApplicationFormEDIReg2_OUT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <HDataGridEx.Resources>
+                        <Style TargetType="{x:Type HDataGridCell}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=EMPTY_YN}" Value="0">
+                                    <Setter Property="Background" Value="{StaticResource PointColorOrangeAreaBackground}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=EMPTY_YN}" Value="1">
+                                    <Setter Property="Background" Value="{StaticResource PointColorOrangeAreaBackground}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Style.Setters>
+                                <Setter Property="Background" Value="{StaticResource PointColorOrangeAreaBackground}"></Setter>
+                            </Style.Setters>
+                        </Style>
+                    </HDataGridEx.Resources>
+                    <HDataGridEx.Columns>
+                        <HDataGridTextColumn Header="등록번호"							Binding="{Binding 등록번호}"					VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Visible"			/>
+                        <HDataGridTextColumn Header="환자명"							Binding="{Binding 환자명}"  					VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Visible"			/>
+                        <HDataGridTextColumn Header="주민등록번호"							Binding="{Binding 주민번호}" 					VerticalAlignment="Center" HorizontalAlignment="Center"								/>
+                        <HDataGridTextColumn Header="보험증번호"						Binding="{Binding 보험증번호}"					VerticalAlignment="Center" HorizontalAlignment="Center"								/>
+                        <HDataGridTextColumn Header="중증번호"							Binding="{Binding 중증번호}"					VerticalAlignment="Center" HorizontalAlignment="Center"								/>
+                        <HDataGridTextColumn Header="적용개시일자"						Binding="{Binding 적용개시일}"					VerticalAlignment="Center" HorizontalAlignment="Center"								/>
+                        <HDataGridTextColumn Header="적용종료일자"						Binding="{Binding 적용종료일}"					VerticalAlignment="Center" HorizontalAlignment="Center"								/>
+                        <HDataGridTextColumn Header="YN"								Binding="{Binding YN}"							VerticalAlignment="Center" HorizontalAlignment="Center"								/>
+                        <HDataGridTextColumn Header="APLC_DT"							Binding="{Binding APLC_DT}"						VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="HMPS_POST_NO"						Binding="{Binding HMPS_POST_NO}"				VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="HMPS_POST_NO_SEQ"					Binding="{Binding HMPS_POST_NO_SEQ}"			VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="HM_DTL_ADDR"						Binding="{Binding HM_DTL_ADDR}"					VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="MDRC_ID"							Binding="{Binding MDRC_ID}"						VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="EMPTY_YN"							Binding="{Binding EMPTY_YN}"					VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="UPLOAD_YN"							Binding="{Binding UPLOAD_YN}"					VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                        <HDataGridTextColumn Header="APLC_ICD10_DUP_SEQ_CD"				Binding="{Binding APLC_ICD10_DUP_SEQ_CD}"		VerticalAlignment="Center" HorizontalAlignment="Center"					Visibility="Collapsed"			/>
+                    </HDataGridEx.Columns>
+                </HDataGridEx>
+            </Grid>
+        </Grid>
+        <Border Background="{StaticResource BoundaryLineNormalBackground}" BorderBrush="{StaticResource BoundaryLineNormalBorderBrush}" BorderThickness="0,0,0,1" Height="2" Grid.Row="1" Margin="0,-2,0,0" VerticalAlignment="Top"/>
+        <Border Background="{StaticResource CommonButtonAreaNormalBackground}" Grid.Row="1">
+            <DockPanel Margin="10,0" LastChildFill="False">
+                <HButton ButtonTyped="None" x:Name="btnCloseCommand1" Content="닫기" ButtonStyleType="Close" DockPanel.Dock="Right"/>
+                <HButton ButtonTyped="None" Style="{StaticResource CommonButtonResetStyle}" Content="초기화" DockPanel.Dock="Right" Margin="0,0,5,0"/>
+                <HButton x:Name="btnRcvCommand" Content="수신자료조회" ButtonStyleType="Link"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</base:UserControlBase>

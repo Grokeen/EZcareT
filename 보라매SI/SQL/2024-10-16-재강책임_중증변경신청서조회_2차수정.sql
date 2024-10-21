@@ -84,8 +84,11 @@ SELECT /*+ HIS.PA.AC.PI.SelectSeriousIllnessModificationApplicationFormCancelAsk
 
        ,CASE WHEN M.MDFM_ID = '2004772' THEN XMED.FT_MRD_GET_ELMT_INFO('MDFM_CPEM_NO', M.MDRC_ID, '4e37dbdd-1b41-4d26-9536-992bc35aa1da')
                                         ELSE XMED.FT_MRD_GET_ELMT_INFO('MDFM_CPEM_NO', M.MDRC_ID, 'f4f17951-5203-43ac-b7db-e64de93e30e5')
-       END                                                             AS LIC_NO,     -- 담당의사 면허번호
-       M.REC_DTM                                                       AS CRT_DTE
+       END                                                             AS LIC_NO     -- 담당의사 면허번호
+       ,M.REC_DTM                                                       AS CRT_DTE
+
+       ,TO_DATE(:IN_REG_DT,'YYYY-MM')
+       ,LAST_DAY(TO_DATE(:IN_REG_DT,'YYYY-MM'))
 
   FROM MRDDRECM M /* 진료기록기본 테이블 */
 
@@ -110,7 +113,7 @@ SELECT /*+ HIS.PA.AC.PI.SelectSeriousIllnessModificationApplicationFormCancelAsk
    -- 2024-10-17 김용록 : 쿼리 속도가 느려 수정기록일시 주석 후, ROWNUM < 100 추가
    AND ROWNUM < 100
 
-
+ ;;;
 
  UNION ALL
 
