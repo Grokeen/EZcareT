@@ -5,7 +5,7 @@
     Author : 김용록
     Create date : 2024-09-25
     Update date : 2024-09-25
-    as-is : pkg_bil_schdr
+    as-is : pkg_bil_schdr.pc_ap_apaddcht_select
 -->
 ;;;
 
@@ -85,21 +85,19 @@ SELECT /*+ HIS.PA.AC.PE.SC.SelectDoctorPlusWork */
     END                                          AS TM_UNIT_CD                   /* 14.오전오후구분 */
 FROM ACDPCSPD        /* 의사보충일정정보 테이블 */
 WHERE DR_STF_NO = '05292' -- :IN_DR_STF_NO
-    /*<IsNotEmpty Property=":IN_CHECK_ALL">
+    <IsNotEmpty Property=":IN_CHECK_ALL">
         <IsNotNull Property=":IN_CHECK_ALL" >
            AND CNCL_DT IS NULL
         </IsNotNull>
     </IsNotEmpty>
-    */
 
-
-  /*<IsNotEmpty Property=":IN_CHECK_SPLMMEDTM">
+    <IsNotEmpty Property=":IN_CHECK_SPLMMEDTM">
         <IsNotNull Property=":IN_CHECK_SPLMMEDTM" >
            AND SPLM_MED_TM IS NULL
         </IsNotNull>
     </IsNotEmpty>
-    */
-ORDER BY OLD_APY_STR_DTM DESC
+    
+ORDER BY 4 DESC
 
 
 

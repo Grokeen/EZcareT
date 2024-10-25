@@ -13,5 +13,5 @@ select
    ,substr(replace(:intext,' ',''),28,28) as idk
    ,substr(replace(:intext,' ',''),57,4) as res
    ,substr(replace(:intext,' ',''),-5,5) as rea_no
-	 ,length(replace(:intext,' ','')) as len
+	 ,length(replace(:intext,' ','')) as len                         
 from dual;

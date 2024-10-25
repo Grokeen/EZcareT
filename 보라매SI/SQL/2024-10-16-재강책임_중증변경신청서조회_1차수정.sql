@@ -96,7 +96,10 @@ SELECT /*+ HIS.PA.AC.PI.SelectSeriousIllnessModificationApplicationFormCancelAsk
      --, PCTPCPAM D /* 환자기본 테이블 */
 
  WHERE 1=1
-   AND M.PT_NO = NVL(:IN_PT_NO, M.PT_NO)
+   AND M.PT_NO = NVL(:IN_PT_NO, M.PT_NO)    
+   -- 흐리멍텅하게,들고올지 안 들고올지 알 방법이 없으니.
+   -- Dㅠ가 지 마음대로 실행한다. 
+   
 
    -- 2024-10-17 김용록 : 주민번호 주석
    --AND D.PT_NO = M.PT_NO

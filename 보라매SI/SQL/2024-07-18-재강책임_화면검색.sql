@@ -5,3 +5,11 @@ SELECT *
 
 select *
 from PCTPCPAM;
+
+
+SELECT *
+  FROM EMBUMENT
+  --where rownum<10;
+  where menu_id like '%AdsMedCostAsk%';
+
+DischangeBillPrinting
