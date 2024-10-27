@@ -1,0 +1,44 @@
+SELECT A.*, (SELECT PT_NO || ' - '|| XCOM.FT_CCC_CODENAME('PA083',SRIL_CDOC_APLC_TP_CD)
+              FROM ACPPRGHD B
+             WHERE B.HLTH_INS_ETPS_NM = HLTH_INS_ETPS_NM
+               AND B.HSHR_RRN = PLS_ENCRYPT_B64_ID(PT_RRN,'800')
+               AND B.APLC_DT  = APLC_DT
+               AND B.APLC_DT >'20240906'
+--               AND ROWNUM =1
+             ) AS PT_NO
+  FROM
+(
+SELECT DISTINCT HOSP_NO,WRT_DT,WRT_NM,HLTH_INS_ETPS_NM,HLTH_INSC_NO,PT_NM,PT_RRN,SRIL_CFMT_NO,APY_STR_DT ,APLC_DT
+  FROM XBIL.TEMPSIRL_LIST3@DL_STGMIG
+WHERE APY_STR_DT IS NOT NULL
+  AND SRIL_CFMT_NO ='Y'
+  AND (PT_NM,PT_RRN) IN
+(SELECT B.PT_NM,B.PT_RRN
+  FROM XBIL.TEMPSIRL_LIST3@DL_STGMIG B
+WHERE 1=1
+ AND B.SRIL_CFMT_NO ='Y'
+GROUP BY PT_NM,PT_RRN
+MINUS
+SELECT PT_NM,PT_RRN
+  FROM XBIL.TEMPSIRL_LIST3@DL_STGMIG  A
+WHERE 1=1
+  AND SRIL_CFMT_NO !='Y'
+  AND EXISTS
+(SELECT B.PT_NM,B.PT_RRN
+  FROM XBIL.TEMPSIRL_LIST3@DL_STGMIG B
+WHERE 1=1
+ AND B.SRIL_CFMT_NO ='Y'
+ AND B.PT_NM = A.PT_NM
+ AND B.PT_RRN = A.PT_RRN
+GROUP BY PT_NM,PT_RRN
+)
+)
+)A
+
+where a.pt_nm not like '%아기'                                                               
+
+
+
+김준열	4102122140916               -> EDI 접수자료 재신청 기등록자임 -> 재신청 기간 아님    				V124
+이광길	4212151094916               -> EDI 접수자료 등록 기등록자임 -> 2023-09-25부터 받고잇음      V124
+한건	4501041101621               -> EDI 접수자료 재신청 기등록자임 -> 재신청 기간 아님 						 V001
