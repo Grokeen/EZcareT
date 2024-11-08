@@ -1,12 +1,11 @@
-﻿
+﻿ exec :IN_RRN := '5511272037234';
 
-
+-- 자격조회 배치
 select * from ACPPRGHD
-where pt_no ='01990810'
+where lsh_dtm between to_date('2024-10-29') and to_date('2024-10-29') +.99999;
+--where lsh_dtm between '20241029' and '20241029' ;
 
---rownum < 10
 
-;;;;
 
 SELECT /* HIS.PA.AC.PI.PI.SelSeriousIllnessApplicationFormEDIReg2 */
                A.PT_NO                       PT_NO
@@ -21,7 +20,7 @@ SELECT /* HIS.PA.AC.PI.PI.SelSeriousIllnessApplicationFormEDIReg2 */
              , ACPPRGCD B
              , PCTPCPAM D
          WHERE 1 = 1 -- SUBSTRB(A.SMFL_LDAT_CNTE,72,13) = :IN_RRN
-           --AND D.PT_RRN = PLS_ENCRYPT_B64_ID(:IN_RRN,800)
+           AND D.PT_RRN = PLS_ENCRYPT_B64_ID(:IN_RRN,800)
            AND D.PT_NO = A.PT_NO
            --AND A.SRIL_CDOC_APLC_TP_CD = DECODE(A.CFSC_CD,'V800','SD','V810','SD',DECODE(SUBSTR(:IN_REQTYPE,1,2),'01','J3','05', 'SC', '21', '21', '23', '23', '14', '14', '07', 'TB', '11', 'SS', '08', 'TC', '22','LT','99', A.SRIL_CDOC_APLC_TP_CD, 'J3'))
            AND A.HLTH_INS_MDC_TP_CD = 'BB'
@@ -30,7 +29,7 @@ SELECT /* HIS.PA.AC.PI.PI.SelSeriousIllnessApplicationFormEDIReg2 */
            AND A.SRIL_APLC_CNCL_DTM IS NULL
            AND B.PT_NO(+)             = A.PT_NO
            AND B.HLTH_INS_MDC_TP_CD(+)       = A.HLTH_INS_MDC_TP_CD
-           --AND B.SRIL_CFMT_NO(+)      = :IN_REQTYPE
+--           AND B.SRIL_CFMT_NO(+)      = :IN_REQTYPE
            AND A.EDI_TRSM_YN = 'Y'
            --AND (A.EDI_RCV_YN IS NULL  OR A.EDI_RCV_YN = 'N')          --//YWJ20170112 기존막음
            AND (
@@ -39,11 +38,3 @@ SELECT /* HIS.PA.AC.PI.PI.SelSeriousIllnessApplicationFormEDIReg2 */
            	   )
            AND A.EDI_TRSM_DT BETWEEN SYSDATE - 60 AND SYSDATE  -- 자꾸 과거 잘못된 데이터에 업로드 되는 경우가 있어 최근 신청서 업뎃되도록 수정
            AND ROWNUM = 1
-
-
- ;
-
- ;;;
-
- select * from ACPPRGHD where lsh_dtm > '2024-10-29';
-  select * from ACPPRGCD where  lsh_dtm > '2024-10-29';

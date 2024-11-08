@@ -110,136 +110,136 @@ EXEC :IN_SELYN := '3';           -- '1' 선택 ,'2' 비선택 ,else 전체
 
                                     /* 2024-10-28 김용록 : GROUP BY 형식이 아니라는 오류에 '/' 뒤에 MAX()문 추가 , -> 전체적으로 쿼리 속도 저하 문제 있음 확인 후 변경 필요. */
                                    ,
-                                     CASE WHEN SUM(A.O_CNT) = 0 THEN 0 ELSE ROUND(SUM(A.O_CNT)/MAX(C.DAYCNT_ALL)) END             --    뒤에 MAX()문 추가
+                                     CASE WHEN SUM(A.O_CNT) = 0 THEN 0 ELSE ROUND(SUM(A.O_CNT)/SUM(C.DAYCNT_ALL)) END             --    뒤에 MAX()문 추가
                                      +
-                                     CASE WHEN SUM(A.I_CNT) = 0 THEN 0 ELSE ROUND(SUM(A.I_CNT)/MAX(B.DAYCNT_ALL)) END      CNTALL   --      뒤에 MAX()문 추가
+                                     CASE WHEN SUM(A.I_CNT) = 0 THEN 0 ELSE ROUND(SUM(A.I_CNT)/SUM(B.DAYCNT_ALL)) END      CNTALL   --      뒤에 MAX()문 추가
 
 
                                     ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '01' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '01'  THEN A.O_CNT ELSE 0 END)/  MAX(C.DAYCNT1) )   --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '01'  THEN A.O_CNT ELSE 0 END)/  SUM(C.DAYCNT1) )   --    뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '01' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '01'  THEN A.I_CNT ELSE 0 END)/    MAX(B.DAYCNT1) )  --     뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '01'  THEN A.I_CNT ELSE 0 END)/    SUM(B.DAYCNT1) )  --     뒤에 MAX()문 추가
                                      END                                                           CNT01
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '02' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '02'  THEN A.O_CNT ELSE 0 END)/     MAX(C.DAYCNT2))--       뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '02'  THEN A.O_CNT ELSE 0 END)/     SUM(C.DAYCNT2))--       뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '02' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '02'  THEN A.I_CNT ELSE 0 END)/   MAX(B.DAYCNT2) )   --      뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '02'  THEN A.I_CNT ELSE 0 END)/   SUM(B.DAYCNT2) )   --      뒤에 MAX()문 추가
                                      END                                                           CNT02
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '03' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '03'  THEN A.O_CNT ELSE 0 END)/  MAX(C.DAYCNT3))       --     뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '03'  THEN A.O_CNT ELSE 0 END)/  SUM(C.DAYCNT3))       --     뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '03' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '03'  THEN A.I_CNT ELSE 0 END)/  MAX(B.DAYCNT3))    --     뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '03'  THEN A.I_CNT ELSE 0 END)/  SUM(B.DAYCNT3))    --     뒤에 MAX()문 추가
                                      END                                                           CNT03
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '04' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '04'  THEN A.O_CNT ELSE 0 END)/   MAX(C.DAYCNT4))   --      뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '04'  THEN A.O_CNT ELSE 0 END)/   SUM(C.DAYCNT4))   --      뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '04' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '04'  THEN A.I_CNT ELSE 0 END)/  MAX(B.DAYCNT4))   --      뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '04'  THEN A.I_CNT ELSE 0 END)/  SUM(B.DAYCNT4))   --      뒤에 MAX()문 추가
                                      END                                                           CNT04
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '05' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '05'  THEN A.O_CNT ELSE 0 END)/    MAX(C.DAYCNT5))   --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '05'  THEN A.O_CNT ELSE 0 END)/    SUM(C.DAYCNT5))   --    뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '05' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '05'  THEN A.I_CNT ELSE 0 END)/   MAX(B.DAYCNT5))   --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '05'  THEN A.I_CNT ELSE 0 END)/   SUM(B.DAYCNT5))   --    뒤에 MAX()문 추가
                                      END                                                           CNT05
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '06' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '06'  THEN A.O_CNT ELSE 0 END)/   MAX(C.DAYCNT6))   --뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '06'  THEN A.O_CNT ELSE 0 END)/   SUM(C.DAYCNT6))   --뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '06' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '06'  THEN A.I_CNT ELSE 0 END)/ MAX(B.DAYCNT6))   --   뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '06'  THEN A.I_CNT ELSE 0 END)/ SUM(B.DAYCNT6))   --   뒤에 MAX()문 추가
                                      END                                                           CNT06
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '07' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '07'  THEN A.O_CNT ELSE 0 END)/   MAX(C.DAYCNT7))  --뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '07'  THEN A.O_CNT ELSE 0 END)/   SUM(C.DAYCNT7))  --뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '07' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '07'  THEN A.I_CNT ELSE 0 END)/  MAX(B.DAYCNT7)) --뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '07'  THEN A.I_CNT ELSE 0 END)/  SUM(B.DAYCNT7)) --뒤에 MAX()문 추가
                                      END                                                           CNT07
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '08' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '08'  THEN A.O_CNT ELSE 0 END)/ MAX(C.DAYCNT8))  --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '08'  THEN A.O_CNT ELSE 0 END)/ SUM(C.DAYCNT8))  --    뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '08' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '08'  THEN A.I_CNT ELSE 0 END)/ MAX(B.DAYCNT8) )  --      뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '08'  THEN A.I_CNT ELSE 0 END)/ SUM(B.DAYCNT8) )  --      뒤에 MAX()문 추가
                                      END                                                           CNT08
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '09' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '09'  THEN A.O_CNT ELSE 0 END)/  MAX(C.DAYCNT9) )     --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '09'  THEN A.O_CNT ELSE 0 END)/  SUM(C.DAYCNT9) )     --    뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '09' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '09'  THEN A.I_CNT ELSE 0 END)/  MAX(B.DAYCNT9) ) --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '09'  THEN A.I_CNT ELSE 0 END)/  SUM(B.DAYCNT9) ) --    뒤에 MAX()문 추가
                                      END                                                           CNT09
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '10' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '10'  THEN A.O_CNT ELSE 0 END)/   MAX(C.DAYCNT10) )  --    뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '10'  THEN A.O_CNT ELSE 0 END)/   SUM(C.DAYCNT10) )  --    뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '10' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '10'  THEN A.I_CNT ELSE 0 END)/   MAX(B.DAYCNT10)  )  --   뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '10'  THEN A.I_CNT ELSE 0 END)/   SUM(B.DAYCNT10)  )  --   뒤에 MAX()문 추가
                                      END                                                           CNT10
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '11' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '11'  THEN A.O_CNT ELSE 0 END)/  MAX(C.DAYCNT11) )    --뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '11'  THEN A.O_CNT ELSE 0 END)/  SUM(C.DAYCNT11) )    --뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '11' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '11'  THEN A.I_CNT ELSE 0 END)/ MAX(B.DAYCNT11) )  --   뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '11'  THEN A.I_CNT ELSE 0 END)/ SUM(B.DAYCNT11) )  --   뒤에 MAX()문 추가
                                      END                                                           CNT11
                                    ,
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '12' THEN A.O_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '12'  THEN A.O_CNT ELSE 0 END)/ MAX(C.DAYCNT12) )  --   뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '12'  THEN A.O_CNT ELSE 0 END)/ SUM(C.DAYCNT12) )  --   뒤에 MAX()문 추가
                                      END
                                      +
                                      CASE WHEN SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '12' THEN A.I_CNT ELSE 0 END) = 0 THEN
                                                0
-                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '12'  THEN A.I_CNT ELSE 0 END)/  MAX(B.DAYCNT12)  ) --  뒤에 MAX()문 추가
+                                          ELSE ROUND(SUM(CASE WHEN TO_CHAR(A.MED_DTE,'MM') = '12'  THEN A.I_CNT ELSE 0 END)/  SUM(B.DAYCNT12)  ) --  뒤에 MAX()문 추가
                                      END                                                           CNT12
 
                                     --------------------------------------------------------------------------------------
                                     -- 2010.05.18 동일의사인 경우 최종사번으로 합쳐 나오게 하기 위해 수정
                                     --------------------------------------------------------------------------------------
-                                   ,GROUPING(A.MED_DEPT)||GROUPING(NVL(D.LSH_STF_NO,A.MEDDR_ID))     GROUP_ING
+                                   ,GROUPING(A.MED_DEPT)||GROUPING(NVL(D.LSH_STF_NO,A.MEDDR_ID))                     GROUP_ING
 
                                     --------------------------------------------------------------------------------------
                                     -- 수정전 LOGIC
@@ -296,9 +296,9 @@ EXEC :IN_SELYN := '3';           -- '1' 선택 ,'2' 비선택 ,else 전체
                                    END
                               FROM APSTATMT2
                              WHERE MED_DTE IN (SELECT DISTINCT CASE WHEN LAST_DAY(TO_DATE( :IN_YYYY ||LPAD(ROWNUM,2,'0')||'01','YYYYMMDD')) <= TRUNC(SYSDATE) -1
-                                                            THEN LAST_DAY(TO_DATE( :IN_YYYY ||LPAD(ROWNUM,2,'0')||'01','YYYYMMDD'))
-                                                            ELSE TRUNC(SYSDATE) -1
-                                                       END
+                                                                    THEN LAST_DAY(TO_DATE( :IN_YYYY ||LPAD(ROWNUM,2,'0')||'01','YYYYMMDD'))
+                                                                    ELSE TRUNC(SYSDATE) -1
+                                                                END
                                                  FROM DICT
                                                 WHERE ROWNUM <= 12
                                               )
@@ -527,14 +527,15 @@ EXEC :IN_SELYN := '3';           -- '1' 선택 ,'2' 비선택 ,else 전체
 
                              CNLRRUSD D
 
-                             WHERE D.STF_NO(+) = NVL(A.MEDDR_ID,'*')
+                             WHERE --D.STF_NO(+) = NVL(A.MEDDR_ID,'*')
+                                   D.LSH_STF_NO(+) = NVL(A.MEDDR_ID,'*')
                                GROUP BY
                                     ROLLUP( MED_DEPT , NVL(D.LSH_STF_NO , A.MEDDR_ID)  )
 
                               /* 2024-10-28 김용록 : GROUP BY 형식이 아니라는 오류에 '/' 뒤에 MAX()문 추가 */
-                              HAVING CASE WHEN SUM(A.O_CNT) = 0 THEN 0 ELSE TRUNC( SUM(A.O_CNT) / MAX(C.DAYCNT_ALL) ) END              -- 뒤에 MAX()문 추가
+                              HAVING CASE WHEN SUM(A.O_CNT) = 0 THEN 0 ELSE TRUNC( SUM(A.O_CNT) / SUM(C.DAYCNT_ALL) ) END              -- 뒤에 MAX()문 추가
                                      +
-                                     CASE WHEN SUM(A.I_CNT) = 0 THEN 0 ELSE TRUNC(SUM(A.I_CNT)/ MAX(B.DAYCNT_ALL)) END  != 0           -- 뒤에 MAX()문 추가
+                                     CASE WHEN SUM(A.I_CNT) = 0 THEN 0 ELSE TRUNC(SUM(A.I_CNT)/ SUM(B.DAYCNT_ALL)) END  != 0           -- 뒤에 MAX()문 추가
                                  AND GROUPING(A.MED_DEPT) || GROUPING(NVL(D.LSH_STF_NO,A.MEDDR_ID)) IN ('00','11')
 
 

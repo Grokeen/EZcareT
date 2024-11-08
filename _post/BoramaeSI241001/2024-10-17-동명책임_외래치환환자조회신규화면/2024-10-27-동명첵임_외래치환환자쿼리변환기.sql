@@ -1,51 +1,159 @@
 ﻿
 
+exec :IN_PT_NO := '';
+exec :IN_FROM_DATE := '20240401';
+exec :IN_TO_DATE := '20240531';
+EXEC :IN_ENDYN := 'Y';
+EXEC :IN_EMRYN := 'Y';
+
+
+-- ASIS
+SELECT * FROM APCHKLST  WHERE PT_NO = '01962766' ; -- 체크리스트
+SELECT * FROM APREPLOPT  WHERE PT_NO = '01962766' ; -- 입원취소외래치환
+
+
+-- TOBE
+SELECT * FROM ACPPRITD  WHERE PT_NO = '01962766' ;
+SELECT * FROM ACPPRAAM  WHERE PT_NO = '01962766'  ;
+SELECT * FROM ACPPRRDE
+ WHERE PT_NO = '01962766' ;
+   AND INPT_DT BETWEEN TO_DATE(:IN_FROM_DATE,'YYYY-MM-DD') AND TO_DATE(:IN_TO_DATE,'YYYY-MM-DD') + .99999
+   AND (   /* 완료 여부 */
+	                (:IN_ENDYN = 'Y' AND CMPL_PRO_DTM IS NOT NULL)
+	            OR  (:IN_ENDYN = 'N' AND CMPL_PRO_DTM IS NULL)
+	            OR  (NVL(:IN_ENDYN,'*') = '*')
+	            )
+  ;
+;;;
+
+
+
+SELECT    /*+ HIS.PA.AC.PI.PS.SelectOtptReplacePatientAsk */
+     PT_NO
+    ,PT_NM
+    ,ADS_DT
+    ,MED_DEPT_CD
+    ,MED_DR
+    ,CNCL_YN
+    ,EMR_YN
+    ,INPT_DT
+    ,CMPL_PRO_DTM
+    ,CMPL_PRO_STF_NO
+    ,TRAN_RMK
+    ,CTN_CNTE
+--    ,CHECKED_CTN_CNTE
+
+
+
+ FROM
+    (SELECT
+            COALESCE(C.PT_NO,B.PT_NO,A.PT_NO)             AS PT_NO		      --01.환자번호
+					, (SELECT D.PT_NM
+					     FROM PCTPCPAM D --환자기본
+					    WHERE D.PT_NO = COALESCE(C.PT_NO,B.PT_NO,A.PT_NO)
+					      AND	ROWNUM =1)								            AS PT_NM	      	--02.환자명
+
+
+					, TO_CHAR(B.ADS_DT, 'YYYY-MM-DD')			          AS ADS_DT		      --03.입원일자
+					, B.MED_DEPT_CD                                 AS MED_DEPT_CD		--04.진료과
+
+
+          , CASE WHEN B.ANDR_STF_NO IS NOT NULL
+					       THEN B.ANDR_STF_NO||'['||FT_STF_INF(B.ANDR_STF_NO,'STF_NM')||']'
+					       ELSE ''
+					  END                                            AS MED_DR         --05.진료의
+
+--					,CASE WHEN TRUNC(SYSDATE) >= TO_DATE('20170301', 'YYYYMMDD')
+--					          THEN (NVL(  XCOM.FT_CNL_SELSTFINFO( '4',B.ANDR_STF_NO, TO_CHAR(TO_DATE(:IN_FROM_DATE,'YYYYMMDD'),'YYYY-MM-DD'))
+--                              , XCOM.FT_CNL_SELSTFINFO( '4', B.ANDR_STF_NO, TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+--                              )
+--                          )
+--                    ELSE (NVL(
+--                             NVL(  XCOM.FT_CNL_SELSTFINFO( '4',B.ANDR_STF_NO , '20170228')
+--                                 , XCOM.FT_CNL_SELSTFINFO( '4', B.ANDR_STF_NO , TO_CHAR(SYSDATE,'YYYY-MM-DD'))
+--                                 )
+--                             ,XCOM.FT_CNL_SELSTFINFO( '4', B.ANDR_STF_NO , '20170301')
+--                             )
+--                          )
+--           END                                             AS MED_DR2 --05.진료의
+
+
+					, DECODE(B.APCN_DTM, NULL, 'N', 'Y')		         AS CNCL_YN		      --06.취소상태
+					, NVL(C.CMPT_WK_CMPL_YN, 'N')				             AS EMR_YN		      --07.EMR작업완료여부
+					, TO_CHAR(A.INPT_DT, 'YYYY-MM-DD')   		         AS INPT_DT 		    --08.작업시작일시(입력일자)
+					, TO_CHAR(A.CMPL_PRO_DTM, 'YYYY-MM-DD')  		     AS CMPL_PRO_DTM	  --09.원무완료일시
+					, CASE WHEN A.CMPL_PRO_STF_NO IS NOT NULL
+					       THEN A.CMPL_PRO_STF_NO||'['||FT_STF_INF(A.CMPL_PRO_STF_NO,'STF_NM')||']'
+					       ELSE ''
+					  END                                            AS CMPL_PRO_STF_NO  --10.처리완료자
+          , C.TRAN_RMK
+          , A.CTN_CNTE           							             AS CTN_CNTE         --12.체크리스트 내용
+
+
+
+          /* UPDATE/INSERT 필요값 */
+          , NVL(A.CTN_TGPT_SEQ,C.CTN_TGPT_SEQ )             AS OUT_CTN_TGPT_SEQ --A.주의대상환자순번
+          , NVL(A.BOBD_PT_NO,C.BOBD_PT_NO)                 AS OUT_BOBD_PT_NO   --B.합본이전환자번호
+
+          , NVL(TO_CHAR(A.BIND_DTM, 'YYYY-MM-DD') ,TO_CHAR(C.BIND_DTM, 'YYYY-MM-DD') )
+                                                           AS OUT_BIND_DTM     --C.합본일시
+          , NVL(B.PACT_ID,C.PACT_ID)                       AS OUT_PACT_ID      --D.원무접수ID
+     FROM
+					 ACPPRRDE A  --주의대상환자상세 테이블
+					,ACPPRAAM	B  --입원접수 테이블
+          ,ACPPRITD C  --입원취소외래치환정보 테이블
+
+    WHERE     A.PT_INSP_LIST_CLS_CD = '23' /* 체크유형(23 :입원->외래치환) */
+
+          AND B.PT_NO = A.PT_NO
+          AND B.PT_NO (+)= C.PT_NO
+          AND B.PACT_ID (+)= C.PACT_ID
+          AND DECODE(B.APCN_DTM, NULL, 'N', 'Y') = 'Y'  /* 입원 취소 여부 */
+
+          /* 주의대상환자순번 = 1*/
+          AND A.CTN_TGPT_SEQ = 1
+
+					AND B.ADS_DT BETWEEN TO_DATE(:IN_FROM_DATE,'YYYY-MM-DD') AND TO_DATE(:IN_TO_DATE,'YYYY-MM-DD') + .99999
+--          AND A.INPT_DT BETWEEN TO_DATE(:IN_FROM_DATE,'YYYY-MM-DD') AND TO_DATE(:IN_TO_DATE,'YYYY-MM-DD') + .99999
+
+
+--        <IsNotEmpty Property="IN_PT_NO">
+--          <IsNotNull Property="IN_PT_NO" >
+--          ANd A.PT_NO  = :IN_PT_NO
+--          </IsNotNull>
+--        </IsNotEmpty>
 
 
 
 
-select 	  rownum    								                    	as NO		   	--00.No.
-					, a.PT_NO              					                as PT_NO		--01.환자번호
-					, b.PT_NM									                      as PT_NM		--02.환자명
-					, to_char(c.ADS_DT, 'yyyy-mm-dd')			          as <<PACT_ID | ADS_DT>>		--03.입원일자
-					, d.<<SUB_MED_DEPT_CD | MED_DEPT_CD>>						as <<SUB_MED_DEPT_CD | MED_DEPT_CD>>		--04.진료과    
-					
-					
-					, pkg_bil_common.FC_UserNameSel(nvl(d.<<CHDR_SID | CHDR_STF_NO>>,<<NCDR_SID | NCDR_STF_NO>>))|| '(' ||nvl(d.<<CHDR_SID | CHDR_STF_NO>>,<<NCDR_SID | NCDR_STF_NO>>)||')'
-																as med_dr		--05.진료의
-					, decode(d.APCN_DTM, null, 'N', 'Y')		as cncl_yn		--06.취소상태
-					, nvl(c.PRO_YN, 'N')					as emr_yn		--07.EMR작업완료여부
-					, to_char(a.INPT_DT, 'yyyy-mm-dd')   		as INPT_DT 		--08.작업시작일시
-					, to_char(a.<<CMPL_PRO_DTM | PRO_YN>>, 'yyyy-mm-dd')  		as <<CMPL_PRO_DTM | PRO_YN>>		--09.원무완료일시
-					, pkg_bil_common.FC_UserNameSel(a.CMPL_PRO_STF_NO)  	as CMPL_PRO_STF_NO		--10.처리완료자
-					, c.CTN_CNTE           							as CTN_CNTE			--11.비고
-					, a.CTN_CNTE        					as CTN_CNTE	--12.체크리스트 내용 
-					
-					
-				from  ACPPRRDE  a   --체크리스트
-					, <<ACPPIYKD | PCTPCPTD | PCTPCPAM | PCTPCPAH | MSQSCPMD | MSELMCMD | MSCTDTRD | MRDDRGCM | MOMNMVID | BPMOTRAD | BPMOTDAD | BPMOTBDD | ACPPRGHH | ACPPRGHD | ACPPRDCD | ACPPRAAM | ACPPRAAH>> 	b   --환자기본정보
-					, ACPPRRDE c   --입원취소외래치환
-					, <<ACPPIYKD | MSTRHODM | MSQSCNSD | MSMRREOD | MSMRANDD | MSMRADCM | ACPPRTSD | ACPPRAAM>> 	d 	--입원접수       
-					
-					
-				where a.PT_INSP_LIST_CLS_CD = '23' --체크유형(23 :입원->외래치환)
-					and (
-	                        (a.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>> = in_pt_no)
-	                    or	(nvl(in_pt_no,'*') = '*')
-	                    )
-					and INPT_DT between v_from_dte and v_to_dte + .99999
-					and a.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>> 	= b.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>>
-					and c.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>> 	= a.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>>
-					and c.pt_chk_no = a.pt_chk_no -- **환자체크번호
-					and d.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>>		(+)= c.<<ADS_NOTM | <<<<PT_NO | PACT_ID>> | CTN_CNTE_TITL>>>>
-					and d.<<PACT_ID | ADS_DT>>	(+)= c.<<PACT_ID | ADS_DT>>
-					and (
-	                        (in_endyn = 'Y' and a.<<CMPL_PRO_DTM | PRO_YN>>  is not null)
-	                    or  (in_endyn = 'N' and a.<<CMPL_PRO_DTM | PRO_YN>>  is null)
-	                    or  (nvl(in_endyn,'*') = '*')
-	                    )
-	                and (
-	                        (nvl(c.PRO_YN, 'N') = in_emryn)
-	                    or  (nvl(in_emryn,'*') = '*')
-	                    )
-	            order by a.INPT_DT
+          -- 아래 두개의 차이를 모르겠습니다.
+					AND (   /* 원무처리 여부 -> 주의대상환자상세 테이블 완료 여부 */
+	                (:IN_ENDYN = 'Y' AND A.PRO_YN IS NOT NULL)
+	            OR  (:IN_ENDYN = 'N' AND A.PRO_YN IS NULL)
+	            OR  (NVL(:PRO_YN,'*') = '*')
+	            )
+
+	        AND (   /* EMR처리 여부 -> 입원취소외래치환정보 테이블 완료 여부 */
+	                (NVL(C.CMPT_WK_CMPL_YN, 'N') = :IN_EMRYN)
+	            OR  (NVL(:IN_EMRYN,'*') = '*')
+	            )
+
+
+
+)
+   GROUP BY
+     PT_NO
+    ,PT_NM
+    ,ADS_DT
+    ,MED_DEPT_CD
+    ,MED_DR
+    ,CNCL_YN
+    ,EMR_YN
+    ,INPT_DT
+    ,CMPL_PRO_DTM
+    ,CMPL_PRO_STF_NO
+    ,TRAN_RMK
+    ,CTN_CNTE
+--    ,CHECKED_CTN_CNTE
+
+   ORDER BY ADS_DT ASC
