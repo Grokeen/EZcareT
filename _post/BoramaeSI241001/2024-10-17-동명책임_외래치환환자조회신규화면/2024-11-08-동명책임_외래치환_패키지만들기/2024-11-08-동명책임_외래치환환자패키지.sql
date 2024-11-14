@@ -1,0 +1,262 @@
+﻿PACKAGE BODY XBIL.PKG_ACP_REPLACE_REVERSE IS
+/***********************************************************************************
+ *    서비스이름  : PKG_ACP_REPLACE_REVERSE
+ *    최초 작성일 : 2024.11.08
+ *    최초 작성자 : 김용록
+ *    Description : 체크리스트+외래치환환자 패키지
+ *                  1. 체크리스트 등록 (INSERT / UPDATE)
+ *                  2. 예약검사있을시에 검사예약일자 업데이트
+ *                  3. 만약 취소되지않은 입원오더가 있을경우 진료쪽에 D/C요청
+ *                  4. 입원계산내역 취소 작업 / 입원 취소 작업 및 수납역치환
+ *                     EXEC PKG_BIL_TOEMR2.PC_WK_APIPLIST_CANCLE(:PT_NO, :MED_DTE);
+ *                     -> PKG_BIL_IPRSV.PC_AP_APIPLIST_DELETE
+ *                     -> PKG_BIL_IPCAL_BATCH.SP_RE_REPLACE_ORDER
+ *                  5. 외래수진 취소일자 NULL 처리
+ *                  6. 체크리스트 완료처리
+ *                     6시간 미만 외래치환은 원무에서 만 처리하고 있고, 해당 화면은 체크리스트에
+ *                     치환으로 구분되어있는 환자분 조회하는 걸로 알고 있습니다.
+ *                     PKG_BIL_PTINF.PC_AP_APREPLOPT_SELECT
+ **********************************************************************************/
+
+
+
+/***********************************************************************************
+ *    서비스이름  : PC_ACP_REPLACE_REVERSE_INSERT
+ *    최초 작성일 : 2024.11.08
+ *    최초 작성자 : ezCareTech 김용록
+ *    Description : 1.체크리스트 등록 -> 6시간 미만 입원환자 외래치환 체크리스트 등록
+ *    ASIS : pkg_bil_toemr2.pc_wk_apchklst_insert
+ ***********************************************************************************/
+PROCEDURE PC_ACP_REPLACE_REVERSE_INSERT(	IN_PT_NO                IN   VARCHAR2   	--환자번호
+                                       ,	IN_PACT_ID              IN   VARCHAR2 		--원무접수ID
+                                       ,  HIS_STF_NO              IN   VARCHAR2                                                       
+                                       ,  HIS_PRGM_NM             IN   VARCHAR2                                                     
+                                       ,  HIS_IP_ADDR             IN   VARCHAR2)
+IS   
+	V_ACPPRRDE 		ACPPRRDE%ROWTYPE;  	/* 주의대상환자상세 테이블(체크리스트 테이블) */
+	V_ACPPRITD    ACPPRITD%ROWTYPE;   /* 입원취소외래치환정보 테이블 */
+	V_SYSDATE		  DATE 			          := SYSDATE;
+	V_PT_NO 		  VARCHAR2(8) 	      := IN_PT_NO;
+	V_ADS_DT 		  DATE 			          := (SELECT ADS_DT 
+	                                        FROM ACPPRAAM /* 입원접수기본 테이블 */
+	                                       WHERE PT_NO   = IN_PT_NO
+	                                         AND PACT_ID = IN_PACT_ID);
+BEGIN
+    BEGIN /* 주의대상환자상세 테이블(체크리스트 테이블)에 값 넣기 */         
+
+        V_ACPPRRDE.CTN_TGPT_SEQ       :=  '1';   /* 주의대상환자순번 */  --PKG_BIL_SEQUE.FC_PTCHKNO_CREATE;    -- 확인 필요###########################  
+		    V_ACPPRRDE.PT_NO              :=  V_PT_NO;
+		    V_ACPPRRDE.INPT_DT            :=  V_SYSDATE;
+		    V_ACPPRRDE.PT_INSP_LIST_CLS_CD:=  '23';     /* 23 : 입원->외래 치환 */
+		    V_ACPPRRDE.CHK_TITLE          :=  '외래베이스 변경 예정 - EMR 작업중'  ;
+		    V_ACPPRRDE.CHK_CONTENTS       :=  '입원취소('|| TO_CHAR(V_ADS_DT,'YYYY-MM-DD') ||') -> 외래변경'|| CHR(10) || '- ' || TO_CHAR(V_SYSDATE,'YYYY-MM-DD') ||' : EMR 운영팀 작업중';
+        V_ACPPRRDE.PRO_YN             :=  'N'    /* 처리여부(ASIS 원무확인여부 -> TOBE에는 확인 기능이 따로 없음) */
+		    V_ACPPRRDE.CMPL_PRO_DTM       :=  NULL   /* 완료처리일시 */
+		    V_ACPPRRDE.CMPL_PRO_STF_NO    :=  NULL   /* 완료처리직원번호 */
+		    
+		    V_ACPPRRDE.FSR_STF_NO         :=  HIS_STF_NO;
+		    V_ACPPRRDE.FSR_DTM            :=  V_SYSDATE;
+		    V_ACPPRRDE.FSR_PRGM_NM        :=  HIS_PRGM_NM;
+		    V_ACPPRRDE.FSR_IP_ADDR        :=  HIS_IP_ADDR;
+		    V_ACPPRRDE.LSH_STF_NO         :=  HIS_STF_NO;
+		    V_ACPPRRDE.LSH_DTM            :=  V_SYSDATE;
+		    V_ACPPRRDE.LSH_PRGM_NM        :=  HIS_PRGM_NM;
+		    V_ACPPRRDE.LSH_IP_ADDR        :=  HIS_IP_ADDR;   
+		    
+		    
+		INSERT /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_INSERT_I01 */
+		  INTO  ACPPRRDE  
+		VALUES  V_ACPPRRDE;
+		
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE_APPLICATION_ERROR(-20500,'PC_ACP_REPLACE_REVERSE_INSERT : 체크리스트 등록 에러!! ' || SQLCODE || SQLERRM );
+		END;
+    
+		
+		BEGIN /* 입원취소외래치환정보 테이블에 값 넣기 */
+		    V_APREPLOPT.PT_NO              	:=  V_PT_NO;
+		    V_APREPLOPT.PACT_ID             :=  V_IN_PACT_ID;
+		    V_APREPLOPT.CTN_TGPT_SEQ        :=  V_APCHKLST.CTN_TGPT_SEQ;
+		    V_APREPLOPT.CTN_TGPT_INPT_DT    :=  V_ACPPRRDE.INPT_DT;
+                
+        V_ACPPRITD.CMPT_WK_CMPL_YN      :=  'N';        /* 전산작업완료여부 */
+        V_ACPPRITD.CMPT_WK_CMPL_DT      :=  NULL;       /* 전산작업완료일자 */
+        --V_ACPPRITD.PRO_WK_STF_NO        :=  NULL;       /* 잘못된 컬럼(처리작업직원번호 -> ACPPRRDE.CMPL_PRO_DTM) */
+        --V_ACPPRITD.PRO_DTM              :=  NULL;       /* 잘못된 컬럼(처리일시 -> ACPPRRDE.CMPL_PRO_STF_NO) */
+                
+		    V_ACPPRITD.FSR_STF_NO           :=  HIS_STF_NO;
+		    V_ACPPRITD.FSR_DTM              :=  V_SYSDATE;
+		    V_ACPPRITD.FSR_PRGM_NM          :=  HIS_PRGM_NM;
+		    V_ACPPRITD.FSR_IP_ADDR          :=  HIS_IP_ADDR;
+		    V_ACPPRITD.LSH_STF_NO           :=  HIS_STF_NO;
+		    V_ACPPRITD.LSH_DTM              :=  V_SYSDATE;
+		    V_ACPPRITD.LSH_PRGM_NM          :=  HIS_PRGM_NM;
+		    V_ACPPRITD.LSH_IP_ADDR          :=  HIS_IP_ADDR;
+		INSERT /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_INSERT_I02 */
+		  INTO  ACPPRITD  
+		VALUES  V_ACPPRITD;
+		EXCEPTION
+			    WHEN OTHERS THEN
+			    	RAISE_APPLICATION_ERROR(-20500,'PC_ACP_REPLACE_REVERSE_INSERT : 입원취소외래치환 등록 에러!! ' || SQLCODE || SQLERRM );
+		END;			    	
+	
+	
+END PC_ACP_REPLACE_REVERSE_INSERT;	
+
+/***********************************************************************************
+ *    서비스이름  : PC_ACP_REPLACE_REVERSE_UPADTE
+ *    최초 작성일 : 2024.11.08
+ *    최초 작성자 : ezCareTech 김용록
+ *    Description : 1.체크리스트 등록 -> 6시간 미만 입원환자 외래치환 체크리스트 업데이트
+ *    ASIS : pkg_bil_toemr2.pc_wk_apchklst_update
+ **********************************************************************************/
+procedure PC_ACP_REPLACE_REVERSE_UPADTE ( IN_PT_NO                IN 	VARCHAR2   		    --환자번호
+								                       ,	IN_CTN_TGPT_INPT_DT     IN 	VARCHAR2          --주의대상환자입력일자
+								                       ,	IN_DBPROC_TP		        IN	VARCHAR2          --프로시저 구분(A:기존 것에 추가 / M:기존 것을 수정)
+								                       , 	IN_TITLE				        IN	VARCHAR2          --제목
+								                       ,	IN_MSG					        IN	VARCHAR2          --메시지 
+								                       ,  HIS_STF_NO              IN  VARCHAR2                                                       
+                                       ,  HIS_PRGM_NM             IN  VARCHAR2                                                     
+                                       ,  HIS_IP_ADDR             IN  VARCHAR2)
+IS
+	  V_SYSDATE              DATE 			     := SYSDATE;
+	  V_PT_NO 	             VARCHAR2(8) 	   := IN_PT_NO;
+	  V_CTN_TGPT_INPT_DT  	 DATE            := TO_DATE(IN_CTN_TGPT_INPT_DT, 'YYYYMMDD'); /* 주의대상환자입력일자 */    
+    V_CTN_TGPT_SEQ 	       NUMBER 		     := 0;
+    V_TITLE    	           VARCHAR2(100)	 := NULL;
+    V_MSG    	             VARCHAR2(2000)  := NULL;
+
+
+BEGIN
+		/* ### 입원취소외래치환정보 테이블애서 (원무접수ID) get ### */
+		BEGIN  
+         	 SELECT /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_UPADTE_S01 */
+         	        CTN_TGPT_SEQ
+	           INTO V_CTN_TGPT_SEQ
+	           FROM ACPPRITD  /* 입원취소외래치환정보 테이블 */
+	          WHERE PT_NO             = V_PT_NO
+	            AND CTN_TGPT_INPT_DT  = V_CTN_TGPT_INPT_DT /* 주의대상환자입력일자 */
+	           ;              
+	           
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE_APPLICATION_ERROR(-20500,'PC_ACP_REPLACE_REVERSE_UPADTE: PACT_ID SELECT하면서 오류가 발생하였습니다' || CHR(13) || SQLCODE || CHR(13) || SQLERRM);
+            RETURN;
+	  END;
+              
+	  
+    IF V_CTN_TGPT_SEQ IS NOT NULL THEN --> CONPLATE에서 타면 안되는데
+        BEGIN
+				    -- A : 기존 CHK_CONTENTS를 찾아 추가(완료 시에 동작)
+				    IF IN_DBPROC_TP = 'A' THEN 
+				    
+				    
+                SELECT /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_UPADTE_S02 */
+                       A.CTN_CNTE || CHR(10) /* 주의내용 */
+                  INTO V_MSG
+                  FROM ACPPRRDE A /* 주의대상환자상세 테이블 */
+                 WHERE A.PT_NO 	       = V_PT_NO
+                   AND A.CHK_CLS	     = '23'
+                   AND A.CTN_TGPT_SEQ  = V_CTN_TGPT_SEQ
+                   AND A.INPT_DT       = V_CTN_TGPT_INPT_DT 
+                 ;
+            END IF;
+
+				    V_TITLE :=  IN_TITLE;
+				    V_MSG   :=  V_MSG || '- ' || TO_CHAR(V_SYSDATE,'YYYY-MM-DD') || ' : ' || IN_MSG;   
+
+				    EXCEPTION
+	  				    WHEN OTHERS THEN
+	  					      RAISE_APPLICATION_ERROR(-20500,'PC_ACP_REPLACE_REVERSE_UPADTE : 변수 대입중 에러발생!! ' || SQLCODE || SQLERRM );
+        END;
+          
+        
+        BEGIN
+            UPDATE /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_UPADTE_U01 */
+                   ACPPRRDE   /* 주의대상환자상세 테이블 */
+               SET CTN_CNTE_TITL = V_TITLE /* 주의내용제목 */
+                 , CTN_CNTE      = V_MSG   /* 주의내용 */    
+                 
+                 , LSH_STF_NO    = HIS_STF_NO
+                 , LSH_DTM       = V_SYSDATE
+                 , LSH_PRGM_NM   = HIS_PRGM_NM
+                 , LSH_IP_ADDR   = HIS_IP_ADD 
+             WHERE PT_NO                     = V_PT_NO
+               AND PT_INSP_LIST_CLS_CD       = '23'   /* 환자점검리스트유형코드 */
+               AND CTN_TGPT_SEQ              = V_CTN_TGPT_SEQ     
+             ;
+
+        EXCEPTION
+		 				WHEN OTHERS THEN
+		 					RAISE_APPLICATION_ERROR(-20500,'PC_ACP_REPLACE_REVERSE_UPADTE : 체크리스트 업데이트중 에러발생!! ' || SQLCODE || SQLERRM );
+
+        END;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20500,'PC_ACP_REPLACE_REVERSE_UPADTE : 업데이트 할 체크리스트가 존재하지 않습니다.' );
+    END IF;
+
+END PC_ACP_REPLACE_REVERSE_UPADTE;
+
+
+
+/***********************************************************************************
+ *    서비스이름  : PC_ACP_REPLACE_REVERSE_COMPLETE
+ *    최초 작성일 : 2024.11.08
+ *    최초 작성자 : ezCareTech 김용록
+ *    Description : 체크리스트 완료처리 -> 6시간 미만 입원환자 외래치환 ERM 작업완료
+ *    ASIS : pkg_bil_toemr2.pc_wk_apreplopt_complate
+ **********************************************************************************/
+procedure PC_ACP_REPLACE_REVERSE_COMPLETE( IN_PT_NO                IN VARCHAR2   		    --환자번호
+                                          ,IN_CTN_TGPT_INPT_DT     IN VARCHAR2          --주의대상환자입력일자
+								                          ,IN_DBPROC_TP		         IN	VARCHAR2          --프로시저 구분(A:INSERT,B:UPDATE)
+								                          ,IN_TITLE				         IN	VARCHAR2          --제목
+								                          ,IN_MSG					         IN	VARCHAR2          --메시지 
+								                          ,HIS_STF_NO              IN VARCHAR2                                                       
+                                          ,HIS_PRGM_NM             IN VARCHAR2                                                     
+                                          ,HIS_IP_ADDR             IN VARCHAR2)
+IS
+	V_SYSDATE		           DATE 			  := SYSDATE;
+	V_PT_NO 		           VARCHAR2(8) 	:= IN_PT_NO;
+	V_CTN_TGPT_INPT_DT  	 DATE         := TO_DATE(IN_CTN_TGPT_INPT_DT, 'YYYYMMDD'); /* 주의대상환자입력일자 */
+	                                 
+	BEGIN
+		BEGIN /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_COMPLETE_P01 */   
+		
+			  /* 체크리스트에 완료 커멘트 추가 */
+		  	PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_UPDATE(  IN_PT_NO
+                                                               ,IN_PACT_ID
+                                                               ,'A'
+                                                               ,'외래베이스 변경 EMR 완료'
+                                                               ,'EMR 처리완료'
+                                                               ,HIS_STF_NO
+                                                               ,HIS_PRGM_NM
+                                                               ,HIS_IP_ADDR);
+		END;
+
+		BEGIN
+			  /* EMR작업완료, EMR작업완료일 업데이트 */
+		   	UPDATE /*+ XBIL.PKG_ACP_REPLACE_REVERSE.PC_ACP_REPLACE_REVERSE_COMPLETE_U01 */
+		   	      ACPPRITD /* 입원취소외래치환정보 테이블 */
+		   		SET CMPT_WK_CMPL_YN = 'Y'         /* 전산작업완료여부 */
+		   		   ,CMPT_WK_CMPL_DT = V_SYSDATE   /* 전산작업완료일자 */    
+		   		   --,PRO_WK_STF_NO   = HIS_STF_NO; /* 잘못된 컬럼(처리작업직원번호 -> ACPPRRDE.CMPL_PRO_DTM) */
+             --,PRO_DTM         = NULL;       /* 잘못된 컬럼(처리일시 -> ACPPRRDE.CMPL_PRO_STF_NO) */
+		   		   
+		   		   , A.LSH_STF_NO    = HIS_STF_NO
+             , A.LSH_DTM       = V_SYSDATE
+             , A.LSH_PRGM_NM   = HIS_PRGM_NM
+             , A.LSH_IP_ADDR   = HIS_IP_ADD 
+		   		   
+		   	WHERE PT_NO = V_PT_NO
+		   	  AND CTN_TGPT_INPT_DT  = V_CTN_TGPT_INPT_DT 
+		   		;
+		   		
+		EXCEPTION
+			    WHEN OTHERS THEN
+			    	RAISE_APPLICATION_ERROR(-20500,'ACPPRITD INSERT : 입원취소외래치환정보 등록 에러!! ' || SQLCODE || SQLERRM );
+		END;
+
+
+END PC_ACP_REPLACE_REVERSE_UPDATE;
+END PKG_ACP_REPLACE_REVERSE;

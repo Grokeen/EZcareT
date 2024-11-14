@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9AA369A4-8A26-4AC8-AA46-0FDDFFAAF288}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIS.PA.AC.PI.PS.DTO</RootNamespace>
+    <AssemblyName>HIS.PA.AC.PI.PS.DTO</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Client\PA\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\..\HIS\Setup\RuleSet\HISCodeAnalysisRule.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\HIS\Deploy\Server\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HSF.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HIS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HIS.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HIS.Core.Global.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Server\HIS.Core.Global.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS.PA.CORE.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Server\HIS.PA.CORE.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="HSF.TechSvc2010.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=50535a6f1106be75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\HIS\Deploy\Client\Core\HSF.TechSvc2010.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingEndPatientList_INOUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingIntegrationManagement_IN.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingIntegrationManagement_OUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingPutInChargeOfAmountReceivePaymentInformation_IN.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingPatientOrderPrescription_INOUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingReservationSchedule_INOUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\SelOtptRsvAmtRpyMgmt_IN.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingPatientRegistrationInformation_INOUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingPutInChargeOfAmountInAmount_OUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingPutInChargeOfAmountSubstitution_OUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingPutInChargeOfAmountDetail_INOUT.cs" />
+    <Compile Include="HomeNursingIntegrationManagement\HomeNursingReceivePaymentParticulars_INOUT.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectOtptReplacePatientAsk\SelectOtptReplacePatientAsk_IN.cs" />
+    <Compile Include="SelectOtptReplacePatientAsk\SelectOtptReplacePatientAsk_OUT.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HSF.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /y "$(TargetPath)" "..\..\..\Deploy\Server\"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>attrib -R "$(TargetPath)"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

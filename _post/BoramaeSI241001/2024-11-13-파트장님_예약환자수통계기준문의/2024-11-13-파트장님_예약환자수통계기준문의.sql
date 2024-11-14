@@ -1,0 +1,126 @@
+﻿<sql id="HIS.PA.AS.AO.SelectReservationPatientCountStatistics_Type2_2">
+<!--
+    Clss : text(쿼리유형)
+    Desc : 예약환자수 통계(예약/진료/부도)  진료의제외
+    Author : 이지케어텍 정종우
+    Create date : 2016-07-12
+                : 2024-10-08 신환 초진 분리
+    ASIS apd600.ap_rsv_rej_list2_s
+-->
+;;;
+
+EXEC :IN_FROM_DT := '20241113';
+EXEC :IN_TO_DT := '20241113';
+
+
+
+SELECT m.meddept                                                                             MED_DEPT_CD
+     , b.dept_nm                                                                             DEPT_NM
+     , sum(m.pattot)                                                                         DATA41         -- 총 예약 건수
+     , sum(m.fscl_cl_1)                                                                      DATA31      -- 초진
+     , sum(m.fscl_cl_2)                                                                      DATA32      -- 재진
+     , sum(m.fscl_cl_3)                                                                      DATA_1      -- 신환
+     , sum(m.fscl_cl_0)                                                                      DATA_5      -- 재초진
+     , sum(patycnt)                                                                          DATA43        -- 총 진료 건수
+     , sum(m.fscl_cl_y1)                                                                     DATA33     -- 초진
+     , sum(m.fscl_cl_y2)                                                                     DATA34     -- 재진
+     , sum(m.fscl_cl_y3)                                                                     DATA_2     -- 신환
+     , sum(m.fscl_cl_y0)                                                                     DATA_6     -- 재초진
+--     , sum(fscl_cl_z3)                                                                       fscl_cl_z3        --세션수
+--     , sum(m.fscl_cl_z1)                                                                     fscl_cl_z1        --당일진료  환자수
+     , nvl(round(((sum(m.pattot)-sum(NULLIF(m.patycnt,0)))  /  sum(m.pattot))*100,0),0)      fscl_cl_z4        --부도율
+     , decode(sum(m.patycnt),0,0,round((sum(m.fscl_cl_y1)/  sum(m.patycnt)  *100  ),0))      fscl_cl_z5        --초진률
+     , decode(sum(m.patycnt),0,0,round((sum(m.fscl_cl_y2)/  sum(m.patycnt)  *100  ),0))      fscl_cl_z6        --재진률
+     , decode(sum(m.patycnt),0,0,round((sum(m.fscl_cl_y3)/  sum(m.patycnt)  *100  ),0))      fscl_cl_z7        --신환률
+     , decode(sum(m.patycnt),0,0,round((sum(m.fscl_cl_y0)/  sum(m.patycnt)  *100  ),0))      fscl_cl_z8        --재초율
+--     , sum(fscl_cl_z2)                                                                       fscl_cl_z2        --미수진  환자수
+--     , b.MED_CD                                                                              comn_dept
+  from
+       (
+-- 이 통계에는 진료 예약만 카운트 되고, 비예약검사 예약일로 생기는 수진 이런건 카운트 안되는게 맞을까요?
+--         ;;;
+        select
+               a.med_dept_CD                                meddept
+             , a.MEDR_STF_NO                                meddr
+             , sum(1)                                                                                                          pattot  --예약건수
+             , sum(case  when  a.FRVS_RMDE_TP_CD  =  '1'  then  1  else  0  end)                                          fscl_cl_1  --초진
+             , sum(case  when  a.FRVS_RMDE_TP_CD  =  '2'  then  1  else  0  end)                                          fscl_cl_2  --재진
+             , sum(case  when  a.FRVS_RMDE_TP_CD  =  '3'  then  1  else  0  end)                                          fscl_cl_3  --신환
+             , sum(case  when  (a.FRVS_RMDE_TP_CD  not  in  ('1','2','3')  or  a.FRVS_RMDE_TP_CD  is  null)  then  1  else  0  end)      fscl_cl_0  --재초
+             , sum(case  when  a.med_yn  =  'Y'  then  1  else  0  end)                                              patycnt      --진료본건수
+             , sum(case  when  a.med_yn  =  'Y'  and  a.FRVS_RMDE_TP_CD  =  '1'  then  1  else  0  end)                          fscl_cl_y1
+             , sum(case  when  a.med_yn  =  'Y'  and  a.FRVS_RMDE_TP_CD  =  '2'  then  1  else  0  end)                          fscl_cl_y2
+             , sum(case  when  a.med_yn  =  'Y'  and  a.FRVS_RMDE_TP_CD  =  '3'  then  1  else  0  end)                          fscl_cl_y3
+             , sum(case  when  a.med_yn  =  'Y'  and  (a.FRVS_RMDE_TP_CD  not  in  ('1','2','3')  or  a.FRVS_RMDE_TP_CD  is  null)  then  1  else  0  end)  fscl_cl_y0
+             , sum(case  when  trunc(a.FSR_DTM)  =  trunc(a.med_dt)  then  1  else  0  end)                                                      fscl_cl_z1      --당일진료환자
+             , sum(case  when  a.med_yn  =  'N'  then  1  else  0  end)                                                                              fscl_cl_z2      --미수진  환자수
+--             , count(*)  over  (partition  by  a.meddr_id  ,a.med_dept,  decode(b.ampm_typ  ,'AM','오전','오후')  ,a.med_dte  )          fscl_cl_z3        --세션수
+        from  ACPPRODM  A /*외래예약접수기본 테이블*/
+            , ACDPCSCD  B /*외래진료일정정보 테이블*/
+
+
+       where  A.MED_DT between  to_date(:IN_FROM_DT,  'yyyymmdd')  and    to_date(:IN_TO_DT,  'yyyymmdd')
+--         and  a.MED_DEPT_CD =  nvl(:IN_MED_DEPT_CD,  a.MED_DEPT_CD)
+--         and  a.MEDR_STF_NO =  nvl(:IN_MEDR_STF_NO,  a.MEDR_STF_NO)
+
+
+         AND  to_char(a.med_RSV_dtm,  'HH24:MI')  not  in  ('00:00','23:58','23:59')         /* MED_RSV_DTM : 진료예약일시 */
+         and  (a.OTPT_RSV_TP_CD    not  in  ('8','9')                                        /* OTPT_RSV_TP_CD : 외래예약구분코드 */
+               OR (A.OTPT_RSV_TP_CD = '9'
+                   AND NVL(A.OTPT_RSV_DTL_TP_CD, '000') NOT IN ('00','000'))                 /* OTPT_RSV_DTL_TP_CD : 외래예약상세구분코드 */
+              )
+         and  a.APCN_DTM  is  null
+         and  b.med_dtm    =  a.med_RSV_dtm
+         and  b.MEDR_STF_NO  =  a.MEDR_STF_NO
+         and  b.med_dept_CD  =  a.med_dept_CD
+       group  by  a.med_dept_CD
+               ,  a.MEDR_STF_NO
+               ,  a.med_dt
+--               ,  decode(b.ampm_typ  ,'AM','오전','오후')
+
+
+
+
+       )  m
+     , PDEDBMSM  b
+ where b.dept_cd =  m.meddept
+ group by m.meddept
+        , b.dept_nm
+        , b.SERIAL_SEQ
+ order by decode(substr(m.meddept,1,2),'IM',1),b.dept_nm
+
+
+
+
+
+ ;;;;
+ SELECT * FROM (
+    SELECT * FROM ACPPRODM WHERE   OTPT_RSV_TP_CD = '9'
+                             AND NVL(OTPT_RSV_DTL_TP_CD, '000') NOT IN ('00','000')
+        ) WHERE ROWNUM < 10;
+ ;;;;
+
+ SELECT * FROM (
+ SELECT * FROM ACPPRODM
+ WHERE (OTPT_RSV_TP_CD not  in  ('8','9')                                        /* OTPT_RSV_TP_CD : 외래예약구분코드 */
+               OR (OTPT_RSV_TP_CD = '9'
+                   AND NVL(OTPT_RSV_DTL_TP_CD, '000') NOT IN ('00','000'))
+        )
+               ) WHERE PT_NO = '00369879' AND PACT_ID = 'MO00369879201909180000OT005174'
+ ;;;
+
+         ;;;
+            SELECT *
+            FROM CCCCCLTC
+            WHERE COMN_GRP_CD_NM LIKE '외래예약상세구분코드'
+               OR COMN_GRP_CD_NM LIKE '외래예약구분코드';
+                  ROWNUM< 10;
+						SELECT *
+						FROM CCCCCSTE
+						WHERE COMN_GRP_CD = --'364'
+						                    'BIL271'
+
+
+         ;;;
+ ;;;;
+      </sql>

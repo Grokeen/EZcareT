@@ -382,9 +382,14 @@ DUP_CNCR_YN
 
    -- 2024-10-30 김용록 : 중복 제거(C16, 확진일을 최근 일자로 가져오게 처리)
    )
-   WHERE C2 LIKE '%아기%'
-      OR C3 LIKE '%아기%'
-      OR C4 LIKE '24%'
+                    --:IN_BABY_CHECKED
+   WHERE CASE WHEN :IN_BABY_CHECKED = 'Y'
+
+              THEN TO_NUMBER(SUBSTR(C4,0,6))
+              ELSE TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))
+          END  BETWEEN TO_NUMBER(TO_CHAR(TRUNC(ADD_MONTHS(SYSDATE, -11), 'dd'),'yymmdd')) -- 생후 11개월까지 = 영아
+                             AND TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))
+
 
    GROUP BY CCC,
             PT_NO,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,--C16
@@ -395,4 +400,10 @@ DUP_CNCR_YN
 
 
    ORDER BY C16 DESC
-
+    ;;;
+select
+    TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))  AS SS
+    , TO_CHAR(TRUNC(ADD_MONTHS(SYSDATE, -11), 'dd'),'yymmdd') as a
+    , sysdate-'335' as b
+from dual;
+EXEC :IN_BABY_CHECKED := 'Y';
