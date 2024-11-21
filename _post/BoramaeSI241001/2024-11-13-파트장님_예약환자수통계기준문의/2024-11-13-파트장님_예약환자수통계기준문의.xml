@@ -7,7 +7,7 @@
                 : 2024-10-08 신환 초진 분리
     ASIS apd600.ap_rsv_rej_list2_s
 -->
-;;;
+;
 
 EXEC :IN_FROM_DT := '20241113';
 EXEC :IN_TO_DT := '20241113';
@@ -93,12 +93,12 @@ SELECT m.meddept                                                                
 
 
 
- ;;;;
+ ;
  SELECT * FROM (
     SELECT * FROM ACPPRODM WHERE   OTPT_RSV_TP_CD = '9'
                              AND NVL(OTPT_RSV_DTL_TP_CD, '000') NOT IN ('00','000')
         ) WHERE ROWNUM < 10;
- ;;;;
+ ;
 
  SELECT * FROM (
  SELECT * FROM ACPPRODM
@@ -107,9 +107,9 @@ SELECT m.meddept                                                                
                    AND NVL(OTPT_RSV_DTL_TP_CD, '000') NOT IN ('00','000'))
         )
                ) WHERE PT_NO = '00369879' AND PACT_ID = 'MO00369879201909180000OT005174'
- ;;;
+ ;
 
-         ;;;
+         ;
             SELECT *
             FROM CCCCCLTC
             WHERE COMN_GRP_CD_NM LIKE '외래예약상세구분코드'
@@ -121,6 +121,8 @@ SELECT m.meddept                                                                
 						                    'BIL271'
 
 
-         ;;;
- ;;;;
+         ;
+ ;
+
+ 
       </sql>
