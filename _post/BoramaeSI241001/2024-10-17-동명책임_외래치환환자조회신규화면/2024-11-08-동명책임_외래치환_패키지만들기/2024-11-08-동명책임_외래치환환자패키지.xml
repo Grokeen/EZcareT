@@ -20,24 +20,29 @@
 
 
 
-/***********************************************************************************
- *    서비스이름  : PC_ACP_REPLACE_REVERSE_INSERT
- *    최초 작성일 : 2024.11.08
- *    최초 작성자 : ezCareTech 김용록
- *    Description : 1.체크리스트 등록 -> 6시간 미만 입원환자 외래치환 체크리스트 등록
- *    ASIS : pkg_bil_toemr2.pc_wk_apchklst_insert
- ***********************************************************************************/
-PROCEDURE PC_ACP_REPLACE_REVERSE_INSERT(	IN_PT_NO                IN   VARCHAR2   	--환자번호
-                                       ,	IN_PACT_ID              IN   VARCHAR2 		--원무접수ID
-                                       ,  HIS_STF_NO              IN   VARCHAR2                                                       
-                                       ,  HIS_PRGM_NM             IN   VARCHAR2                                                     
-                                       ,  HIS_IP_ADDR             IN   VARCHAR2)
-IS   
-	V_ACPPRRDE 		ACPPRRDE%ROWTYPE;  	/* 주의대상환자상세 테이블(체크리스트 테이블) */
-	V_ACPPRITD    ACPPRITD%ROWTYPE;   /* 입원취소외래치환정보 테이블 */
-	V_SYSDATE		  DATE 			          := SYSDATE;
-	V_PT_NO 		  VARCHAR2(8) 	      := IN_PT_NO;
-	V_ADS_DT 		  DATE 			          := (SELECT ADS_DT 
+   /***********************************************************************************
+    *    서비스이름  : PC_ACP_REPLACE_REVERSE_INSERT
+    *    최초 작성일 : 2024.11.08
+    *    최초 작성자 : ezCareTech 김용록
+    *    Description : 1.체크리스트 등록 -> 6시간 미만 입원환자 외래치환 체크리스트 등록
+    *    ASIS : pkg_bil_toemr2.pc_wk_apchklst_insert
+    ***********************************************************************************/
+PROCEDURE PC_ACP_REPLACE_REVERSE_INSERT(
+                                          IN_PT_NO    IN VARCHAR2   --환자번호
+                                         ,IN_PACT_ID  IN VARCHAR2   --원무접수ID
+                                         ,HIS_STF_NO  IN VARCHAR2
+                                         ,HIS_PRGM_NM IN VARCHAR2 
+                                         ,HIS_IP_ADDR IN VARCHAR2)
+    IS   
+        V_ACPPRRDE ACPPRRDE%ROWTYPE;  	/* 주의대상환자상세 테이블(체크리스트 테이블) */
+        V_ACPPRITD ACPPRITD%ROWTYPE;   /* 입원취소외래치환정보 테이블 */
+        V_SYSDATE  DATE        := SYSDATE;
+        V_PT_NO    VARCHAR2(8) := IN_PT_NO;
+        V_ADS_DT   DATE        := SYSDATE;
+	
+	
+	
+	(SELECT ADS_DT 
 	                                        FROM ACPPRAAM /* 입원접수기본 테이블 */
 	                                       WHERE PT_NO   = IN_PT_NO
 	                                         AND PACT_ID = IN_PACT_ID);

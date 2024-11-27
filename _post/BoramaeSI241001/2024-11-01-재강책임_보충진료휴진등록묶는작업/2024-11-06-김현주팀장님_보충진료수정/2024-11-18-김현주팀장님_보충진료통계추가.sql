@@ -308,7 +308,10 @@ VAR O_CURSOR1 REFCURSOR;
 
 
 EXEC XMED.PC_AP_HDLYTMTIME_CALC.PC_AP_CLOSEDTIME_CALC('01004',:O_CURSOR1);
-;
+;                                                                                           
+
+
+
 
 SELECT NED_MED_TIME FROM  XMED.PC_AP_HDLYTMTIME_CALC.PC_AP_CLOSEDTIME_CALC('01004',:O_CURSOR1);
 

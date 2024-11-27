@@ -1,4 +1,7 @@
-﻿<sql id="HIS.PA.AS.AO.SelectReservationPatientCountStatistics_Type2_2">
+﻿
+
+
+<sql id="HIS.PA.AS.AO.SelectReservationPatientCountStatistics_Type2_2">
 <!--
     Clss : text(쿼리유형)
     Desc : 예약환자수 통계(예약/진료/부도)  진료의제외
@@ -124,5 +127,5 @@ SELECT m.meddept                                                                
          ;
  ;
 
- 
+
       </sql>
