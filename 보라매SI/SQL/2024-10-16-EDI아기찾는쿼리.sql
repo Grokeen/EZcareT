@@ -22,8 +22,13 @@ EXEC :TODATE := '20241231';
 EXEC :SENDFG := '0';     -- 0: 전체 / 1: 수신된 자료 제외
 EXEC :IN_PT_NO := '';
 EXEC :IN_PACT_TP_CD := '';
+EXEC :IN_BABY_CHECKED  := 'Y';
 
-SELECT /*+ INDEX(ACPPRGHD APREGHVT_SI05) */ /* HIS.PA.AC.PI.PI.SELSERIOUSILLNESSAPPLICATIONFORMEDIREG1_1 */
+
+
+
+  SELECT /*+ INDEX(ACPPRGHD APREGHVT_SI05) */ /* HIS.PA.AC.PI.PI.SELSERIOUSILLNESSAPPLICATIONFORMEDIREG1_1 */
+       DISTINCT
 
        CCC AS "산정특례번호",
        PT_NO,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,
@@ -32,14 +37,19 @@ SELECT /*+ INDEX(ACPPRGHD APREGHVT_SI05) */ /* HIS.PA.AC.PI.PI.SELSERIOUSILLNESS
        MAX(C16) AS C16,C17,C18,C19,C20,C21,C22,C23,C24,C25,C26,C27,
        C28,C29,C30,C31,C32,C33,C34,C35,C36,C37,C38,C39,C40,C41,C42,
        C43,C44,C45,C46,C47,C48,C49,C50,C51,C52,C53,C54,C55,C56,
-       MEDDEPT,SENDYN,SENDDATE,MSG,DOCTOR_NOTE_ID,AIDYN,DUP_CNCR_YN
+       MEDDEPT,SENDYN,SENDDATE,MSG,
+
+       -- 2024-11-28 김용록 : 중복 제거(DOCTOR_NOTE_ID = MDRC_ID 마지막에 작성된 걸로 가져오게 처리)
+       MAX(DOCTOR_NOTE_ID),
+
+       AIDYN,DUP_CNCR_YN
 
 FROM (
 
 SELECT
-
- (SELECT SRIL_CFMT_NO FROM ACPPRGCD ABC WHERE A.MDRC_ID = ABC.MDRC_ID) AS CCC
-
+ (SELECT SRIL_CFMT_NO FROM ACPPRGCD fff
+WHERE fff.pt_no = a.pt_no
+  and fff.mdrc_id = a.mdrc_id) CCC
 ,A.PT_NO PT_NO ,
 replace ( A.HLTH_INSC_NO , '-' , '' ) C1 ,
 CASE WHEN ASCII(UPPER(NVL ( A.HLTH_INS_ETPS_NM , ' ' ))) > 45217 THEN replace ( replace ( replace ( NVL ( A.HLTH_INS_ETPS_NM , ' ' ) , 'C' , '' ) , 'B' , '' ) , 'A' , '' )
@@ -205,8 +215,10 @@ DECODE
         (
             NVL ( A.SRIL_CDOC_APLC_TP_CD , 'J3' ) , 'J3' , XBIL.FT_GET_CANCER ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) ) ,
             CASE
-                WHEN A.CFSC_CD IN ( 'V800' , 'V810' ) THEN SUBSTR ( XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD ) , 1 , 4 )
-                ELSE XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD )
+                WHEN A.CFSC_CD IN ( 'V800' , 'V810' ) -- J3 : 착오가 있는 환자
+                    /* 2024-11-01 김용록 : 정신과 사병기호가 G3100(G3101,G3182 등)인데, G310으로 나와 사회보험EDI에 파일 불러올 때, 에러 발생하여 SUBSTR 4->5 변경 */
+                    THEN SUBSTR ( XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD ) , 1 , 5 )
+                    ELSE XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD )
             END
         ) , ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) )
     ) , 'Z944'
@@ -223,12 +235,19 @@ DECODE
         (
             NVL ( A.SRIL_CDOC_APLC_TP_CD , 'J3' ) , 'J3' , XBIL.FT_GET_CANCER ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) ) ,
             CASE
-                WHEN A.CFSC_CD IN ( 'V800' , 'V810' ) THEN SUBSTR ( XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD ) , 1 , 4 )
-                ELSE XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD )
+                WHEN A.CFSC_CD IN ( 'V800' , 'V810' )
+                    /* 2024-11-01 김용록 : 정신과 사병기호가 G3100(G3101,G3182 등)인데, G310으로 나와 사회보험EDI에 파일 불러올 때, 에러 발생하여 SUBSTR 4->5 변경 */
+                    /* 2024-11-26 김용록 : G일 경우 만, 4~5자인 경우가 있고, F는 4자리까지 만 존재하여 조건 추가 */
+                    THEN CASE SUBSTR ( XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD ) , 1 , 1 )
+                              WHEN 'G' THEN SUBSTR ( XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD ) , 1 , 5 )
+                              WHEN 'F' THEN SUBSTR ( XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD ) , 1 , 4 )
+                         END
+                    ELSE XBIL.FT_GET_SC ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) , 0 || A.APLC_ICD10_DUP_SEQ_CD )
             END
         ) , ( replace ( A.APLC_ICD10_CD_CNTE , '.' , '' ) )
     )
 )C18,
+
 CASE
     WHEN LENGTH
     (
@@ -295,11 +314,18 @@ DECODE ( A.CFSC_FAMH_MALE_CHLR_YN , 'Y' , '1' , '0' ) C44,
 DECODE ( A.CFSC_FAMH_FEML_CHLR_YN , 'Y' , '1' , '0' ) C45,
 '서울특별시보라매병원' C46 ,
 '11100249' C47 ,
-substr(C.RRN, 0, 6) C48  ,
+
+
+
+--2024-10-29 김용록 : KTEDI에서 송신 시, 입력자 주민번호가 없으면 발생하는 오류 수정(C48, 요양기관정보마당에서 필수 값 아님)
+NVL(SUBSTR(C.RRN, 0, 6),SUBSTR(B.PT_RRN, 0, 6)) C48  ,
 NVL ( A.ASDR_LCNS_NO , '' ) C49,
 NVL ( replace ( replace ( E.STF_NM , 'B' , '' ) , 'A' , '' ) , '' ) C50 ,
 NVL ( A.SPCT_QF_NO , '' ) C51,
-NVL ( A.DR_SPLT_SBJT_NM , '' ) C52,
+
+-- 2024-11-16 김용록 : KTEDI에서 파일 불러올 때, 특수기호 있을 시, 오류나서 처리
+REPLACE(REPLACE(NVL( A.DR_SPLT_SBJT_NM ,'' ) , '(' ), ')' ) C52,
+
 replace ( replace ( replace ( NVL ( A.APCT_NM , B.PT_NM ) , '(B)' , '' ) , 'B' , '' ) , 'A' , '' ) C53 ,
 (SELECT DTRL1_NM
    FROM CCCCCSTE
@@ -308,7 +334,14 @@ replace ( replace ( replace ( NVL ( A.APCT_NM , B.PT_NM ) , '(B)' , '' ) , 'B' ,
     AND USE_YN      =  'Y'
  ) C54,
 --XCOM.FT_CCC_CODEDTRL ( 'BIL203' , DECODE ( A.PT_REL_DTL_TP_CD , '0' , '01' , '00' , '01' , A.PT_REL_DTL_TP_CD ) , '1' ) C54 ,
-NVL ( TO_CHAR ( A.APFR_WRT_DT , 'YYYYMMDD' ) , '' ) C55 ,
+
+
+-- 2024-11-15 김용록 : 발행일 종복 제거(C55, 늦게 작성된 일자로 가져오게 처리)
+NVL ( TO_CHAR ( (MAX(A.APFR_WRT_DT) OVER (PARTITION BY A.PT_NO, A.MDRC_ID))
+               , 'YYYYMMDD' )
+     , '' )                                   C55 ,
+
+
 NVL ( TO_CHAR ( A.APLC_DT , 'YYYYMMDD' ) , '' ) C56 ,
 A.MTD_NM MEDDEPT ,
 A.EDI_TRSM_YN SENDYN ,
@@ -350,11 +383,14 @@ DECODE
     , ''
 )
 DUP_CNCR_YN
+
+, :IN_BABY_CHECKED AS S
    FROM  ACPPRGHD A
         , PCTPCPAM B
         , CNLRRUSD C
         , CNLRRUSD E
         , XBIL.PCTPCPAV F
+
    WHERE  A.PT_NO  = B.PT_NO
      AND C.STF_NO  = A.LSH_STF_NO
      --2024.07.05 김재강 의료급여환자도 보이도록 요청
@@ -374,32 +410,47 @@ DUP_CNCR_YN
      AND NVL(A.ADDR_VER_CTRA_CD,0)>2
      AND A.SRIL_CDOC_APLC_TP_CD IN('21', '23', 'SS', 'SD', 'SC', '14')
      AND A.PT_NO = NVL(:IN_PT_NO, A.PT_NO)
+
      -- 2024.07.24 김재강 : 입원/외래 조회조건 추가
      AND A.MDRC_ID IN (SELECT MDRC_ID
                          FROM MRDDRECM
                         WHERE PACT_TP_CD = NVL(:IN_PACT_TP_CD,PACT_TP_CD)
+
+                          -- 2024-11-15 김용록 : MDRC_ID 조건 추가
+                          AND LST_YN = 'Y' -- 최종 승인
+                          AND MDRC_FOM_SEQ = (SELECT MAX(MDRC_FOM_SEQ) OVER (PARTITION BY MDRC_ID)
+                                                FROM DUAL) -- 최종 작성
                       )
 
-   -- 2024-10-30 김용록 : 중복 제거(C16, 확진일을 최근 일자로 가져오게 처리)
-   )
-                    --:IN_BABY_CHECKED
-   WHERE CASE WHEN :IN_BABY_CHECKED = 'Y'
 
-              THEN TO_NUMBER(SUBSTR(C4,0,6))
-              ELSE TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))
-          END  BETWEEN TO_NUMBER(TO_CHAR(TRUNC(ADD_MONTHS(SYSDATE, -11), 'dd'),'yymmdd')) -- 생후 11개월까지 = 영아
-                             AND TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))
+    ) AV
 
+     -- 2024-11-04 김용록 : 영아(아기환자) 찾는 쿼리 조건
+     WHERE (CASE WHEN :IN_BABY_CHECKED = 'Y'
+                 THEN TO_NUMBER(SUBSTR(C4,0,6))
+                 ELSE TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))
+            END) BETWEEN TO_NUMBER(TO_CHAR(TRUNC(ADD_MONTHS(SYSDATE, -11), 'dd'),'yymmdd')) -- 생후 11개월까지 = 영아
+                    AND TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))
+     -- 2024-11-14 김용록 : 기관에 등록된 아기환자일 때, 주민번호에 임시값을 넣어 조회가 안되는 문제로 인해 조건 추가
+        OR (CASE WHEN :IN_BABY_CHECKED = 'Y'
+                 THEN NVL((SELECT TO_NUMBER(TO_CHAR(PCT.PT_BRDY_DT,'yyyymmdd')) AS CELLEBRITED_BABY
+                             FROM PCTPCPAM PCT
+                            WHERE PCT.PT_NO = AV.PT_NO
+                              AND PCT.PT_BRDY_DT BETWEEN TO_DATE(TO_CHAR(TRUNC(ADD_MONTHS(SYSDATE, -11), 'dd'),'yyyymmdd')) -- 생후 11개월까지 = 영아
+                                                     AND SYSDATE
+                          ) , TO_NUMBER('19560618')) -- NULL일 떄, 제외
+                 ELSE TO_NUMBER(TO_CHAR(SYSDATE,'yyyymmdd'))
+            END) BETWEEN TO_NUMBER(TO_CHAR(TRUNC(ADD_MONTHS(SYSDATE, -11), 'dd'),'yyyymmdd')) -- 생후 11개월까지 = 영아
+                    AND TO_NUMBER(TO_CHAR(SYSDATE,'yyyymmdd'))
 
-   GROUP BY CCC,
-            PT_NO,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,--C16
+     -- 2024-10-30 김용록 : 중복 제거(C16, 확진일을 최근 일자로 가져오게 처리)
+     -- 2024-11-28 김용록 : 중복 제거(DOCTOR_NOTE_ID = MDRC_ID 최신 작성된 걸로 가져오게 처리)
+     GROUP BY CCC, PT_NO,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,--C16
             C17,C18,C19,C20,C21,C22,C23,C24,C25,C26,C27,C28,C29,C30,C31,C32,
             C33,C34,C35,C36,C37,C38,C39,C40,C41,C42,C43,C44,C45,C46,C47,C48,
             C49,C50,C51,C52,C53,C54,C55,C56,MEDDEPT,SENDYN,SENDDATE,MSG,
-            DOCTOR_NOTE_ID,AIDYN,DUP_CNCR_YN
-
-
-   ORDER BY C16 DESC
+            --DOCTOR_NOTE_ID
+            AIDYN,DUP_CNCR_YN
     ;;;
 select
     TO_NUMBER(TO_CHAR(SYSDATE,'yymmdd'))  AS SS
