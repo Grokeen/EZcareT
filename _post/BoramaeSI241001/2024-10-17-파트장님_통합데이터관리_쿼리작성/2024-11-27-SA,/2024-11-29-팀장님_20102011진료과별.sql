@@ -10,7 +10,7 @@
   기능  : 2010,2011 만 조회 가능합니다.
            ASIS -> TOBE 컨버전 없이 들고왔습니다.
 
-  ASIS : pkg_bil_aid999.pc_sel_pts04_income001
+  ASIS : pkg_mis_pts_pts_pts04.pc_sel_pts04_income001
 
   TEST : EXEC :IN_FR_DT := '20110801';
          EXEC :IN_TO_DT := '20110831';
